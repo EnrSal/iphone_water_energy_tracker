@@ -1,0 +1,6 @@
+framework module Pods_Water_Energy_Tracker {
+  umbrella header "Pods-Water Energy Tracker-umbrella.h"
+
+  export *
+  module * { export * }
+}
