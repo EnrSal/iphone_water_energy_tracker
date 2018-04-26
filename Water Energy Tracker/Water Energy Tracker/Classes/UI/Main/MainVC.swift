@@ -25,7 +25,11 @@ class MainVC: SaviorVC {
 
     @IBAction func clickNotifications(_ sender: Any) {
     }
+
     @IBAction func clickManage(_ sender: Any) {
+        let detailVC:ManageVC = ManageVC(nibName: "ManageVC", bundle: nil)
+        self.navigationController?.pushViewController(detailVC, animated: true)
+
     }
     
 }

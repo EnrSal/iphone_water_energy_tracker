@@ -17,6 +17,11 @@
 		0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AA3ED20818A7B00194AA5 /* MainVC.xib */; };
 		0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AA3F420818C7F00194AA5 /* ManageVC.swift */; };
 		0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AA3F520818C7F00194AA5 /* ManageVC.xib */; };
+		0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876A209184AF00378B03 /* RealmSavior.swift */; };
+		0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876F20918A2C00378B03 /* GenericRequest.swift */; };
+		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
+		0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877320918A5F00378B03 /* AzureApi.swift */; };
+		0D7F877620918ADE00378B03 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877520918ADE00378B03 /* ServerError.swift */; };
 		67EBA7C9C5A378679C9E4924 /* Pods_Water_Energy_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DEE1CA70453D331F84E999 /* Pods_Water_Energy_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +38,11 @@
 		0D6AA3ED20818A7B00194AA5 /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		0D6AA3F420818C7F00194AA5 /* ManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVC.swift; sourceTree = "<group>"; };
 		0D6AA3F520818C7F00194AA5 /* ManageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageVC.xib; sourceTree = "<group>"; };
+		0D7F876A209184AF00378B03 /* RealmSavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavior.swift; sourceTree = "<group>"; };
+		0D7F876F20918A2C00378B03 /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
+		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
+		0D7F877320918A5F00378B03 /* AzureApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureApi.swift; sourceTree = "<group>"; };
+		0D7F877520918ADE00378B03 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
 		11A8F7AD65C39486BD704C22 /* Pods-Water Energy Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water Energy Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water Energy Tracker/Pods-Water Energy Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		20DEE1CA70453D331F84E999 /* Pods_Water_Energy_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Water_Energy_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3FC91BDA0BD6793F2068CD /* Pods-Water Energy Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water Energy Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water Energy Tracker/Pods-Water Energy Tracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +95,8 @@
 		0D6AA3E62081897D00194AA5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0D7F876C209189FE00378B03 /* API */,
+				0D7F87692091849700378B03 /* Persistent */,
 				0D6AA3E72081898400194AA5 /* UI */,
 			);
 			path = Classes;
@@ -132,6 +144,41 @@
 				0D6AA3F520818C7F00194AA5 /* ManageVC.xib */,
 			);
 			path = Manage;
+			sourceTree = "<group>";
+		};
+		0D7F87692091849700378B03 /* Persistent */ = {
+			isa = PBXGroup;
+			children = (
+				0D7F876A209184AF00378B03 /* RealmSavior.swift */,
+			);
+			path = Persistent;
+			sourceTree = "<group>";
+		};
+		0D7F876C209189FE00378B03 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				0D7F876E20918A1700378B03 /* Response */,
+				0D7F876D20918A1000378B03 /* Request */,
+				0D7F877320918A5F00378B03 /* AzureApi.swift */,
+				0D7F877520918ADE00378B03 /* ServerError.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		0D7F876D20918A1000378B03 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				0D7F876F20918A2C00378B03 /* GenericRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		0D7F876E20918A1700378B03 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				0D7F877120918A3A00378B03 /* NamesResponse.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		D0B20312B188AD2D35D59C53 /* Frameworks */ = {
@@ -242,6 +289,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyBluetooth/SwiftyBluetooth.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -257,6 +305,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBluetooth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,8 +354,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D6AA3D5208187CF00194AA5 /* ViewController.swift in Sources */,
+				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
+				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
+				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
+				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
+				0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */,
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,
 				0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */,
 			);
