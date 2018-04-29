@@ -22,6 +22,11 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
         // Do any additional setup after loading the view.
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "LIST_CELL")
+        
+        let realm = try! Realm()
+        let items = realm.objects(RealmSavior.self)
+        saviors.append(contentsOf: items)
+
         scan()
     }
 
@@ -44,9 +49,16 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 if !self.peripherals.contains(where: { (per:Peripheral) -> Bool in
                     return per.identifier == peripheral.identifier
                 }) {
-                    DispatchQueue.main.async {
-                        self.peripherals.append(peripheral)
-                        self.tableView.reloadData()
+                    
+                    if !self.saviors.contains(where: { (sav:RealmSavior) -> Bool in
+                        return sav.savior_address == peripheral.name!.replacingOccurrences(of: "SX", with: "")
+                    }) {
+                        
+                        DispatchQueue.main.async {
+                            self.peripherals.append(peripheral)
+                            self.tableView.reloadData()
+                        }
+                        
                     }
                 }
                 break
@@ -107,6 +119,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 } else {
                     if let response = response {
                         let realm = try! Realm()
+                        var newsavior:RealmSavior? = nil
                         try! realm.write {
                             let savior:RealmSavior = RealmSavior()
                             savior.share_number = response.ShareNumber
@@ -127,7 +140,25 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                             savior.energy_unit_name_8 = response.Name8
                             
                             realm.add(savior)
-                            
+                            newsavior = savior
+                        }
+                        if let newsavior = newsavior {
+                            if newsavior.stype != Constants.water_stype {
+                                let config:DeviceConfiguration = DeviceConfiguration()
+                                config.name = newsavior.savior_address!
+                                AzureApi.shared.getConfig(req: config, completionHandler: { (error:ServerError?, response:DeviceConfiguration?) in
+                                    if let error = error {
+                                        self.showError(message: error.getMessage()!)
+                                    } else {
+                                        if let response = response {
+                                            try! realm.write {
+                                                newsavior.EnergyUnit = response.EnergyUnit
+                                                newsavior.EnergyUnitPerPulse = response.EnergyUnitPerPulse!
+                                            }
+                                        }
+                                    }
+                                })
+                            }
                         }
                     }
                 }
