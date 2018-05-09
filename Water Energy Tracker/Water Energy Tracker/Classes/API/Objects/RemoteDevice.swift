@@ -17,23 +17,23 @@ class RemoteDevice: NSObject, Mappable {
     var mac: String?
     var stype: Int?
     var alias: String?
-    var SignalStrength: String?
-    var SolMinutes: String?
-    var Temp2: String?
-    var HS2: String?
-    var SC2: String?
-    var Daily: String?
-    var Hourly: String?
+    var SignalStrength: Int?
+    var SolMinutes: Int?
+    var Temp2: Double?
+    var HS2: Double?
+    var SC2: Double?
+    var Daily: Int?
+    var Hourly: Int?
     
-    var HLON: String?
-    var C1: String?
-    var C2: String?
-    var C3: String?
-    var C4: String?
-    var C5: String?
-    var C6: String?
-    var C7: String?
-    var C8: String?
+    var HLON: Int?
+    var C1: Int?
+    var C2: Int?
+    var C3: Int?
+    var C4: Int?
+    var C5: Int?
+    var C6: Int?
+    var C7: Int?
+    var C8: Int?
 
     override init() {}
     

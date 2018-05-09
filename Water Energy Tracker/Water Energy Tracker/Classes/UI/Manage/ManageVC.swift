@@ -22,10 +22,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
         // Do any additional setup after loading the view.
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "LIST_CELL")
-        
-        let realm = try! Realm()
-        let items = realm.objects(RealmSavior.self)
-        saviors.append(contentsOf: items)
+        self.tableView.tableFooterView = UIView()
 
         scan()
     }
@@ -37,10 +34,16 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func scan() {
+        let realm = try! Realm()
+        let items = realm.objects(RealmSavior.self)
+        saviors.removeAll()
+        saviors.append(contentsOf: items)
+
         SwiftyBluetooth.scanForPeripherals(withServiceUUIDs: ["6e400001-b5a3-f393-e0a9-e50e24dcca9e"], timeoutAfter: 15) { scanResult in
             switch scanResult {
             case .scanStarted:
             // The scan started meaning CBCentralManager scanForPeripherals(...) was called
+                self.peripherals.removeAll()
                 break
             case .scanResult(let peripheral, let advertisementData, let RSSI):
                 print("GOT BLUETOOTH \(peripheral.identifier) \(advertisementData) \(peripheral.name!)")
@@ -87,6 +90,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "LIST_CELL", for: indexPath)
         if indexPath.section == 0 {
             let savior = self.saviors[indexPath.row]
+            cell.textLabel?.text = savior.alias!
         } else {
             let peripheral = self.peripherals[indexPath.row]
             cell.textLabel?.text = peripheral.name!
@@ -153,12 +157,21 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                         if let response = response {
                                             try! realm.write {
                                                 newsavior.EnergyUnit = response.EnergyUnit
-                                                newsavior.EnergyUnitPerPulse = response.EnergyUnitPerPulse!
+                                                if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
+                                                    newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                                }
                                             }
+                                            self.peripherals.remove(at: indexPath.row)
+                                            self.scan()
+                                            self.tableView.reloadData()
                                         }
                                     }
                                 })
                             }
+                        } else {
+                            self.peripherals.remove(at: indexPath.row)
+                            self.scan()
+                            self.tableView.reloadData()
                         }
                     }
                 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A7A20A22339005B95A3 /* MainDeviceCell.swift */; };
+		0D050A7D20A22339005B95A3 /* MainDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D050A7B20A22339005B95A3 /* MainDeviceCell.xib */; };
+		0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A7E20A22360005B95A3 /* DeviceNameSubCell.swift */; };
+		0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */; };
 		0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */; };
 		0D5CE142209545030096CD99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE141209545030096CD99 /* Constants.swift */; };
 		0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE1432095479D0096CD99 /* GetDataRequest.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D050A7A20A22339005B95A3 /* MainDeviceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDeviceCell.swift; sourceTree = "<group>"; };
+		0D050A7B20A22339005B95A3 /* MainDeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainDeviceCell.xib; sourceTree = "<group>"; };
+		0D050A7E20A22360005B95A3 /* DeviceNameSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNameSubCell.swift; sourceTree = "<group>"; };
+		0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceNameSubCell.xib; sourceTree = "<group>"; };
 		0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
 		0D5CE141209545030096CD99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0D5CE1432095479D0096CD99 /* GetDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataRequest.swift; sourceTree = "<group>"; };
@@ -149,6 +157,10 @@
 			children = (
 				0D6AA3EC20818A7B00194AA5 /* MainVC.swift */,
 				0D6AA3ED20818A7B00194AA5 /* MainVC.xib */,
+				0D050A7A20A22339005B95A3 /* MainDeviceCell.swift */,
+				0D050A7B20A22339005B95A3 /* MainDeviceCell.xib */,
+				0D050A7E20A22360005B95A3 /* DeviceNameSubCell.swift */,
+				0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -290,9 +302,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D6AA3DD208187CF00194AA5 /* LaunchScreen.storyboard in Resources */,
+				0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */,
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
+				0D050A7D20A22339005B95A3 /* MainDeviceCell.xib in Resources */,
 				0D6AA3D8208187CF00194AA5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +400,7 @@
 				0D5CE146209547E20096CD99 /* GetDataResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
+				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
@@ -394,6 +409,7 @@
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
 				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
+				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
 				0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */,
 				0D5CE149209548140096CD99 /* RemoteDevice.swift in Sources */,
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="Water_Energy_Tracker" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="XOl-eg-Vtp" id="RHC-O3-LUR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -47,11 +48,23 @@
                         <action selector="clickManage:" destination="-1" eventType="touchUpInside" id="jFi-Pq-dEP"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XOl-eg-Vtp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="aRJ-RL-Bxk"/>
+                        <outlet property="delegate" destination="-1" id="Bwb-CC-PQY"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="drx-oe-7hg" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="9tk-rh-fUV"/>
+                <constraint firstItem="XOl-eg-Vtp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="9wU-uL-HAw"/>
+                <constraint firstItem="XOl-eg-Vtp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ERG-fD-sDE"/>
+                <constraint firstItem="WLc-Zu-8m8" firstAttribute="top" secondItem="XOl-eg-Vtp" secondAttribute="bottom" constant="8" id="Eah-Ox-Cub"/>
                 <constraint firstItem="drx-oe-7hg" firstAttribute="height" secondItem="WLc-Zu-8m8" secondAttribute="height" id="Hdx-IX-2oG"/>
+                <constraint firstItem="XOl-eg-Vtp" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="M7j-so-baI"/>
                 <constraint firstItem="drx-oe-7hg" firstAttribute="leading" secondItem="WLc-Zu-8m8" secondAttribute="trailing" constant="7" id="dtu-Qz-Lgx"/>
                 <constraint firstItem="WLc-Zu-8m8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="juJ-vf-VyU"/>
                 <constraint firstItem="WLc-Zu-8m8" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="olL-EB-G6V"/>

@@ -23,7 +23,7 @@ class DeviceConfiguration: NSObject, Mappable {
     var MonthKWH: Int?
     var TimeZone: String?
     var EnergyUnit: String?
-    var EnergyUnitPerPulse: Double?
+    var EnergyUnitPerPulse: String?
     
     override init() {}
     
