@@ -40,6 +40,21 @@ class RealmSavior: Object {
     @objc dynamic var last_command_sent: Date? = nil
     @objc dynamic var EnergyUnit: String? = nil
     @objc dynamic var EnergyUnitPerPulse: Double = 0
+    
+    
+    func isValidDevice() -> Bool {
+        if (!from_share) {
+            return true
+        }
+        if ((share_number_used != nil) && (share_number_prev != nil) && (temp_share_number_prev != nil)) {
+            if ((share_number_used! != share_number_prev!) && (share_number_used! != temp_share_number_prev!)) {
+                return false
+            }
+        }
+        return true
+    }
+    
+
 }
 
 

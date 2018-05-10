@@ -100,9 +100,11 @@
             <connections>
                 <outlet property="name" destination="A9U-HN-aYX" id="CR9-b7-Qyf"/>
                 <outlet property="signalImage" destination="3eN-Na-aod" id="RlI-z6-RNI"/>
+                <outlet property="solminutes" destination="hQi-SZ-tOi" id="oFt-az-wwy"/>
                 <outlet property="spinner" destination="ByP-1q-UkN" id="bW8-qa-OTN"/>
                 <outlet property="tableHeight" destination="vyP-n6-bGa" id="OTq-vC-Nsk"/>
                 <outlet property="tableView" destination="eo4-cp-Dry" id="fos-qq-PtM"/>
+                <outlet property="temp" destination="Pmf-9X-Y0W" id="4Vq-1x-gcS"/>
                 <outlet property="typeImage" destination="Lcp-UV-KC0" id="LHc-R3-vxx"/>
             </connections>
             <point key="canvasLocation" x="87.5" y="110.5"/>

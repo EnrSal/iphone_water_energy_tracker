@@ -181,5 +181,42 @@ class AzureApi: NSObject {
         }
     }
 
+    func getKwh(req:GenericRequest, completionHandler: @escaping (ServerError?, KwhResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://get-kwh-for-id-functionapp20180105042228.azurewebsites.net/api/Function1?code=b5t1lxp8eup5klYWMS1ItTWH4Rz4igmTWEFR7XQF7Hnk9tqP7S8nug=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:KwhResponse = KwhResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
 
 }

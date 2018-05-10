@@ -11,6 +11,8 @@
 		0D050A7D20A22339005B95A3 /* MainDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D050A7B20A22339005B95A3 /* MainDeviceCell.xib */; };
 		0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A7E20A22360005B95A3 /* DeviceNameSubCell.swift */; };
 		0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */; };
+		0D050A8320A3E383005B95A3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A8220A3E383005B95A3 /* Util.swift */; };
+		0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */; };
 		0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */; };
 		0D5CE142209545030096CD99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE141209545030096CD99 /* Constants.swift */; };
 		0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE1432095479D0096CD99 /* GetDataRequest.swift */; };
@@ -41,6 +43,8 @@
 		0D050A7B20A22339005B95A3 /* MainDeviceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainDeviceCell.xib; sourceTree = "<group>"; };
 		0D050A7E20A22360005B95A3 /* DeviceNameSubCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNameSubCell.swift; sourceTree = "<group>"; };
 		0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceNameSubCell.xib; sourceTree = "<group>"; };
+		0D050A8220A3E383005B95A3 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwhResponse.swift; sourceTree = "<group>"; };
 		0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
 		0D5CE141209545030096CD99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0D5CE1432095479D0096CD99 /* GetDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataRequest.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 			children = (
 				0D6AA3E9208189A600194AA5 /* SaviorVC.swift */,
 				0D5CE141209545030096CD99 /* Constants.swift */,
+				0D050A8220A3E383005B95A3 /* Util.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				0D7F877120918A3A00378B03 /* NamesResponse.swift */,
 				0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */,
 				0D5CE145209547E20096CD99 /* GetDataResponse.swift */,
+				0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -403,6 +409,7 @@
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
+				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
@@ -415,6 +422,7 @@
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,
 				0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */,
 				0D5CE142209545030096CD99 /* Constants.swift in Sources */,
+				0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
