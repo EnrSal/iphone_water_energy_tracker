@@ -82,7 +82,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:MainDeviceCell = (self.tableView.dequeueReusableCell(withIdentifier: "DEVICE_CELL", for: indexPath) as? MainDeviceCell)!
-        
+        cell.owner = self
         cell.savior = self.saviors[indexPath.row]
         cell.populate()
         
@@ -93,6 +93,10 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
+        if self.saviors[indexPath.row].stype == 0 {
+            let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
+            detailVC.savior = self.saviors[indexPath.row]
+            self.navigationController?.pushViewController(detailVC, animated: true)
+        }
     }
 }

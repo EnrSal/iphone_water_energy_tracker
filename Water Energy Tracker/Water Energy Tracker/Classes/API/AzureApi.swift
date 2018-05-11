@@ -125,7 +125,7 @@ class AzureApi: NSObject {
                 switch response.result {
                 case .success:
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                        print("json --> \(utf8Text)")
+                        print("getConfig --> \(utf8Text)")
                         let serverResponse:DeviceConfiguration = DeviceConfiguration(JSONString: utf8Text)!
                         completionHandler(nil, serverResponse)
                     } else {

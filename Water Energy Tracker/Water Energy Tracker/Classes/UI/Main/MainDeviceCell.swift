@@ -30,7 +30,8 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     var unit6_usage:String? = nil
     var unit7_usage:String? = nil
     var unit8_usage:String? = nil
-
+    
+    var owner:MainVC!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,7 +42,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = 44
         self.tableView.separatorStyle = .none
-
+        
         
     }
     
@@ -61,19 +62,31 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         unit6_usage = nil
         unit7_usage = nil
         unit8_usage = nil
-
+        self.temp.text = ""
         self.solminutes.text = "Not synced"
         self.solminutes.textColor = UIColor.lightGray
-
+        
         //title.setText(device.getName());
         self.setDetails()
-
+        
         if self.savior.stype == 0 {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
         } else {
             self.typeImage.image = #imageLiteral(resourceName: "ic_energy")
+            switch savior.stype {
+            case 0:
+                self.tableHeight.constant = 0
+            case 1:
+                self.tableHeight.constant = 2*44
+            case 2:
+                self.tableHeight.constant = 4*44
+            case 4:
+                self.tableHeight.constant = 8*44
+            default:
+                break
+            }
         }
-
+        
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -90,18 +103,19 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             } else {
                 if let response = response {
                     let values = response.Daily!.components(separatedBy: ",")
-                    self.unit1_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit2_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit3_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit4_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit5_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit6_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit7_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
-                    self.unit8_usage = "\(String(format: "%.2f", Float(values[0])!)) \(self.savior.EnergyUnit!)"
+                    print("VALUES \(values)")
+                    self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                    self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
-
+                    
                 }
             }
         }
@@ -173,8 +187,10 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 self.solminutes.text = "Not valid or expired"
                 self.solminutes.textColor = UIColor.red
             }
-         
-
+            
+            let tmp = (current!.Temperature + current!.Temp2) / 2.0;
+            self.temp.text = "\(String(format: "%.2f", Util.celsiusToFahrenheit(celsius: tmp))) °F"
+            
         }
     }
     
@@ -185,9 +201,12 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         return 1
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.savior == nil {
+            return 0
+        }
         
-
         switch savior.stype {
         case 0:
             return 0
@@ -302,5 +321,12 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         
         return cell;
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
+        detailVC.savior = self.savior
+        detailVC.energy_unit = indexPath.row
+        self.owner.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }

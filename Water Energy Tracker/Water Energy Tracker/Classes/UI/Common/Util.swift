@@ -72,4 +72,9 @@ class Util: NSObject {
         }
         
     }
+    
+    static func celsiusToFahrenheit(celsius:Double ) -> Double {
+        return (9.0 / 5) * celsius + 32;
+    }
+
 }
