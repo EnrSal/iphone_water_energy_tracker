@@ -30,6 +30,14 @@
 		0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AA3ED20818A7B00194AA5 /* MainVC.xib */; };
 		0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AA3F420818C7F00194AA5 /* ManageVC.swift */; };
 		0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AA3F520818C7F00194AA5 /* ManageVC.xib */; };
+		0D73407F20A8ECFE0098343D /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D73407E20A8ECFE0098343D /* WindowsAzureMessaging.framework */; };
+		0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73408720A8FE060098343D /* EnergyPowerUsageChartCell.swift */; };
+		0D73408A20A8FE060098343D /* EnergyPowerUsageChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73408820A8FE060098343D /* EnergyPowerUsageChartCell.xib */; };
+		0D73408C20A90F830098343D /* HourValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73408B20A90F830098343D /* HourValueFormatter.swift */; };
+		0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73408E20A92F0D0098343D /* WaterIntensityChartCell.swift */; };
+		0D73409120A92F0D0098343D /* WaterIntensityChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73408F20A92F0D0098343D /* WaterIntensityChartCell.xib */; };
+		0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73409220A9306E0098343D /* TemperatureChartCell.swift */; };
+		0D73409520A9306E0098343D /* TemperatureChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73409320A9306E0098343D /* TemperatureChartCell.xib */; };
 		0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876A209184AF00378B03 /* RealmSavior.swift */; };
 		0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876F20918A2C00378B03 /* GenericRequest.swift */; };
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
@@ -70,6 +78,16 @@
 		0D6AA3ED20818A7B00194AA5 /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		0D6AA3F420818C7F00194AA5 /* ManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVC.swift; sourceTree = "<group>"; };
 		0D6AA3F520818C7F00194AA5 /* ManageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageVC.xib; sourceTree = "<group>"; };
+		0D73407E20A8ECFE0098343D /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
+		0D73408020A8EDA80098343D /* Water Energy Tracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Water Energy Tracker-Bridging-Header.h"; sourceTree = "<group>"; };
+		0D73408420A8EE6F0098343D /* HubInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubInfo.h; sourceTree = "<group>"; };
+		0D73408720A8FE060098343D /* EnergyPowerUsageChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyPowerUsageChartCell.swift; sourceTree = "<group>"; };
+		0D73408820A8FE060098343D /* EnergyPowerUsageChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyPowerUsageChartCell.xib; sourceTree = "<group>"; };
+		0D73408B20A90F830098343D /* HourValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourValueFormatter.swift; sourceTree = "<group>"; };
+		0D73408E20A92F0D0098343D /* WaterIntensityChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterIntensityChartCell.swift; sourceTree = "<group>"; };
+		0D73408F20A92F0D0098343D /* WaterIntensityChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaterIntensityChartCell.xib; sourceTree = "<group>"; };
+		0D73409220A9306E0098343D /* TemperatureChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureChartCell.swift; sourceTree = "<group>"; };
+		0D73409320A9306E0098343D /* TemperatureChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperatureChartCell.xib; sourceTree = "<group>"; };
 		0D7F876A209184AF00378B03 /* RealmSavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavior.swift; sourceTree = "<group>"; };
 		0D7F876F20918A2C00378B03 /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
@@ -92,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67EBA7C9C5A378679C9E4924 /* Pods_Water_Energy_Tracker.framework in Frameworks */,
+				0D73407F20A8ECFE0098343D /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +128,7 @@
 		0D6AA3C6208187CF00194AA5 = {
 			isa = PBXGroup;
 			children = (
+				0D73407E20A8ECFE0098343D /* WindowsAzureMessaging.framework */,
 				0D6AA3D1208187CF00194AA5 /* Water Energy Tracker */,
 				0D6AA3D0208187CF00194AA5 /* Products */,
 				F5D3F24931D9B7A35635461D /* Pods */,
@@ -127,6 +147,7 @@
 		0D6AA3D1208187CF00194AA5 /* Water Energy Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				0D73408420A8EE6F0098343D /* HubInfo.h */,
 				0D6AA3E62081897D00194AA5 /* Classes */,
 				0D6AA3D2208187CF00194AA5 /* AppDelegate.swift */,
 				0D6AA3D4208187CF00194AA5 /* ViewController.swift */,
@@ -166,6 +187,7 @@
 				0D6AA3E9208189A600194AA5 /* SaviorVC.swift */,
 				0D5CE141209545030096CD99 /* Constants.swift */,
 				0D050A8220A3E383005B95A3 /* Util.swift */,
+				0D73408020A8EDA80098343D /* Water Energy Tracker-Bridging-Header.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -197,6 +219,20 @@
 				0D6AA3F520818C7F00194AA5 /* ManageVC.xib */,
 			);
 			path = Manage;
+			sourceTree = "<group>";
+		};
+		0D73408620A8FDE70098343D /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				0D73408720A8FE060098343D /* EnergyPowerUsageChartCell.swift */,
+				0D73408820A8FE060098343D /* EnergyPowerUsageChartCell.xib */,
+				0D73408B20A90F830098343D /* HourValueFormatter.swift */,
+				0D73408E20A92F0D0098343D /* WaterIntensityChartCell.swift */,
+				0D73408F20A92F0D0098343D /* WaterIntensityChartCell.xib */,
+				0D73409220A9306E0098343D /* TemperatureChartCell.swift */,
+				0D73409320A9306E0098343D /* TemperatureChartCell.xib */,
+			);
+			path = Charts;
 			sourceTree = "<group>";
 		};
 		0D7F87692091849700378B03 /* Persistent */ = {
@@ -244,6 +280,7 @@
 		0DE4CC1420A4B265001A4E5D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				0D73408620A8FDE70098343D /* Charts */,
 				0DE4CC1520A4B27F001A4E5D /* DetailVC.swift */,
 				0DE4CC1620A4B27F001A4E5D /* DetailVC.xib */,
 				0DE4CC1920A4B954001A4E5D /* DetailWaterInfoCell.swift */,
@@ -306,6 +343,7 @@
 				TargetAttributes = {
 					0D6AA3CE208187CF00194AA5 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -333,8 +371,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D73409120A92F0D0098343D /* WaterIntensityChartCell.xib in Resources */,
 				0D6AA3DD208187CF00194AA5 /* LaunchScreen.storyboard in Resources */,
 				0DE4CC1820A4B27F001A4E5D /* DetailVC.xib in Resources */,
+				0D73409520A9306E0098343D /* TemperatureChartCell.xib in Resources */,
+				0D73408A20A8FE060098343D /* EnergyPowerUsageChartCell.xib in Resources */,
 				0DE4CC2020A4B967001A4E5D /* DetailEnergyInfoCell.xib in Resources */,
 				0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */,
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
@@ -359,6 +400,8 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/ChartsRealm/ChartsRealm.framework",
 				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -375,6 +418,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChartsRealm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -431,10 +476,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D73408C20A90F830098343D /* HourValueFormatter.swift in Sources */,
 				0D6AA3D5208187CF00194AA5 /* ViewController.swift in Sources */,
 				0D5CE146209547E20096CD99 /* GetDataResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
+				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
 				0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */,
@@ -442,12 +489,14 @@
 				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
+				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
 				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
 				0DE4CC1720A4B27F001A4E5D /* DetailVC.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
+				0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */,
 				0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */,
 				0D5CE149209548140096CD99 /* RemoteDevice.swift in Sources */,
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,
@@ -592,13 +641,20 @@
 			baseConfigurationReference = AD3FC91BDA0BD6793F2068CD /* Pods-Water Energy Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MR9FEBC46L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ctreesoft.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -609,13 +665,19 @@
 			baseConfigurationReference = 11A8F7AD65C39486BD704C22 /* Pods-Water Energy Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MR9FEBC46L;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ctreesoft.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

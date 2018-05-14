@@ -1,6 +1,8 @@
 platform :ios, '10.0'
   use_frameworks!
   def shared_pods
+  pod 'Charts'
+  pod 'ChartsRealm'
   pod 'SwiftyBluetooth'
   pod 'RealmSwift' 
   pod 'Alamofire'

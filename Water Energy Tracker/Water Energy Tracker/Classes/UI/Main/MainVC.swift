@@ -96,7 +96,9 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         if self.saviors[indexPath.row].stype == 0 {
             let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
             detailVC.savior = self.saviors[indexPath.row]
+            print("2 DID CLICK HERE")
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 }

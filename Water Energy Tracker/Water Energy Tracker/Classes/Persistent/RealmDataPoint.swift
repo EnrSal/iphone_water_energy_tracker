@@ -78,14 +78,31 @@ class RealmDataPoint: Object {
             self.HLON = HLON
         }
 
-        C1 = Int(dataPoint.C1!)
-        C2 = Int(dataPoint.C2!)
-        C3 = Int(dataPoint.C3!)
-        C4 = Int(dataPoint.C4!)
-        C5 = Int(dataPoint.C5!)
-        C6 = Int(dataPoint.C6!)
-        C7 = Int(dataPoint.C7!)
-        C8 = Int(dataPoint.C8!)
+        if let C1 = dataPoint.C1 {
+            self.C1 = C1
+        }
+        if let C2 = dataPoint.C2 {
+            self.C2 = C2
+        }
+        if let C3 = dataPoint.C3 {
+            self.C3 = C3
+        }
+        if let C4 = dataPoint.C4 {
+            self.C4 = C4
+        }
+        if let C5 = dataPoint.C5 {
+            self.C5 = C5
+        }
+        if let C6 = dataPoint.C6 {
+            self.C6 = C6
+        }
+        if let C7 = dataPoint.C7 {
+            self.C7 = C7
+        }
+        if let C8 = dataPoint.C8 {
+            self.C8 = C8
+        }
+
     }
 
 }

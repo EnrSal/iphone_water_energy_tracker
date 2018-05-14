@@ -77,4 +77,20 @@ class Util: NSObject {
         return (9.0 / 5) * celsius + 32;
     }
 
+    static func pulsesToReadable(pulses:Int, savior:RealmSavior) -> String {
+        let kw = Double(pulses)*savior.EnergyUnitPerPulse
+        if (kw > 1000) {
+            return "\(String(format: "%.2f", kw * 0.001)) MWh"
+        }
+        return "\(String(format: "%.2f", kw)) kWh"
+    }
+    
+    
+    static func kwToReadable(kw:Double, savior:RealmSavior) -> String {
+        if (kw > 1000) {
+            return "\(String(format: "%.2f", kw * 0.001)) MWh"
+        }
+        return "\(String(format: "%.2f", kw)) kWh"
+    }
+    
 }

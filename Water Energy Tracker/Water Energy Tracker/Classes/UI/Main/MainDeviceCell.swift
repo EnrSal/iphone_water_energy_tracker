@@ -69,6 +69,14 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         //title.setText(device.getName());
         self.setDetails()
         
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "MMddyyyyHH:mm:ss"
+        
+        let datestr = formatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
+
         if self.savior.stype == 0 {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
         } else {
@@ -85,42 +93,35 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             default:
                 break
             }
-        }
-        
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "MMddyyyyHH:mm:ss"
-        
-        let datestr = formatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
-        
-        let genreq:GenericRequest = GenericRequest()
-        genreq.name = savior.savior_address!
-        AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?) in
-            if let error = error {
-                print(error)
-            } else {
-                if let response = response {
-                    let values = response.Daily!.components(separatedBy: ",")
-                    print("VALUES \(values)")
-                    self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+            
+            
+            let genreq:GenericRequest = GenericRequest()
+            genreq.name = savior.savior_address!
+            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?) in
+                if let error = error {
+                    print(error)
+                } else {
+                    if let response = response {
+                        let values = response.Daily!.components(separatedBy: ",")
+                        print("VALUES \(values)")
+                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
                     }
-                    
                 }
             }
+            
         }
-        
-        
+
         let req:GetDataRequest = GetDataRequest()
         req.mac = savior.savior_address!
         req.stype = savior.stype
@@ -325,8 +326,10 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
         detailVC.savior = self.savior
-        detailVC.energy_unit = indexPath.row
+        detailVC.energy_unit = indexPath.row+1
+        print("DID CLICK HERE \(indexPath.row)")
         self.owner.navigationController?.pushViewController(detailVC, animated: true)
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
 }

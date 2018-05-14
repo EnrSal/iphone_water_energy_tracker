@@ -8,11 +8,14 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let HUBNAME = "Savior_Notification_Hub"
+    let HUBLISTENACCESS = "Endpoint=sb://saviornotificationnamespace.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=F/woC8B08qNEiPLUQzNkfXHr+23ssPp7SWQZEG7Gpgk="
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -34,6 +37,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return true
     }
+
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        let hub = SBNotificationHub(connectionString: HUBLISTENACCESS, notificationHubPath: HUBNAME)
+        var set:Set<String> = []
+        
+        let realm = try! Realm()
+        let items = realm.objects(RealmSavior.self)
+        if items.count > 0 {
+            for savior in items {
+                set.insert(savior.savior_address!)
+            }
+        }
+        
+        
+        //NSSet *set = [NSSet setWithArray:@[@"6001941A4BD7",@"6001941A4AD6"]];
+        if set.count != 0 {
+            hub!.registerNative(withDeviceToken: deviceToken, tags: set, completion: {(_ error: Error?) -> Void in
+                if error != nil {
+                    if let anError = error {
+                        print("Error registering for notifications: \(anError)")
+                    }
+                }
+                /*  else {
+                 [self MessageBox:@"Registration Status" message:@"Registered"];
+                 }*/
+            })
+        }
+
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

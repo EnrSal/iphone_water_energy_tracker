@@ -120,7 +120,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="qF0-xv-xYp"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -188,6 +188,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="Dqs-gd-4dF"/>
             <connections>
+                <outlet property="detections_day" destination="DDj-bf-CaL" id="OCe-Rm-h3G"/>
+                <outlet property="detections_hour" destination="FbY-nl-VfP" id="CXJ-Yb-Nvy"/>
                 <outlet property="info" destination="eX9-NO-zrZ" id="J1c-L6-EG3"/>
                 <outlet property="temp1" destination="B85-36-X6e" id="Xkj-J4-KAV"/>
                 <outlet property="temp2" destination="yze-wk-SMp" id="nF3-QA-sd0"/>
