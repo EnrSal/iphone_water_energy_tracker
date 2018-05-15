@@ -9,6 +9,7 @@
 import UIKit
 import IQKeyboardManagerSwift
 import RealmSwift
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,11 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         IQKeyboardManager.sharedManager().enable = true
 
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options:[.badge, .alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+        }
+        application.registerForRemoteNotifications()
+
         return true
     }
 
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        print("REGISTER NOTIFICATION \(deviceToken)")
         
         let hub = SBNotificationHub(connectionString: HUBLISTENACCESS, notificationHubPath: HUBNAME)
         var set:Set<String> = []
@@ -51,7 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 set.insert(savior.savior_address!)
             }
         }
-        
+        print("REGISTER NOTIFICATION \(set)")
+
         
         //NSSet *set = [NSSet setWithArray:@[@"6001941A4BD7",@"6001941A4AD6"]];
         if set.count != 0 {
@@ -69,6 +79,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     }
     
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print(error)
+        
+    }
+
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification userInfo: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
+    {
+
+        print("Recived: \(userInfo)")
+        //Parsing userinfo:
+        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+        {
+            var alertMsg = info["alert"] as! String
+            var alert: UIAlertView!
+            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
+    }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

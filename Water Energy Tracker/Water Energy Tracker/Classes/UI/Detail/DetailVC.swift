@@ -22,6 +22,13 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        let utilityButton = UIBarButtonItem(title: "Utility", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickUtility(_:)))
+        let settingsButton = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickSettings(_:)))
+        let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
+        self.navigationItem.rightBarButtonItems = [historyButton,settingsButton,utilityButton]
+
+        
         self.tableView.register(DetailWaterInfoCell.self, forCellReuseIdentifier: "WATER_INFO_CELL")
         self.tableView.register(UINib(nibName: "DetailWaterInfoCell", bundle: nil), forCellReuseIdentifier: "WATER_INFO_CELL")
         
@@ -47,6 +54,16 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    @objc func clickUtility(_ sender:UIBarButtonItem!) {
+
+    }
+    @objc func clickSettings(_ sender:UIBarButtonItem!) {
+        
+    }
+    @objc func clickHistory(_ sender:UIBarButtonItem!) {
+        
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

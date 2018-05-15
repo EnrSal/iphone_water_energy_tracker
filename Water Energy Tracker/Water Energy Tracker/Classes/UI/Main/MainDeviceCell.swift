@@ -79,6 +79,8 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
 
         if self.savior.stype == 0 {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
+            self.typeImage.contentMode = .scaleAspectFit
+            self.tableHeight.constant = 0
         } else {
             self.typeImage.image = #imageLiteral(resourceName: "ic_energy")
             switch savior.stype {
@@ -142,12 +144,13 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     try! realm.write {
                         self.savior.last_sync = Date()
                         for device in response.Result {
-                            
-                            let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
-                            let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
-                            if current == nil {
-                                realm.add(dataPoint)
-                                print("ADDED \(dataPoint)")
+                            if device.UTCtime != nil && device.mac != nil {
+                                let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
+                                let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
+                                if current == nil {
+                                    realm.add(dataPoint)
+                                    print("ADDED \(dataPoint)")
+                                }
                             }
                         }
                     }

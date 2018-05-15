@@ -102,6 +102,83 @@ class AzureApi: NSObject {
             completionHandler(ServerError.noInternet, nil)
         }
     }
+    
+    func getNamesByShareNum(req:GenericRequest, completionHandler: @escaping (ServerError?, NamesResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://getnames-stype-macid-from-sharenumber-app20180110055554.azurewebsites.net/api/Function1?code=aOOfcQbfPMfS92jXsotHyzXBGBzeKjq8FalabYXJ0tF6x1p6MCYQgA=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:NamesResponse = NamesResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func setNames(req:GenericRequest, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://setname-for-a-particular-mac-idfunctionapp20180106123202.azurewebsites.net/api/Function1?code=yjkdGag18kRwGZvgH5z23l/PhAk05pKuaC1wYkFIczFu72ahbdXwmQ=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:GenericResponse = GenericResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
 
     func getConfig(req:DeviceConfiguration, completionHandler: @escaping (ServerError?, DeviceConfiguration?) -> Void) {
         if let reachability = reachability, reachability.isReachable {
@@ -205,6 +282,158 @@ class AzureApi: NSObject {
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("json --> \(utf8Text)")
                         let serverResponse:KwhResponse = KwhResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func setConfig(req:DeviceConfiguration, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://set-configuration-withutcname-functionapp20180330121250.azurewebsites.net/api/Function1?code=MWLiI4cDrYN0T8kvy4H04OPjRjRlZzJyUbP1glU5MJwJ0SRpdTlEyg=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:GenericResponse = GenericResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func getNotifications(req:NotificationsRequest, completionHandler: @escaping (ServerError?, NotificationsResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://getnotificationsbydevicename-functionapp20180317105010.azurewebsites.net/api/Function1?code=XPX0oJl3J6VaNkYUprz6xhyqO2DPnC3Txaaar14agh0pkUuEDx83pA=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:NotificationsResponse = NotificationsResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func sendCommand(req:SendCommandRequest, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://sendcommandtodevice-functionapp20180320045223.azurewebsites.net/api/Function1?code=Q4PfiFhPe/xQpEs1i85f/XZX4lfdobek5bZI4Cs7G22YmFV3ee7otw=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:GenericResponse = GenericResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func calculateHistorical(req:CalculateHistoricalRequest, completionHandler: @escaping (ServerError?, CalculateHistoricalResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://gethistoricalfromto-kwh-functionapp201803150112233.azurewebsites.net/api/Function1?code=WzdPHsawrcQip9vkbokNK8uGAdDJLCANDt3jN8atgittewAaXVatFw=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:CalculateHistoricalResponse = CalculateHistoricalResponse(JSONString: utf8Text)!
                         completionHandler(nil, serverResponse)
                     } else {
                         completionHandler(ServerError.defaultError, nil)

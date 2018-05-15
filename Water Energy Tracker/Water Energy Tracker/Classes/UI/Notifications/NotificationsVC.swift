@@ -1,30 +1,32 @@
 //
-//  MainVC.swift
+//  NotificationsVC.swift
 //  Water Energy Tracker
 //
-//  Created by Boris Katok on 4/13/18.
+//  Created by Boris Katok on 5/14/18.
 //  Copyright © 2018 Coconut Tree Software, Inc. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
-
-    var saviors:[RealmSavior] = []
+class NotificationsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
+    var saviors:[RealmSavior] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tableView.register(MainDeviceCell.self, forCellReuseIdentifier: "DEVICE_CELL")
-        self.tableView.register(UINib(nibName: "MainDeviceCell", bundle: nil), forCellReuseIdentifier: "DEVICE_CELL")
+        
+        self.title = "Notifications"
+        self.tableView.register(NotificationTopLevelCell.self, forCellReuseIdentifier: "NOTIFICATION_TOP_LEVEL_CELL")
+        self.tableView.register(UINib(nibName: "NotificationTopLevelCell", bundle: nil), forCellReuseIdentifier: "NOTIFICATION_TOP_LEVEL_CELL")
         
         self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
-        self.tableView.separatorStyle = .none
+        self.tableView.separatorStyle = .singleLine
         
         self.reload()
         
@@ -38,18 +40,6 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         
         let rightBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: buttonBack)
         navigationItem.rightBarButtonItems = [negativeSpacer, rightBarButtonItem]
-
-        NotificationCenter.default.addObserver(forName:NSNotification.Name(rawValue:"DeviceAddedEvent"),
-                                               object:nil, queue:nil,
-                                               using:catchNotification)
-
-    }
-
-    func catchNotification(notification: Notification) -> Void {
-        print("GOT NOTIFICATION")
-        DispatchQueue.main.async {
-            self.reload()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,27 +52,16 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let items = realm.objects(RealmSavior.self)
         saviors.removeAll()
         saviors.append(contentsOf: items)
-
+        
         self.tableView.reloadData()
     }
     
     // MARK: - Actions
-
+    
     @objc func clickRefresh(sender:UIButton?) {
         self.reload()
     }
 
-    @IBAction func clickNotifications(_ sender: Any) {
-        let detailVC:NotificationsVC = NotificationsVC(nibName: "NotificationsVC", bundle: nil)
-        self.navigationController?.pushViewController(detailVC, animated: true)
-    }
-
-    @IBAction func clickManage(_ sender: Any) {
-        let detailVC:ManageVC = ManageVC(nibName: "ManageVC", bundle: nil)
-        self.navigationController?.pushViewController(detailVC, animated: true)
-
-    }
-    
     // MARK: - TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -94,8 +73,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:MainDeviceCell = (self.tableView.dequeueReusableCell(withIdentifier: "DEVICE_CELL", for: indexPath) as? MainDeviceCell)!
-        cell.owner = self
+        let cell:NotificationTopLevelCell = (self.tableView.dequeueReusableCell(withIdentifier: "NOTIFICATION_TOP_LEVEL_CELL", for: indexPath) as? NotificationTopLevelCell)!
         cell.savior = self.saviors[indexPath.row]
         cell.populate()
         
@@ -106,12 +84,10 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if self.saviors[indexPath.row].stype == 0 {
-            let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
-            detailVC.savior = self.saviors[indexPath.row]
-            print("2 DID CLICK HERE")
-            self.navigationController?.pushViewController(detailVC, animated: true)
-        }
+        let detailVC:DeviceNotificationsVC = DeviceNotificationsVC(nibName: "DeviceNotificationsVC", bundle: nil)
+        detailVC.savior = self.saviors[indexPath.row]
+        self.navigationController?.pushViewController(detailVC, animated: true)
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
+
 }

@@ -38,6 +38,27 @@
 		0D73409120A92F0D0098343D /* WaterIntensityChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73408F20A92F0D0098343D /* WaterIntensityChartCell.xib */; };
 		0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73409220A9306E0098343D /* TemperatureChartCell.swift */; };
 		0D73409520A9306E0098343D /* TemperatureChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73409320A9306E0098343D /* TemperatureChartCell.xib */; };
+		0D73409820A9F10A0098343D /* NotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73409620A9F10A0098343D /* NotificationsVC.swift */; };
+		0D73409920A9F10A0098343D /* NotificationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73409720A9F10A0098343D /* NotificationsVC.xib */; };
+		0D73409C20A9F11D0098343D /* DeviceNotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73409A20A9F11D0098343D /* DeviceNotificationsVC.swift */; };
+		0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73409B20A9F11D0098343D /* DeviceNotificationsVC.xib */; };
+		0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73409E20A9F4880098343D /* NotificationTopLevelCell.swift */; };
+		0D7340A120A9F4880098343D /* NotificationTopLevelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73409F20A9F4880098343D /* NotificationTopLevelCell.xib */; };
+		0D7340A420A9F4960098343D /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340A220A9F4960098343D /* NotificationCell.swift */; };
+		0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340A320A9F4960098343D /* NotificationCell.xib */; };
+		0D7340A720A9F5E90098343D /* NotificationsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340A620A9F5E90098343D /* NotificationsRequest.swift */; };
+		0D7340A920A9F6180098343D /* HistoricalKwhRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340A820A9F6180098343D /* HistoricalKwhRequest.swift */; };
+		0D7340AB20A9F63B0098343D /* SendCommandRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340AA20A9F63B0098343D /* SendCommandRequest.swift */; };
+		0D7340AD20A9F6470098343D /* CalculateHistoricalRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340AC20A9F6470098343D /* CalculateHistoricalRequest.swift */; };
+		0D7340AF20A9F65C0098343D /* CalculateHistoricalResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340AE20A9F65C0098343D /* CalculateHistoricalResponse.swift */; };
+		0D7340B320A9FE750098343D /* NotificationsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340B220A9FE750098343D /* NotificationsResponse.swift */; };
+		0D7340B520A9FE930098343D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340B420A9FE930098343D /* Notification.swift */; };
+		0D7340B720AA02640098343D /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340B620AA02640098343D /* GenericResponse.swift */; };
+		0D7340B920AA11B00098343D /* RealmNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340B820AA11B00098343D /* RealmNotification.swift */; };
+		0D7340C020AA5EA80098343D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340BE20AA5EA80098343D /* SettingsVC.swift */; };
+		0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340BF20AA5EA80098343D /* SettingsVC.xib */; };
+		0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340C220AA5EB80098343D /* SettingsSliderCell.swift */; };
+		0D7340C520AA5EB80098343D /* SettingsSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340C320AA5EB80098343D /* SettingsSliderCell.xib */; };
 		0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876A209184AF00378B03 /* RealmSavior.swift */; };
 		0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876F20918A2C00378B03 /* GenericRequest.swift */; };
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
@@ -88,6 +109,28 @@
 		0D73408F20A92F0D0098343D /* WaterIntensityChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaterIntensityChartCell.xib; sourceTree = "<group>"; };
 		0D73409220A9306E0098343D /* TemperatureChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureChartCell.swift; sourceTree = "<group>"; };
 		0D73409320A9306E0098343D /* TemperatureChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemperatureChartCell.xib; sourceTree = "<group>"; };
+		0D73409620A9F10A0098343D /* NotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsVC.swift; sourceTree = "<group>"; };
+		0D73409720A9F10A0098343D /* NotificationsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationsVC.xib; sourceTree = "<group>"; };
+		0D73409A20A9F11D0098343D /* DeviceNotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceNotificationsVC.swift; sourceTree = "<group>"; };
+		0D73409B20A9F11D0098343D /* DeviceNotificationsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceNotificationsVC.xib; sourceTree = "<group>"; };
+		0D73409E20A9F4880098343D /* NotificationTopLevelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTopLevelCell.swift; sourceTree = "<group>"; };
+		0D73409F20A9F4880098343D /* NotificationTopLevelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationTopLevelCell.xib; sourceTree = "<group>"; };
+		0D7340A220A9F4960098343D /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		0D7340A320A9F4960098343D /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		0D7340A620A9F5E90098343D /* NotificationsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsRequest.swift; sourceTree = "<group>"; };
+		0D7340A820A9F6180098343D /* HistoricalKwhRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalKwhRequest.swift; sourceTree = "<group>"; };
+		0D7340AA20A9F63B0098343D /* SendCommandRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommandRequest.swift; sourceTree = "<group>"; };
+		0D7340AC20A9F6470098343D /* CalculateHistoricalRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateHistoricalRequest.swift; sourceTree = "<group>"; };
+		0D7340AE20A9F65C0098343D /* CalculateHistoricalResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateHistoricalResponse.swift; sourceTree = "<group>"; };
+		0D7340B220A9FE750098343D /* NotificationsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsResponse.swift; sourceTree = "<group>"; };
+		0D7340B420A9FE930098343D /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		0D7340B620AA02640098343D /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		0D7340B820AA11B00098343D /* RealmNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmNotification.swift; sourceTree = "<group>"; };
+		0D7340BA20AA28B70098343D /* Water Energy Tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Water Energy Tracker.entitlements"; sourceTree = "<group>"; };
+		0D7340BE20AA5EA80098343D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		0D7340BF20AA5EA80098343D /* SettingsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
+		0D7340C220AA5EB80098343D /* SettingsSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSliderCell.swift; sourceTree = "<group>"; };
+		0D7340C320AA5EB80098343D /* SettingsSliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSliderCell.xib; sourceTree = "<group>"; };
 		0D7F876A209184AF00378B03 /* RealmSavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavior.swift; sourceTree = "<group>"; };
 		0D7F876F20918A2C00378B03 /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
@@ -121,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				0D5CE148209548140096CD99 /* RemoteDevice.swift */,
+				0D7340B420A9FE930098343D /* Notification.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -147,6 +191,7 @@
 		0D6AA3D1208187CF00194AA5 /* Water Energy Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				0D7340BA20AA28B70098343D /* Water Energy Tracker.entitlements */,
 				0D73408420A8EE6F0098343D /* HubInfo.h */,
 				0D6AA3E62081897D00194AA5 /* Classes */,
 				0D6AA3D2208187CF00194AA5 /* AppDelegate.swift */,
@@ -172,6 +217,9 @@
 		0D6AA3E72081898400194AA5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				0D7340BD20AA5DB50098343D /* Utility */,
+				0D7340BC20AA5D9E0098343D /* History */,
+				0D7340BB20AA5D950098343D /* Settings */,
 				0DE4CC1420A4B265001A4E5D /* Detail */,
 				0D6AA3F320818C6E00194AA5 /* Manage */,
 				0D6AA3F220818C6700194AA5 /* Notifications */,
@@ -208,6 +256,14 @@
 		0D6AA3F220818C6700194AA5 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				0D73409620A9F10A0098343D /* NotificationsVC.swift */,
+				0D73409720A9F10A0098343D /* NotificationsVC.xib */,
+				0D73409A20A9F11D0098343D /* DeviceNotificationsVC.swift */,
+				0D73409B20A9F11D0098343D /* DeviceNotificationsVC.xib */,
+				0D73409E20A9F4880098343D /* NotificationTopLevelCell.swift */,
+				0D73409F20A9F4880098343D /* NotificationTopLevelCell.xib */,
+				0D7340A220A9F4960098343D /* NotificationCell.swift */,
+				0D7340A320A9F4960098343D /* NotificationCell.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -235,12 +291,38 @@
 			path = Charts;
 			sourceTree = "<group>";
 		};
+		0D7340BB20AA5D950098343D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0D7340BE20AA5EA80098343D /* SettingsVC.swift */,
+				0D7340BF20AA5EA80098343D /* SettingsVC.xib */,
+				0D7340C220AA5EB80098343D /* SettingsSliderCell.swift */,
+				0D7340C320AA5EB80098343D /* SettingsSliderCell.xib */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		0D7340BC20AA5D9E0098343D /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		0D7340BD20AA5DB50098343D /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		0D7F87692091849700378B03 /* Persistent */ = {
 			isa = PBXGroup;
 			children = (
 				0D7F876A209184AF00378B03 /* RealmSavior.swift */,
 				0D5CE14A20954A8C0096CD99 /* RealmDataPoint.swift */,
 				0D5CE14C20954CC80096CD99 /* DataPersistenceManager.swift */,
+				0D7340B820AA11B00098343D /* RealmNotification.swift */,
 			);
 			path = Persistent;
 			sourceTree = "<group>";
@@ -262,6 +344,10 @@
 			children = (
 				0D7F876F20918A2C00378B03 /* GenericRequest.swift */,
 				0D5CE1432095479D0096CD99 /* GetDataRequest.swift */,
+				0D7340A620A9F5E90098343D /* NotificationsRequest.swift */,
+				0D7340A820A9F6180098343D /* HistoricalKwhRequest.swift */,
+				0D7340AA20A9F63B0098343D /* SendCommandRequest.swift */,
+				0D7340AC20A9F6470098343D /* CalculateHistoricalRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -273,6 +359,9 @@
 				0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */,
 				0D5CE145209547E20096CD99 /* GetDataResponse.swift */,
 				0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */,
+				0D7340AE20A9F65C0098343D /* CalculateHistoricalResponse.swift */,
+				0D7340B220A9FE750098343D /* NotificationsResponse.swift */,
+				0D7340B620AA02640098343D /* GenericResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -345,6 +434,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -381,9 +475,15 @@
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
+				0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */,
 				0D050A7D20A22339005B95A3 /* MainDeviceCell.xib in Resources */,
 				0D6AA3D8208187CF00194AA5 /* Main.storyboard in Resources */,
 				0DE4CC1C20A4B954001A4E5D /* DetailWaterInfoCell.xib in Resources */,
+				0D7340C520AA5EB80098343D /* SettingsSliderCell.xib in Resources */,
+				0D73409920A9F10A0098343D /* NotificationsVC.xib in Resources */,
+				0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */,
+				0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */,
+				0D7340A120A9F4880098343D /* NotificationTopLevelCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +579,7 @@
 				0D73408C20A90F830098343D /* HourValueFormatter.swift in Sources */,
 				0D6AA3D5208187CF00194AA5 /* ViewController.swift in Sources */,
 				0D5CE146209547E20096CD99 /* GetDataResponse.swift in Sources */,
+				0D7340B320A9FE750098343D /* NotificationsResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
 				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
@@ -489,21 +590,35 @@
 				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
+				0D7340A720A9F5E90098343D /* NotificationsRequest.swift in Sources */,
 				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
 				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
+				0D7340AF20A9F65C0098343D /* CalculateHistoricalResponse.swift in Sources */,
+				0D7340B720AA02640098343D /* GenericResponse.swift in Sources */,
+				0D7340B520A9FE930098343D /* Notification.swift in Sources */,
 				0DE4CC1720A4B27F001A4E5D /* DetailVC.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
+				0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */,
 				0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */,
+				0D73409C20A9F11D0098343D /* DeviceNotificationsVC.swift in Sources */,
 				0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */,
+				0D7340A420A9F4960098343D /* NotificationCell.swift in Sources */,
 				0D5CE149209548140096CD99 /* RemoteDevice.swift in Sources */,
+				0D7340B920AA11B00098343D /* RealmNotification.swift in Sources */,
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,
 				0DE4CC1B20A4B954001A4E5D /* DetailWaterInfoCell.swift in Sources */,
 				0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */,
+				0D7340A920A9F6180098343D /* HistoricalKwhRequest.swift in Sources */,
+				0D73409820A9F10A0098343D /* NotificationsVC.swift in Sources */,
+				0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */,
+				0D7340AD20A9F6470098343D /* CalculateHistoricalRequest.swift in Sources */,
+				0D7340AB20A9F63B0098343D /* SendCommandRequest.swift in Sources */,
 				0D5CE142209545030096CD99 /* Constants.swift in Sources */,
 				0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */,
+				0D7340C020AA5EA80098343D /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,8 +757,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MR9FEBC46L;
+				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -651,7 +767,7 @@
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ctreesoft.savior.Water-Energy-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -666,8 +782,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MR9FEBC46L;
+				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -675,7 +792,7 @@
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ctreesoft.savior.Water-Energy-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
