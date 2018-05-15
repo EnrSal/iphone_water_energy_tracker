@@ -58,7 +58,9 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
     }
     @objc func clickSettings(_ sender:UIBarButtonItem!) {
-        
+        let detailVC:SettingsVC = SettingsVC(nibName: "SettingsVC", bundle: nil)
+        detailVC.savior = self.savior
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     @objc func clickHistory(_ sender:UIBarButtonItem!) {
         
