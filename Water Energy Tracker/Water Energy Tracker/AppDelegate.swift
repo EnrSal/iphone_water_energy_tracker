@@ -10,6 +10,8 @@ import UIKit
 import IQKeyboardManagerSwift
 import RealmSwift
 import UserNotifications
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,6 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Enable or disable features based on authorization.
         }
         application.registerForRemoteNotifications()
+        Fabric.with([Crashlytics.self])
 
         return true
     }

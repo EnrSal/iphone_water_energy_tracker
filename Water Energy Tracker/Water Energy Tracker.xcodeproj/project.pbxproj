@@ -428,6 +428,7 @@
 				0D6AA3CD208187CF00194AA5 /* Resources */,
 				017577C42BD9415E19FEAB2A /* [CP] Embed Pods Frameworks */,
 				BD8D7CC48203702F8E005B5F /* [CP] Copy Pods Resources */,
+				0D7340D220ABD9AD0098343D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -558,6 +559,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Water Energy Tracker/Pods-Water Energy Tracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		0D7340D220ABD9AD0098343D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 73ee240f257350c355a2f3d0475f5a4c518f10f5 f020130c134290f8a6369d33cec515fa705f56cec4192a227d08702e1f64f464";
 		};
 		BD8D7CC48203702F8E005B5F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -786,6 +800,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -811,6 +826,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
