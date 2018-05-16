@@ -59,6 +59,12 @@
 		0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340BF20AA5EA80098343D /* SettingsVC.xib */; };
 		0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340C220AA5EB80098343D /* SettingsSliderCell.swift */; };
 		0D7340C520AA5EB80098343D /* SettingsSliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340C320AA5EB80098343D /* SettingsSliderCell.xib */; };
+		0D7340C820ABA8DE0098343D /* SendCommandVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340C620ABA8DD0098343D /* SendCommandVC.swift */; };
+		0D7340C920ABA8DE0098343D /* SendCommandVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340C720ABA8DD0098343D /* SendCommandVC.xib */; };
+		0D7340CC20ABB16A0098343D /* HistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340CA20ABB16A0098343D /* HistoryVC.swift */; };
+		0D7340CD20ABB16A0098343D /* HistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340CB20ABB16A0098343D /* HistoryVC.xib */; };
+		0D7340D020ABC93D0098343D /* EnergyUtilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340CE20ABC93D0098343D /* EnergyUtilityVC.swift */; };
+		0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340CF20ABC93D0098343D /* EnergyUtilityVC.xib */; };
 		0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876A209184AF00378B03 /* RealmSavior.swift */; };
 		0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876F20918A2C00378B03 /* GenericRequest.swift */; };
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
@@ -131,6 +137,12 @@
 		0D7340BF20AA5EA80098343D /* SettingsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsVC.xib; sourceTree = "<group>"; };
 		0D7340C220AA5EB80098343D /* SettingsSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSliderCell.swift; sourceTree = "<group>"; };
 		0D7340C320AA5EB80098343D /* SettingsSliderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsSliderCell.xib; sourceTree = "<group>"; };
+		0D7340C620ABA8DD0098343D /* SendCommandVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommandVC.swift; sourceTree = "<group>"; };
+		0D7340C720ABA8DD0098343D /* SendCommandVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SendCommandVC.xib; sourceTree = "<group>"; };
+		0D7340CA20ABB16A0098343D /* HistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryVC.swift; sourceTree = "<group>"; };
+		0D7340CB20ABB16A0098343D /* HistoryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryVC.xib; sourceTree = "<group>"; };
+		0D7340CE20ABC93D0098343D /* EnergyUtilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyUtilityVC.swift; sourceTree = "<group>"; };
+		0D7340CF20ABC93D0098343D /* EnergyUtilityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyUtilityVC.xib; sourceTree = "<group>"; };
 		0D7F876A209184AF00378B03 /* RealmSavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavior.swift; sourceTree = "<group>"; };
 		0D7F876F20918A2C00378B03 /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
@@ -273,6 +285,8 @@
 			children = (
 				0D6AA3F420818C7F00194AA5 /* ManageVC.swift */,
 				0D6AA3F520818C7F00194AA5 /* ManageVC.xib */,
+				0D7340C620ABA8DD0098343D /* SendCommandVC.swift */,
+				0D7340C720ABA8DD0098343D /* SendCommandVC.xib */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -305,6 +319,8 @@
 		0D7340BC20AA5D9E0098343D /* History */ = {
 			isa = PBXGroup;
 			children = (
+				0D7340CA20ABB16A0098343D /* HistoryVC.swift */,
+				0D7340CB20ABB16A0098343D /* HistoryVC.xib */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -312,6 +328,8 @@
 		0D7340BD20AA5DB50098343D /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				0D7340CE20ABC93D0098343D /* EnergyUtilityVC.swift */,
+				0D7340CF20ABC93D0098343D /* EnergyUtilityVC.xib */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -468,11 +486,13 @@
 				0D73409120A92F0D0098343D /* WaterIntensityChartCell.xib in Resources */,
 				0D6AA3DD208187CF00194AA5 /* LaunchScreen.storyboard in Resources */,
 				0DE4CC1820A4B27F001A4E5D /* DetailVC.xib in Resources */,
+				0D7340CD20ABB16A0098343D /* HistoryVC.xib in Resources */,
 				0D73409520A9306E0098343D /* TemperatureChartCell.xib in Resources */,
 				0D73408A20A8FE060098343D /* EnergyPowerUsageChartCell.xib in Resources */,
 				0DE4CC2020A4B967001A4E5D /* DetailEnergyInfoCell.xib in Resources */,
 				0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */,
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
+				0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
 				0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */,
@@ -481,6 +501,7 @@
 				0DE4CC1C20A4B954001A4E5D /* DetailWaterInfoCell.xib in Resources */,
 				0D7340C520AA5EB80098343D /* SettingsSliderCell.xib in Resources */,
 				0D73409920A9F10A0098343D /* NotificationsVC.xib in Resources */,
+				0D7340C920ABA8DE0098343D /* SendCommandVC.xib in Resources */,
 				0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */,
 				0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */,
 				0D7340A120A9F4880098343D /* NotificationTopLevelCell.xib in Resources */,
@@ -502,6 +523,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/ChartsRealm/ChartsRealm.framework",
+				"${BUILT_PRODUCTS_DIR}/DatePickerDialog/DatePickerDialog.framework",
 				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -520,6 +542,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChartsRealm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DatePickerDialog.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -584,6 +607,7 @@
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
 				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
+				0D7340C820ABA8DE0098343D /* SendCommandVC.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
 				0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
@@ -591,6 +615,7 @@
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
 				0D7340A720A9F5E90098343D /* NotificationsRequest.swift in Sources */,
+				0D7340CC20ABB16A0098343D /* HistoryVC.swift in Sources */,
 				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
@@ -599,6 +624,7 @@
 				0D7340B720AA02640098343D /* GenericResponse.swift in Sources */,
 				0D7340B520A9FE930098343D /* Notification.swift in Sources */,
 				0DE4CC1720A4B27F001A4E5D /* DetailVC.swift in Sources */,
+				0D7340D020ABC93D0098343D /* EnergyUtilityVC.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
 				0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */,

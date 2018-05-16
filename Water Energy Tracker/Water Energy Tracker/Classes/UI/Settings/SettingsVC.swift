@@ -8,17 +8,21 @@
 
 import UIKit
 
-class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
+class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet var footer: UIView!
+    @IBOutlet weak var timezone: UITextField!
     var savior: RealmSavior!
     var config: DeviceConfiguration? = nil
     @IBOutlet weak var tableView: UITableView!
-
+    var picker: UIPickerView! = UIPickerView()
+    let timezones:[String] = ["Pacific","Mountain","Central","Eastern","Atlantic","Newfoundland"]
+    
     enum SettingsType: Int {
         case temp_low
         case temp_high
         case user_calibration
-        case timezone
+       // case timezone
         case kwhour
         case kwday
         case kwweek
@@ -41,12 +45,21 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.register(SettingsSliderCell.self, forCellReuseIdentifier: "SETTINGS_SLIDER_CELL")
         self.tableView.register(UINib(nibName: "SettingsSliderCell", bundle: nil), forCellReuseIdentifier: "SETTINGS_SLIDER_CELL")
         
-        self.tableView.tableFooterView = UIView()
+        self.tableView.tableFooterView = self.footer
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.separatorStyle = .singleLine
 
-        
+        timezone.inputView = self.picker
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsVC.dismissKeyboard))
+        keyboardToolbar.items = [flexBarButton, doneBarButton]
+        self.timezone.inputAccessoryView = keyboardToolbar
+        self.picker.delegate = self
+        self.picker.dataSource = self
+
         self.showHud()
         let req:DeviceConfiguration = DeviceConfiguration()
         req.name = savior.savior_address!
@@ -58,22 +71,65 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             } else {
                 if let response = response {
                     self.config = response
+                    self.config!.name = self.savior.savior_address!
                     self.populate()
                 }
             }
         }
     }
+    
+    @objc func dismissKeyboard() {
+        self.view.endEditing(true)
+    }
 
+    // MARK: - Picker
+    
+    // returns the number of 'columns' to display.
+    func numberOfComponents(in pickerView: UIPickerView) -> Int{
+        return 1
+    }
+    
+    // returns the # of rows in each component..
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+        print("TIMEZONES \(timezones.count)")
+        return timezones.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return timezones[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.config!.TimeZone = timezones[row]
+        self.timezone.text = self.config!.TimeZone!
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
     @objc func clickSave(_ sender:UIBarButtonItem!) {
-
+        if let config = self.config {
+            self.showHud()
+            AzureApi.shared.setConfig(req: config) { (error:ServerError?, response:GenericResponse?) in
+                self.hideHud()
+                if let error = error {
+                    self.showError(message: error.getMessage()!)
+                } else {
+                    if response != nil {
+                        self.showError(message: "Successfully Updated!")
+                    }
+                }
+                
+            }
+        }
     }
     
     func populate() {
+        self.timezone.text = self.config!.TimeZone!
+        
         self.tableView.reloadData()
     }
     

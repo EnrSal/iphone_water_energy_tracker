@@ -16,6 +16,13 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     var saviors:[RealmSavior] = []
     var peripherals:[Peripheral] = []
+    var all_peripherals:[Peripheral] = []
+
+    
+    let RX_SERVICE_UUID:String = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
+    let RX_CHAR_UUID:String = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,8 +175,9 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         saviors.removeAll()
         saviors.append(contentsOf: items)
         self.tableView.reloadData()
-
-        SwiftyBluetooth.scanForPeripherals(withServiceUUIDs: ["6e400001-b5a3-f393-e0a9-e50e24dcca9e"], timeoutAfter: 15) { scanResult in
+        self.all_peripherals.removeAll()
+        
+        SwiftyBluetooth.scanForPeripherals(withServiceUUIDs: [RX_SERVICE_UUID], timeoutAfter: 15) { scanResult in
             switch scanResult {
             case .scanStarted:
                 // The scan started meaning CBCentralManager scanForPeripherals(...) was called
@@ -183,6 +191,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                     return per.identifier == peripheral.identifier
                 }) {
                     
+                    self.all_peripherals.append(peripheral)
+
                     if !self.saviors.contains(where: { (sav:RealmSavior) -> Bool in
                         return sav.savior_address == peripheral.name!.replacingOccurrences(of: "SX", with: "")
                     }) {
@@ -238,8 +248,299 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         
         if (indexPath.section == 0) {
+            let savior = self.saviors[indexPath.row]
+            
+            let alertController = UIAlertController(title: NSLocalizedString("Options", comment: ""), message: nil, preferredStyle: .actionSheet)
+            
+            if !savior.from_share {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Configure Device", comment: ""), style: .default, handler: { action in
+                    var found = false
+                    for peripheral in self.all_peripherals {
+                        if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+
+                                
+                                
+                                
+                                
+                                
+                                
+                                let alertController = UIAlertController(title: nil, message: "WiFi Settings", preferredStyle: .alert)
+                                
+                                let confirmAction = UIAlertAction(title: "Set Device", style: .default) { (_) in
+                                    guard let textFields = alertController.textFields,
+                                        textFields.count > 0 else {
+                                            // Could not find textfield
+                                            return
+                                    }
+                                    
+                                    let network = textFields[0]
+                                    let password = textFields[1]
+
+                                    if network.text!.count > 0 {
+                                        
+                                        self.showHud()
+                                        peripheral.connect(withTimeout: 10) { result in
+                                            switch result {
+                                            case .success:
+                                                print("CONNECT SUCCESS")
+                                                print("TRY WRITE PERIPHERAL -->\(peripheral)")
+                                                
+                                                let data = "swn\(network)".data(using: String.Encoding.utf8)!
+                                                peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
+                                                                      fromServiceWithUUID: self.RX_SERVICE_UUID,
+                                                                      value: data) { result in
+                                                                        switch result {
+                                                                        case .success:
+                                                                            print("WRITE SUCCESS")
+                                                                            
+                                                                            let data2 = "swp\(password)".data(using: String.Encoding.utf8)!
+                                                                            peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
+                                                                                                  fromServiceWithUUID: self.RX_SERVICE_UUID,
+                                                                                                  value: data2) { result in
+                                                                                                    switch result {
+                                                                                                    case .success:
+                                                                                                        print("2WRITE SUCCESS")
+                                                                                                        self.hideHud()
+                                                                                                        
+                                                                                                        
+                                                                                                        
+                                                                                                    break // The write was succesful.
+                                                                                                    case .failure(let error):
+                                                                                                        print("2WRITE ERROR \(error)")
+                                                                                                        self.hideHud()
+                                                                                                        break // An error happened while writting the data.
+                                                                                                    }
+                                                                            }
+                                                                            
+                                                                            
+                                                                        break // The write was succesful.
+                                                                        case .failure(let error):
+                                                                            print("WRITE ERROR \(error)")
+                                                                            self.hideHud()
+                                                                            break // An error happened while writting the data.
+                                                                        }
+                                                }
+                                                break // You are now connected to the peripheral
+                                            case .failure(let error):
+                                                print("CONNECT ERROR \(error)")
+                                                self.hideHud()
+                                                break // An error happened while connecting
+                                            }
+                                        }
+
+                                     
+
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+                                
+                                alertController.addTextField { (textField) in
+                                    textField.placeholder = "WiFi Network"
+                                }
+                                alertController.addTextField { (textField) in
+                                    textField.isSecureTextEntry = true
+                                    textField.placeholder = "Password"
+                                }
+
+                                alertController.addAction(confirmAction)
+                                alertController.addAction(cancelAction)
+                                
+                                self.present(alertController, animated: true, completion: nil)
+                                
+                            }
+                            found = true
+                            break
+                        }
+                    }
+                    if !found{
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            self.showError(message: "Device is not currently connected.")
+                        }
+                    }
+                    
+                }))
+            }
+            if !savior.from_share {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Set Names", comment: ""), style: .default, handler: { action in
+                    
+                    
+                    
+                    
+                    
+                    let alertController = UIAlertController(title: nil, message: "Device Names", preferredStyle: .alert)
+                    
+                    let confirmAction = UIAlertAction(title: "Save", style: .default) { (_) in
+                        guard let textFields = alertController.textFields,
+                            textFields.count > 0 else {
+                                // Could not find textfield
+                                return
+                        }
+                        
+                        let alias = textFields[0]
+                        
+                        if alias.text!.count > 0 {
+                            
+                            let realm = try! Realm()
+                            try! realm.write {
+
+                                savior.alias = alias.text
+                                if savior.stype > 0 {
+                                    savior.energy_unit_name_1 = textFields[1].text
+                                    savior.energy_unit_name_2 = textFields[2].text
+                                    
+                                    if savior.stype == 2 || savior.stype == 4 {
+                                        savior.energy_unit_name_3 = textFields[3].text
+                                        savior.energy_unit_name_4 = textFields[4].text
+                                    }
+                                    if savior.stype == 4 {
+                                        savior.energy_unit_name_5 = textFields[5].text
+                                        savior.energy_unit_name_6 = textFields[6].text
+                                        savior.energy_unit_name_7 = textFields[7].text
+                                        savior.energy_unit_name_8 = textFields[8].text
+
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                NotificationCenter.default.post(name:NSNotification.Name(rawValue:"DeviceAddedEvent"),
+                                                                object: nil,
+                                                                userInfo: nil)
+                            }
+                            
+                            let genreq:GenericRequest = GenericRequest()
+                            genreq.name = "\(savior.savior_address!),\(savior.alias!),\(savior.energy_unit_name_1!),\(savior.energy_unit_name_2!),\(savior.energy_unit_name_3!),\(savior.energy_unit_name_4!),\(savior.energy_unit_name_5!),\(savior.energy_unit_name_6!),\(savior.energy_unit_name_7!),\(savior.energy_unit_name_8!)"
+                            
+                            AzureApi.shared.setNames(req: genreq, completionHandler: { (error:ServerError?, response:GenericResponse?) in
+                                if let error = error {
+                                    print(error)
+                                } else {
+                                    if let response = response {
+
+                                        
+                                    }
+                                }
+                            })
+
+                            self.scan()
+
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+                    
+                    alertController.addTextField { (textField) in
+                        textField.placeholder = "Name of Device"
+                        textField.text = savior.alias!
+                    }
+
+                    if savior.stype > 0 {
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 1 name"
+                            textField.text = savior.energy_unit_name_1!
+                        }
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 2 name"
+                            textField.text = savior.energy_unit_name_2!
+                        }
+                        if savior.stype == 2 || savior.stype == 4 {
+                            alertController.addTextField { (textField) in
+                                textField.placeholder = "Unit 3 name"
+                                textField.text = savior.energy_unit_name_3!
+                            }
+                            alertController.addTextField { (textField) in
+                                textField.placeholder = "Unit 4 name"
+                                textField.text = savior.energy_unit_name_4!
+                            }
+
+                        }
+                        if savior.stype == 4 {
+                            alertController.addTextField { (textField) in
+                                textField.placeholder = "Unit 5 name"
+                                textField.text = savior.energy_unit_name_5!
+                            }
+                            alertController.addTextField { (textField) in
+                                textField.placeholder = "Unit 6 name"
+                                textField.text = savior.energy_unit_name_6!
+                            }
+                            alertController.addTextField { (textField) in
+                                textField.placeholder = "Unit 7 name"
+                                textField.text = savior.energy_unit_name_7!
+                            }
+                            alertController.addTextField { (textField) in
+                                textField.placeholder = "Unit 8 name"
+                                textField.text = savior.energy_unit_name_8!
+                            }
+                        }
+                    }
+                    
+                    alertController.addAction(confirmAction)
+                    alertController.addAction(cancelAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    
+                }))
+            }
+            if !savior.from_share {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Permanent Share Number", comment: ""), style: .default, handler: { action in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        UIPasteboard.general.string = savior.share_number!
+                        self.showError(message: "share number is: \(savior.share_number!) (saved to clipboard)")
+                    }
+                }))
+            }
+            
+            if !savior.from_share {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Temporary Share Number", comment: ""), style: .default, handler: { action in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        
+                        UIPasteboard.general.string = savior.temp_share_number!
+                        self.showError(message: "temporary share number is: \(savior.temp_share_number!) (saved to clipboard)")
+                    }
+                }))
+            }
+            if !savior.from_share {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Command", comment: ""), style: .default, handler: { action in
+                    let sendVC:SendCommandVC = SendCommandVC(nibName: "SendCommandVC", bundle: nil)
+                    sendVC.savior = savior
+                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                    self.navigationController!.present(nav, animated: true, completion: nil)
+                }))
+            }
+            alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete Configuration", comment: ""), style: .destructive, handler: { action in
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.delete(savior)
+                    NotificationCenter.default.post(name:NSNotification.Name(rawValue:"DeviceAddedEvent"),
+                                                    object: nil,
+                                                    userInfo: nil)
+                }
+                self.scan()
+                
+            }))
+            
+            alertController.addAction(UIAlertAction(title:NSLocalizedString("Cancel", comment: ""), style: .cancel, handler: { action in
+                
+            }))
+            
+            self.present(alertController, animated: true, completion: nil)
+            
+            
+            
             
         } else {
             let peripheral = self.peripherals[indexPath.row]

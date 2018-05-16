@@ -46,7 +46,7 @@ class RealmDataPoint: Object {
         formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone!
 
         if let UTCtime = dataPoint.UTCtime {
-            print("UTCTIME \(UTCtime)")
+            //print("UTCTIME \(UTCtime)")
             self.timestamp = formatter.date(from: UTCtime)
             if self.timestamp == nil {
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"

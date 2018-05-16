@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let HUBNAME = "Savior_Notification_Hub"
     let HUBLISTENACCESS = "Endpoint=sb://saviornotificationnamespace.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=F/woC8B08qNEiPLUQzNkfXHr+23ssPp7SWQZEG7Gpgk="
 
+    var nav:UINavigationController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -30,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         let mainVC:MainVC = MainVC(nibName: "MainVC", bundle: nil)
-        let nav = UINavigationController(rootViewController: mainVC)
+        self.nav = UINavigationController(rootViewController: mainVC)
         self.window!.rootViewController = nav
         self.window!.makeKeyAndVisible()
 
@@ -94,10 +95,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Parsing userinfo:
         if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
         {
-            var alertMsg = info["alert"] as! String
+            var message = info["message"] as! String
             var alert: UIAlertView!
-            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
+            alert = UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
+            
+            var notification_id = info["id"] as! String
+            
+            let realm = try! Realm()
+            let items = realm.objects(RealmSavior.self).filter("savior_address = '\(notification_id)'")
+            if items.count > 0 {
+                let savior = items.first!
+                let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
+                detailVC.savior = savior
+                self.nav.pushViewController(detailVC, animated: true)
+            }
         }
     }
 

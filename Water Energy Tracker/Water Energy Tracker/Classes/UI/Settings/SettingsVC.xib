@@ -11,7 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsVC" customModule="Water_Energy_Tracker" customModuleProvider="target">
             <connections>
+                <outlet property="footer" destination="6cG-bq-dC4" id="eln-96-PZk"/>
                 <outlet property="tableView" destination="Dyj-yD-bAx" id="waO-5r-fbF"/>
+                <outlet property="timezone" destination="wYx-t3-eUL" id="Pvb-Y9-Qot"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,6 +39,43 @@
                 <constraint firstItem="Dyj-yD-bAx" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="r38-bm-0uD"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+        <view contentMode="scaleToFill" id="6cG-bq-dC4">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="91"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Zone of Device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzw-Yd-MCR">
+                    <rect key="frame" x="16" y="12" width="343" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="oMM-MM-2Rk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wYx-t3-eUL">
+                    <rect key="frame" x="16" y="44" width="343" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="750" constant="30" id="WeX-7o-bhH"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="wYx-t3-eUL" firstAttribute="leading" secondItem="I9E-cp-Kq0" secondAttribute="leading" constant="16" id="9Iz-8i-Npd"/>
+                <constraint firstItem="I9E-cp-Kq0" firstAttribute="bottom" secondItem="wYx-t3-eUL" secondAttribute="bottom" constant="17" id="EWn-2y-u8h"/>
+                <constraint firstItem="I9E-cp-Kq0" firstAttribute="trailing" secondItem="wYx-t3-eUL" secondAttribute="trailing" constant="16" id="Emi-kb-Fm6"/>
+                <constraint firstItem="dzw-Yd-MCR" firstAttribute="leading" secondItem="I9E-cp-Kq0" secondAttribute="leading" constant="16" id="Fh9-1C-v32"/>
+                <constraint firstItem="wYx-t3-eUL" firstAttribute="top" secondItem="dzw-Yd-MCR" secondAttribute="bottom" constant="11" id="bhl-Hc-uD1"/>
+                <constraint firstItem="dzw-Yd-MCR" firstAttribute="top" secondItem="I9E-cp-Kq0" secondAttribute="top" constant="12" id="lvW-Ok-zil"/>
+                <constraint firstItem="I9E-cp-Kq0" firstAttribute="trailing" secondItem="dzw-Yd-MCR" secondAttribute="trailing" constant="16" id="r5S-0k-nBL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="I9E-cp-Kq0"/>
+            <point key="canvasLocation" x="-603.5" y="-107.5"/>
         </view>
     </objects>
 </document>

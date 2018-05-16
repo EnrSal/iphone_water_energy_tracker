@@ -149,7 +149,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                                 let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
                                 if current == nil {
                                     realm.add(dataPoint)
-                                    print("ADDED \(dataPoint)")
+                                    //print("ADDED \(dataPoint)")
                                 }
                             }
                         }

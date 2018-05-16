@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import DatePickerDialog
 
 class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var headerView: UIView!
@@ -26,8 +27,11 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let utilityButton = UIBarButtonItem(title: "Utility", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickUtility(_:)))
         let settingsButton = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickSettings(_:)))
         let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
-        self.navigationItem.rightBarButtonItems = [historyButton,settingsButton,utilityButton]
-
+        if (self.savior.stype == 0) {
+            self.navigationItem.rightBarButtonItems = [historyButton,settingsButton]
+        } else {
+            self.navigationItem.rightBarButtonItems = [historyButton,settingsButton,utilityButton]
+        }
         
         self.tableView.register(DetailWaterInfoCell.self, forCellReuseIdentifier: "WATER_INFO_CELL")
         self.tableView.register(UINib(nibName: "DetailWaterInfoCell", bundle: nil), forCellReuseIdentifier: "WATER_INFO_CELL")
@@ -55,7 +59,10 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func clickUtility(_ sender:UIBarButtonItem!) {
-
+        let detailVC:EnergyUtilityVC = EnergyUtilityVC(nibName: "EnergyUtilityVC", bundle: nil)
+        detailVC.savior = self.savior
+        detailVC.energy_unit = self.energy_unit
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     @objc func clickSettings(_ sender:UIBarButtonItem!) {
         let detailVC:SettingsVC = SettingsVC(nibName: "SettingsVC", bundle: nil)
@@ -63,7 +70,63 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     @objc func clickHistory(_ sender:UIBarButtonItem!) {
-        
+        DatePickerDialog().show("Select Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
+            (date) -> Void in
+            if let dt = date {
+                
+                let formatter = DateFormatter()
+               // formatter.calendar = Calendar(identifier: .iso8601)
+               // formatter.locale = Locale(identifier: "en_US_POSIX")
+               // formatter.timeZone = TimeZone(secondsFromGMT: 0)
+                formatter.dateFormat = "MMddyyyyHH:mm:ss"
+                
+                let datestr = formatter.string(from: dt.startOfDay)
+
+                let req:GetDataRequest = GetDataRequest()
+                req.mac = self.savior.savior_address!
+                req.stype = self.savior.stype
+                req.utct = datestr
+
+                self.showHud()
+                AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
+                    self.hideHud()
+                    if let error = error {
+                        print(error)
+                    } else {
+                        if let response = response {
+                            
+                            let realm = try! Realm()
+                            try! realm.write {
+                                for device in response.Result {
+                                    if device.UTCtime != nil && device.mac != nil {
+                                        let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
+                                        let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
+                                        if current == nil {
+                                            realm.add(dataPoint)
+                                            //print("ADDED \(dataPoint)")
+                                        }
+                                    }
+                                }
+                            }
+                            DispatchQueue.main.async {
+                                let detailVC:HistoryVC = HistoryVC(nibName: "HistoryVC", bundle: nil)
+                                detailVC.savior = self.savior
+                                detailVC.date = dt
+                                detailVC.energy_unit = self.energy_unit
+                                self.navigationController?.pushViewController(detailVC, animated: true)
+                            }
+                        }
+                    }
+                    
+                })
+
+                
+                
+                
+                
+                
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -226,7 +226,46 @@ class AzureApi: NSObject {
             let urlString = "https://getdatafordiffstypes-basedontimes-withmacid-20180115121539.azurewebsites.net/api/Function2?code=dx0ioMwaz8woHEyA97rffomzOxR5Llqr1KAGU03H5jbdW7MYoXuRqA=="
             let json = req.toJSONString(prettyPrint: true)
             
-            print("getNames \(json!)")
+            print("==== GET DATA ==== \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("GET DATA --> \(utf8Text)")
+                        let serverResponse:GetDataResponse = GetDataResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    
+    func getKwhHistorical(req:HistoricalKwhRequest, completionHandler: @escaping (ServerError?, KwhResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://gethistorical-kwh-basedon-id-date-functionapp20180117120503.azurewebsites.net/api/Function1?code=JAEcNGsascKsgr3WYGY3NFs/hto3Jl4Mvb0ljhl31SlM1qljGLXiyA=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getKwhHistorical \(json!)")
             
             let url = URL(string: urlString)!
             let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
@@ -243,7 +282,7 @@ class AzureApi: NSObject {
                 case .success:
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("json --> \(utf8Text)")
-                        let serverResponse:GetDataResponse = GetDataResponse(JSONString: utf8Text)!
+                        let serverResponse:KwhResponse = KwhResponse(JSONString: utf8Text)!
                         completionHandler(nil, serverResponse)
                     } else {
                         completionHandler(ServerError.defaultError, nil)

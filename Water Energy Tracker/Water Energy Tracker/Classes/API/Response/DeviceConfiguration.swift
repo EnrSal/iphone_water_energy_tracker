@@ -11,16 +11,16 @@ import ObjectMapper
 class DeviceConfiguration: NSObject, Mappable {
 
     var name: String?
-    var WaterFlowing: Int?
-    var DetectionsHour: Int?
-    var DetectionsDay: Int?
-    var TempLow: Int?
-    var TempHigh: Int?
-    var UserTempCalib: Int?
-    var HourKWH: Int?
-    var DayKWH: Int?
-    var WeekKWH: Int?
-    var MonthKWH: Int?
+    var WaterFlowing: String?
+    var DetectionsHour: String?
+    var DetectionsDay: String?
+    var TempLow: String?
+    var TempHigh: String?
+    var UserTempCalib: String?
+    var HourKWH: String?
+    var DayKWH: String?
+    var WeekKWH: String?
+    var MonthKWH: String?
     var TimeZone: String?
     var EnergyUnit: String?
     var EnergyUnitPerPulse: String?

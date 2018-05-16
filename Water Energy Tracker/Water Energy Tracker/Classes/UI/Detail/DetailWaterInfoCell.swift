@@ -45,7 +45,7 @@ class DetailWaterInfoCell: UITableViewCell {
                 } else {
                     info.text = "Movement detected on last update"
                 }
-                info.textColor = UIColor.green
+                info.textColor = UIColor.init(hex: "#006400")
             } else {
                 info.text = "No Movement detected on last update"
                 info.textColor = UIColor.red

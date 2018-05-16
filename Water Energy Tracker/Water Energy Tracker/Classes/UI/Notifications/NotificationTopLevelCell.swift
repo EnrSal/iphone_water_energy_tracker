@@ -14,6 +14,7 @@ class NotificationTopLevelCell: UITableViewCell {
     var savior: RealmSavior!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var num: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,6 +42,7 @@ class NotificationTopLevelCell: UITableViewCell {
         request.mac = savior.savior_address!
         request.xdate = formatter.string(from: date!)
         
+        self.spinner.startAnimating()
         AzureApi.shared.getNotifications(req: request) { (error:ServerError?, response:NotificationsResponse?) in
             if let error = error {
                 print(error.getMessage()!)
@@ -48,6 +50,7 @@ class NotificationTopLevelCell: UITableViewCell {
                 if let response = response {
 
                     DispatchQueue.main.async {
+                        self.spinner.stopAnimating()
                         self.num.text = "\(response.Count!)"
                     }
 
@@ -61,7 +64,6 @@ class NotificationTopLevelCell: UITableViewCell {
                             realm.add(realmNotification)
                         }
                     }
-
                 }
             }
         }
