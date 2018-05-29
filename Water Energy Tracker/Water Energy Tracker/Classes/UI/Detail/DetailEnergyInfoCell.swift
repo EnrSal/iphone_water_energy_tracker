@@ -44,6 +44,7 @@ class DetailEnergyInfoCell: UITableViewCell {
             
             switch self.energy_unit {
             case 1:
+                print("C1 -->\(current!.C1) savior.EnergyUnitPerPulse: \(savior.EnergyUnitPerPulse)")
                 info.text = Util.pulsesToReadable(pulses: current!.C1, savior: self.savior)
             case 2:
                 info.text = Util.pulsesToReadable(pulses: current!.C2, savior: self.savior)

@@ -98,11 +98,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Parsing userinfo:
         if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
         {
+            /*
             var message = info["message"] as! String
             var alert: UIAlertView!
             alert = UIAlertView(title: "", message: message, delegate: nil, cancelButtonTitle: "OK")
             alert.show()
-            
+            */
             var notification_id = info["id"] as! String
             
             let realm = try! Realm()

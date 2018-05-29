@@ -34,25 +34,25 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
         slider.value = roundf(slider.value)
         switch self.type! {
         case .temp_low:
-            self.owner.config!.TempLow! = String(slider.value)
+            self.owner.config!.TempLow! = String(format: "%.0f", slider.value)
         case .temp_high:
-            self.owner.config!.TempHigh! = String(slider.value)
+            self.owner.config!.TempHigh! = String(format: "%.0f", slider.value)
         case .user_calibration:
-            self.owner.config!.UserTempCalib! = String(slider.value)
+            self.owner.config!.UserTempCalib! = String(format: "%.0f", slider.value)
         case .kwhour:
-            self.owner.config!.HourKWH! = String(slider.value)
+            self.owner.config!.HourKWH! = String(format: "%.0f", slider.value)
         case .kwday:
-            self.owner.config!.DayKWH! = String(slider.value)
+            self.owner.config!.DayKWH! = String(format: "%.0f", slider.value)
         case .kwweek:
-            self.owner.config!.WeekKWH! = String(slider.value)
+            self.owner.config!.WeekKWH! = String(format: "%.0f", slider.value)
         case .kwmonth:
-            self.owner.config!.MonthKWH! = String(slider.value)
+            self.owner.config!.MonthKWH! = String(format: "%.0f", slider.value)
         case .water:
-            self.owner.config!.WaterFlowing! = String(slider.value)
+            self.owner.config!.WaterFlowing! = String(format: "%.0f", slider.value)
         case .detections_hour:
-            self.owner.config!.DetectionsHour! = String(slider.value)
+            self.owner.config!.DetectionsHour! = String(format: "%.0f", slider.value)
         case .detections_day:
-            self.owner.config!.DetectionsDay! = String(slider.value)
+            self.owner.config!.DetectionsDay! = String(format: "%.0f", slider.value)
         }
 
         self.currentEdut.text = "\(Int(slider.value))"
@@ -64,25 +64,26 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             slider.value = roundf(Float(textField.text!)!)
             switch self.type! {
             case .temp_low:
-                self.owner.config!.TempLow! = String(slider.value)
+                self.owner.config!.TempLow! = String(format: "%.0f", slider.value)
             case .temp_high:
-                self.owner.config!.TempHigh! = String(slider.value)
+                self.owner.config!.TempHigh! = String(format: "%.0f", slider.value)
             case .user_calibration:
-                self.owner.config!.UserTempCalib! = String(slider.value)
+                self.owner.config!.UserTempCalib! = String(format: "%.0f", slider.value)
             case .kwhour:
-                self.owner.config!.HourKWH! = String(slider.value)
+                self.owner.config!.HourKWH! = String(format: "%.0f", slider.value)
             case .kwday:
-                self.owner.config!.DayKWH! = String(slider.value)
+                self.owner.config!.DayKWH! = String(format: "%.0f", slider.value)
             case .kwweek:
-                self.owner.config!.WeekKWH! = String(slider.value)
+                self.owner.config!.WeekKWH! = String(format: "%.0f", slider.value)
             case .kwmonth:
-                self.owner.config!.MonthKWH! = String(slider.value)
+                self.owner.config!.MonthKWH! = String(format: "%.0f", slider.value)
             case .water:
-                self.owner.config!.WaterFlowing! = String(slider.value)
+                self.owner.config!.WaterFlowing! = String(format: "%.0f", slider.value)
             case .detections_hour:
-                self.owner.config!.DetectionsHour! = String(slider.value)
+                self.owner.config!.DetectionsHour! = String(format: "%.0f", slider.value)
+                print("DETECTIONS HOUR -->\(self.owner.config!.DetectionsHour!)")
             case .detections_day:
-                self.owner.config!.DetectionsDay! = String(slider.value)
+                self.owner.config!.DetectionsDay! = String(format: "%.0f", slider.value)
             }
         } else {
             slider.value = 0
@@ -104,7 +105,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             slider.value = Float(self.owner.config!.TempLow!)!
             print("LOW TEMP \(self.owner.config!.TempLow!)")
             print("slider.value \(slider.value)")
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.TempLow!)!)"
         case .temp_high:
             titleLabel.text = "High Temperature (Fahrenheit):"
             slider.minimumValue = 0
@@ -114,7 +115,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.TempHigh = "0"
             }
             slider.value = Float(self.owner.config!.TempHigh!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.TempHigh!)!)"
         case .user_calibration:
             titleLabel.text = "User Temp Calibration:"
             slider.minimumValue = -20
@@ -124,7 +125,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.UserTempCalib = "0"
             }
             slider.value = Float(self.owner.config!.UserTempCalib!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.UserTempCalib!)!)"
         case .kwhour:
             titleLabel.text = "Kilo Watts used in 1 hour:"
             slider.minimumValue = 0
@@ -134,7 +135,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.HourKWH = "0"
             }
             slider.value = Float(self.owner.config!.HourKWH!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.HourKWH!)!)"
         case .kwday:
             titleLabel.text = "Kilo Watts used in 1 day:"
             slider.minimumValue = 0
@@ -144,7 +145,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.DayKWH = "0"
             }
             slider.value = Float(self.owner.config!.DayKWH!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.DayKWH!)!)"
         case .kwweek:
             titleLabel.text = "Kilo Watts used in 1 week:"
             slider.minimumValue = 0
@@ -154,7 +155,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.WeekKWH = "0"
             }
             slider.value = Float(self.owner.config!.WeekKWH!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.WeekKWH!)!)"
         case .kwmonth:
             titleLabel.text = "Kilo Watts used in 1 month:"
             slider.minimumValue = 0
@@ -164,7 +165,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.MonthKWH = "0"
             }
             slider.value = Float(self.owner.config!.MonthKWH!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.MonthKWH!)!)"
         case .water:
             titleLabel.text = "Water flowing for more than (mins):"
             slider.minimumValue = 3
@@ -174,7 +175,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.WaterFlowing = "0"
             }
             slider.value = Float(self.owner.config!.WaterFlowing!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.WaterFlowing!)!)"
         case .detections_hour:
             titleLabel.text = "Number of detections in last hour:"
             slider.minimumValue = 5
@@ -184,7 +185,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.DetectionsHour = "0"
             }
             slider.value = Float(self.owner.config!.DetectionsHour!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.DetectionsHour!)!)"
         case .detections_day:
             titleLabel.text = "Number of detections in last day:"
             slider.minimumValue = 20
@@ -194,7 +195,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 self.owner.config!.DetectionsDay = "0"
             }
             slider.value = Float(self.owner.config!.DetectionsDay!)!
-            self.currentEdut.text = "\(Int(slider.value))"
+            self.currentEdut.text = "\(Int(self.owner.config!.DetectionsDay!)!)"
         }
     }
     

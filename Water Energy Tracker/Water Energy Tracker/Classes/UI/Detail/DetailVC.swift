@@ -25,7 +25,16 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         // Do any additional setup after loading the view.
         
         let utilityButton = UIBarButtonItem(title: "Utility", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickUtility(_:)))
-        let settingsButton = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickSettings(_:)))
+       // let settingsButton = UIBarButtonItem(title: "Settings", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickSettings(_:)))
+      
+        let buttonBack: UIButton = UIButton(type: UIButtonType.custom) as UIButton
+        buttonBack.frame = CGRect(x: 0, y: 0, width: 40, height: 40) // CGFloat, Double, Int
+        buttonBack.setImage(#imageLiteral(resourceName: "baseline_settings_white_36pt"), for: UIControlState.normal)
+        buttonBack.addTarget(self, action: #selector(DetailVC.clickSettings(_:)), for: UIControlEvents.touchUpInside)
+        
+        let settingsButton: UIBarButtonItem = UIBarButtonItem(customView: buttonBack)
+
+        
         let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
         if (self.savior.stype == 0) {
             self.navigationItem.rightBarButtonItems = [historyButton,settingsButton]

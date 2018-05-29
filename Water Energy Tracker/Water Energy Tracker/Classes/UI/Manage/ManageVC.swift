@@ -185,6 +185,9 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 break
             case .scanResult(let peripheral, let advertisementData, let RSSI):
                 print("GOT BLUETOOTH \(peripheral.identifier) \(advertisementData) \(peripheral.name!)")
+                if peripheral.name! == "SX." {
+                    return
+                }
                 // A peripheral was found, your closure may be called multiple time with a .ScanResult enum case.
                 // You can save that peripheral for future use, or call some of its functions directly in this closure.
                 if !self.peripherals.contains(where: { (per:Peripheral) -> Bool in
@@ -265,10 +268,15 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
                                 
                                 
+                                let sendVC:WifiConfigVC = WifiConfigVC(nibName: "WifiConfigVC", bundle: nil)
+                                sendVC.savior = savior
+                                sendVC.peripheral = peripheral
+                                let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                self.navigationController!.present(nav, animated: true, completion: nil)
+
                                 
                                 
-                                
-                                
+                                /*
                                 let alertController = UIAlertController(title: nil, message: "WiFi Settings", preferredStyle: .alert)
                                 
                                 let confirmAction = UIAlertAction(title: "Set Device", style: .default) { (_) in
@@ -336,8 +344,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                      
 
                                         
-                                    }
-                                    
+ 
                                     
                                 }
                                 
@@ -355,7 +362,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                 alertController.addAction(cancelAction)
                                 
                                 self.present(alertController, animated: true, completion: nil)
-                                
+                                 }*/
+
                             }
                             found = true
                             break

@@ -107,6 +107,12 @@ class RealmDataPoint: Object {
         if let C8 = dataPoint.C8 {
             self.C8 = C8
         }
+        if let Daily = dataPoint.Daily {
+            self.Daily = Daily
+        }
+        if let Hourly = dataPoint.Hourly {
+            self.Hourly = Hourly
+        }
 
     }
 

@@ -64,6 +64,9 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         saviors.append(contentsOf: items)
 
         self.tableView.reloadData()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm:ss a"
+        self.title = "Last update: \(formatter.string(from: Date()))"
     }
     
     // MARK: - Actions

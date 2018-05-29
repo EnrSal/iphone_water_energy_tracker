@@ -106,6 +106,17 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     if let response = response {
                         let values = response.Daily!.components(separatedBy: ",")
                         print("VALUES \(values)")
+                        let realm = try! Realm()
+
+                        if self.savior.EnergyUnit == nil {
+                            try! realm.write {
+                                self.savior.EnergyUnit = "kWh"
+                                if self.savior.EnergyUnitPerPulse == 0.0 {
+                                    self.savior.EnergyUnitPerPulse = 0.1
+                                }
+                            }
+                        }
+                        
                         self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
                         self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
                         self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
@@ -184,7 +195,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             }
             
             if let last_sync = savior.last_sync {
-                self.solminutes.text = Util.timeAgoSinceDate(date: last_sync as NSDate, numericDates: true)
+                self.solminutes.text = Util.timeAgoSinceDate(date: current?.timestamp as! NSDate, numericDates: true)
             }
             
             if !savior.isValidDevice() {
@@ -193,8 +204,10 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             }
             
             let tmp = (current!.Temperature + current!.Temp2) / 2.0;
-            self.temp.text = "\(String(format: "%.2f", Util.celsiusToFahrenheit(celsius: tmp))) °F"
+            self.temp.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: tmp))) °F"
             
+        } else {
+            self.solminutes.text = "not synced"
         }
     }
     

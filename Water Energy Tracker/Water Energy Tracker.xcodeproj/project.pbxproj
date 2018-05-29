@@ -65,6 +65,8 @@
 		0D7340CD20ABB16A0098343D /* HistoryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340CB20ABB16A0098343D /* HistoryVC.xib */; };
 		0D7340D020ABC93D0098343D /* EnergyUtilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7340CE20ABC93D0098343D /* EnergyUtilityVC.swift */; };
 		0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D7340CF20ABC93D0098343D /* EnergyUtilityVC.xib */; };
+		0D73412F20B4F30D0098343D /* WifiConfigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73412D20B4F30D0098343D /* WifiConfigVC.swift */; };
+		0D73413020B4F30D0098343D /* WifiConfigVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73412E20B4F30D0098343D /* WifiConfigVC.xib */; };
 		0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876A209184AF00378B03 /* RealmSavior.swift */; };
 		0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F876F20918A2C00378B03 /* GenericRequest.swift */; };
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
@@ -143,6 +145,8 @@
 		0D7340CB20ABB16A0098343D /* HistoryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryVC.xib; sourceTree = "<group>"; };
 		0D7340CE20ABC93D0098343D /* EnergyUtilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyUtilityVC.swift; sourceTree = "<group>"; };
 		0D7340CF20ABC93D0098343D /* EnergyUtilityVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyUtilityVC.xib; sourceTree = "<group>"; };
+		0D73412D20B4F30D0098343D /* WifiConfigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConfigVC.swift; sourceTree = "<group>"; };
+		0D73412E20B4F30D0098343D /* WifiConfigVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WifiConfigVC.xib; sourceTree = "<group>"; };
 		0D7F876A209184AF00378B03 /* RealmSavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSavior.swift; sourceTree = "<group>"; };
 		0D7F876F20918A2C00378B03 /* GenericRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericRequest.swift; sourceTree = "<group>"; };
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
@@ -283,6 +287,8 @@
 		0D6AA3F320818C6E00194AA5 /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				0D73412D20B4F30D0098343D /* WifiConfigVC.swift */,
+				0D73412E20B4F30D0098343D /* WifiConfigVC.xib */,
 				0D6AA3F420818C7F00194AA5 /* ManageVC.swift */,
 				0D6AA3F520818C7F00194AA5 /* ManageVC.xib */,
 				0D7340C620ABA8DD0098343D /* SendCommandVC.swift */,
@@ -504,6 +510,7 @@
 				0D73409920A9F10A0098343D /* NotificationsVC.xib in Resources */,
 				0D7340C920ABA8DE0098343D /* SendCommandVC.xib in Resources */,
 				0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */,
+				0D73413020B4F30D0098343D /* WifiConfigVC.xib in Resources */,
 				0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */,
 				0D7340A120A9F4880098343D /* NotificationTopLevelCell.xib in Resources */,
 			);
@@ -620,6 +627,7 @@
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
 				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
+				0D73412F20B4F30D0098343D /* WifiConfigVC.swift in Sources */,
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
 				0D7340C820ABA8DE0098343D /* SendCommandVC.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
@@ -806,7 +814,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -832,7 +840,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
