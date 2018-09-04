@@ -76,11 +76,27 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         formatter.dateFormat = "MMddyyyyHH:mm:ss"
         
         let datestr = formatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
-
+        print("STYPE = \(savior.stype)")
         if self.savior.stype == 0 {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
             self.typeImage.contentMode = .scaleAspectFit
             self.tableHeight.constant = 0
+            
+        } else if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+            self.typeImage.image = #imageLiteral(resourceName: "ic_water")
+            switch savior.stype {
+            case 20:
+                self.tableHeight.constant = 0
+            case 21:
+                self.tableHeight.constant = 2*44
+            case 22:
+                self.tableHeight.constant = 4*44
+            case 24:
+                self.tableHeight.constant = 8*44
+            default:
+                break
+            }
+
         } else {
             self.typeImage.image = #imageLiteral(resourceName: "ic_energy")
             switch savior.stype {
@@ -206,6 +222,31 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             let tmp = (current!.Temperature + current!.Temp2) / 2.0;
             self.temp.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: tmp))) °F"
             
+            
+            if let current = current {
+                if self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+                    self.unit1_usage = "\(String(format: "%.2f", Float(Double(current.C1) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                    self.unit2_usage = "\(String(format: "%.2f", Float(Double(current.C2) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+
+                }
+                if self.savior.stype == 22 || self.savior.stype == 24 {
+                    self.unit3_usage = "\(String(format: "%.2f", Float(Double(current.C3) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                    self.unit4_usage = "\(String(format: "%.2f", Float(Double(current.C4) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                }
+                if self.savior.stype == 24 {
+                    self.unit5_usage = "\(String(format: "%.2f", Float(Double(current.C5) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                    self.unit6_usage = "\(String(format: "%.2f", Float(Double(current.C6) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                    self.unit7_usage = "\(String(format: "%.2f", Float(Double(current.C7) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                    self.unit8_usage = "\(String(format: "%.2f", Float(Double(current.C8) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                }
+
+            
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            
+            
         } else {
             self.solminutes.text = "not synced"
         }
@@ -225,13 +266,13 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         }
         
         switch savior.stype {
-        case 0:
+        case 0, 20:
             return 0
-        case 1:
+        case 1, 21:
             return 2
-        case 2:
+        case 2, 22:
             return 4
-        case 4:
+        case 4, 24:
             return 8
         default:
             break

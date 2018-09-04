@@ -45,21 +45,21 @@ class DetailEnergyInfoCell: UITableViewCell {
             switch self.energy_unit {
             case 1:
                 print("C1 -->\(current!.C1) savior.EnergyUnitPerPulse: \(savior.EnergyUnitPerPulse)")
-                info.text = Util.pulsesToReadable(pulses: current!.C1, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C1, savior: self.savior)
             case 2:
-                info.text = Util.pulsesToReadable(pulses: current!.C2, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C2, savior: self.savior)
             case 3:
-                info.text = Util.pulsesToReadable(pulses: current!.C3, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C3, savior: self.savior)
             case 4:
-                info.text = Util.pulsesToReadable(pulses: current!.C4, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C4, savior: self.savior)
             case 5:
-                info.text = Util.pulsesToReadable(pulses: current!.C5, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C5, savior: self.savior)
             case 6:
-                info.text = Util.pulsesToReadable(pulses: current!.C6, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C6, savior: self.savior)
             case 7:
-                info.text = Util.pulsesToReadable(pulses: current!.C7, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C7, savior: self.savior)
             case 8:
-                info.text = Util.pulsesToReadable(pulses: current!.C8, savior: self.savior)
+                info.text = Util.totalpulsesToReadable(pulses: current!.C8, savior: self.savior)
             default:
                 break
             }

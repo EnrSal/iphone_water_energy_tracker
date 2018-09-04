@@ -64,31 +64,31 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             slider.value = roundf(Float(textField.text!)!)
             switch self.type! {
             case .temp_low:
-                self.owner.config!.TempLow! = String(format: "%.0f", slider.value)
+                self.owner.config!.TempLow! = textField.text!
             case .temp_high:
-                self.owner.config!.TempHigh! = String(format: "%.0f", slider.value)
+                self.owner.config!.TempHigh! = textField.text!
             case .user_calibration:
-                self.owner.config!.UserTempCalib! = String(format: "%.0f", slider.value)
+                self.owner.config!.UserTempCalib! = textField.text!
             case .kwhour:
-                self.owner.config!.HourKWH! = String(format: "%.0f", slider.value)
+                self.owner.config!.HourKWH! = textField.text!
             case .kwday:
-                self.owner.config!.DayKWH! = String(format: "%.0f", slider.value)
+                self.owner.config!.DayKWH! = textField.text!
             case .kwweek:
-                self.owner.config!.WeekKWH! = String(format: "%.0f", slider.value)
+                self.owner.config!.WeekKWH! = textField.text!
             case .kwmonth:
-                self.owner.config!.MonthKWH! = String(format: "%.0f", slider.value)
+                self.owner.config!.MonthKWH! = textField.text!
             case .water:
-                self.owner.config!.WaterFlowing! = String(format: "%.0f", slider.value)
+                self.owner.config!.WaterFlowing! = textField.text!
             case .detections_hour:
-                self.owner.config!.DetectionsHour! = String(format: "%.0f", slider.value)
+                self.owner.config!.DetectionsHour! = textField.text!
                 print("DETECTIONS HOUR -->\(self.owner.config!.DetectionsHour!)")
             case .detections_day:
-                self.owner.config!.DetectionsDay! = String(format: "%.0f", slider.value)
+                self.owner.config!.DetectionsDay! = textField.text!
             }
         } else {
             slider.value = 0
         }
-        self.currentEdut.text = "\(Int(slider.value))"
+        //self.currentEdut.text = "\(Int(slider.value))"
     }
     
     

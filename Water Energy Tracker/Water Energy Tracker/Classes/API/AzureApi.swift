@@ -183,7 +183,7 @@ class AzureApi: NSObject {
     func getConfig(req:DeviceConfiguration, completionHandler: @escaping (ServerError?, DeviceConfiguration?) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
-            let urlString = "https://getconfiguration-withutcname-functionapp20180330114601.azurewebsites.net/api/Function1?code=edTcb8gYVKbbJyN05RvBDaZ1hLIVy0aaz1BHzNFtH4FhuvEAg7fBMQ=="
+            let urlString = "https://getconfiguration-allunits-functionapp20180725062359.azurewebsites.net/api/Function1?code=r7quqa/ybf78iSy3gHiEWW5oIAVx2nXGb8K33sqVpMDRFl37Vp6MTQ=="
             let json = req.toJSONString(prettyPrint: true)
             
             print("getNames \(json!)")
@@ -223,7 +223,7 @@ class AzureApi: NSObject {
     func getData(req:GetDataRequest, completionHandler: @escaping (ServerError?, GetDataResponse?) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
-            let urlString = "https://getdatafordiffstypes-basedontimes-withmacid-20180115121539.azurewebsites.net/api/Function2?code=dx0ioMwaz8woHEyA97rffomzOxR5Llqr1KAGU03H5jbdW7MYoXuRqA=="
+            let urlString = "https://getdatafordiffstypes-basedontimes-withmacid-morewaterdata.azurewebsites.net/api/Function2?code=WKCst/HUBs2qgVzxcnuJMTIDc0QBWHU04J2BTtxDhCeqf7rDV/L8Kw=="
             let json = req.toJSONString(prettyPrint: true)
             
             print("==== GET DATA ==== \(json!)")
@@ -338,7 +338,7 @@ class AzureApi: NSObject {
     func setConfig(req:DeviceConfiguration, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
-            let urlString = "https://set-configuration-withutcname-functionapp20180330121250.azurewebsites.net/api/Function1?code=MWLiI4cDrYN0T8kvy4H04OPjRjRlZzJyUbP1glU5MJwJ0SRpdTlEyg=="
+            let urlString = "https://setconfiguration-allunits-functionapp20180725063131.azurewebsites.net/api/Function1?code=VqxVdhuEd6bOACeLjhSwPhuppz2hIKoVMxLQL5utbLFiG68zynirvg=="
             let json = req.toJSONString(prettyPrint: true)
             
             print("getNames \(json!)")
