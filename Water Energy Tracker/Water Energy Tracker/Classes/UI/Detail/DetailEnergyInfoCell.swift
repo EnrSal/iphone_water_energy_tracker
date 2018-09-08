@@ -40,30 +40,50 @@ class DetailEnergyInfoCell: UITableViewCell {
         if items.count > 0 {
             let current = items.first
             
-            
-            
-            switch self.energy_unit {
-            case 1:
-                print("C1 -->\(current!.C1) savior.EnergyUnitPerPulse: \(savior.EnergyUnitPerPulse)")
-                info.text = Util.totalpulsesToReadable(pulses: current!.C1, savior: self.savior)
-            case 2:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C2, savior: self.savior)
-            case 3:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C3, savior: self.savior)
-            case 4:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C4, savior: self.savior)
-            case 5:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C5, savior: self.savior)
-            case 6:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C6, savior: self.savior)
-            case 7:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C7, savior: self.savior)
-            case 8:
-                info.text = Util.totalpulsesToReadable(pulses: current!.C8, savior: self.savior)
-            default:
-                break
+            if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+                switch self.energy_unit {
+                case 1:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C1, savior: self.savior)
+                case 2:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C2, savior: self.savior)
+                case 3:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C3, savior: self.savior)
+                case 4:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C4, savior: self.savior)
+                case 5:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C5, savior: self.savior)
+                case 6:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C6, savior: self.savior)
+                case 7:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C7, savior: self.savior)
+                case 8:
+                    info.text = Util.waterPulsesToReadable(pulses: current!.C8, savior: self.savior)
+                default:
+                    break
+                }
+            } else {
+                
+                switch self.energy_unit {
+                case 1:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C1, savior: self.savior)
+                case 2:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C2, savior: self.savior)
+                case 3:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C3, savior: self.savior)
+                case 4:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C4, savior: self.savior)
+                case 5:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C5, savior: self.savior)
+                case 6:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C6, savior: self.savior)
+                case 7:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C7, savior: self.savior)
+                case 8:
+                    info.text = Util.totalpulsesToReadable(pulses: current!.C8, savior: self.savior)
+                default:
+                    break
+                }
             }
-            
             self.temp1.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: current!.Temperature))) °F"
             self.temp2.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: current!.Temp2))) °F"
         }
@@ -80,11 +100,19 @@ class DetailEnergyInfoCell: UITableViewCell {
                     let monthly = response.Monthly!.components(separatedBy: ",")
                     let yearly = response.Yearly!.components(separatedBy: ",")
                     
+                    
                     DispatchQueue.main.async {
-                        self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                        self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                        self.month.text = Util.kwToReadable(kw: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                        self.year.text = Util.kwToReadable(kw: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                        if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+                            self.day.text = Util.galToReadable(gal: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            self.week.text = Util.galToReadable(gal: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            self.month.text = Util.galToReadable(gal: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            self.year.text = Util.galToReadable(gal: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                        } else {
+                            self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            self.month.text = Util.kwToReadable(kw: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            self.year.text = Util.kwToReadable(kw: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                        }
                     }
                     
                 }

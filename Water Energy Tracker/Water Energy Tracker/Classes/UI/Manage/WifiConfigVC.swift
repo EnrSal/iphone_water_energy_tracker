@@ -15,160 +15,115 @@ import RealmSwift
 
 class WifiConfigVC: SaviorVC {
 
-    let RX_SERVICE_UUID:String = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
-    let RX_CHAR_UUID:String = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
     @IBOutlet weak var waterLabel: UILabel!
-    @IBOutlet weak var waterSegments: UISegmentedControl!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var wifiField: UITextField!
-    var peripheral:Peripheral!
+    @IBOutlet weak var waterView: UIView!
+    @IBOutlet weak var powerSegments: UISegmentedControl!
+    @IBOutlet weak var minutes: UITextField!
+    @IBOutlet weak var delaySegments: UISegmentedControl!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     var savior: RealmSavior!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.title = "Configure Device"
-        self.makeCloseButton()
         if getInterfaces() {
             
         }
-        if savior.stype != 0 {
-            waterLabel.isHidden = true
-            waterSegments.isHidden = true
+
+        self.title = "Configure Device"
+        self.makeCloseButton()
+        if (self.savior.stype == 0) {
+            // water
+            powerSegments.isHidden = false
+            waterView.isHidden = true
+        } else if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+            waterView.isHidden = false
+            powerSegments.isHidden = true
+            topConstraint.constant = 10
+        } else {
+            // energy
+            waterView.isHidden = true
+            powerSegments.isHidden = true
         }
         
-        self.showHud()
-        peripheral.connect(withTimeout: 30) { result in
-            switch result {
-            case .success:
-                print("CONNECT SUCCESS")
-                self.hideHud()
-            break // You are now connected to the peripheral
-            case .failure(let error):
-                print("CONNECT ERROR \(error)")
-                self.hideHud()
-                self.showError(message: error.localizedDescription)
-                break // An error happened while connecting
+        if let num_mins = savior.num_mins {
+            minutes.text = num_mins
+        }
+        if let sdn_string = savior.sdn_string {
+            if (savior.relay_default) {
+                delaySegments.selectedSegmentIndex = 0
+            } else if sdn_string == "sdn2 mins:3" {
+                delaySegments.selectedSegmentIndex = 1
+            } else if sdn_string == "sdn2 mins:4" {
+                delaySegments.selectedSegmentIndex = 2
+            } else if sdn_string == "sdn2 mins:0" {
+                powerSegments.selectedSegmentIndex = 0
             }
         }
-
-    }
-
-    @IBAction func clickSetDevice(_ sender: Any) {
-    
-        print("TRY WRITE PERIPHERAL -->\(peripheral)")
-        self.showHud()
         
-        let data = "swn\(wifiField.text!)".data(using: String.Encoding.utf8)!
-        self.peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
-                              fromServiceWithUUID: self.RX_SERVICE_UUID,
-                              value: data) { result in
-                                switch result {
-                                case .success:
-                                    print("WRITE SUCCESS -->swn\(self.wifiField.text!)")
-                                    
-                                    let data2 = "swp\(self.password.text!)".data(using: String.Encoding.utf8)!
-                                    self.peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
-                                                          fromServiceWithUUID: self.RX_SERVICE_UUID,
-                                                          value: data2) { result in
-                                                            switch result {
-                                                            case .success:
-                                                                print("2WRITE SUCCESS -->swp\(self.password.text!)")
-                                                                
-                                                                if self.savior.stype == 0 {
-                                                                    // send water
-                                                                    var mins = "2 mins"
-                                                                    switch self.waterSegments.selectedSegmentIndex {
-                                                                    case 1:
-                                                                        mins = "10 mins"
-                                                                    case 2:
-                                                                        mins = "20 mins"
-                                                                    case 3:
-                                                                        mins = "30 mins"
-                                                                    case 4:
-                                                                        mins = "60 mins"
-                                                                    default:
-                                                                        break
-                                                                    }
-                                                                    let data3 = "sdn\(mins)".data(using: String.Encoding.utf8)!
-                                                                    self.peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
-                                                                                               fromServiceWithUUID: self.RX_SERVICE_UUID,
-                                                                                               value: data3) { result in
-                                                                                                switch result {
-                                                                                                case .success:
-                                                                                                    print("2WRITE SUCCESS -->sdn\(mins)")
-                                                                                                    
-                                                                                                    self.complete()
-
-                                                                                                break // The write was succesful.
-                                                                                                case .failure(let error):
-                                                                                                    print("2WRITE ERROR \(error)")
-                                                                                                    self.hideHud()
-                                                                                                    self.showError(message: error.localizedDescription)
-                                                                                                    break // An error happened while writting the data.
-                                                                                                }
-                                                                    }
-
-                                                                } else {
-                                                                    self.complete()
-                                                                }
-                                                                
-                                                                
-                                                            break // The write was succesful.
-                                                            case .failure(let error):
-                                                                print("2WRITE ERROR \(error)")
-                                                                self.hideHud()
-                                                                self.showError(message: error.localizedDescription)
-                                                                break // An error happened while writting the data.
-                                                            }
-                                    }
-                                    
-                                    
-                                break // The write was succesful.
-                                case .failure(let error):
-                                    print("WRITE ERROR \(error)")
-                                    self.hideHud()
-                                    self.showError(message: error.localizedDescription)
-                                    break // An error happened while writting the data.
-                                }
+        if let network = self.savior.network {
+            self.wifiField.text = network
         }
-    }
-    
-    func complete() {
-        let data2 = "                  \n".data(using: String.Encoding.utf8)!
-        self.peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
-                                   fromServiceWithUUID: self.RX_SERVICE_UUID,
-                                   value: data2) { result in
-                                    switch result {
-                                    case .success:
-                                        print("2WRITE SUCCESS -->                   \n")
-                                        
-                                        
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-                                            self.hideHud()
-                                            self.peripheral.disconnect(completion: { _ in ()
-                                                self.dismiss(animated: true, completion: {
-                                                    
-                                                })
-                                            })
-                                        }
-                                        
-                                    break // The write was succesful.
-                                    case .failure(let error):
-                                        print("2WRITE ERROR \(error)")
-                                        self.hideHud()
-                                        self.showError(message: error.localizedDescription)
-                                        break // An error happened while writting the data.
-                                    }
+        if let password = self.savior.password {
+            self.password.text = password
         }
+
     }
+
  
     @IBAction func clickWater(_ sender: Any) {
     }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func clickSetDevice(_ sender: Any) {
+        let realm = try! Realm()
+        try! realm.write {
+            self.savior.network = wifiField.text!
+            self.savior.password = password.text!
+
+            
+            if (self.savior.stype == 0) {
+                // water
+                if self.powerSegments.selectedSegmentIndex == 0 {
+                    self.savior.sdn_string = "sdn2 mins:0"
+                } else {
+                    self.savior.sdn_string = "sdn2 mins:1"
+                }
+            } else if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+                self.savior.num_mins = minutes.text!
+                if delaySegments.selectedSegmentIndex == 0 {
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:2"
+                    self.savior.relay_default = true
+                } else if delaySegments.selectedSegmentIndex == 1 {
+                    self.savior.sdn_string = "sdn2 mins:3"
+                    self.savior.relay_default = false
+                } else if delaySegments.selectedSegmentIndex == 2 {
+                    self.savior.sdn_string = "sdn2 mins:4"
+                    self.savior.relay_default = false
+                }
+            } else {
+                // energy
+                self.savior.sdn_string = "sdn"
+            }
+            
+            self.savior.is_configured = true
+        }
+        print("IS CONFIGURED -->\(self.savior.is_configured)")
+
+        let alert = UIAlertController(title: "Info", message: "Please restart the device, then select it in the manage screen to send data.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     func getInterfaces() -> Bool {

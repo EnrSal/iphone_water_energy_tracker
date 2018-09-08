@@ -12,7 +12,8 @@ import RealmSwift
 class SendCommandVC: SaviorVC {
 
     @IBOutlet weak var lastSent: UILabel!
-    @IBOutlet weak var commandSwitch: UISwitch!
+    @IBOutlet weak var commandSegments: UISegmentedControl!
+    
     var savior: RealmSavior!
 
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class SendCommandVC: SaviorVC {
         self.showHud()
         let req:SendCommandRequest = SendCommandRequest()
         req.name = savior.savior_address!
-        req.Command = commandSwitch.isOn ? "ON" : "OFF"
+        req.Command = commandSegments.selectedSegmentIndex == 0 ? "ON" : "OFF"
         AzureApi.shared.sendCommand(req: req) { (error:ServerError?, response:GenericResponse?) in
             self.hideHud()
             if let error = error {

@@ -100,4 +100,20 @@ class Util: NSObject {
         return "\(String(format: "%.2f", kw)) kWh"
     }
     
+    static func waterPulsesToReadable(pulses:Int, savior:RealmSavior) -> String {
+        let kw = Double(pulses)*savior.EnergyUnitPerPulse
+        if (kw > 1000) {
+            return "\(String(format: "%.2f", kw * 0.001)) kGal"
+        }
+        return "\(String(format: "%.2f", kw)) Gal"
+    }
+    
+    static func galToReadable(gal:Double, savior:RealmSavior) -> String {
+        if (gal > 1000) {
+            return "\(String(format: "%.2f", gal * 0.001)) kGal"
+        }
+        return "\(String(format: "%.2f", gal)) Gal"
+    }
+
+
 }

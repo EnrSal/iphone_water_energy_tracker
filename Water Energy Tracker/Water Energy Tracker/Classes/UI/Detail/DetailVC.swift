@@ -45,6 +45,9 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.register(DetailWaterInfoCell.self, forCellReuseIdentifier: "WATER_INFO_CELL")
         self.tableView.register(UINib(nibName: "DetailWaterInfoCell", bundle: nil), forCellReuseIdentifier: "WATER_INFO_CELL")
         
+        self.tableView.register(DetailWaterFlowInfoCell.self, forCellReuseIdentifier: "WATER_INFO_FLOW_CELL")
+        self.tableView.register(UINib(nibName: "DetailWaterFlowInfoCell", bundle: nil), forCellReuseIdentifier: "WATER_INFO_FLOW_CELL")
+
         self.tableView.register(DetailEnergyInfoCell.self, forCellReuseIdentifier: "ENERGY_INFO_CELL")
         self.tableView.register(UINib(nibName: "DetailEnergyInfoCell", bundle: nil), forCellReuseIdentifier: "ENERGY_INFO_CELL")
         
@@ -197,10 +200,17 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 1) {
+            if (self.savior.stype == 0) || (self.savior.stype == 1) || (self.savior.stype == 2) || (self.savior.stype == 4)  {
+                return 0
+            } else {
+                return 1
+            }
+        }
         return 1
     }
     
@@ -215,6 +225,16 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 cell.populate()
                 
                 return cell;
+            } else if self.savior.stype >= 20 {
+                
+                let cell:DetailWaterFlowInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_FLOW_CELL", for: indexPath) as? DetailWaterFlowInfoCell)!
+                
+                cell.savior = self.savior
+                cell.energy_unit = self.energy_unit
+                cell.populate()
+                
+                return cell;
+
             }
             
             let cell:DetailEnergyInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_INFO_CELL", for: indexPath) as? DetailEnergyInfoCell)!
@@ -225,7 +245,20 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             
             return cell;
         case 1:
-            if (self.savior.stype == 0) {
+            if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+                let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
+                
+                cell.end = Date()
+                let calendar = NSCalendar.autoupdatingCurrent
+                cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
+                cell.savior = self.savior
+                cell.energy_unit = self.energy_unit
+                cell.populate()
+                
+                return cell;
+            }
+        case 2:
+            if (self.savior.stype == 0) || (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
 
                 let cell:WaterIntensityChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INTENSITY_CHART", for: indexPath) as? WaterIntensityChartCell)!
                 
@@ -251,7 +284,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 return cell;
 
             }
-        case 2:
+        case 3:
             let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!
             
             cell.end = Date()

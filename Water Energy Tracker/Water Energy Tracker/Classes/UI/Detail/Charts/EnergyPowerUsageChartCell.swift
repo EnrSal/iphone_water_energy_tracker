@@ -34,6 +34,17 @@ class EnergyPowerUsageChartCell: UITableViewCell {
     }
     
     func populate() {
+        
+        
+        var per_pulse = 0.01
+        if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
+            heading.text = "Water Usage in last 12 hours"
+            per_pulse = self.savior.EnergyUnitPerPulse
+        } else {
+            heading.text = "Power Usage in last 12 hours"
+        }
+        
+        
         let realm = try! Realm()
         countToDate.removeAll()
         var values:[BarChartDataEntry] = []
@@ -47,80 +58,80 @@ class EnergyPowerUsageChartCell: UITableViewCell {
                     var diff:Double? = nil
                     switch (energy_unit) {
                     case 1:
-                        diff = (Double(dataPoint.C1) * 0.01) - last;
+                        diff = (Double(dataPoint.C1) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C1) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C1) * 0.01;
+                                diff = Double(dataPoint.C1) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 2:
-                        diff = (Double(dataPoint.C2) * 0.01) - last;
+                        diff = (Double(dataPoint.C2) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C2) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C2) * 0.01;
+                                diff = Double(dataPoint.C2) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 3:
-                        diff = (Double(dataPoint.C3) * 0.01) - last;
+                        diff = (Double(dataPoint.C3) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C3) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C3) * 0.01;
+                                diff = Double(dataPoint.C3) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 4:
-                        diff = (Double(dataPoint.C4) * 0.01) - last;
+                        diff = (Double(dataPoint.C4) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C4) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C4) * 0.01;
+                                diff = Double(dataPoint.C4) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 5:
-                        diff = (Double(dataPoint.C5) * 0.01) - last;
+                        diff = (Double(dataPoint.C5) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C5) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C5) * 0.01;
+                                diff = Double(dataPoint.C5) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 6:
-                        diff = (Double(dataPoint.C6) * 0.01) - last;
+                        diff = (Double(dataPoint.C6) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C6) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C6) * 0.01;
+                                diff = Double(dataPoint.C6) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 7:
-                        diff = (Double(dataPoint.C7) * 0.01) - last;
+                        diff = (Double(dataPoint.C7) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C7) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C7) * 0.01;
+                                diff = Double(dataPoint.C7) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
                         }
                         break;
                     case 8:
-                        diff = (Double(dataPoint.C8) * 0.01) - last;
+                        diff = (Double(dataPoint.C8) * per_pulse) - last;
                         if (diff! < 0.0) {
                             if (Double(dataPoint.C8) < abs(diff!) * 0.1) {
-                                diff = Double(dataPoint.C8) * 0.01;
+                                diff = Double(dataPoint.C8) * per_pulse;
                             } else {
                                 diff = 0.0;
                             }
@@ -145,21 +156,21 @@ class EnergyPowerUsageChartCell: UITableViewCell {
                 
                 switch (energy_unit) {
                 case 1:
-                    last = Double(dataPoint.C1) * 0.01;
+                    last = Double(dataPoint.C1) * per_pulse;
                 case 2:
-                    last = Double(dataPoint.C2) * 0.01;
+                    last = Double(dataPoint.C2) * per_pulse;
                 case 3:
-                    last = Double(dataPoint.C3) * 0.01;
+                    last = Double(dataPoint.C3) * per_pulse;
                 case 4:
-                    last = Double(dataPoint.C4) * 0.01;
+                    last = Double(dataPoint.C4) * per_pulse;
                 case 5:
-                    last = Double(dataPoint.C5) * 0.01;
+                    last = Double(dataPoint.C5) * per_pulse;
                 case 6:
-                    last = Double(dataPoint.C6) * 0.01;
+                    last = Double(dataPoint.C6) * per_pulse;
                 case 7:
-                    last = Double(dataPoint.C7) * 0.01;
+                    last = Double(dataPoint.C7) * per_pulse;
                 case 8:
-                    last = Double(dataPoint.C8) * 0.01;
+                    last = Double(dataPoint.C8) * per_pulse;
                 default:
                     break
                 }
@@ -170,7 +181,12 @@ class EnergyPowerUsageChartCell: UITableViewCell {
         }
         
         print("VALUES \(values)")
-        let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Power Usage")
+        
+        var label = "Power Usage"
+        if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
+            label = "Water Usage"
+        }
+        let set1: BarChartDataSet = BarChartDataSet(values: values, label: label)
         set1.colors = [UIColor.init(hex: "#006400")]
         set1.drawValuesEnabled = false
         set1.highlightEnabled = false

@@ -72,6 +72,10 @@
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
 		0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877320918A5F00378B03 /* AzureApi.swift */; };
 		0D7F877620918ADE00378B03 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877520918ADE00378B03 /* ServerError.swift */; };
+		0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */; };
+		0DB78D9E2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */; };
+		0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */; };
+		0DB78DA221434D7E00AB60C9 /* WifiSendDataVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB78DA021434D7E00AB60C9 /* WifiSendDataVC.xib */; };
 		0DE4CC1720A4B27F001A4E5D /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1520A4B27F001A4E5D /* DetailVC.swift */; };
 		0DE4CC1820A4B27F001A4E5D /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1620A4B27F001A4E5D /* DetailVC.xib */; };
 		0DE4CC1B20A4B954001A4E5D /* DetailWaterInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1920A4B954001A4E5D /* DetailWaterInfoCell.swift */; };
@@ -152,6 +156,10 @@
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
 		0D7F877320918A5F00378B03 /* AzureApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureApi.swift; sourceTree = "<group>"; };
 		0D7F877520918ADE00378B03 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWaterFlowInfoCell.swift; sourceTree = "<group>"; };
+		0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailWaterFlowInfoCell.xib; sourceTree = "<group>"; };
+		0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSendDataVC.swift; sourceTree = "<group>"; };
+		0DB78DA021434D7E00AB60C9 /* WifiSendDataVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WifiSendDataVC.xib; sourceTree = "<group>"; };
 		0DE4CC1520A4B27F001A4E5D /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
 		0DE4CC1620A4B27F001A4E5D /* DetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
 		0DE4CC1920A4B954001A4E5D /* DetailWaterInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWaterInfoCell.swift; sourceTree = "<group>"; };
@@ -293,6 +301,8 @@
 				0D6AA3F520818C7F00194AA5 /* ManageVC.xib */,
 				0D7340C620ABA8DD0098343D /* SendCommandVC.swift */,
 				0D7340C720ABA8DD0098343D /* SendCommandVC.xib */,
+				0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */,
+				0DB78DA021434D7E00AB60C9 /* WifiSendDataVC.xib */,
 			);
 			path = Manage;
 			sourceTree = "<group>";
@@ -400,6 +410,8 @@
 				0DE4CC1A20A4B954001A4E5D /* DetailWaterInfoCell.xib */,
 				0DE4CC1D20A4B967001A4E5D /* DetailEnergyInfoCell.swift */,
 				0DE4CC1E20A4B967001A4E5D /* DetailEnergyInfoCell.xib */,
+				0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */,
+				0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -504,6 +516,8 @@
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
 				0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */,
 				0D050A7D20A22339005B95A3 /* MainDeviceCell.xib in Resources */,
+				0DB78D9E2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib in Resources */,
+				0DB78DA221434D7E00AB60C9 /* WifiSendDataVC.xib in Resources */,
 				0D6AA3D8208187CF00194AA5 /* Main.storyboard in Resources */,
 				0DE4CC1C20A4B954001A4E5D /* DetailWaterInfoCell.xib in Resources */,
 				0D7340C520AA5EB80098343D /* SettingsSliderCell.xib in Resources */,
@@ -638,6 +652,7 @@
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
 				0D7340A720A9F5E90098343D /* NotificationsRequest.swift in Sources */,
 				0D7340CC20ABB16A0098343D /* HistoryVC.swift in Sources */,
+				0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */,
 				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
@@ -659,6 +674,7 @@
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,
 				0DE4CC1B20A4B954001A4E5D /* DetailWaterInfoCell.swift in Sources */,
 				0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */,
+				0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */,
 				0D7340A920A9F6180098343D /* HistoricalKwhRequest.swift in Sources */,
 				0D73409820A9F10A0098343D /* NotificationsVC.swift in Sources */,
 				0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */,

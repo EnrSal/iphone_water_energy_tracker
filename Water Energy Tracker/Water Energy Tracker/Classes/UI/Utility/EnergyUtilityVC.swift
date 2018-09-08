@@ -80,17 +80,37 @@ class EnergyUtilityVC: SaviorVC {
                     if let response = response {
                         let results = response.TotalKWH!.components(separatedBy: ",")
                         var str:String = ""
-                        str = "\(str)\(self.savior.energy_unit_name_1!): \(Util.kwToReadable(kw: Double(results[0].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                        str = "\(str)\(self.savior.energy_unit_name_2!): \(Util.kwToReadable(kw: Double(results[1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                        if self.savior.stype == 2 || self.savior.stype == 4 {
-                            str = "\(str)\(self.savior.energy_unit_name_3!): \(Util.kwToReadable(kw: Double(results[2].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                            str = "\(str)\(self.savior.energy_unit_name_4!): \(Util.kwToReadable(kw: Double(results[3].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                        }
-                        if self.savior.stype == 4 {
-                            str = "\(str)\(self.savior.energy_unit_name_5!): \(Util.kwToReadable(kw: Double(results[4].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                            str = "\(str)\(self.savior.energy_unit_name_6!): \(Util.kwToReadable(kw: Double(results[5].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                            str = "\(str)\(self.savior.energy_unit_name_7!): \(Util.kwToReadable(kw: Double(results[6].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
-                            str = "\(str)\(self.savior.energy_unit_name_8!): \(Util.kwToReadable(kw: Double(results[7].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                        
+                        
+                        if (self.savior.stype == 0) || (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+                            
+                            str = "\(str)\(self.savior.energy_unit_name_1!): \(Util.galToReadable(gal: Double(results[0].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            str = "\(str)\(self.savior.energy_unit_name_2!): \(Util.galToReadable(gal: Double(results[1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            if self.savior.stype == 2 || self.savior.stype == 4 {
+                                str = "\(str)\(self.savior.energy_unit_name_3!): \(Util.galToReadable(gal: Double(results[2].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_4!): \(Util.galToReadable(gal: Double(results[3].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            }
+                            if self.savior.stype == 4 {
+                                str = "\(str)\(self.savior.energy_unit_name_5!): \(Util.galToReadable(gal: Double(results[4].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_6!): \(Util.galToReadable(gal: Double(results[5].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_7!): \(Util.galToReadable(gal: Double(results[6].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_8!): \(Util.galToReadable(gal: Double(results[7].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            }
+
+                        } else {
+                            
+                            str = "\(str)\(self.savior.energy_unit_name_1!): \(Util.kwToReadable(kw: Double(results[0].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            str = "\(str)\(self.savior.energy_unit_name_2!): \(Util.kwToReadable(kw: Double(results[1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            if self.savior.stype == 2 || self.savior.stype == 4 {
+                                str = "\(str)\(self.savior.energy_unit_name_3!): \(Util.kwToReadable(kw: Double(results[2].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_4!): \(Util.kwToReadable(kw: Double(results[3].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            }
+                            if self.savior.stype == 4 {
+                                str = "\(str)\(self.savior.energy_unit_name_5!): \(Util.kwToReadable(kw: Double(results[4].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_6!): \(Util.kwToReadable(kw: Double(results[5].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_7!): \(Util.kwToReadable(kw: Double(results[6].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                                str = "\(str)\(self.savior.energy_unit_name_8!): \(Util.kwToReadable(kw: Double(results[7].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
+                            }
                         }
                         DispatchQueue.main.async {
                             self.result.text = str

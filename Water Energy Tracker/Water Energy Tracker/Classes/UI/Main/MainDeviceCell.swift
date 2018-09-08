@@ -21,6 +21,8 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var typeImage: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var tableHeight: NSLayoutConstraint!
+    @IBOutlet weak var numgalsWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var numgals: UILabel!
     
     var unit1_usage:String? = nil
     var unit2_usage:String? = nil
@@ -75,6 +77,14 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.dateFormat = "MMddyyyyHH:mm:ss"
         
+        
+        if self.savior.stype == 20 {
+            self.numgalsWidthConstraint.constant = 70
+            self.numgals.isHidden = false
+        } else {
+            self.numgalsWidthConstraint.constant = 0
+            self.numgals.isHidden = true
+        }
         let datestr = formatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
         print("STYPE = \(savior.stype)")
         if self.savior.stype == 0 {
@@ -96,6 +106,45 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             default:
                 break
             }
+
+
+            let genreq:GenericRequest = GenericRequest()
+            genreq.name = savior.savior_address!
+            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?) in
+                if let error = error {
+                    print(error)
+                } else {
+                    if let response = response {
+                        let values = response.Daily!.components(separatedBy: ",")
+                        print("VALUES \(values)")
+                        let realm = try! Realm()
+                        
+                        if self.savior.EnergyUnit == nil {
+                            try! realm.write {
+                                self.savior.EnergyUnit = "kWh"
+                                if self.savior.EnergyUnitPerPulse == 0.0 {
+                                    self.savior.EnergyUnitPerPulse = 0.1
+                                }
+                            }
+                        }
+                        
+                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.numgals.text = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        
+                    }
+                }
+            }
+
 
         } else {
             self.typeImage.image = #imageLiteral(resourceName: "ic_energy")
@@ -122,9 +171,11 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     if let response = response {
                         let values = response.Daily!.components(separatedBy: ",")
                         print("VALUES \(values)")
-                        let realm = try! Realm()
+                        //let realm = try! Realm()
 
+                        
                         if self.savior.EnergyUnit == nil {
+                            let realm = try! Realm()
                             try! realm.write {
                                 self.savior.EnergyUnit = "kWh"
                                 if self.savior.EnergyUnitPerPulse == 0.0 {
@@ -133,14 +184,14 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                             }
                         }
                         
-                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
                         DispatchQueue.main.async {
                             self.tableView.reloadData()
                         }
@@ -223,6 +274,9 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             self.temp.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: tmp))) °F"
             
             
+            
+            /*
+            
             if let current = current {
                 if self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
                     self.unit1_usage = "\(String(format: "%.2f", Float(Double(current.C1) * savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
@@ -244,7 +298,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            }
+            }*/
             
             
         } else {

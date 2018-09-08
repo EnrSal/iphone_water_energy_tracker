@@ -116,8 +116,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                                 if let response = response {
                                                     DispatchQueue.main.async {
                                                         try! realm.write {
-                                                            newsavior.EnergyUnit = response.EnergyUnit
-                                                            if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
+                                                            newsavior.EnergyUnit = response.Unit
+                                                            if let EnergyUnitPerPulse = response.UnitPerPulse {
                                                                 newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
                                                             }
                                                         }
@@ -260,6 +260,19 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             
             if !savior.from_share {
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("Configure Device", comment: ""), style: .default, handler: { action in
+                    
+                    
+                    
+                    
+                    let sendVC:WifiConfigVC = WifiConfigVC(nibName: "WifiConfigVC", bundle: nil)
+                    sendVC.savior = savior
+                    
+                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                    self.navigationController!.present(nav, animated: true, completion: nil)
+
+                    
+                    
+                    /*
                     var found = false
                     for peripheral in self.all_peripherals {
                         if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
@@ -270,99 +283,13 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                 
                                 let sendVC:WifiConfigVC = WifiConfigVC(nibName: "WifiConfigVC", bundle: nil)
                                 sendVC.savior = savior
-                                sendVC.peripheral = peripheral
+                                
                                 let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
                                 self.navigationController!.present(nav, animated: true, completion: nil)
 
                                 
                                 
-                                /*
-                                let alertController = UIAlertController(title: nil, message: "WiFi Settings", preferredStyle: .alert)
-                                
-                                let confirmAction = UIAlertAction(title: "Set Device", style: .default) { (_) in
-                                    guard let textFields = alertController.textFields,
-                                        textFields.count > 0 else {
-                                            // Could not find textfield
-                                            return
-                                    }
-                                    
-                                    let network = textFields[0]
-                                    let password = textFields[1]
-
-                                    if network.text!.count > 0 {
-                                        
-                                        self.showHud()
-                                        peripheral.connect(withTimeout: 10) { result in
-                                            switch result {
-                                            case .success:
-                                                print("CONNECT SUCCESS")
-                                                print("TRY WRITE PERIPHERAL -->\(peripheral)")
-                                                
-                                                let data = "swn\(network)".data(using: String.Encoding.utf8)!
-                                                peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
-                                                                      fromServiceWithUUID: self.RX_SERVICE_UUID,
-                                                                      value: data) { result in
-                                                                        switch result {
-                                                                        case .success:
-                                                                            print("WRITE SUCCESS")
-                                                                            
-                                                                            let data2 = "swp\(password)".data(using: String.Encoding.utf8)!
-                                                                            peripheral.writeValue(ofCharacWithUUID: self.RX_CHAR_UUID,
-                                                                                                  fromServiceWithUUID: self.RX_SERVICE_UUID,
-                                                                                                  value: data2) { result in
-                                                                                                    switch result {
-                                                                                                    case .success:
-                                                                                                        print("2WRITE SUCCESS")
-                                                                                                        self.hideHud()
-                                                                                                        
-                                                                                                        
-                                                                                                        
-                                                                                                    break // The write was succesful.
-                                                                                                    case .failure(let error):
-                                                                                                        print("2WRITE ERROR \(error)")
-                                                                                                        self.hideHud()
-                                                                                                        break // An error happened while writting the data.
-                                                                                                    }
-                                                                            }
-                                                                            
-                                                                            
-                                                                        break // The write was succesful.
-                                                                        case .failure(let error):
-                                                                            print("WRITE ERROR \(error)")
-                                                                            self.hideHud()
-                                                                            break // An error happened while writting the data.
-                                                                        }
-                                                }
-                                                break // You are now connected to the peripheral
-                                            case .failure(let error):
-                                                print("CONNECT ERROR \(error)")
-                                                self.hideHud()
-                                                break // An error happened while connecting
-                                            }
-                                        }
-
-                                     
-
-                                        
- 
-                                    
-                                }
-                                
-                                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-                                
-                                alertController.addTextField { (textField) in
-                                    textField.placeholder = "WiFi Network"
-                                }
-                                alertController.addTextField { (textField) in
-                                    textField.isSecureTextEntry = true
-                                    textField.placeholder = "Password"
-                                }
-
-                                alertController.addAction(confirmAction)
-                                alertController.addAction(cancelAction)
-                                
-                                self.present(alertController, animated: true, completion: nil)
-                                 }*/
+                               
 
                             }
                             found = true
@@ -373,10 +300,54 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                             self.showError(message: "Device is not currently connected.")
                         }
-                    }
+                    }*/
                     
                 }))
+                
+                
+                
+            
+                
             }
+            
+            
+            if !savior.from_share {
+                if savior.is_configured {
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Data to Device", comment: ""), style: .default, handler: { action in
+                        var found = false
+                        for peripheral in self.all_peripherals {
+                            if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    
+                                    
+                                    
+                                    let sendVC:WifiSendDataVC = WifiSendDataVC(nibName: "WifiSendDataVC", bundle: nil)
+                                    sendVC.savior = savior
+                                    sendVC.peripheral = peripheral
+                                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                    self.navigationController!.present(nav, animated: true, completion: nil)
+                                    
+                                    
+                                    
+                                    
+                                    
+                                }
+                                found = true
+                                break
+                            }
+                        }
+                        if !found{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.showError(message: "Device is not currently connected.")
+                            }
+                        }
+                        
+                    }))
+                    
+                }
+            }
+            
             if !savior.from_share {
                 alertController.addAction(UIAlertAction(title: NSLocalizedString("Set Names", comment: ""), style: .default, handler: { action in
                     
@@ -555,6 +526,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             self.showHud()
             let req:GenericRequest = GenericRequest()
             req.name = peripheral.name!.replacingOccurrences(of: "SX", with: "")
+            print("############# GET NAMES")
             AzureApi.shared.getNames(req: req, completionHandler: { (error:ServerError?, response:NamesResponse?) in
                 self.hideHud()
                 if let error = error {
@@ -585,49 +557,71 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                 
                                 realm.add(savior)
                                 newsavior = savior
+                                print("############# 1 \(newsavior)")
+                                
+                                
+                                print("############# 2 \(newsavior)")
+                                if let newsavior = newsavior {
+                                    print("############# 3 \(newsavior)")
+                                    if newsavior.stype != Constants.water_stype {
+                                        let config:DeviceConfiguration = DeviceConfiguration()
+                                        config.name = newsavior.savior_address!
+                                        self.showHud()
+                                        print("############# GET CONFIG")
+                                        AzureApi.shared.getConfig(req: config, completionHandler: { (error:ServerError?, response:DeviceConfiguration?) in
+                                            self.hideHud()
+                                            if let error = error {
+                                                self.showError(message: error.getMessage()!)
+                                            } else {
+                                                if let response = response {
+                                                    DispatchQueue.main.async {
+                                                        try! realm.write {
+                                                            
+                                                            if newsavior.stype == 20 || newsavior.stype == 21 || newsavior.stype == 22 || newsavior.stype == 24 {
+                                                                newsavior.EnergyUnit = response.Unit
+                                                                if let EnergyUnitPerPulse = response.UnitPerPulse {
+                                                                    newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                                                }
+                                                            } else {
+                                                                newsavior.EnergyUnit = response.EnergyUnit
+                                                                if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
+                                                                    newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                                                }
+                                                            }
+                                                        }
+                                                        self.peripherals.remove(at: indexPath.row)
+                                                        self.scan()
+                                                        self.tableView.reloadData()
+                                                    }
+                                                }
+                                            }
+                                        })
+                                    } else {
+                                        DispatchQueue.main.async {
+                                            self.scan()
+                                            self.tableView.reloadData()
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                } else {
+                                    DispatchQueue.main.async {
+                                        self.peripherals.remove(at: indexPath.row)
+                                        self.scan()
+                                        self.tableView.reloadData()
+                                    }
+                                }
+                                
                                 NotificationCenter.default.post(name:NSNotification.Name(rawValue:"DeviceAddedEvent"),
                                                                 object: nil,
                                                                 userInfo: nil)
+                                
+                                
+                                
                             }
                         }
-                        if let newsavior = newsavior {
-                            if newsavior.stype != Constants.water_stype {
-                                let config:DeviceConfiguration = DeviceConfiguration()
-                                config.name = newsavior.savior_address!
-                                self.showHud()
-                                AzureApi.shared.getConfig(req: config, completionHandler: { (error:ServerError?, response:DeviceConfiguration?) in
-                                    self.hideHud()
-                                    if let error = error {
-                                        self.showError(message: error.getMessage()!)
-                                    } else {
-                                        if let response = response {
-                                            DispatchQueue.main.async {
-                                                try! realm.write {
-                                                    newsavior.EnergyUnit = response.EnergyUnit
-                                                    if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
-                                                        newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
-                                                    }
-                                                }
-                                                self.peripherals.remove(at: indexPath.row)
-                                                self.scan()
-                                                self.tableView.reloadData()
-                                            }
-                                        }
-                                    }
-                                })
-                            } else {
-                                DispatchQueue.main.async {
-                                    self.scan()
-                                    self.tableView.reloadData()
-                                }
-                            }
-                        } else {
-                            DispatchQueue.main.async {
-                                self.peripherals.remove(at: indexPath.row)
-                                self.scan()
-                                self.tableView.reloadData()
-                            }
-                        }
+                       
                     }
                 }
             })

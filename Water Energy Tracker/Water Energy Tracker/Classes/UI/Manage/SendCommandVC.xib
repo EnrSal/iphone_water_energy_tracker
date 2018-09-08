@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SendCommandVC" customModule="Water_Energy_Tracker" customModuleProvider="target">
             <connections>
-                <outlet property="commandSwitch" destination="B97-l3-YLf" id="fyI-S6-fls"/>
+                <outlet property="commandSegments" destination="9v6-VM-hqh" id="blQ-VQ-f6H"/>
                 <outlet property="lastSent" destination="vpx-Dm-0M1" id="djs-aP-k0B"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Command" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JMS-V0-0w2">
-                    <rect key="frame" x="16" y="75" width="97" height="21"/>
+                    <rect key="frame" x="16" y="24" width="97" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="97" id="DkM-kh-f3U"/>
                         <constraint firstAttribute="height" constant="21" id="snz-mK-Kul"/>
@@ -50,13 +51,6 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B97-l3-YLf">
-                    <rect key="frame" x="127" y="70" width="49" height="31"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="47" id="A2x-XJ-puL"/>
-                        <constraint firstAttribute="height" constant="31" id="t9e-hy-9dH"/>
-                    </constraints>
-                </switch>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ykf-Ta-iGt">
                     <rect key="frame" x="153" y="617" width="69" height="30"/>
                     <constraints>
@@ -68,17 +62,28 @@
                         <action selector="clickSend:" destination="-1" eventType="touchUpInside" id="SLy-5d-azE"/>
                     </connections>
                 </button>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9v6-VM-hqh">
+                    <rect key="frame" x="16" y="66" width="269" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="Btm-rY-aXz"/>
+                        <constraint firstAttribute="width" constant="269" id="zrm-51-4ay"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Open (Water ON)"/>
+                        <segment title="Closed (Water OFF)"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="B97-l3-YLf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Aco-3k-psL"/>
+                <constraint firstItem="9v6-VM-hqh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="0IS-Ta-RlS"/>
+                <constraint firstItem="TKI-fy-QMi" firstAttribute="top" secondItem="9v6-VM-hqh" secondAttribute="bottom" constant="21" id="BA7-SW-08K"/>
                 <constraint firstItem="TKI-fy-QMi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Cex-Ii-v1o"/>
-                <constraint firstItem="B97-l3-YLf" firstAttribute="centerY" secondItem="JMS-V0-0w2" secondAttribute="centerY" id="DGI-QD-jo6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vpx-Dm-0M1" secondAttribute="trailing" constant="8" id="FIW-2W-OqJ"/>
                 <constraint firstItem="JMS-V0-0w2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="U1f-0A-whm"/>
-                <constraint firstItem="TKI-fy-QMi" firstAttribute="top" secondItem="B97-l3-YLf" secondAttribute="bottom" constant="14" id="UET-RM-atU"/>
                 <constraint firstItem="ykf-Ta-iGt" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="VQJ-Y4-oto"/>
-                <constraint firstItem="B97-l3-YLf" firstAttribute="leading" secondItem="JMS-V0-0w2" secondAttribute="trailing" constant="14" id="XsM-WJ-qJt"/>
+                <constraint firstItem="JMS-V0-0w2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="4" id="Wtb-Ng-L0t"/>
+                <constraint firstItem="9v6-VM-hqh" firstAttribute="top" secondItem="JMS-V0-0w2" secondAttribute="bottom" constant="21" id="Y28-NQ-hxA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ykf-Ta-iGt" secondAttribute="bottom" constant="20" id="ov2-WH-HWF"/>
                 <constraint firstItem="vpx-Dm-0M1" firstAttribute="leading" secondItem="TKI-fy-QMi" secondAttribute="trailing" constant="19" id="slD-m9-h7F"/>
                 <constraint firstItem="vpx-Dm-0M1" firstAttribute="centerY" secondItem="TKI-fy-QMi" secondAttribute="centerY" id="yk2-BZ-N26"/>

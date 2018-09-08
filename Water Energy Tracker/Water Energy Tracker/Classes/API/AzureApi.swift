@@ -49,7 +49,7 @@ class AzureApi: NSObject {
                     switch response.result {
                     case .success:
                         if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                            print("json --> \(utf8Text)")
+                            print("getNames json --> \(utf8Text)")
                             let serverResponse:NamesResponse = NamesResponse(JSONString: utf8Text)!
                             completionHandler(nil, serverResponse)
                         } else {
@@ -186,7 +186,7 @@ class AzureApi: NSObject {
             let urlString = "https://getconfiguration-allunits-functionapp20180725062359.azurewebsites.net/api/Function1?code=r7quqa/ybf78iSy3gHiEWW5oIAVx2nXGb8K33sqVpMDRFl37Vp6MTQ=="
             let json = req.toJSONString(prettyPrint: true)
             
-            print("getNames \(json!)")
+            print("getConfig \(json!)")
             
             let url = URL(string: urlString)!
             let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
@@ -414,7 +414,7 @@ class AzureApi: NSObject {
     func sendCommand(req:SendCommandRequest, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
-            let urlString = "https://sendcommandtodevice-functionapp20180320045223.azurewebsites.net/api/Function1?code=Q4PfiFhPe/xQpEs1i85f/XZX4lfdobek5bZI4Cs7G22YmFV3ee7otw=="
+            let urlString = "https://newsendcommandtodevice-functionapp20180804033734.azurewebsites.net/api/Function1?code=EGisEANyDIKBK5IqYFz5VFoI/jZA7UYZkagw3Wq2dgY5x42XI45FQA=="
             let json = req.toJSONString(prettyPrint: true)
             
             print("getNames \(json!)")

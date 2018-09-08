@@ -24,7 +24,9 @@ class DeviceConfiguration: NSObject, Mappable {
     var TimeZone: String?
     var EnergyUnit: String?
     var EnergyUnitPerPulse: String?
-    
+    var Unit: String?
+    var UnitPerPulse: String?
+
     override init() {}
     
     // MARK: ServerObject
@@ -47,7 +49,9 @@ class DeviceConfiguration: NSObject, Mappable {
         TimeZone <- map["TimeZone"]
         EnergyUnit <- map["EnergyUnit"]
         EnergyUnitPerPulse <- map["EnergyUnitPerPulse"]
-        
+        Unit <- map["Unit"]
+        UnitPerPulse <- map["UnitPerPulse"]
+
     }
 
 }

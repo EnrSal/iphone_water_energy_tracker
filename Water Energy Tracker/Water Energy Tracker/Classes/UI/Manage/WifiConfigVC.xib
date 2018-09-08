@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WifiConfigVC" customModule="Water_Energy_Tracker" customModuleProvider="target">
             <connections>
+                <outlet property="delaySegments" destination="3Ln-kg-6db" id="Jbq-Tv-zpC"/>
+                <outlet property="minutes" destination="WSY-GU-jma" id="8Jv-Gl-VeO"/>
                 <outlet property="password" destination="9WZ-38-54g" id="qRc-jX-ZVx"/>
+                <outlet property="powerSegments" destination="6KC-Rf-Jdc" id="f7p-JZ-hGH"/>
+                <outlet property="topConstraint" destination="MkK-3A-UDA" id="ay1-OB-WLS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="waterLabel" destination="LwS-9X-CHT" id="66R-Sj-wG5"/>
-                <outlet property="waterSegments" destination="jYA-FZ-H0I" id="cyu-A9-6GR"/>
+                <outlet property="waterView" destination="dgg-tp-eN0" id="xx0-0B-gUx"/>
                 <outlet property="wifiField" destination="pUf-DP-EOO" id="7K4-EH-377"/>
             </connections>
         </placeholder>
@@ -52,37 +56,11 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jYA-FZ-H0I">
-                    <rect key="frame" x="16" y="212" width="343" height="29"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="IJj-1Y-fjD"/>
-                    </constraints>
-                    <segments>
-                        <segment title="2 mins"/>
-                        <segment title="10 mins"/>
-                        <segment title="20 mins"/>
-                        <segment title="30 mins"/>
-                        <segment title="60 mins"/>
-                    </segments>
-                    <connections>
-                        <action selector="clickWater:" destination="-1" eventType="valueChanged" id="MAE-p5-hax"/>
-                    </connections>
-                </segmentedControl>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58o-rM-mca">
                     <rect key="frame" x="16" y="108" width="343" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="2rq-BJ-uyQ"/>
                         <constraint firstAttribute="height" constant="21" id="agE-5c-MZO"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off the water after:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwS-9X-CHT">
-                    <rect key="frame" x="16" y="183" width="343" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="KbE-tB-VVw"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="M6c-3J-3mW"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                     <nil key="textColor"/>
@@ -94,32 +72,103 @@
                         <constraint firstAttribute="height" constant="30" id="XmA-TY-TCi"/>
                         <constraint firstAttribute="width" constant="121" id="vac-pX-76a"/>
                     </constraints>
-                    <state key="normal" title="Set Device"/>
+                    <state key="normal" title="Save"/>
                     <connections>
                         <action selector="clickSetDevice:" destination="-1" eventType="touchUpInside" id="nBe-8q-s7j"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgg-tp-eN0">
+                    <rect key="frame" x="0.0" y="220" width="375" height="176"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSY-GU-jma">
+                            <rect key="frame" x="16" y="49" width="39" height="30"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minutes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0K-Qd-eR2">
+                            <rect key="frame" x="73" y="54" width="61" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off the water after:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LwS-9X-CHT">
+                            <rect key="frame" x="16" y="20" width="191" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="KbE-tB-VVw"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="M6c-3J-3mW"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relay Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbF-RZ-djD">
+                            <rect key="frame" x="16" y="94" width="92.5" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="4uA-zc-8k4"/>
+                                <constraint firstAttribute="height" constant="21" id="oZ6-8c-mTU"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3Ln-kg-6db">
+                            <rect key="frame" x="16" y="131" width="344" height="29"/>
+                            <segments>
+                                <segment title="Default"/>
+                                <segment title="Normally Open"/>
+                                <segment title="Normally Closed"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="b0K-Qd-eR2" firstAttribute="leading" secondItem="WSY-GU-jma" secondAttribute="trailing" constant="18" id="0ev-iz-mI7"/>
+                        <constraint firstItem="3Ln-kg-6db" firstAttribute="top" secondItem="pbF-RZ-djD" secondAttribute="bottom" constant="16" id="0mh-UB-9Ji"/>
+                        <constraint firstItem="LwS-9X-CHT" firstAttribute="top" secondItem="dgg-tp-eN0" secondAttribute="top" constant="20" id="3Vb-1h-CqT"/>
+                        <constraint firstItem="3Ln-kg-6db" firstAttribute="leading" secondItem="dgg-tp-eN0" secondAttribute="leading" constant="16" id="3eo-Yt-tqx"/>
+                        <constraint firstItem="b0K-Qd-eR2" firstAttribute="centerY" secondItem="WSY-GU-jma" secondAttribute="centerY" id="NSK-GQ-cPf"/>
+                        <constraint firstItem="WSY-GU-jma" firstAttribute="leading" secondItem="dgg-tp-eN0" secondAttribute="leading" constant="16" id="YdK-EJ-hL3"/>
+                        <constraint firstItem="WSY-GU-jma" firstAttribute="top" secondItem="LwS-9X-CHT" secondAttribute="bottom" constant="8" id="Z18-li-5qm"/>
+                        <constraint firstItem="pbF-RZ-djD" firstAttribute="top" secondItem="WSY-GU-jma" secondAttribute="bottom" constant="15" id="c5f-2O-y2G"/>
+                        <constraint firstItem="b0K-Qd-eR2" firstAttribute="top" secondItem="LwS-9X-CHT" secondAttribute="bottom" constant="13" id="gm0-7d-rpl"/>
+                        <constraint firstAttribute="height" constant="176" id="j5z-w7-B25"/>
+                        <constraint firstItem="LwS-9X-CHT" firstAttribute="leading" secondItem="dgg-tp-eN0" secondAttribute="leading" constant="16" id="rYJ-Dw-Ngp"/>
+                        <constraint firstItem="pbF-RZ-djD" firstAttribute="leading" secondItem="dgg-tp-eN0" secondAttribute="leading" constant="16" id="s8e-vZ-hCk"/>
+                    </constraints>
+                </view>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6KC-Rf-Jdc">
+                    <rect key="frame" x="16" y="184" width="199" height="29"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="199" id="yhf-0L-RXq"/>
+                        <constraint firstAttribute="height" constant="28" id="zXa-JX-nhB"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Normal Power"/>
+                        <segment title="Low Power"/>
+                    </segments>
+                </segmentedControl>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="dgg-tp-eN0" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="1qq-Bc-y4D"/>
                 <constraint firstItem="Lzx-q6-WhM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="3Lv-A9-vEd"/>
-                <constraint firstItem="LwS-9X-CHT" firstAttribute="top" secondItem="9WZ-38-54g" secondAttribute="bottom" constant="17" id="Acr-na-LjD"/>
+                <constraint firstItem="dgg-tp-eN0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="54T-mp-4sP"/>
                 <constraint firstItem="58o-rM-mca" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DK0-tr-qWn"/>
                 <constraint firstItem="9WZ-38-54g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="EI3-hj-i7w"/>
+                <constraint firstItem="6KC-Rf-Jdc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="F0F-cD-B5W"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="pUf-DP-EOO" secondAttribute="trailing" constant="16" id="FLm-Qk-5NK"/>
+                <constraint firstItem="6KC-Rf-Jdc" firstAttribute="top" secondItem="9WZ-38-54g" secondAttribute="bottom" constant="18" id="GUU-1h-iaA"/>
                 <constraint firstItem="pUf-DP-EOO" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Iip-lp-8Jd"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ohE-1t-mMh" secondAttribute="trailing" constant="16" id="J3o-wS-qYq"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LwS-9X-CHT" secondAttribute="trailing" constant="16" id="ObX-zJ-MBX"/>
+                <constraint firstItem="dgg-tp-eN0" firstAttribute="top" secondItem="9WZ-38-54g" secondAttribute="bottom" constant="54" id="MkK-3A-UDA"/>
                 <constraint firstItem="9WZ-38-54g" firstAttribute="top" secondItem="58o-rM-mca" secondAttribute="bottom" constant="7" id="PIV-up-j9W"/>
+                <constraint firstItem="dgg-tp-eN0" firstAttribute="top" secondItem="6KC-Rf-Jdc" secondAttribute="bottom" constant="8" id="TZ7-kd-zmJ"/>
                 <constraint firstItem="pUf-DP-EOO" firstAttribute="top" secondItem="ohE-1t-mMh" secondAttribute="bottom" constant="9" id="Voh-uN-qsW"/>
                 <constraint firstItem="58o-rM-mca" firstAttribute="top" secondItem="pUf-DP-EOO" secondAttribute="bottom" constant="13" id="W1W-uP-vbB"/>
-                <constraint firstItem="LwS-9X-CHT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Xqb-iu-8sb"/>
-                <constraint firstItem="jYA-FZ-H0I" firstAttribute="top" secondItem="LwS-9X-CHT" secondAttribute="bottom" constant="8" id="b4Y-OH-RxO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Lzx-q6-WhM" secondAttribute="bottom" constant="20" id="dXe-Iq-Ixu"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jYA-FZ-H0I" secondAttribute="trailing" constant="16" id="eRm-Ks-0Cj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9WZ-38-54g" secondAttribute="trailing" constant="16" id="kuf-yN-ANH"/>
                 <constraint firstItem="pUf-DP-EOO" firstAttribute="top" secondItem="ohE-1t-mMh" secondAttribute="bottom" constant="9" id="lXf-69-ro9"/>
-                <constraint firstItem="jYA-FZ-H0I" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pMP-tV-KQ4"/>
                 <constraint firstItem="ohE-1t-mMh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pUm-N0-lxC"/>
                 <constraint firstItem="ohE-1t-mMh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qDd-RX-MgA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="58o-rM-mca" secondAttribute="trailing" constant="16" id="u0t-nJ-PEe"/>

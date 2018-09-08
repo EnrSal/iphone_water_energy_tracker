@@ -78,10 +78,17 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                         let yearly = response.Yearly!.components(separatedBy: ",")
                         
                         DispatchQueue.main.async {
-                            self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.month.text = Util.kwToReadable(kw: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.year.text = Util.kwToReadable(kw: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+                                self.day.text = Util.galToReadable(gal: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.week.text = Util.galToReadable(gal: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.month.text = Util.galToReadable(gal: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.year.text = Util.galToReadable(gal: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            } else {
+                                self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.month.text = Util.kwToReadable(kw: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.year.text = Util.kwToReadable(kw: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            }
                         }
                         
                     }
@@ -96,10 +103,17 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if (section == 0) {
+            if (self.savior.stype == 0) || (self.savior.stype == 1) || (self.savior.stype == 2) || (self.savior.stype == 4)  {
+                return 0
+            } else {
+                return 1
+            }
+        }
         return 1
     }
     
@@ -107,8 +121,21 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            if (self.savior.stype == 0) {
+            if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+                let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 
+                cell.end = Date()
+                let calendar = NSCalendar.autoupdatingCurrent
+                cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
+                cell.savior = self.savior
+                cell.energy_unit = self.energy_unit
+                cell.populate()
+                
+                return cell;
+            }
+        case 1:
+            if (self.savior.stype == 0) || (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+
                 let cell:WaterIntensityChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INTENSITY_CHART", for: indexPath) as? WaterIntensityChartCell)!
                 
                 cell.end = self.date.endOfDay!
@@ -133,7 +160,7 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 return cell;
                 
             }
-        case 1:
+        case 2:
             let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!
             
             cell.end = self.date.endOfDay!

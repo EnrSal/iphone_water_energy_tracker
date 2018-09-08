@@ -41,6 +41,13 @@ class RealmSavior: Object {
     @objc dynamic var EnergyUnit: String? = nil
     @objc dynamic var EnergyUnitPerPulse: Double = 0
     
+    @objc dynamic var sdn_string: String? = "sdn2 mins:0"
+    @objc dynamic var network: String? = nil
+    @objc dynamic var password: String? = nil
+    @objc dynamic var num_mins: String? = "30"
+    @objc dynamic var relay_default: Bool = true
+    @objc dynamic var is_configured: Bool = false
+
     
     func isValidDevice() -> Bool {
         if (!from_share) {
