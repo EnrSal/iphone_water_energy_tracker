@@ -40,13 +40,13 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
         case .user_calibration:
             self.owner.config!.UserTempCalib! = String(format: "%.0f", slider.value)
         case .kwhour:
-            self.owner.config!.HourKWH! = String(format: "%.0f", slider.value)
+            self.owner.config!.Hour! = String(format: "%.0f", slider.value)
         case .kwday:
-            self.owner.config!.DayKWH! = String(format: "%.0f", slider.value)
+            self.owner.config!.Day! = String(format: "%.0f", slider.value)
         case .kwweek:
-            self.owner.config!.WeekKWH! = String(format: "%.0f", slider.value)
+            self.owner.config!.Week! = String(format: "%.0f", slider.value)
         case .kwmonth:
-            self.owner.config!.MonthKWH! = String(format: "%.0f", slider.value)
+            self.owner.config!.Month! = String(format: "%.0f", slider.value)
         case .water:
             self.owner.config!.WaterFlowing! = String(format: "%.0f", slider.value)
         case .detections_hour:
@@ -70,13 +70,13 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             case .user_calibration:
                 self.owner.config!.UserTempCalib! = textField.text!
             case .kwhour:
-                self.owner.config!.HourKWH! = textField.text!
+                self.owner.config!.Hour! = textField.text!
             case .kwday:
-                self.owner.config!.DayKWH! = textField.text!
+                self.owner.config!.Day! = textField.text!
             case .kwweek:
-                self.owner.config!.WeekKWH! = textField.text!
+                self.owner.config!.Week! = textField.text!
             case .kwmonth:
-                self.owner.config!.MonthKWH! = textField.text!
+                self.owner.config!.Month! = textField.text!
             case .water:
                 self.owner.config!.WaterFlowing! = textField.text!
             case .detections_hour:
@@ -128,44 +128,56 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             self.currentEdut.text = "\(Int(self.owner.config!.UserTempCalib!)!)"
         case .kwhour:
             titleLabel.text = "Kilo Watts used in 1 hour:"
+            if self.owner.savior.stype >= 20 {
+                titleLabel.text = "Gallons used in 1 hour:"
+            }
             slider.minimumValue = 0
             slider.maximumValue = 100
             self.maxLabel.text = "100"
-            if self.owner.config!.HourKWH == nil {
-                self.owner.config!.HourKWH = "0"
+            if self.owner.config!.Hour == nil {
+                self.owner.config!.Hour = "0"
             }
-            slider.value = Float(self.owner.config!.HourKWH!)!
-            self.currentEdut.text = "\(Int(self.owner.config!.HourKWH!)!)"
+            slider.value = Float(self.owner.config!.Hour!)!
+            self.currentEdut.text = "\(Int(self.owner.config!.Hour!)!)"
         case .kwday:
             titleLabel.text = "Kilo Watts used in 1 day:"
+            if self.owner.savior.stype >= 20 {
+                titleLabel.text = "Gallons used in 1 day:"
+            }
             slider.minimumValue = 0
             slider.maximumValue = 1500
             self.maxLabel.text = "1500"
-            if self.owner.config!.DayKWH == nil {
-                self.owner.config!.DayKWH = "0"
+            if self.owner.config!.Day == nil {
+                self.owner.config!.Day = "0"
             }
-            slider.value = Float(self.owner.config!.DayKWH!)!
-            self.currentEdut.text = "\(Int(self.owner.config!.DayKWH!)!)"
+            slider.value = Float(self.owner.config!.Day!)!
+            self.currentEdut.text = "\(Int(self.owner.config!.Day!)!)"
         case .kwweek:
             titleLabel.text = "Kilo Watts used in 1 week:"
+            if self.owner.savior.stype >= 20 {
+                titleLabel.text = "Gallons used in 1 week:"
+            }
             slider.minimumValue = 0
             slider.maximumValue = 10000
             self.maxLabel.text = "10k"
-            if self.owner.config!.WeekKWH == nil {
-                self.owner.config!.WeekKWH = "0"
+            if self.owner.config!.Week == nil {
+                self.owner.config!.Week = "0"
             }
-            slider.value = Float(self.owner.config!.WeekKWH!)!
-            self.currentEdut.text = "\(Int(self.owner.config!.WeekKWH!)!)"
+            slider.value = Float(self.owner.config!.Week!)!
+            self.currentEdut.text = "\(Int(self.owner.config!.Week!)!)"
         case .kwmonth:
             titleLabel.text = "Kilo Watts used in 1 month:"
+            if self.owner.savior.stype >= 20 {
+                titleLabel.text = "Gallons used in 1 month:"
+            }
             slider.minimumValue = 0
             slider.maximumValue = 500000
             self.maxLabel.text = "500k"
-            if self.owner.config!.MonthKWH == nil {
-                self.owner.config!.MonthKWH = "0"
+            if self.owner.config!.Month == nil {
+                self.owner.config!.Month = "0"
             }
-            slider.value = Float(self.owner.config!.MonthKWH!)!
-            self.currentEdut.text = "\(Int(self.owner.config!.MonthKWH!)!)"
+            slider.value = Float(self.owner.config!.Month!)!
+            self.currentEdut.text = "\(Int(self.owner.config!.Month!)!)"
         case .water:
             titleLabel.text = "Water flowing for more than (mins):"
             slider.minimumValue = 3

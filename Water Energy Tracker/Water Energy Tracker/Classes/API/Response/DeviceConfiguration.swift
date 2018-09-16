@@ -17,10 +17,10 @@ class DeviceConfiguration: NSObject, Mappable {
     var TempLow: String?
     var TempHigh: String?
     var UserTempCalib: String?
-    var HourKWH: String?
-    var DayKWH: String?
-    var WeekKWH: String?
-    var MonthKWH: String?
+    var Hour: String?
+    var Day: String?
+    var Week: String?
+    var Month: String?
     var TimeZone: String?
     var EnergyUnit: String?
     var EnergyUnitPerPulse: String?
@@ -41,11 +41,10 @@ class DeviceConfiguration: NSObject, Mappable {
         TempLow <- map["TempLow"]
         TempHigh <- map["TempHigh"]
         UserTempCalib <- map["UserTempCalib"]
-        HourKWH <- map["HourKWH"]
-        DayKWH <- map["DayKWH"]
-        
-        WeekKWH <- map["WeekKWH"]
-        MonthKWH <- map["MonthKWH"]
+        Hour <- map["Hour"]
+        Day <- map["Day"]
+        Week <- map["Week"]
+        Month <- map["Month"]
         TimeZone <- map["TimeZone"]
         EnergyUnit <- map["EnergyUnit"]
         EnergyUnitPerPulse <- map["EnergyUnitPerPulse"]

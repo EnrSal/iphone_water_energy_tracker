@@ -17,11 +17,11 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     var saviors:[RealmSavior] = []
     var peripherals:[Peripheral] = []
     var all_peripherals:[Peripheral] = []
-
+    
     
     let RX_SERVICE_UUID:String = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
     let RX_CHAR_UUID:String = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
-
+    
     
     
     override func viewDidLoad() {
@@ -195,7 +195,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 }) {
                     
                     self.all_peripherals.append(peripheral)
-
+                    
                     if !self.saviors.contains(where: { (sav:RealmSavior) -> Bool in
                         return sav.savior_address == peripheral.name!.replacingOccurrences(of: "SX", with: "")
                     }) {
@@ -269,44 +269,44 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                     
                     let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
                     self.navigationController!.present(nav, animated: true, completion: nil)
-
+                    
                     
                     
                     /*
-                    var found = false
-                    for peripheral in self.all_peripherals {
-                        if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-
-                                
-                                
-                                let sendVC:WifiConfigVC = WifiConfigVC(nibName: "WifiConfigVC", bundle: nil)
-                                sendVC.savior = savior
-                                
-                                let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
-                                self.navigationController!.present(nav, animated: true, completion: nil)
-
-                                
-                                
-                               
-
-                            }
-                            found = true
-                            break
-                        }
-                    }
-                    if !found{
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            self.showError(message: "Device is not currently connected.")
-                        }
-                    }*/
+                     var found = false
+                     for peripheral in self.all_peripherals {
+                     if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
+                     
+                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                     
+                     
+                     
+                     let sendVC:WifiConfigVC = WifiConfigVC(nibName: "WifiConfigVC", bundle: nil)
+                     sendVC.savior = savior
+                     
+                     let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                     self.navigationController!.present(nav, animated: true, completion: nil)
+                     
+                     
+                     
+                     
+                     
+                     }
+                     found = true
+                     break
+                     }
+                     }
+                     if !found{
+                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                     self.showError(message: "Device is not currently connected.")
+                     }
+                     }*/
                     
                 }))
                 
                 
                 
-            
+                
                 
             }
             
@@ -370,24 +370,24 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                             
                             let realm = try! Realm()
                             try! realm.write {
-
+                                
                                 savior.alias = alias.text
-                                if savior.stype > 0 {
+                                if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 {
                                     savior.energy_unit_name_1 = textFields[1].text
                                     savior.energy_unit_name_2 = textFields[2].text
-                                    
-                                    if savior.stype == 2 || savior.stype == 4 {
-                                        savior.energy_unit_name_3 = textFields[3].text
-                                        savior.energy_unit_name_4 = textFields[4].text
-                                    }
-                                    if savior.stype == 4 {
-                                        savior.energy_unit_name_5 = textFields[5].text
-                                        savior.energy_unit_name_6 = textFields[6].text
-                                        savior.energy_unit_name_7 = textFields[7].text
-                                        savior.energy_unit_name_8 = textFields[8].text
-
-                                    }
                                 }
+                                if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24{
+                                    savior.energy_unit_name_3 = textFields[3].text
+                                    savior.energy_unit_name_4 = textFields[4].text
+                                }
+                                if savior.stype == 4 || savior.stype == 24  {
+                                    savior.energy_unit_name_5 = textFields[5].text
+                                    savior.energy_unit_name_6 = textFields[6].text
+                                    savior.energy_unit_name_7 = textFields[7].text
+                                    savior.energy_unit_name_8 = textFields[8].text
+                                    
+                                }
+                                
                                 
                                 
                                 
@@ -405,14 +405,14 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                     print(error)
                                 } else {
                                     if let response = response {
-
+                                        
                                         
                                     }
                                 }
                             })
-
+                            
                             self.scan()
-
+                            
                             
                         }
                         
@@ -425,8 +425,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                         textField.placeholder = "Name of Device"
                         textField.text = savior.alias!
                     }
-
-                    if savior.stype > 0 {
+                    
+                    if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 {
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 1 name"
                             textField.text = savior.energy_unit_name_1!
@@ -435,36 +435,37 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                             textField.placeholder = "Unit 2 name"
                             textField.text = savior.energy_unit_name_2!
                         }
-                        if savior.stype == 2 || savior.stype == 4 {
-                            alertController.addTextField { (textField) in
-                                textField.placeholder = "Unit 3 name"
-                                textField.text = savior.energy_unit_name_3!
-                            }
-                            alertController.addTextField { (textField) in
-                                textField.placeholder = "Unit 4 name"
-                                textField.text = savior.energy_unit_name_4!
-                            }
-
+                    }
+                    if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24{
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 3 name"
+                            textField.text = savior.energy_unit_name_3!
                         }
-                        if savior.stype == 4 {
-                            alertController.addTextField { (textField) in
-                                textField.placeholder = "Unit 5 name"
-                                textField.text = savior.energy_unit_name_5!
-                            }
-                            alertController.addTextField { (textField) in
-                                textField.placeholder = "Unit 6 name"
-                                textField.text = savior.energy_unit_name_6!
-                            }
-                            alertController.addTextField { (textField) in
-                                textField.placeholder = "Unit 7 name"
-                                textField.text = savior.energy_unit_name_7!
-                            }
-                            alertController.addTextField { (textField) in
-                                textField.placeholder = "Unit 8 name"
-                                textField.text = savior.energy_unit_name_8!
-                            }
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 4 name"
+                            textField.text = savior.energy_unit_name_4!
+                        }
+                        
+                    }
+                    if savior.stype == 4 || savior.stype == 24  {
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 5 name"
+                            textField.text = savior.energy_unit_name_5!
+                        }
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 6 name"
+                            textField.text = savior.energy_unit_name_6!
+                        }
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 7 name"
+                            textField.text = savior.energy_unit_name_7!
+                        }
+                        alertController.addTextField { (textField) in
+                            textField.placeholder = "Unit 8 name"
+                            textField.text = savior.energy_unit_name_8!
                         }
                     }
+                    
                     
                     alertController.addAction(confirmAction)
                     alertController.addAction(cancelAction)
@@ -493,12 +494,27 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 }))
             }
             if !savior.from_share {
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Command", comment: ""), style: .default, handler: { action in
-                    let sendVC:SendCommandVC = SendCommandVC(nibName: "SendCommandVC", bundle: nil)
-                    sendVC.savior = savior
-                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
-                    self.navigationController!.present(nav, animated: true, completion: nil)
-                }))
+                
+                var show = false
+                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 {
+                    show = true
+                    if let share_number_used = savior.share_number_used {
+                        if share_number_used.count == 18 {
+                            show = false
+                        }
+                    }
+                    
+                }
+                
+                if show {
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Command", comment: ""), style: .default, handler: { action in
+                        let sendVC:SendCommandVC = SendCommandVC(nibName: "SendCommandVC", bundle: nil)
+                        sendVC.savior = savior
+                        let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                        self.navigationController!.present(nav, animated: true, completion: nil)
+                    }))
+                }
+                
             }
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete Configuration", comment: ""), style: .destructive, handler: { action in
                 let realm = try! Realm()
@@ -621,7 +637,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                 
                             }
                         }
-                       
+                        
                     }
                 }
             })
