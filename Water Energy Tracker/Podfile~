@@ -16,6 +16,7 @@ platform :ios, '10.0'
   pod 'Crashlytics'
   pod 'IQKeyboardManagerSwift', '5.0.0' 
   pod 'DateTimePicker'
+  pod 'DatePickerDialog'
 #  pod 'SwiftWebVC'
 end
 

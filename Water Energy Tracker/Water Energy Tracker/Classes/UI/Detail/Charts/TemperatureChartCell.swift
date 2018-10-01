@@ -20,6 +20,7 @@ class TemperatureChartCell: UITableViewCell {
     var savior:RealmSavior!
     var energy_unit:Int = 0
     var countToDate:[Double:Double] = [:]
+    var history:Bool = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,6 +57,13 @@ class TemperatureChartCell: UITableViewCell {
             
             
         }
+        
+        if history {
+            heading.text = "Temperature"
+        } else {
+            heading.text = "Temperature in last 12 hours"
+        }
+
         
         let set1: LineChartDataSet = LineChartDataSet(values: values_1, label: "Temp 1")
         set1.colors = [UIColor.init(hex: "#CC0000")]

@@ -43,14 +43,37 @@ class RealmDataPoint: Object {
 
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone!
+        //formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0) as TimeZone!
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
 
         if let UTCtime = dataPoint.UTCtime {
             //print("UTCTIME \(UTCtime)")
-            self.timestamp = formatter.date(from: UTCtime)
+            
+            let UTCDate = formatter.date(from: UTCtime)
+            
+            if (UTCDate != nil) {
+                let formatter2 = DateFormatter()
+                formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+                formatter2.timeZone = TimeZone.current
+                let UTCToCurrentFormat = formatter2.string(from: UTCDate!)
+                self.timestamp = formatter.date(from: UTCToCurrentFormat)
+            }
+            
             if self.timestamp == nil {
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                self.timestamp = formatter.date(from: UTCtime)
+                formatter.timeZone = TimeZone(abbreviation: "UTC")
+
+                let UTCDate = formatter.date(from: UTCtime)
+                let formatter2 = DateFormatter()
+                formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                formatter2.timeZone = TimeZone.current
+                let UTCToCurrentFormat = formatter2.string(from: UTCDate!)
+
+                
+                self.timestamp = formatter.date(from: UTCToCurrentFormat)
+                print("@@@@ INSERT UTC \(UTCtime) TIMESTAMP \(self.timestamp)")
+            } else {
+                print("@@@@ 2 INSERT UTC \(UTCtime) TIMESTAMP \(self.timestamp)")
             }
         }
 

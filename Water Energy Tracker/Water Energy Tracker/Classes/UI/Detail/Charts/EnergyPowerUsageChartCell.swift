@@ -20,7 +20,8 @@ class EnergyPowerUsageChartCell: UITableViewCell {
     var savior:RealmSavior!
     var energy_unit:Int = 0
     var countToDate:[Double:Double] = [:]
-    
+    var history:Bool = false
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -40,14 +41,24 @@ class EnergyPowerUsageChartCell: UITableViewCell {
         if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
             heading.text = "Water Usage in last 12 hours"
             per_pulse = self.savior.EnergyUnitPerPulse
+            if history {
+                heading.text = "Water Usage"
+            } else {
+                heading.text = "Water Usage in last 12 hours"
+            }
         } else {
-            heading.text = "Power Usage in last 12 hours"
+            if history {
+                heading.text = "Power Usage"
+            } else {
+                heading.text = "Power Usage in last 12 hours"
+            }
         }
         
         
         let realm = try! Realm()
         countToDate.removeAll()
         var values:[BarChartDataEntry] = []
+        print("START DATE -->\(self.start) END DATE -->\(self.end)")
         let items = realm.objects(RealmDataPoint.self).filter("mac = '\(savior.savior_address!)' AND timestamp BETWEEN %@",[start,end]).sorted(byKeyPath: "timestamp", ascending: true)
         if items.count > 0 {
             var last:Double? = nil

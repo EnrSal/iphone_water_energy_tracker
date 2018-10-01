@@ -319,7 +319,7 @@ class AzureApi: NSObject {
                 switch response.result {
                 case .success:
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                        print("json --> \(utf8Text)")
+                        print("getKwh json --> \(utf8Text)")
                         let serverResponse:KwhResponse = KwhResponse(JSONString: utf8Text)!
                         completionHandler(nil, serverResponse)
                     } else {

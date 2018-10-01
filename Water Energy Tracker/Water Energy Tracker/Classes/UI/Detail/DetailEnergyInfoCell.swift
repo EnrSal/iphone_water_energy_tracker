@@ -43,21 +43,21 @@ class DetailEnergyInfoCell: UITableViewCell {
             if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
                 switch self.energy_unit {
                 case 1:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C1, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C1, savior: self.savior)
                 case 2:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C2, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C2, savior: self.savior)
                 case 3:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C3, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C3, savior: self.savior)
                 case 4:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C4, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C4, savior: self.savior)
                 case 5:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C5, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C5, savior: self.savior)
                 case 6:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C6, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C6, savior: self.savior)
                 case 7:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C7, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C7, savior: self.savior)
                 case 8:
-                    info.text = Util.waterPulsesToReadable(pulses: current!.C8, savior: self.savior)
+                    info.text = Util.waterPulsesToReadableThreeDec(pulses: current!.C8, savior: self.savior)
                 default:
                     break
                 }
@@ -65,21 +65,21 @@ class DetailEnergyInfoCell: UITableViewCell {
                 
                 switch self.energy_unit {
                 case 1:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C1, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C1, savior: self.savior)
                 case 2:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C2, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C2, savior: self.savior)
                 case 3:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C3, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C3, savior: self.savior)
                 case 4:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C4, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C4, savior: self.savior)
                 case 5:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C5, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C5, savior: self.savior)
                 case 6:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C6, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C6, savior: self.savior)
                 case 7:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C7, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C7, savior: self.savior)
                 case 8:
-                    info.text = Util.totalpulsesToReadable(pulses: current!.C8, savior: self.savior)
+                    info.text = Util.totalpulsesToReadableThreeDec(pulses: current!.C8, savior: self.savior)
                 default:
                     break
                 }

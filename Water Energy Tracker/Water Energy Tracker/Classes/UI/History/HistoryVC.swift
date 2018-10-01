@@ -43,6 +43,8 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         
         let date_formatter = DateFormatter()
         date_formatter.dateFormat = "MM/dd/yyyy"
+        date_formatter.timeZone = TimeZone(abbreviation: "UTC")
+        print("ZZZZ date \(date)")
         self.title = "\(savior.alias!) -- \(date_formatter.string(from: date))"
         
         self.populate()
@@ -64,9 +66,11 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
             let date_formatter = DateFormatter()
             date_formatter.dateFormat = "yyyy-MM-dd"
+            date_formatter.timeZone = TimeZone(abbreviation: "UTC")
             let genreq:HistoricalKwhRequest = HistoricalKwhRequest()
             genreq.mac = savior.savior_address!
             genreq.xdate = date_formatter.string(from: date)
+            print("@@@ XDATE -->\(genreq.xdate)")
             AzureApi.shared.getKwhHistorical(req: genreq, completionHandler: { (error:ServerError?, response:KwhResponse?) in
                 if let error = error {
                     print(error)
@@ -123,10 +127,13 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         case 0:
             if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
-                
-                cell.end = Date()
-                let calendar = NSCalendar.autoupdatingCurrent
-                cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
+                cell.history = true
+                cell.end = Calendar.utc.date(byAdding: .day, value: 1, to: self.date)!
+                cell.start = self.date
+                print("HISTORY DATE END \(cell.end)")
+                print("HISTORY DATE START \(cell.start)")
+                //cell.end = self.date.endOfDay!
+                //cell.start = self.date.startOfDay
                 cell.savior = self.savior
                 cell.energy_unit = self.energy_unit
                 cell.populate()
@@ -137,12 +144,14 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             if (self.savior.stype == 0) || (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
 
                 let cell:WaterIntensityChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INTENSITY_CHART", for: indexPath) as? WaterIntensityChartCell)!
-                
-                cell.end = self.date.endOfDay!
-                cell.start = self.date.startOfDay
+                cell.history = true
+               // cell.end = self.date.endOfDay!
+               // cell.start = self.date.startOfDay
+                cell.end = Calendar.utc.date(byAdding: .day, value: 1, to: self.date)!
+                cell.start = self.date
                 cell.savior = self.savior
                 cell.energy_unit = self.energy_unit
-                cell.heading.text = "Water Intensity"
+                cell.heading.text = "Vibration Intensity"
                 cell.populate()
                 
                 return cell;
@@ -150,8 +159,13 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             } else {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 
-                cell.end = self.date.endOfDay!
-                cell.start = self.date.startOfDay
+                cell.history = true
+                print("HISTORY DATE \(self.date)")
+                print("HISTORY DATE START \(self.date.startOfDay)")
+                //cell.end = self.date.endOfDay!
+                //cell.start = self.date.startOfDay
+                cell.end = Calendar.utc.date(byAdding: .day, value: 1, to: self.date)!
+                cell.start = self.date
                 cell.savior = self.savior
                 cell.energy_unit = self.energy_unit
                 cell.heading.text = "Power Usage"
@@ -163,8 +177,11 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         case 2:
             let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!
             
-            cell.end = self.date.endOfDay!
-            cell.start = self.date.startOfDay
+            cell.history = true
+            //cell.end = self.date.endOfDay!
+            //cell.start = self.date.startOfDay
+            cell.end = Calendar.utc.date(byAdding: .day, value: 1, to: self.date)!
+            cell.start = self.date
             cell.savior = self.savior
             cell.energy_unit = self.energy_unit
             cell.heading.text = "Temperatures"

@@ -20,6 +20,7 @@ class WaterIntensityChartCell: UITableViewCell {
     var savior:RealmSavior!
     var energy_unit:Int = 0
     var countToDate:[Double:Double] = [:]
+    var history:Bool = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,9 +54,14 @@ class WaterIntensityChartCell: UITableViewCell {
             
             
         }
+        if history {
+            heading.text = "Vibration Intensity"
+        } else {
+            heading.text = "Vibration Intensity in last 12 hours"
+        }
         
         print("VALUES \(values)")
-        let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Water Intensity")
+        let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Vibration Intensity")
         set1.colors = [UIColor.init(hex: "#006400")]
         set1.drawValuesEnabled = false
         set1.highlightEnabled = false

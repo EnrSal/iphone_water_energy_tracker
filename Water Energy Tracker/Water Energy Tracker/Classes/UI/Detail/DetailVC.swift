@@ -9,13 +9,15 @@
 import UIKit
 import RealmSwift
 import DatePickerDialog
+import D2PDatePicker
 
-class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
+class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePickerDelegate {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var timeago: UILabel!
     @IBOutlet weak var name: UILabel!
-    
+    var datePickerView: D2PDatePicker!
+
     var energy_unit:Int = 0
     var savior: RealmSavior!
     @IBOutlet weak var tableView: UITableView!
@@ -81,23 +83,31 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         detailVC.savior = self.savior
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
+    
+    func didChange(toDate date: Date) {
+        print("SELECT DATE \(date)")
+    }
+
     @objc func clickHistory(_ sender:UIBarButtonItem!) {
+        
         DatePickerDialog().show("Select Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
             (date) -> Void in
             if let dt = date {
-                
+                print("SELECT DATE \(dt)")
                 let formatter = DateFormatter()
                // formatter.calendar = Calendar(identifier: .iso8601)
                // formatter.locale = Locale(identifier: "en_US_POSIX")
                // formatter.timeZone = TimeZone(secondsFromGMT: 0)
                 formatter.dateFormat = "MMddyyyyHH:mm:ss"
-                
+                formatter.timeZone = TimeZone(abbreviation: "UTC")
+
                 let datestr = formatter.string(from: dt.startOfDay)
 
                 let req:GetDataRequest = GetDataRequest()
                 req.mac = self.savior.savior_address!
                 req.stype = self.savior.stype
                 req.utct = datestr
+                print("@@@ req.utct \(req.utct)")
 
                 self.showHud()
                 AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
@@ -123,8 +133,58 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                             DispatchQueue.main.async {
                                 let detailVC:HistoryVC = HistoryVC(nibName: "HistoryVC", bundle: nil)
                                 detailVC.savior = self.savior
-                                detailVC.date = dt
+                                
+
+                                print("@@@ ORIG DATE \(dt)")
+                                
+                                let seconds = TimeZone.current.secondsFromGMT()
+                                print("@@@ seconds \(seconds)")
+                                let adjusted = Date(timeIntervalSince1970: dt.timeIntervalSince1970+Double(seconds))
+                                print("@@@ ADJUSTED DATE \(adjusted.startOfDay)")
+                                let adjusted2 = Date(timeIntervalSince1970: adjusted.startOfDay.timeIntervalSince1970+Double(seconds))
+
+                                detailVC.date = adjusted2
+                                /*
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Input Format
+                               // dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+                               
+                                dateFormatter.timeZone = TimeZone.current
+
+                                let str = dateFormatter.string(from: dt.startOfDay)
+                                print("@@@ STRING DATE \(str)")
+                                
+                                
+                                let formatter2 = DateFormatter()
+                                formatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                                formatter2.timeZone = TimeZone.current
+                               // let UTCToCurrentFormat = formatter2.string(from: str)*/
+                                //detailVC.date = formatter2.date(from: str)
+
+                                
+
+                                //let UTCDate = dateFormatter.date(from: str)
+                                //print("@@@ UTCDate \(UTCDate)")
+                              
+                                /*
+                                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss" // Output Format
+                                dateFormatter.timeZone = TimeZone.current
+                                let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
+*/
+                                
+                                /*
+                                let formatter = DateFormatter()
+                               // formatter.timeZone = TimeZone(abbreviation: "UTC")
+                                formatter.dateFormat = "MM/dd/yyyy"
+                                print("@@@ formatter.timeZone \(formatter.timeZone)")
+                                let str = formatter.string(from: dt.startOfDay)
+                                print("@@@ STRING DATE \(str)")
+                                //formatter.timeZone = TimeZone(abbreviation: "America/Los_Angeles")
+*/
+                                //detailVC.date = UTCDate
+                                print("@@@ DATE DATE \(detailVC.date)")
                                 detailVC.energy_unit = self.energy_unit
+                               // print("1 SELECT DATE \(dt)")
                                 self.navigationController?.pushViewController(detailVC, animated: true)
                             }
                         }
@@ -160,12 +220,9 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             
             
             if let timestamp = current!.timestamp {
-                self.time.text = date_formatter.string(from: timestamp)
-                self.timeago.text = Util.timeAgoSinceDate(date: timestamp as NSDate, numericDates: true)
+                self.time.text = date_formatter.string(from: timestamp.fromUTC())
+                self.timeago.text = Util.timeAgoSinceDate(date: timestamp.fromUTC() as NSDate, numericDates: true)
             }
-            
-            
-            
         }
         
         
@@ -248,7 +305,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 
-                cell.end = Date()
+                cell.end = Date.UTCDate()
                 let calendar = NSCalendar.autoupdatingCurrent
                 cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
                 cell.savior = self.savior
@@ -262,7 +319,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
                 let cell:WaterIntensityChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INTENSITY_CHART", for: indexPath) as? WaterIntensityChartCell)!
                 
-                cell.end = Date()
+                cell.end = Date.UTCDate()
                 let calendar = NSCalendar.autoupdatingCurrent
                 cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
                 cell.savior = self.savior
@@ -274,7 +331,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             } else {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 
-                cell.end = Date()
+                cell.end = Date.UTCDate()
                 let calendar = NSCalendar.autoupdatingCurrent
                 cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
                 cell.savior = self.savior
@@ -287,7 +344,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         case 3:
             let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!
             
-            cell.end = Date()
+            cell.end = Date.UTCDate()
             let calendar = NSCalendar.autoupdatingCurrent
             cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
             cell.savior = self.savior
@@ -302,4 +359,37 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
     }
     
+}
+extension Calendar {
+    static let utc: Calendar  = {
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        return calendar
+    }()
+    static let localTime: Calendar  = {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        return calendar
+    }()
+}
+extension Date {
+    static func UTCDate() -> Date {
+        let date = Date()
+        let seconds = TimeZone.current.secondsFromGMT()
+        let adjusted = Date(timeIntervalSince1970: date.timeIntervalSince1970+Double(seconds))
+        return adjusted;
+    }
+    
+    func fromUTC() -> Date {
+        let seconds = TimeZone.current.secondsFromGMT()
+        let adjusted = Date(timeIntervalSince1970: self.timeIntervalSince1970-Double(seconds))
+        return adjusted;
+    }
+    
+    func toUTC() -> Date {
+        let seconds = TimeZone.current.secondsFromGMT()
+        let adjusted = Date(timeIntervalSince1970: self.timeIntervalSince1970+Double(seconds))
+        return adjusted;
+    }
+
 }
