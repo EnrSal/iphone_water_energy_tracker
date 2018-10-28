@@ -102,45 +102,54 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                                                         object: nil,
                                                                         userInfo: nil)
                                     }
-                                }
-                                if let newsavior = newsavior {
-                                    if newsavior.stype != Constants.water_stype {
-                                        let config:DeviceConfiguration = DeviceConfiguration()
-                                        config.name = newsavior.savior_address!
-                                        self.showHud()
-                                        AzureApi.shared.getConfig(req: config, completionHandler: { (error:ServerError?, response:DeviceConfiguration?) in
-                                            self.hideHud()
-                                            if let error = error {
-                                                self.showError(message: error.getMessage()!)
-                                            } else {
-                                                if let response = response {
-                                                    DispatchQueue.main.async {
-                                                        try! realm.write {
-                                                            newsavior.EnergyUnit = response.Unit
-                                                            if let EnergyUnitPerPulse = response.UnitPerPulse {
-                                                                newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                    
+                                    
+                                    if let newsavior = newsavior {
+                                        if newsavior.stype != Constants.water_stype {
+                                            let config:DeviceConfiguration = DeviceConfiguration()
+                                            config.name = newsavior.savior_address!
+                                            self.showHud()
+                                            AzureApi.shared.getConfig(req: config, completionHandler: { (error:ServerError?, response:DeviceConfiguration?) in
+                                                self.hideHud()
+                                                if let error = error {
+                                                    self.showError(message: error.getMessage()!)
+                                                } else {
+                                                    if let response = response {
+                                                        DispatchQueue.main.async {
+                                                            try! realm.write {
+                                                                if newsavior.stype == 20 || newsavior.stype == 21 || newsavior.stype == 22 || newsavior.stype == 24 {
+                                                                    newsavior.EnergyUnit = response.Unit
+                                                                    if let EnergyUnitPerPulse = response.UnitPerPulse {
+                                                                        newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                                                    }
+                                                                } else {
+                                                                    newsavior.EnergyUnit = response.EnergyUnit
+                                                                    if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
+                                                                        newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                                                    }
+                                                                }
                                                             }
+                                                            self.scan()
+                                                            self.tableView.reloadData()
                                                         }
-                                                        self.scan()
-                                                        self.tableView.reloadData()
+                                                        
                                                     }
-                                                    
                                                 }
+                                            })
+                                        } else {
+                                            DispatchQueue.main.async {
+                                                self.scan()
+                                                self.tableView.reloadData()
                                             }
-                                        })
+                                        }
                                     } else {
                                         DispatchQueue.main.async {
                                             self.scan()
                                             self.tableView.reloadData()
                                         }
                                     }
-                                } else {
-                                    DispatchQueue.main.async {
-                                        self.scan()
-                                        self.tableView.reloadData()
-                                    }
                                 }
-                                
+
                             } else {
                                 self.showError(message: response.retstring!)
                             }
@@ -233,7 +242,11 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: "LIST_CELL", for: indexPath)
         if indexPath.section == 0 {
             let savior = self.saviors[indexPath.row]
-            cell.textLabel?.text = savior.alias!
+            if let alias = savior.alias {
+                cell.textLabel?.text = alias
+            } else {
+                cell.textLabel?.text = "no name"
+            }
         } else {
             let peripheral = self.peripherals[indexPath.row]
             cell.textLabel?.text = peripheral.name!
@@ -493,12 +506,13 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                     }
                 }))
             }
-            if !savior.from_share {
+            //if !savior.from_share {
                 
                 var show = false
                 if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 {
                     show = true
                     if let share_number_used = savior.share_number_used {
+                        print("@@@ share_number_used.count =\(share_number_used.count)")
                         if share_number_used.count == 18 {
                             show = false
                         }
@@ -515,7 +529,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                     }))
                 }
                 
-            }
+           // }
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete Configuration", comment: ""), style: .destructive, handler: { action in
                 let realm = try! Realm()
                 try! realm.write {

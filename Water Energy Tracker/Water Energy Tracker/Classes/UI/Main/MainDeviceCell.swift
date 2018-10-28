@@ -53,8 +53,49 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         
         // Configure the view for the selected state
     }
-    
     func populate() {
+        let req:GenericRequest = GenericRequest()
+        req.name = savior.savior_address!
+        print("############# GET NAMES NO CHANGE")
+        self.spinner.startAnimating()
+        AzureApi.shared.getNamesNoChange(req: req, completionHandler: { (error:ServerError?, response:NamesResponse?) in
+            
+            if let error = error {
+                self.spinner.stopAnimating()
+                print("ERROR \(error)")
+            } else {
+                if let response = response {
+                    let realm = try! Realm()
+                    DispatchQueue.main.async {
+                        try! realm.write {
+                            self.savior.share_number_prev = response.ShareNumber
+                            self.savior.temp_share_number_prev = response.TempShareNumber
+                            self.savior.stype = Int(response.Stype!)!
+                            self.savior.alias = response.DeviceName
+                            self.savior.energy_unit_name_1 = response.Name1
+                            self.savior.energy_unit_name_2 = response.Name2
+                            self.savior.energy_unit_name_3 = response.Name3
+                            self.savior.energy_unit_name_4 = response.Name4
+                            self.savior.energy_unit_name_5 = response.Name5
+                            self.savior.energy_unit_name_6 = response.Name6
+                            self.savior.energy_unit_name_7 = response.Name7
+                            self.savior.energy_unit_name_8 = response.Name8
+                            if self.savior.alias == nil {
+                                self.savior.alias = "no name"
+                            }
+                        }
+                        self.populateImpl()
+                    }
+                    
+                } else {
+                    self.spinner.stopAnimating()
+                }
+            
+            }
+        })
+    }
+    
+    func populateImpl() {
         self.name.text = savior.alias!
         unit1_usage = nil
         unit2_usage = nil
@@ -222,7 +263,6 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         req.stype = savior.stype
         req.utct = datestr
         
-        self.spinner.startAnimating()
         AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
             
             if let error = error {
