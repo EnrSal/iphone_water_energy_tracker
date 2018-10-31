@@ -95,7 +95,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                         savior.energy_unit_name_6 = response.Name6
                                         savior.energy_unit_name_7 = response.Name7
                                         savior.energy_unit_name_8 = response.Name8
-                                        
+                                        savior.share_number_used = field.text!
                                         realm.add(savior)
                                         newsavior = savior
                                         NotificationCenter.default.post(name:NSNotification.Name(rawValue:"DeviceAddedEvent"),

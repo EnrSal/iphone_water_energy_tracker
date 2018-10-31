@@ -50,14 +50,18 @@ class RealmSavior: Object {
 
     
     func isValidDevice() -> Bool {
+        print("is valid from_share=\(from_share) share_number_prev=\(share_number_prev) temp_share_number_prev=\(temp_share_number_prev) share_number_used=\(share_number_used) temp_share_number_prev=\(temp_share_number_prev) ")
         if (!from_share) {
+            print("1 is valid from_share=\(from_share)")
             return true
         }
         if ((share_number_used != nil) && (share_number_prev != nil) && (temp_share_number_prev != nil)) {
             if ((share_number_used! != share_number_prev!) && (share_number_used! != temp_share_number_prev!)) {
+                print("1 is NOT valid from_share=\(from_share)")
                 return false
             }
         }
+        print("2 is valid from_share=\(from_share)")
         return true
     }
     
