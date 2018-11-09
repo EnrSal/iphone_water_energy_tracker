@@ -109,7 +109,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20 {
+        if self.saviors[indexPath.row].isValidDevice() && (  self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20) {
             let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
             detailVC.savior = self.saviors[indexPath.row]
             if self.saviors[indexPath.row].stype == 20 {
