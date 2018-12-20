@@ -490,14 +490,22 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         if self.savior.isValidDevice() {
+            
+            let realm = try! Realm()
+            let items = realm.objects(RealmDataPoint.self).filter("mac = '\(self.savior.savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)
+            if items.count == 0 {
+                return
+            }
+
+            
             let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
             detailVC.savior = self.savior
             detailVC.energy_unit = indexPath.row+1
             print("DID CLICK HERE \(indexPath.row)")
             self.owner.navigationController?.pushViewController(detailVC, animated: true)
         }
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
 }

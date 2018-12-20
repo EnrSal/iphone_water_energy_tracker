@@ -223,6 +223,9 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 self.time.text = date_formatter.string(from: timestamp.fromUTC())
                 self.timeago.text = Util.timeAgoSinceDate(date: timestamp.fromUTC() as NSDate, numericDates: true)
             }
+        } else {
+            print("NO DATA")
+            return;
         }
         
         

@@ -108,8 +108,17 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+
         if self.saviors[indexPath.row].isValidDevice() && (  self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20) {
+            
+            let realm = try! Realm()
+            let items = realm.objects(RealmDataPoint.self).filter("mac = '\(self.saviors[indexPath.row].savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)
+            if items.count == 0 {
+                return
+            }
+            
+            
             let detailVC:DetailVC = DetailVC(nibName: "DetailVC", bundle: nil)
             detailVC.savior = self.saviors[indexPath.row]
             if self.saviors[indexPath.row].stype == 20 {
@@ -118,6 +127,5 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             print("2 DID CLICK HERE")
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 }

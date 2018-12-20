@@ -12,6 +12,7 @@ import RealmSwift
 import UserNotifications
 import Fabric
 import Crashlytics
+import AlamofireNetworkActivityLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -31,7 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor.black
         
-        
+        NetworkActivityLogger.shared.level = .debug
+        NetworkActivityLogger.shared.startLogging()
+
         let mainVC:MainVC = MainVC(nibName: "MainVC", bundle: nil)
         self.nav = UINavigationController(rootViewController: mainVC)
         self.window!.rootViewController = nav

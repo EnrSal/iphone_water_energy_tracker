@@ -127,13 +127,15 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             slider.value = Float(self.owner.config!.UserTempCalib!)!
             self.currentEdut.text = "\(Int(self.owner.config!.UserTempCalib!)!)"
         case .kwhour:
+            slider.maximumValue = 100
+            self.maxLabel.text = "100"
             titleLabel.text = "Kilo Watts used in 1 hour:"
             if self.owner.savior.stype >= 20 {
                 titleLabel.text = "Gallons used in 1 hour:"
+                slider.maximumValue = 500
+                self.maxLabel.text = "500"
             }
             slider.minimumValue = 0
-            slider.maximumValue = 100
-            self.maxLabel.text = "100"
             if self.owner.config!.Hour == nil {
                 self.owner.config!.Hour = "0"
             }
@@ -141,12 +143,14 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             self.currentEdut.text = "\(Int(self.owner.config!.Hour!)!)"
         case .kwday:
             titleLabel.text = "Kilo Watts used in 1 day:"
-            if self.owner.savior.stype >= 20 {
-                titleLabel.text = "Gallons used in 1 day:"
-            }
-            slider.minimumValue = 0
             slider.maximumValue = 1500
             self.maxLabel.text = "1500"
+            if self.owner.savior.stype >= 20 {
+                titleLabel.text = "Gallons used in 1 day:"
+                slider.maximumValue = 3000
+                self.maxLabel.text = "3000"
+            }
+            slider.minimumValue = 0
             if self.owner.config!.Day == nil {
                 self.owner.config!.Day = "0"
             }
@@ -154,12 +158,14 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             self.currentEdut.text = "\(Int(self.owner.config!.Day!)!)"
         case .kwweek:
             titleLabel.text = "Kilo Watts used in 1 week:"
+            slider.maximumValue = 500000
+            self.maxLabel.text = "500k"
             if self.owner.savior.stype >= 20 {
                 titleLabel.text = "Gallons used in 1 week:"
+                slider.maximumValue = 20000
+                self.maxLabel.text = "20k"
             }
             slider.minimumValue = 0
-            slider.maximumValue = 10000
-            self.maxLabel.text = "10k"
             if self.owner.config!.Week == nil {
                 self.owner.config!.Week = "0"
             }
@@ -171,8 +177,8 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 titleLabel.text = "Gallons used in 1 month:"
             }
             slider.minimumValue = 0
-            slider.maximumValue = 500000
-            self.maxLabel.text = "500k"
+            slider.maximumValue = 2000000
+            self.maxLabel.text = "2000k"
             if self.owner.config!.Month == nil {
                 self.owner.config!.Month = "0"
             }
