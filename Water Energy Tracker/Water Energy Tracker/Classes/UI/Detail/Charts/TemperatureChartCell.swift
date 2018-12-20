@@ -64,34 +64,36 @@ class TemperatureChartCell: UITableViewCell {
             heading.text = "Temperature in last 12 hours"
         }
 
-        
-        let set1: LineChartDataSet = LineChartDataSet(values: values_1, label: "Temp 1")
-        set1.colors = [UIColor.init(hex: "#CC0000")]
-        set1.circleColors = [UIColor.init(hex: "#CC0000")]
-        set1.drawValuesEnabled = false
-        set1.highlightEnabled = false
-
-        let set2: LineChartDataSet = LineChartDataSet(values: values_2, label: "Temp 2")
-        set2.colors = [UIColor.init(hex: "#0000CC")]
-        set2.circleColors = [UIColor.init(hex: "#0000CC")]
-        set2.drawValuesEnabled = false
-        set2.highlightEnabled = false
-
-        let data = LineChartData(dataSets: [set1, set2])
-        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
-        // data.barWidth = 0.9
-        chartView.data = data
-        let xAxis = chartView.xAxis
-        xAxis.labelPosition = .top
-        xAxis.labelFont = .systemFont(ofSize: 10)
-        xAxis.granularity = 1
-        xAxis.labelCount = 7
-        xAxis.labelRotationAngle = -60
-        let formatter = HourValueFormatter()
-        formatter.countToDate = self.countToDate
-        xAxis.valueFormatter = formatter
-        chartView.setNeedsDisplay()
-        chartView.chartDescription?.enabled = false
+        if values_1.count > 0 && values_2.count > 0 {
+            
+            let set1: LineChartDataSet = LineChartDataSet(values: values_1, label: "Temp 1")
+            set1.colors = [UIColor.init(hex: "#CC0000")]
+            set1.circleColors = [UIColor.init(hex: "#CC0000")]
+            set1.drawValuesEnabled = false
+            set1.highlightEnabled = false
+            
+            let set2: LineChartDataSet = LineChartDataSet(values: values_2, label: "Temp 2")
+            set2.colors = [UIColor.init(hex: "#0000CC")]
+            set2.circleColors = [UIColor.init(hex: "#0000CC")]
+            set2.drawValuesEnabled = false
+            set2.highlightEnabled = false
+            
+            let data = LineChartData(dataSets: [set1, set2])
+            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
+            // data.barWidth = 0.9
+            chartView.data = data
+            let xAxis = chartView.xAxis
+            xAxis.labelPosition = .top
+            xAxis.labelFont = .systemFont(ofSize: 10)
+            xAxis.granularity = 1
+            xAxis.labelCount = 7
+            xAxis.labelRotationAngle = -60
+            let formatter = HourValueFormatter()
+            formatter.countToDate = self.countToDate
+            xAxis.valueFormatter = formatter
+            chartView.setNeedsDisplay()
+            chartView.chartDescription?.enabled = false
+        }
     }
 
 }

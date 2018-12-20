@@ -216,7 +216,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 } else {
                     if let response = response {
                         let values = response.Daily!.components(separatedBy: ",")
-                        print("VALUES \(values)")
+                        print("3VALUES \(values)")
                         //let realm = try! Realm()
 
                         

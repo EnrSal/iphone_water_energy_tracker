@@ -60,6 +60,7 @@ class EnergyPowerUsageChartCell: UITableViewCell {
         var values:[BarChartDataEntry] = []
         print("START DATE -->\(self.start) END DATE -->\(self.end)")
         let items = realm.objects(RealmDataPoint.self).filter("mac = '\(savior.savior_address!)' AND timestamp BETWEEN %@",[start,end]).sorted(byKeyPath: "timestamp", ascending: true)
+        print("TOTAL ITEMS -->\(items.count)")
         if items.count > 0 {
             var last:Double? = nil
             var count:Int = 0
@@ -163,6 +164,9 @@ class EnergyPowerUsageChartCell: UITableViewCell {
                     //                    let entry:BarChartDataEntry = BarChartDataEntry(x: Double(round(1000*diff!)/1000), y: dataPoint.timestamp!.timeIntervalSince1970  )
                     //let entry:BarChartDataEntry = BarChartDataEntry(x: 35, y: Double(round(1000*diff!)/1000)  )
                     values.append(entry)
+                } else {
+                    let entry:BarChartDataEntry = BarChartDataEntry(x: Double(count), y: Double(round(1000*0.0)/1000)  )
+                    values.append(entry)
                 }
                 
                 switch (energy_unit) {
@@ -191,33 +195,35 @@ class EnergyPowerUsageChartCell: UITableViewCell {
             
         }
         
-        print("VALUES \(values)")
+        print("1VALUES \(values)")
         
         var label = "Power Usage"
         if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
             label = "Water Usage"
         }
-        let set1: BarChartDataSet = BarChartDataSet(values: values, label: label)
-        set1.colors = [UIColor.init(hex: "#006400")]
-        set1.drawValuesEnabled = false
-        set1.highlightEnabled = false
-        
-        let data = BarChartData(dataSets: [set1])
-        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
-        // data.barWidth = 0.9
-        chartView.data = data
-        let xAxis = chartView.xAxis
-        xAxis.labelPosition = .top
-        xAxis.labelFont = .systemFont(ofSize: 10)
-        xAxis.granularity = 1
-        xAxis.labelCount = 7
-        xAxis.labelRotationAngle = -60
-        let formatter = HourValueFormatter()
-        formatter.countToDate = self.countToDate
-        xAxis.valueFormatter = formatter
-        chartView.setNeedsDisplay()
-        chartView.chartDescription?.enabled = false
-        chartView.fitBars = true
+        if values.count > 0 {
+            let set1: BarChartDataSet = BarChartDataSet(values: values, label: label)
+            set1.colors = [UIColor.init(hex: "#006400")]
+            set1.drawValuesEnabled = false
+            set1.highlightEnabled = false
+            
+            let data = BarChartData(dataSets: [set1])
+            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
+            // data.barWidth = 0.9
+            chartView.data = data
+            let xAxis = chartView.xAxis
+            xAxis.labelPosition = .top
+            xAxis.labelFont = .systemFont(ofSize: 10)
+            xAxis.granularity = 1
+            xAxis.labelCount = 7
+            xAxis.labelRotationAngle = -60
+            let formatter = HourValueFormatter()
+            formatter.countToDate = self.countToDate
+            xAxis.valueFormatter = formatter
+            chartView.setNeedsDisplay()
+            chartView.chartDescription?.enabled = false
+            chartView.fitBars = true
+        }
     }
     
     

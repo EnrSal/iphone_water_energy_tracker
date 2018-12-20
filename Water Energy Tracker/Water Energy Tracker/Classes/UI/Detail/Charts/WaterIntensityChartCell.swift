@@ -44,7 +44,7 @@ class WaterIntensityChartCell: UITableViewCell {
             for dataPoint in items {
                 
                 countToDate[Double(count)] = dataPoint.timestamp!.timeIntervalSince1970
-                
+
                 let entry:BarChartDataEntry = BarChartDataEntry(x: Double(count), y: Double(round(1000*dataPoint.HS2)/1000)  )
 
                 values.append(entry)
@@ -60,28 +60,31 @@ class WaterIntensityChartCell: UITableViewCell {
             heading.text = "Vibration Intensity in last 12 hours"
         }
         
-        print("VALUES \(values)")
-        let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Vibration Intensity")
-        set1.colors = [UIColor.init(hex: "#006400")]
-        set1.drawValuesEnabled = false
-        set1.highlightEnabled = false
-        
-        let data = BarChartData(dataSets: [set1])
-        data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
-        // data.barWidth = 0.9
-        chartView.data = data
-        let xAxis = chartView.xAxis
-        xAxis.labelPosition = .top
-        xAxis.labelFont = .systemFont(ofSize: 10)
-        xAxis.granularity = 1
-        xAxis.labelCount = 7
-        xAxis.labelRotationAngle = -60
-        let formatter = HourValueFormatter()
-        formatter.countToDate = self.countToDate
-        xAxis.valueFormatter = formatter
-        chartView.setNeedsDisplay()
-        chartView.chartDescription?.enabled = false
-        chartView.fitBars = true
+        print("2VALUES \(values)")
+        if values.count > 0 {
+            
+            let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Vibration Intensity")
+            set1.colors = [UIColor.init(hex: "#006400")]
+            set1.drawValuesEnabled = false
+            set1.highlightEnabled = false
+            
+            let data = BarChartData(dataSets: [set1])
+            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10)!)
+            // data.barWidth = 0.9
+            chartView.data = data
+            let xAxis = chartView.xAxis
+            xAxis.labelPosition = .top
+            xAxis.labelFont = .systemFont(ofSize: 10)
+            xAxis.granularity = 1
+            xAxis.labelCount = 7
+            xAxis.labelRotationAngle = -60
+            let formatter = HourValueFormatter()
+            formatter.countToDate = self.countToDate
+            xAxis.valueFormatter = formatter
+            chartView.setNeedsDisplay()
+            chartView.chartDescription?.enabled = false
+            chartView.fitBars = true
+        }
     }
     
 

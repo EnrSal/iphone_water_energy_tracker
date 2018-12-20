@@ -15,10 +15,16 @@ class HourValueFormatter: NSObject, IAxisValueFormatter {
     var countToDate:[Double:Double] = [:]
 
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let date = Date(timeIntervalSince1970: countToDate[value]!)
         time_formatter.dateFormat = "h:mm a" //
         time_formatter.timeZone = TimeZone(abbreviation: "UTC")
 
-        return time_formatter.string(from: date)
+        print("GET DATE FOR -->\(value)")
+        if let val = countToDate[value] {
+            let date = Date(timeIntervalSince1970: val)
+            
+            return time_formatter.string(from: date)
+        }
+        
+        return time_formatter.string(from: Date())
     }
 }
