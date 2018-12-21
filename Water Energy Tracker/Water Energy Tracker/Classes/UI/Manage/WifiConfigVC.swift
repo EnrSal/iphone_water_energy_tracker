@@ -21,6 +21,7 @@ class WifiConfigVC: SaviorVC {
     @IBOutlet weak var waterView: UIView!
     @IBOutlet weak var powerSegments: UISegmentedControl!
     @IBOutlet weak var minutes: UITextField!
+    @IBOutlet weak var gpm: UITextField!
     @IBOutlet weak var delaySegments: UISegmentedControl!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     var savior: RealmSavior!
@@ -52,14 +53,17 @@ class WifiConfigVC: SaviorVC {
         if let num_mins = savior.num_mins {
             minutes.text = num_mins
         }
+        if let num_gpm = savior.num_gpm {
+            gpm.text = num_gpm
+        }
         if let sdn_string = savior.sdn_string {
             if (savior.relay_default) {
                 delaySegments.selectedSegmentIndex = 0
-            } else if sdn_string == "sdn2 mins:3" {
+            } else if sdn_string.contains("mins:3") {
                 delaySegments.selectedSegmentIndex = 1
-            } else if sdn_string == "sdn2 mins:4" {
+            } else if sdn_string.contains("mins:4") {
                 delaySegments.selectedSegmentIndex = 2
-            } else if sdn_string == "sdn2 mins:0" {
+            } else if sdn_string.contains("mins:0") {
                 powerSegments.selectedSegmentIndex = 0
             }
         }
@@ -98,14 +102,15 @@ class WifiConfigVC: SaviorVC {
                 }
             } else if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
                 self.savior.num_mins = minutes.text!
+                self.savior.num_gpm = gpm.text!
                 if delaySegments.selectedSegmentIndex == 0 {
-                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:2"
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:2:\(self.savior.num_gpm!)"
                     self.savior.relay_default = true
                 } else if delaySegments.selectedSegmentIndex == 1 {
-                    self.savior.sdn_string = "sdn2 mins:3"
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:3:\(self.savior.num_gpm!)"
                     self.savior.relay_default = false
                 } else if delaySegments.selectedSegmentIndex == 2 {
-                    self.savior.sdn_string = "sdn2 mins:4"
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:4:\(self.savior.num_gpm!)"
                     self.savior.relay_default = false
                 }
             } else {
@@ -116,13 +121,30 @@ class WifiConfigVC: SaviorVC {
             self.savior.is_configured = true
         }
         print("IS CONFIGURED -->\(self.savior.is_configured)")
+        
+        let req = AdditionalConfigRequest()
+        req.name = self.savior.savior_address
+        req.UserCFlow = self.savior.num_mins
+        req.UserGPM = self.savior.num_gpm
+        if delaySegments.selectedSegmentIndex == 0 {
+            req.UserRelay = "Default"
+        } else if delaySegments.selectedSegmentIndex == 1 {
+            req.UserRelay = "Open"
+        } else if delaySegments.selectedSegmentIndex == 2 {
+            req.UserRelay = "Closed"
+        }
+        
+        AzureApi.shared.setAdditionalConfig(req: req) { (error:ServerError?, response:GenericResponse?) in
+            DispatchQueue.main.async {
+                let alert = UIAlertController(title: "Info", message: "Please restart the device, then select it in the manage screen to send data.", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                    
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
 
-        let alert = UIAlertController(title: "Info", message: "Please restart the device, then select it in the manage screen to send data.", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-
-            self.dismiss(animated: true, completion: nil)
-        }))
-        self.present(alert, animated: true, completion: nil)
+        }
 
     }
     

@@ -13,6 +13,12 @@
 		0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */; };
 		0D050A8320A3E383005B95A3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A8220A3E383005B95A3 /* Util.swift */; };
 		0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */; };
+		0D4C1A9121CC33E6001D4D19 /* SolenoidSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C1A8F21CC33E6001D4D19 /* SolenoidSettingsCell.swift */; };
+		0D4C1A9221CC33E6001D4D19 /* SolenoidSettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9021CC33E6001D4D19 /* SolenoidSettingsCell.xib */; };
+		0D4C1A9421CC355B001D4D19 /* AdditionalConfigResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */; };
+		0D4C1A9621CC35B8001D4D19 /* AdditionalConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9521CC35B8001D4D19 /* AdditionalConfigRequest.swift */; };
+		0D4C1A9921CC4D9B001D4D19 /* TimeZoneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9721CC4D9B001D4D19 /* TimeZoneCell.swift */; };
+		0D4C1A9A21CC4D9B001D4D19 /* TimeZoneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9821CC4D9B001D4D19 /* TimeZoneCell.xib */; };
 		0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */; };
 		0D5CE142209545030096CD99 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE141209545030096CD99 /* Constants.swift */; };
 		0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5CE1432095479D0096CD99 /* GetDataRequest.swift */; };
@@ -92,6 +98,12 @@
 		0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceNameSubCell.xib; sourceTree = "<group>"; };
 		0D050A8220A3E383005B95A3 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwhResponse.swift; sourceTree = "<group>"; };
+		0D4C1A8F21CC33E6001D4D19 /* SolenoidSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolenoidSettingsCell.swift; sourceTree = "<group>"; };
+		0D4C1A9021CC33E6001D4D19 /* SolenoidSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolenoidSettingsCell.xib; sourceTree = "<group>"; };
+		0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalConfigResponse.swift; sourceTree = "<group>"; };
+		0D4C1A9521CC35B8001D4D19 /* AdditionalConfigRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalConfigRequest.swift; sourceTree = "<group>"; };
+		0D4C1A9721CC4D9B001D4D19 /* TimeZoneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneCell.swift; sourceTree = "<group>"; };
+		0D4C1A9821CC4D9B001D4D19 /* TimeZoneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeZoneCell.xib; sourceTree = "<group>"; };
 		0D5CE13F209541390096CD99 /* DeviceConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfiguration.swift; sourceTree = "<group>"; };
 		0D5CE141209545030096CD99 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0D5CE1432095479D0096CD99 /* GetDataRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDataRequest.swift; sourceTree = "<group>"; };
@@ -328,6 +340,10 @@
 				0D7340BF20AA5EA80098343D /* SettingsVC.xib */,
 				0D7340C220AA5EB80098343D /* SettingsSliderCell.swift */,
 				0D7340C320AA5EB80098343D /* SettingsSliderCell.xib */,
+				0D4C1A8F21CC33E6001D4D19 /* SolenoidSettingsCell.swift */,
+				0D4C1A9021CC33E6001D4D19 /* SolenoidSettingsCell.xib */,
+				0D4C1A9721CC4D9B001D4D19 /* TimeZoneCell.swift */,
+				0D4C1A9821CC4D9B001D4D19 /* TimeZoneCell.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -382,6 +398,7 @@
 				0D7340A820A9F6180098343D /* HistoricalKwhRequest.swift */,
 				0D7340AA20A9F63B0098343D /* SendCommandRequest.swift */,
 				0D7340AC20A9F6470098343D /* CalculateHistoricalRequest.swift */,
+				0D4C1A9521CC35B8001D4D19 /* AdditionalConfigRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -396,6 +413,7 @@
 				0D7340AE20A9F65C0098343D /* CalculateHistoricalResponse.swift */,
 				0D7340B220A9FE750098343D /* NotificationsResponse.swift */,
 				0D7340B620AA02640098343D /* GenericResponse.swift */,
+				0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -508,7 +526,9 @@
 				0D73409520A9306E0098343D /* TemperatureChartCell.xib in Resources */,
 				0D73408A20A8FE060098343D /* EnergyPowerUsageChartCell.xib in Resources */,
 				0DE4CC2020A4B967001A4E5D /* DetailEnergyInfoCell.xib in Resources */,
+				0D4C1A9221CC33E6001D4D19 /* SolenoidSettingsCell.xib in Resources */,
 				0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */,
+				0D4C1A9A21CC4D9B001D4D19 /* TimeZoneCell.xib in Resources */,
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
 				0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
@@ -622,6 +642,7 @@
 			files = (
 				0D73408C20A90F830098343D /* HourValueFormatter.swift in Sources */,
 				0D6AA3D5208187CF00194AA5 /* ViewController.swift in Sources */,
+				0D4C1A9921CC4D9B001D4D19 /* TimeZoneCell.swift in Sources */,
 				0D5CE146209547E20096CD99 /* GetDataResponse.swift in Sources */,
 				0D7340B320A9FE750098343D /* NotificationsResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
@@ -631,6 +652,7 @@
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
 				0D7340C820ABA8DE0098343D /* SendCommandVC.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
+				0D4C1A9121CC33E6001D4D19 /* SolenoidSettingsCell.swift in Sources */,
 				0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
 				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
@@ -647,6 +669,8 @@
 				0D7340B720AA02640098343D /* GenericResponse.swift in Sources */,
 				0D7340B520A9FE930098343D /* Notification.swift in Sources */,
 				0DE4CC1720A4B27F001A4E5D /* DetailVC.swift in Sources */,
+				0D4C1A9621CC35B8001D4D19 /* AdditionalConfigRequest.swift in Sources */,
+				0D4C1A9421CC355B001D4D19 /* AdditionalConfigResponse.swift in Sources */,
 				0D7340D020ABC93D0098343D /* EnergyUtilityVC.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,

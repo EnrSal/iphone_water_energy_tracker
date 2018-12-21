@@ -45,6 +45,7 @@ class RealmSavior: Object {
     @objc dynamic var network: String? = nil
     @objc dynamic var password: String? = nil
     @objc dynamic var num_mins: String? = "30"
+    @objc dynamic var num_gpm: String? = "50"
     @objc dynamic var relay_default: Bool = true
     @objc dynamic var is_configured: Bool = false
 

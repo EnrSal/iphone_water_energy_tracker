@@ -27,6 +27,82 @@ class AzureApi: NSObject {
         alamoFireManager = Alamofire.SessionManager(configuration: configuration) // not in this line
     }
 
+    func setAdditionalConfig(req:AdditionalConfigRequest, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://functionhttps20181217014337-setadditionalconfig.azurewebsites.net/api/Function1?code=LzdAS3av3RJ/9gFsTUC796spm6vaqhbRLCF32rUSmH5rR09z89ipVg=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("getNames json --> \(utf8Text)")
+                        let serverResponse:GenericResponse = GenericResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func getAdditionalConfig(req:GenericRequest, completionHandler: @escaping (ServerError?, AdditionalConfigResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://functionhttps20181217013922-getadditionalconfig.azurewebsites.net/api/Function1?code=W2mRY1NFJn5okXhY5tP5qG7fRiknplLvcPad1bHav60JSvCAqZKqKQ=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("getNames json --> \(utf8Text)")
+                        let serverResponse:AdditionalConfigResponse = AdditionalConfigResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
     func getNames(req:GenericRequest, completionHandler: @escaping (ServerError?, NamesResponse?) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             

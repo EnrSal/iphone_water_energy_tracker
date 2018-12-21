@@ -37,11 +37,28 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         let settingsButton: UIBarButtonItem = UIBarButtonItem(customView: buttonBack)
 
         
+        var from_share = false
+        if savior.from_share {
+            if let share_number_used = savior.share_number_used {
+                if share_number_used.count > 10 {
+                    from_share = true
+                }
+            }
+        }
+        
         let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
         if (self.savior.stype == 0) {
-            self.navigationItem.rightBarButtonItems = [historyButton,settingsButton]
+            if from_share {
+                self.navigationItem.rightBarButtonItems = [historyButton]
+            } else {
+                self.navigationItem.rightBarButtonItems = [historyButton,settingsButton]
+            }
         } else {
-            self.navigationItem.rightBarButtonItems = [historyButton,settingsButton,utilityButton]
+            if from_share {
+                self.navigationItem.rightBarButtonItems = [historyButton,utilityButton]
+            } else {
+                self.navigationItem.rightBarButtonItems = [historyButton,settingsButton,utilityButton]
+            }
         }
         
         self.tableView.register(DetailWaterInfoCell.self, forCellReuseIdentifier: "WATER_INFO_CELL")

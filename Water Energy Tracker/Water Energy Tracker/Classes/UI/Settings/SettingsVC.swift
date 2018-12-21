@@ -8,15 +8,12 @@
 
 import UIKit
 
-class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet var footer: UIView!
-    @IBOutlet weak var timezone: UITextField!
+    //@IBOutlet var footer: UIView!
     var savior: RealmSavior!
     var config: DeviceConfiguration? = nil
     @IBOutlet weak var tableView: UITableView!
-    var picker: UIPickerView! = UIPickerView()
-    let timezones:[String] = ["Pacific","Mountain","Central","Eastern","Atlantic","Newfoundland"]
     
     enum SettingsType: Int {
         case temp_low
@@ -45,20 +42,17 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPicker
         self.tableView.register(SettingsSliderCell.self, forCellReuseIdentifier: "SETTINGS_SLIDER_CELL")
         self.tableView.register(UINib(nibName: "SettingsSliderCell", bundle: nil), forCellReuseIdentifier: "SETTINGS_SLIDER_CELL")
         
-        self.tableView.tableFooterView = self.footer
+        self.tableView.register(SolenoidSettingsCell.self, forCellReuseIdentifier: "SOLENOID_SETTINGS_CELL")
+        self.tableView.register(UINib(nibName: "SolenoidSettingsCell", bundle: nil), forCellReuseIdentifier: "SOLENOID_SETTINGS_CELL")
+
+        self.tableView.register(TimeZoneCell.self, forCellReuseIdentifier: "TIMEZONE_CELL")
+        self.tableView.register(UINib(nibName: "TimeZoneCell", bundle: nil), forCellReuseIdentifier: "TIMEZONE_CELL")
+    
+        self.tableView.tableFooterView = UIView()
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.separatorStyle = .singleLine
 
-        timezone.inputView = self.picker
-        let keyboardToolbar = UIToolbar()
-        keyboardToolbar.sizeToFit()
-        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SettingsVC.dismissKeyboard))
-        keyboardToolbar.items = [flexBarButton, doneBarButton]
-        self.timezone.inputAccessoryView = keyboardToolbar
-        self.picker.delegate = self
-        self.picker.dataSource = self
 
         self.showHud()
         let req:DeviceConfiguration = DeviceConfiguration()
@@ -82,28 +76,6 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPicker
         self.view.endEditing(true)
     }
 
-    // MARK: - Picker
-    
-    // returns the number of 'columns' to display.
-    func numberOfComponents(in pickerView: UIPickerView) -> Int{
-        return 1
-    }
-    
-    // returns the # of rows in each component..
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        print("TIMEZONES \(timezones.count)")
-        return timezones.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return timezones[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.config!.TimeZone = timezones[row]
-        self.timezone.text = self.config!.TimeZone!
-    }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -128,7 +100,6 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPicker
     }
     
     func populate() {
-        self.timezone.text = self.config!.TimeZone!
         
         self.tableView.reloadData()
     }
@@ -136,10 +107,20 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPicker
     // MARK: - TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if self.config == nil {
+            return 0
+        }
+        if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
+            return 3
+        }
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 1 || section == 2 {
+            return 1
+        }
+        
         if self.config != nil {
             if (self.savior.stype == 0) {
                 return 6
@@ -151,6 +132,22 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UIPicker
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.section == 1 {
+            let cell:TimeZoneCell = (self.tableView.dequeueReusableCell(withIdentifier: "TIMEZONE_CELL", for: indexPath) as? TimeZoneCell)!
+            cell.owner = self
+            cell.populate()
+            return cell
+        }
+        
+        if indexPath.section == 2 {
+            let cell:SolenoidSettingsCell = (self.tableView.dequeueReusableCell(withIdentifier: "SOLENOID_SETTINGS_CELL", for: indexPath) as? SolenoidSettingsCell)!
+            cell.savior = self.savior
+            cell.populate()
+            return cell
+        }
+
+        
         let cell:SettingsSliderCell = (self.tableView.dequeueReusableCell(withIdentifier: "SETTINGS_SLIDER_CELL", for: indexPath) as? SettingsSliderCell)!
         cell.owner = self
         if (self.savior.stype == 0) {

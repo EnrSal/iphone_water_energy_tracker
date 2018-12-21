@@ -489,7 +489,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 }))
             }
             if !savior.from_share {
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Permanent Share Number", comment: ""), style: .default, handler: { action in
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Share Number", comment: ""), style: .default, handler: { action in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         UIPasteboard.general.string = savior.share_number!
                         self.showError(message: "share number is: \(savior.share_number!) (saved to clipboard)")
@@ -498,7 +498,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             }
             
             if !savior.from_share {
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Temporary Share Number", comment: ""), style: .default, handler: { action in
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Read-Only Share Number", comment: ""), style: .default, handler: { action in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                         
                         UIPasteboard.general.string = savior.temp_share_number!
