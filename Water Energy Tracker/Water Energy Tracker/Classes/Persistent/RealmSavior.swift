@@ -41,7 +41,7 @@ class RealmSavior: Object {
     @objc dynamic var EnergyUnit: String? = nil
     @objc dynamic var EnergyUnitPerPulse: Double = 0
     
-    @objc dynamic var sdn_string: String? = "sdn2 mins:0"
+    @objc dynamic var sdn_string: String? = "sdn2 m:0"
     @objc dynamic var network: String? = nil
     @objc dynamic var password: String? = nil
     @objc dynamic var num_mins: String? = "30"

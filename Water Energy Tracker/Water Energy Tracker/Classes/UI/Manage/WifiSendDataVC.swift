@@ -79,8 +79,16 @@ class WifiSendDataVC: SaviorVC {
                                                                                                     case .success:
                                                                                                         print("2WRITE SUCCESS -->\(self.savior.sdn_string!)")
                                                                                                         
-                                                                                                        self.complete()
-                                                                                                        
+                                                                                                        //self.complete()
+                                                                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+                                                                                                            self.hideHud()
+                                                                                                            self.peripheral.disconnect(completion: { _ in ()
+                                                                                                                self.dismiss(animated: true, completion: {
+                                                                                                                    
+                                                                                                                })
+                                                                                                            })
+                                                                                                        }
+
                                                                                                     break // The write was succesful.
                                                                                                     case .failure(let error):
                                                                                                         print("2WRITE ERROR \(error)")
@@ -150,6 +158,7 @@ class WifiSendDataVC: SaviorVC {
                                     }
         }
     }
+    
     
     func complete() {
         let data2 = "                  \n".data(using: String.Encoding.utf8)!

@@ -30,9 +30,9 @@ class WifiConfigVC: SaviorVC {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if getInterfaces() {
+       /* if getInterfaces() {
             
-        }
+        }*/
 
         self.title = "Configure Device"
         self.makeCloseButton()
@@ -59,18 +59,32 @@ class WifiConfigVC: SaviorVC {
         if let sdn_string = savior.sdn_string {
             if (savior.relay_default) {
                 delaySegments.selectedSegmentIndex = 0
-            } else if sdn_string.contains("mins:3") {
+            } else if sdn_string.contains("m:3") {
                 delaySegments.selectedSegmentIndex = 1
-            } else if sdn_string.contains("mins:4") {
+            } else if sdn_string.contains("m:4") {
                 delaySegments.selectedSegmentIndex = 2
-            } else if sdn_string.contains("mins:0") {
+            } else if sdn_string.contains("m:0") {
                 powerSegments.selectedSegmentIndex = 0
             }
         }
-        
+        //print("NETWORK GET -->\(getWiFiSsid())<--")
+
+        var set_network = false
         if let network = self.savior.network {
-            self.wifiField.text = network
+            print("NETWORK SAVED -->\(network)<--")
+            if (network.count > 0) {
+                self.wifiField.text = network
+            } else {
+                set_network = true
+            }
+        } else {
+            set_network = true
         }
+        
+        if set_network {
+            self.wifiField.text = getWiFiSsid()
+        }
+        
         if let password = self.savior.password {
             self.password.text = password
         }
@@ -96,21 +110,21 @@ class WifiConfigVC: SaviorVC {
             if (self.savior.stype == 0) {
                 // water
                 if self.powerSegments.selectedSegmentIndex == 0 {
-                    self.savior.sdn_string = "sdn2 mins:0"
+                    self.savior.sdn_string = "sdn2 m:0"
                 } else {
-                    self.savior.sdn_string = "sdn2 mins:1"
+                    self.savior.sdn_string = "sdn2 m:1"
                 }
             } else if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
                 self.savior.num_mins = minutes.text!
                 self.savior.num_gpm = gpm.text!
                 if delaySegments.selectedSegmentIndex == 0 {
-                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:2:\(self.savior.num_gpm!)"
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:2:\(self.savior.num_gpm!)"
                     self.savior.relay_default = true
                 } else if delaySegments.selectedSegmentIndex == 1 {
-                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:3:\(self.savior.num_gpm!)"
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:3:\(self.savior.num_gpm!)"
                     self.savior.relay_default = false
                 } else if delaySegments.selectedSegmentIndex == 2 {
-                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) mins:4:\(self.savior.num_gpm!)"
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:4:\(self.savior.num_gpm!)"
                     self.savior.relay_default = false
                 }
             } else {
@@ -159,6 +173,7 @@ class WifiConfigVC: SaviorVC {
         }
         for interface in swiftInterfaces {
             print("Looking up SSID info for \(interface)") // en0
+            
             guard let unwrappedCFDictionaryForInterface = CNCopyCurrentNetworkInfo(interface as CFString) else {
                 print("System error: \(interface) has no information")
                 return false
@@ -170,12 +185,29 @@ class WifiConfigVC: SaviorVC {
             for d in SSIDDict.keys {
                 print("\(d): \(SSIDDict[d]!)")
                 if d == "SSID" {
-                    self.wifiField.text = SSIDDict[d]! as! String
+                    self.wifiField.text = SSIDDict[d]! as? String
+                    print("GOT NETWORK -->\(self.wifiField.text)<--")
                 }
             }
         }
         return true
     }
+    
+    func getWiFiSsid() -> String? {
+        var ssid: String?
+        if let interfaces = CNCopySupportedInterfaces() as NSArray? {
+            for interface in interfaces {
+                if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
+                    ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
+                    if (ssid != nil) {
+                        break
+                    }
+                }
+            }
+        }
+        return ssid
+    }
+
 
     /*
     // MARK: - Navigation

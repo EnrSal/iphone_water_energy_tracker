@@ -262,7 +262,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         req.mac = savior.savior_address!
         req.stype = savior.stype
         req.utct = datestr
-        
+        print("@@@ TRY GET DATA")
         AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
             
             if let error = error {
@@ -276,6 +276,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     let realm = try! Realm()
                     try! realm.write {
                         self.savior.last_sync = Date()
+                        print("@@@ LAST SYNC IS -->\(self.savior.last_sync)")
                         for device in response.Result {
                             if device.UTCtime != nil && device.mac != nil {
                                 let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
