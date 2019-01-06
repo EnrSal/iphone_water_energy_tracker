@@ -167,6 +167,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         
         alertController.addTextField { (textField) in
             textField.placeholder = "Share "
+            textField.keyboardType = .numberPad
         }
         
         alertController.addAction(confirmAction)
@@ -248,8 +249,10 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 cell.textLabel?.text = "no name"
             }
         } else {
-            let peripheral = self.peripherals[indexPath.row]
-            cell.textLabel?.text = peripheral.name!
+            if self.peripherals.count > indexPath.row {
+                let peripheral = self.peripherals[indexPath.row]
+                cell.textLabel?.text = peripheral.name!
+            }
         }
         
         
@@ -538,6 +541,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                                     object: nil,
                                                     userInfo: nil)
                 }
+                self.tableView.reloadData()
                 self.scan()
                 
             }))

@@ -26,7 +26,6 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.estimatedRowHeight = 100
         self.tableView.separatorStyle = .none
         
-        self.reload()
         
         let buttonBack: UIButton = UIButton(type: UIButtonType.custom) as UIButton
         buttonBack.frame = CGRect(x: 0, y: 0, width: 40, height: 40) // CGFloat, Double, Int
@@ -43,6 +42,12 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                                object:nil, queue:nil,
                                                using:catchNotification)
 
+    }
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.reload()
     }
 
     func catchNotification(notification: Notification) -> Void {
@@ -62,7 +67,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let items = realm.objects(RealmSavior.self)
         saviors.removeAll()
         saviors.append(contentsOf: items)
-
+        print("RELOAD")
         self.tableView.reloadData()
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm:ss a"
