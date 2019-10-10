@@ -1,10 +1,11 @@
 platform :ios, '10.0'
   use_frameworks!
   def shared_pods
+  pod 'D2PDatePicker'
   pod 'Charts'
   pod 'ChartsRealm'
   pod 'SwiftyBluetooth'
-  pod 'RealmSwift' 
+  pod 'RealmSwift', '~> 3.19.0' 
   pod 'Alamofire'
   pod 'AlamofireObjectMapper'
   pod 'AlamofireNetworkActivityLogger'

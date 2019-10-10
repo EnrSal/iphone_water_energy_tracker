@@ -116,6 +116,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                                 } else {
                                                     if let response = response {
                                                         DispatchQueue.main.async {
+                                                            print("newsavior.stype = \(newsavior.stype)")
                                                             try! realm.write {
                                                                 if newsavior.stype == 20 || newsavior.stype == 21 || newsavior.stype == 22 || newsavior.stype == 24 {
                                                                     newsavior.EnergyUnit = response.Unit

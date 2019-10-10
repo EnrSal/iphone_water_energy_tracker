@@ -38,9 +38,9 @@ class EnergyPowerUsageChartCell: UITableViewCell {
         
         
         var per_pulse = 0.01
+        per_pulse = self.savior.EnergyUnitPerPulse
         if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
             heading.text = "Water Usage in last 12 hours"
-            per_pulse = self.savior.EnergyUnitPerPulse
             if history {
                 heading.text = "Water Usage"
             } else {
