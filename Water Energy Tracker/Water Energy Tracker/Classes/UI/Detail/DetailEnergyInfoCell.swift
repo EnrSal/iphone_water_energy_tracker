@@ -90,7 +90,7 @@ class DetailEnergyInfoCell: UITableViewCell {
         
         let genreq:GenericRequest = GenericRequest()
         genreq.name = savior.savior_address!
-        AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?) in
+        AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?, orig:String) in
             if let error = error {
                 print(error)
             } else {

@@ -127,7 +127,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 print("@@@ req.utct \(req.utct)")
 
                 self.showHud()
-                AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
+                AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?, orig:String) in
                     self.hideHud()
                     if let error = error {
                         print(error)

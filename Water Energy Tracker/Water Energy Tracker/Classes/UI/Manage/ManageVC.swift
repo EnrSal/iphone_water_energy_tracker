@@ -11,7 +11,7 @@ import SwiftyBluetooth
 import CoreBluetooth
 import RealmSwift
 
-class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
+class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     var saviors:[RealmSavior] = []
@@ -43,6 +43,23 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    let allowedCharacters = CharacterSet(charactersIn:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890 #-_").inverted
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let components = string.components(separatedBy: allowedCharacters)
+        let filtered = components.joined(separator: "")
+        
+        if string == filtered {
+            
+            return true
+
+        } else {
+            
+            return false
+        }
+    }
+
     @objc func addShare(_ sender:UIBarButtonItem!) {
         let alertController = UIAlertController(title: nil, message: "Enter Share Number", preferredStyle: .alert)
         
@@ -330,38 +347,39 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             
             if !savior.from_share {
                 if savior.is_configured {
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Data to Device", comment: ""), style: .default, handler: { action in
-                        var found = false
-                        for peripheral in self.all_peripherals {
-                            if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
-                                
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    if (savior.stype != Constants.energy2_stype) && (savior.stype != Constants.energy4_stype) && (savior.stype != Constants.energy8_stype) {
+                        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Data to Device", comment: ""), style: .default, handler: { action in
+                            var found = false
+                            for peripheral in self.all_peripherals {
+                                if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
                                     
-                                    
-                                    
-                                    let sendVC:WifiSendDataVC = WifiSendDataVC(nibName: "WifiSendDataVC", bundle: nil)
-                                    sendVC.savior = savior
-                                    sendVC.peripheral = peripheral
-                                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
-                                    self.navigationController!.present(nav, animated: true, completion: nil)
-                                    
-                                    
-                                    
-                                    
-                                    
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                        
+                                        
+                                        
+                                        let sendVC:WifiSendDataVC = WifiSendDataVC(nibName: "WifiSendDataVC", bundle: nil)
+                                        sendVC.savior = savior
+                                        sendVC.peripheral = peripheral
+                                        let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                        self.navigationController!.present(nav, animated: true, completion: nil)
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    }
+                                    found = true
+                                    break
                                 }
-                                found = true
-                                break
                             }
-                        }
-                        if !found{
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                self.showError(message: "Device is not currently connected.")
+                            if !found{
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                    self.showError(message: "Device is not currently connected.")
+                                }
                             }
-                        }
-                        
-                    }))
-                    
+                            
+                        }))
+                    }
                 }
             }
             
@@ -441,26 +459,31 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                     alertController.addTextField { (textField) in
                         textField.placeholder = "Name of Device"
                         textField.text = savior.alias!
+                        textField.delegate = self
                     }
                     
                     if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 {
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 1 name"
                             textField.text = savior.energy_unit_name_1!
+                            textField.delegate = self
                         }
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 2 name"
                             textField.text = savior.energy_unit_name_2!
+                            textField.delegate = self
                         }
                     }
                     if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24{
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 3 name"
                             textField.text = savior.energy_unit_name_3!
+                            textField.delegate = self
                         }
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 4 name"
                             textField.text = savior.energy_unit_name_4!
+                            textField.delegate = self
                         }
                         
                     }
@@ -468,18 +491,22 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 5 name"
                             textField.text = savior.energy_unit_name_5!
+                            textField.delegate = self
                         }
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 6 name"
                             textField.text = savior.energy_unit_name_6!
+                            textField.delegate = self
                         }
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 7 name"
                             textField.text = savior.energy_unit_name_7!
+                            textField.delegate = self
                         }
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 8 name"
                             textField.text = savior.energy_unit_name_8!
+                            textField.delegate = self
                         }
                     }
                     
@@ -510,6 +537,18 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                     }
                 }))
             }
+            
+            
+            // schedule
+            if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Schedule ON/OFF", comment: ""), style: .default, handler: { action in
+                    let sendVC:ScheduleVC = ScheduleVC(nibName: "ScheduleVC", bundle: nil)
+                    sendVC.savior = savior
+                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                    self.navigationController!.present(nav, animated: true, completion: nil)
+                }))
+            }
+            
             //if !savior.from_share {
                 
                 var show = false

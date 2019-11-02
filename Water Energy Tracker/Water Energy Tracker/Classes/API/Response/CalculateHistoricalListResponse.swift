@@ -1,16 +1,15 @@
 //
-//  CalculateHistoricalResponse.swift
+//  CalculateHistoricalListResponse.swift
 //  Water Energy Tracker
 //
-//  Created by Boris Katok on 5/14/18.
-//  Copyright © 2018 Coconut Tree Software, Inc. All rights reserved.
+//  Created by Boris Katok on 11/2/19.
+//  Copyright © 2019 Coconut Tree Software, Inc. All rights reserved.
 //
 
 import ObjectMapper
 
-class CalculateHistoricalResponse: NSObject, Mappable {
+class CalculateHistoricalListResponse: NSObject, Mappable {
 
-    var TotalKWH: String?
     var AllKWH:[HistoricalGraphItem] = []
     
     override init() {}
@@ -20,7 +19,6 @@ class CalculateHistoricalResponse: NSObject, Mappable {
     public required init?(map: Map) {}
     
     public func mapping(map: Map) {
-        TotalKWH <- map["TotalKWH"]
         AllKWH <- map["AllKWH"]
     }
 

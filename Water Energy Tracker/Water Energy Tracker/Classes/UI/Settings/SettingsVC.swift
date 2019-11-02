@@ -15,6 +15,7 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     var config: DeviceConfiguration? = nil
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var version: UILabel!
     enum SettingsType: Int {
         case temp_low
         case temp_high
@@ -58,6 +59,8 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let req:DeviceConfiguration = DeviceConfiguration()
         req.name = savior.savior_address!
         
+        self.version.text = "App Version: \(versionAndBuildNumber())"
+        
         AzureApi.shared.getConfig(req: req) { (error:ServerError?, response:DeviceConfiguration?) in
             self.hideHud()
             if let error = error {
@@ -71,6 +74,21 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+    
+    private func versionAndBuildNumber() -> String {
+        let versionNumber = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+        let buildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
+        if let versionNumber = versionNumber, let buildNumber = buildNumber {
+            return "\(versionNumber) (\(buildNumber))"
+        } else if let versionNumber = versionNumber {
+            return versionNumber
+        } else if let buildNumber = buildNumber {
+            return buildNumber
+        } else {
+            return ""
+        }
+    }
+
     
     @objc func dismissKeyboard() {
         self.view.endEditing(true)

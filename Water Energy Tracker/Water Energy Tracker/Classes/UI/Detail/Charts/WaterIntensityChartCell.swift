@@ -55,15 +55,15 @@ class WaterIntensityChartCell: UITableViewCell {
             
         }
         if history {
-            heading.text = "Vibration Intensity"
+            heading.text = "Activity"
         } else {
-            heading.text = "Vibration Intensity in last 12 hours"
+            heading.text = "Activity in past 12 hours"
         }
         
         print("2VALUES \(values)")
         if values.count > 0 {
             
-            let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Vibration Intensity")
+            let set1: BarChartDataSet = BarChartDataSet(values: values, label: "Activity")
             set1.colors = [UIColor.init(hex: "#006400")]
             set1.drawValuesEnabled = false
             set1.highlightEnabled = false

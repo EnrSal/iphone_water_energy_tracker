@@ -22,7 +22,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.register(UINib(nibName: "MainDeviceCell", bundle: nil), forCellReuseIdentifier: "DEVICE_CELL")
         
         self.tableView.tableFooterView = UIView()
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+      //  self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.separatorStyle = .none
         
@@ -66,7 +66,29 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         let realm = try! Realm()
         let items = realm.objects(RealmSavior.self)
         saviors.removeAll()
-        saviors.append(contentsOf: items)
+        
+        var waterList:[RealmSavior] = []
+        var energyList:[RealmSavior] = []
+        var tempList:[RealmSavior] = []
+
+        for item in items {
+            if item.name == nil {
+                try! realm.write {
+                    item.name = ""
+                }
+            }
+            if item.stype == Constants.water_stype || item.stype == Constants.water_gals_stype || item.stype == Constants.water_gals2_stype || item.stype == Constants.water_gals4_stype || item.stype == Constants.water_gals8_stype {
+                waterList.append(item)
+            } else if item.stype == Constants.temperature_only_stype {
+                tempList.append(item)
+            } else {
+                energyList.append(item)
+            }
+        }
+        
+        saviors.append(contentsOf: waterList.sorted(by: { $0.name! > $1.name! }))
+        saviors.append(contentsOf: energyList.sorted(by: { $0.name! > $1.name! }))
+        saviors.append(contentsOf: tempList.sorted(by: { $0.name! > $1.name! }))
         print("RELOAD")
         self.tableView.reloadData()
         let formatter = DateFormatter()
@@ -111,6 +133,25 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         return cell;
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var height = 165
+        
+        switch self.saviors[indexPath.row].stype {
+        case 0,20:
+            height -= 44
+        case 1,21,31:
+            height += 1*44
+        case 2,22,32:
+            height += 3*44
+        case 4,24,34:
+            height += 7*44
+        default:
+            break
+        }
+        
+        return CGFloat(height)
+    }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)

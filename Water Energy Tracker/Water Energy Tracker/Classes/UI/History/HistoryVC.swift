@@ -24,6 +24,7 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.title = "History"
         self.tableView.register(EnergyPowerUsageChartCell.self, forCellReuseIdentifier: "ENERGY_POWER_CHART")
         self.tableView.register(UINib(nibName: "EnergyPowerUsageChartCell", bundle: nil), forCellReuseIdentifier: "ENERGY_POWER_CHART")
         
@@ -151,7 +152,7 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 cell.start = self.date
                 cell.savior = self.savior
                 cell.energy_unit = self.energy_unit
-                cell.heading.text = "Vibration Intensity"
+                cell.heading.text = "Activity"
                 cell.populate()
                 
                 return cell;

@@ -45,6 +45,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         self.tableView.rowHeight = 44
         self.tableView.separatorStyle = .none
         
+        self.contentView.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         
     }
     
@@ -53,22 +54,32 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         
         // Configure the view for the selected state
     }
+    
+    var populating_address:String? = nil
+    
     func populate() {
+        populating_address = savior.savior_address!
+
         let req:GenericRequest = GenericRequest()
         req.name = savior.savior_address!
         print("############# GET NAMES NO CHANGE")
         self.spinner.startAnimating()
-        AzureApi.shared.getNamesNoChange(req: req, completionHandler: { (error:ServerError?, response:NamesResponse?) in
+        AzureApi.shared.getNamesNoChange(req: req, completionHandler: { (error:ServerError?, response:NamesResponse?, origname:String) in
             
             if let error = error {
                 self.spinner.stopAnimating()
                 print("ERROR \(error)")
             } else {
                 if let response = response {
+                    if origname != self.populating_address! {
+                        return
+                    }
+                    
                     let realm = try! Realm()
                     DispatchQueue.main.async {
                         try! realm.write {
-                            self.savior.share_number_prev = response.ShareNumber
+                            self.savior.share_number_prev = self.savior.share_number
+                            self.savior.share_number = response.ShareNumber
                             self.savior.temp_share_number_prev = response.TempShareNumber
                             self.savior.stype = Int(response.Stype!)!
                             self.savior.alias = response.DeviceName
@@ -84,7 +95,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                                 self.savior.alias = "no name"
                             }
                         }
-                        self.populateImpl()
+                        self.populateImpl(orig: origname)
                     }
                     
                 } else {
@@ -95,7 +106,10 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         })
     }
     
-    func populateImpl() {
+    func populateImpl(orig:String) {
+        if orig != self.populating_address! {
+            return
+        }
         self.name.text = savior.alias!
         unit1_usage = nil
         unit2_usage = nil
@@ -127,13 +141,13 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             self.numgals.isHidden = true
         }
         let datestr = formatter.string(from: Calendar.current.date(byAdding: .day, value: -1, to: Date())!)
-        print("STYPE = \(savior.stype)")
+        print("STYPE = \(savior.stype) \(savior.alias!)")
         if self.savior.stype == 0 {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
             self.typeImage.contentMode = .scaleAspectFit
             self.tableHeight.constant = 0
             
-        } else if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+        } else if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24  {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
             switch savior.stype {
             case 20:
@@ -151,39 +165,42 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
 
             let genreq:GenericRequest = GenericRequest()
             genreq.name = savior.savior_address!
-            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?) in
+            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?, origname:String) in
                 if let error = error {
                     print(error)
                 } else {
                     if let response = response {
-                        let values = response.Daily!.components(separatedBy: ",")
-                        print("zzVALUES \(values)")
-                        let realm = try! Realm()
-                        
-                        if self.savior.EnergyUnit == nil {
-                            print("@@@ here 1)")
-                            try! realm.write {
-                                print("@@@ here 2)")
-                                self.savior.EnergyUnit = "kWh"
-                                if self.savior.EnergyUnitPerPulse == 0.0 {
-                                    self.savior.EnergyUnitPerPulse = 0.1
-                                }
-                                print("@@@ here 3)")
-                            }
-                            print("@@@ here 4)")
+                        if origname != self.populating_address! {
+                            return
                         }
-                        print("@@@ here 5)")
-
-                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.numgals.text = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
                         DispatchQueue.main.async {
+                            let values = response.Daily!.components(separatedBy: ",")
+                            print("zzVALUES \(values)")
+                            let realm = try! Realm()
+                            
+                            if self.savior.EnergyUnit == nil {
+                                print("@@@ here 1)")
+                                try! realm.write {
+                                    print("@@@ here 2)")
+                                    self.savior.EnergyUnit = "kWh"
+                                    if self.savior.EnergyUnitPerPulse == 0.0 {
+                                        self.savior.EnergyUnitPerPulse = 0.1
+                                    }
+                                    print("@@@ here 3)")
+                                }
+                                print("@@@ here 4)")
+                            }
+                            print("@@@ here 5)")
+                            
+                            self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.numgals.text = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                            self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
                             self.tableView.reloadData()
                         }
                         
@@ -193,63 +210,78 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
 
 
         } else {
-            self.typeImage.image = #imageLiteral(resourceName: "ic_energy")
-            switch savior.stype {
-            case 0:
-                self.tableHeight.constant = 0
-            case 1:
-                self.tableHeight.constant = 2*44
-            case 2:
-                self.tableHeight.constant = 4*44
-            case 4:
-                self.tableHeight.constant = 8*44
-            default:
-                break
+            DispatchQueue.main.async {
+                self.typeImage.image = #imageLiteral(resourceName: "ic_energy")
+                switch self.savior.stype {
+                case 0:
+                    self.tableHeight.constant = 0
+                case 1,31:
+                    self.tableHeight.constant = 2*44
+                case 2,32:
+                    self.tableHeight.constant = 4*44
+                case 4,34:
+                    self.tableHeight.constant = 8*44
+                case Constants.temperature_only_stype:
+                    self.tableHeight.constant = 0
+                    self.typeImage.image = UIImage(named: "ic_temp")
+                default:
+                    break
+                }
+                
+                self.layoutIfNeeded()
+                
+                print("@@@@@ TYPE \(self.savior.stype) CONSTANT \(self.tableHeight.constant)")
             }
-            
             
             let genreq:GenericRequest = GenericRequest()
             genreq.name = savior.savior_address!
-            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?) in
+            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?, origname:String) in
                 if let error = error {
                     print(error)
                 } else {
                     if let response = response {
-                        let values = response.Daily!.components(separatedBy: ",")
-                        print("3VALUES \(values)")
-                        //let realm = try! Realm()
-
-                        
-                        if self.savior.EnergyUnit == nil {
-                            let realm = try! Realm()
-                            try! realm.write {
-                                self.savior.EnergyUnit = "kWh"
-                                if self.savior.EnergyUnitPerPulse == 0.0 {
-                                    self.savior.EnergyUnitPerPulse = 0.1
-                                }
-                            }
+                        if origname != self.populating_address! {
+                            return
                         }
-                        
-                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-
-                        /*
-                        self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
-                        self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"*/
                         DispatchQueue.main.async {
-                            self.tableView.reloadData()
+                            if let daily = response.Daily {
+                                let values = daily.components(separatedBy: ",")
+                                print("3VALUES \(values)")
+                                //let realm = try! Realm()
+                                
+                                
+                                if self.savior.EnergyUnit == nil {
+                                    let realm = try! Realm()
+                                    try! realm.write {
+                                        self.savior.EnergyUnit = "kWh"
+                                        if self.savior.EnergyUnitPerPulse == 0.0 {
+                                            self.savior.EnergyUnitPerPulse = 0.1
+                                        }
+                                    }
+                                }
+                                
+                                self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                
+                                /*
+                                 self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"
+                                 self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))! * Float(self.savior.EnergyUnitPerPulse))) \(self.savior.EnergyUnit!)"*/
+                                self.tableView.reloadData()
+                            } else {
+                                self.tableView.reloadData()
+                            }
                         }
                         
                     }
@@ -263,7 +295,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         req.stype = savior.stype
         req.utct = datestr
         print("@@@ TRY GET DATA")
-        AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
+        AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?, origname:String) in
             
             if let error = error {
                 print(error)
@@ -272,23 +304,26 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 }
             } else {
                 if let response = response {
-                    
-                    let realm = try! Realm()
-                    try! realm.write {
-                        self.savior.last_sync = Date()
-                        print("@@@ LAST SYNC IS -->\(self.savior.last_sync)")
-                        for device in response.Result {
-                            if device.UTCtime != nil && device.mac != nil {
-                                let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
-                                let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
-                                if current == nil {
-                                    realm.add(dataPoint)
-                                    //print("ADDED \(dataPoint)")
+                    if origname != self.populating_address! {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        
+                        let realm = try! Realm()
+                        try! realm.write {
+                            self.savior.last_sync = Date()
+                            print("@@@ LAST SYNC IS -->\(self.savior.last_sync)")
+                            for device in response.Result {
+                                if device.UTCtime != nil && device.mac != nil {
+                                    let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
+                                    let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
+                                    if current == nil {
+                                        realm.add(dataPoint)
+                                        //print("ADDED \(dataPoint)")
+                                    }
                                 }
                             }
                         }
-                    }
-                    DispatchQueue.main.async {
                         self.spinner.stopAnimating()
                         self.setDetails()
                     }
@@ -376,13 +411,14 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         }
         
         switch savior.stype {
-        case 0, 20:
+        case 0, 20, Constants.temperature_only_stype:
             return 0
-        case 1, 21:
+        case 1, 21, 31:
             return 2
-        case 2, 22:
+        case 2, 22, 32:
             return 4
-        case 4, 24:
+        case 4, 24, 34:
+            print("SUBCELLS 8 \(self.savior.name!)")
             return 8
         default:
             break

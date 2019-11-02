@@ -36,7 +36,7 @@ class DataPersistenceManager: NSObject {
             req.stype = savior.stype
             req.utct = datestr
             
-            AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?) in
+            AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?, orig:String) in
                 
             })
 

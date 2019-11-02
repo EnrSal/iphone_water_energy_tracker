@@ -141,7 +141,7 @@ class AzureApi: NSObject {
         }
     }
 
-    func getNamesNoChange(req:GenericRequest, completionHandler: @escaping (ServerError?, NamesResponse?) -> Void) {
+    func getNamesNoChange(req:GenericRequest, completionHandler: @escaping (ServerError?, NamesResponse?, String) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
             let urlString = "https://getnames-returnshare-tmpshare-nochange-fnapp20180406055208.azurewebsites.net/api/Function1?code=pDcdf2UHwZJlaClx8Qm3XSGBIQLswHDBtLZ9ERAv5AzU35gNo2KhCg=="
@@ -165,17 +165,17 @@ class AzureApi: NSObject {
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("json --> \(utf8Text)")
                         let serverResponse:NamesResponse = NamesResponse(JSONString: utf8Text)!
-                        completionHandler(nil, serverResponse)
+                        completionHandler(nil, serverResponse, req.name!)
                     } else {
-                        completionHandler(ServerError.defaultError, nil)
+                        completionHandler(ServerError.defaultError, nil, req.name!)
                     }
                 case .failure:
-                    completionHandler(ServerError.defaultError, nil)
+                    completionHandler(ServerError.defaultError, nil, req.name!)
                 }
             })
             
         } else {
-            completionHandler(ServerError.noInternet, nil)
+            completionHandler(ServerError.noInternet, nil, req.name!)
         }
     }
     
@@ -296,7 +296,7 @@ class AzureApi: NSObject {
     
     
     
-    func getData(req:GetDataRequest, completionHandler: @escaping (ServerError?, GetDataResponse?) -> Void) {
+    func getData(req:GetDataRequest, completionHandler: @escaping (ServerError?, GetDataResponse?, String) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
             let urlString = "https://getdatafordiffstypes-basedontimes-withmacid-morewaterdata.azurewebsites.net/api/Function2?code=WKCst/HUBs2qgVzxcnuJMTIDc0QBWHU04J2BTtxDhCeqf7rDV/L8Kw=="
@@ -320,17 +320,17 @@ class AzureApi: NSObject {
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("GET DATA --> \(utf8Text)")
                         let serverResponse:GetDataResponse = GetDataResponse(JSONString: utf8Text)!
-                        completionHandler(nil, serverResponse)
+                        completionHandler(nil, serverResponse, req.mac!)
                     } else {
-                        completionHandler(ServerError.defaultError, nil)
+                        completionHandler(ServerError.defaultError, nil, req.mac!)
                     }
                 case .failure:
-                    completionHandler(ServerError.defaultError, nil)
+                    completionHandler(ServerError.defaultError, nil, req.mac!)
                 }
             })
             
         } else {
-            completionHandler(ServerError.noInternet, nil)
+            completionHandler(ServerError.noInternet, nil, req.mac!)
         }
     }
 
@@ -373,7 +373,7 @@ class AzureApi: NSObject {
         }
     }
 
-    func getKwh(req:GenericRequest, completionHandler: @escaping (ServerError?, KwhResponse?) -> Void) {
+    func getKwh(req:GenericRequest, completionHandler: @escaping (ServerError?, KwhResponse?, String) -> Void) {
         if let reachability = reachability, reachability.isReachable {
             
             let urlString = "https://get-kwh-for-id-functionapp20180105042228.azurewebsites.net/api/Function1?code=b5t1lxp8eup5klYWMS1ItTWH4Rz4igmTWEFR7XQF7Hnk9tqP7S8nug=="
@@ -397,17 +397,17 @@ class AzureApi: NSObject {
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("getKwh json --> \(utf8Text)")
                         let serverResponse:KwhResponse = KwhResponse(JSONString: utf8Text)!
-                        completionHandler(nil, serverResponse)
+                        completionHandler(nil, serverResponse, req.name!)
                     } else {
-                        completionHandler(ServerError.defaultError, nil)
+                        completionHandler(ServerError.defaultError, nil, req.name!)
                     }
                 case .failure:
-                    completionHandler(ServerError.defaultError, nil)
+                    completionHandler(ServerError.defaultError, nil, req.name!)
                 }
             })
             
         } else {
-            completionHandler(ServerError.noInternet, nil)
+            completionHandler(ServerError.noInternet, nil, req.name!)
         }
     }
 
@@ -549,6 +549,110 @@ class AzureApi: NSObject {
                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
                         print("json --> \(utf8Text)")
                         let serverResponse:CalculateHistoricalResponse = CalculateHistoricalResponse(JSONString: utf8Text)!
+                        completionHandler(nil, serverResponse)
+                    } else {
+                        completionHandler(ServerError.defaultError, nil)
+                    }
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            })
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+    
+    func getHistoricalGraph(req:CalculateHistoricalRequest, completionHandler: @escaping (ServerError?, [CalculateHistoricalResponse]?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://saviorfunctionsapp20191017060754fabianproduction.azurewebsites.net/api/GetHistorical?code=hfhTunDAXFta0whdl5xMe1sZHhiEmLKAi6WtyznczKfkcpCuLSvyOg=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            
+            alamoFireManager!.request(request).responseArray { (response: DataResponse<[CalculateHistoricalResponse]>) in
+                switch response.result {
+                case .success:
+                    
+                    if let result = response.result.value {
+                        completionHandler(nil, result)
+                    } else if let error = response.result.error {
+                        // Handle error
+                        completionHandler(ServerError(WithMessage: error.localizedDescription), nil)
+                        
+                        
+                    }
+                    /*
+                     if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                     print("json --> \(utf8Text)")
+                     let serverResponse:CalculateHistoricalResponse = CalculateHistoricalResponse(JSONString: utf8Text)!
+                     completionHandler(nil, serverResponse)
+                     } else {
+                     completionHandler(ServerError.defaultError, nil)
+                     }*/
+                case .failure:
+                    completionHandler(ServerError.defaultError, nil)
+                }
+            }
+            
+            
+            /*
+             alamoFireManager!.request(request).responseJSON(completionHandler: {
+             
+             response in
+             switch response.result {
+             case .success:
+             if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+             print("json --> \(utf8Text)")
+             let serverResponse:CalculateHistoricalResponse = CalculateHistoricalResponse(JSONString: utf8Text)!
+             completionHandler(nil, serverResponse)
+             } else {
+             completionHandler(ServerError.defaultError, nil)
+             }
+             case .failure:
+             completionHandler(ServerError.defaultError, nil)
+             }
+             })*/
+            
+        } else {
+            completionHandler(ServerError.noInternet, nil)
+        }
+    }
+
+    func readWriteSchedule(req:ReadWriteScheduleRequest, completionHandler: @escaping (ServerError?, GenericResponse?) -> Void) {
+        if let reachability = reachability, reachability.isReachable {
+            
+            let urlString = "https://newsendcommandtodevice-functionapp20180804033734.azurewebsites.net/api/Function1?code=EGisEANyDIKBK5IqYFz5VFoI/jZA7UYZkagw3Wq2dgY5x42XI45FQA=="
+            let json = req.toJSONString(prettyPrint: true)
+            
+            print("getNames \(json!)")
+            
+            let url = URL(string: urlString)!
+            let jsonData = json!.data(using: .utf8, allowLossyConversion: false)!
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            
+            alamoFireManager!.request(request).responseJSON(completionHandler: {
+                
+                response in
+                switch response.result {
+                case .success:
+                    if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
+                        print("json --> \(utf8Text)")
+                        let serverResponse:GenericResponse = GenericResponse(JSONString: utf8Text)!
                         completionHandler(nil, serverResponse)
                     } else {
                         completionHandler(ServerError.defaultError, nil)
