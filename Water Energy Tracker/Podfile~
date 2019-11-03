@@ -3,7 +3,7 @@ platform :ios, '10.0'
   def shared_pods
   pod 'D2PDatePicker'
   pod 'Charts'
-  pod 'ChartsRealm'
+#  pod 'ChartsRealm'
   pod 'SwiftyBluetooth'
   pod 'RealmSwift', '~> 3.19.0' 
   pod 'Alamofire'

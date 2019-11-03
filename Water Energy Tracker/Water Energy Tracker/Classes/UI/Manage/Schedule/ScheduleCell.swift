@@ -7,18 +7,47 @@
 //
 
 import UIKit
+import M13Checkbox
 
-class ScheduleCell: UITableViewCell {
+class ScheduleCell: UICollectionViewCell {
 
+    var item:ScheduleItem!
+    @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var checkbox: M13Checkbox!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+   
+    @IBAction func clickCheck(_ sender: Any) {
+        print("CLICK \(checkbox.checkState)" )
+        if checkbox.checkState == .checked {
+            item.on = true
+        } else {
+            item.on = false
+        }
     }
     
+    func populate() {
+        let hour = item.index
+        if hour <= 11 {
+            if hour == 0 {
+                self.time.text = "12am"
+            } else {
+                self.time.text = "\(hour)am"
+            }
+        } else {
+            if hour == 12 {
+                self.time.text = "12pm"
+            } else {
+                self.time.text = "\(hour-12)pm"
+            }
+        }
+        
+        if item.on {
+            checkbox.checkState = .checked
+        } else {
+            checkbox.checkState = .unchecked
+        }
+    }
 }

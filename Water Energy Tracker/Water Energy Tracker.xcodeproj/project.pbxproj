@@ -78,6 +78,14 @@
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
 		0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877320918A5F00378B03 /* AzureApi.swift */; };
 		0D7F877620918ADE00378B03 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877520918ADE00378B03 /* ServerError.swift */; };
+		0D9B5455236E4686000E9909 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5453236E4686000E9909 /* ScheduleVC.swift */; };
+		0D9B5456236E4686000E9909 /* ScheduleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9B5454236E4686000E9909 /* ScheduleVC.xib */; };
+		0D9B545D236E47BB000E9909 /* ReadWriteScheduleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B545C236E47BB000E9909 /* ReadWriteScheduleRequest.swift */; };
+		0D9B545F236E480E000E9909 /* HistoricalGraphItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B545E236E480E000E9909 /* HistoricalGraphItem.swift */; };
+		0D9B5461236E48F2000E9909 /* CalculateHistoricalListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5460236E48F2000E9909 /* CalculateHistoricalListResponse.swift */; };
+		0D9B5463236E551F000E9909 /* ScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5462236E551F000E9909 /* ScheduleItem.swift */; };
+		0D9B5466236E5661000E9909 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5464236E5661000E9909 /* ScheduleCell.swift */; };
+		0D9B5467236E5661000E9909 /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9B5465236E5661000E9909 /* ScheduleCell.xib */; };
 		0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */; };
 		0DB78D9E2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */; };
 		0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */; };
@@ -168,6 +176,14 @@
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
 		0D7F877320918A5F00378B03 /* AzureApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureApi.swift; sourceTree = "<group>"; };
 		0D7F877520918ADE00378B03 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		0D9B5453236E4686000E9909 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
+		0D9B5454236E4686000E9909 /* ScheduleVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleVC.xib; sourceTree = "<group>"; };
+		0D9B545C236E47BB000E9909 /* ReadWriteScheduleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteScheduleRequest.swift; sourceTree = "<group>"; };
+		0D9B545E236E480E000E9909 /* HistoricalGraphItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalGraphItem.swift; sourceTree = "<group>"; };
+		0D9B5460236E48F2000E9909 /* CalculateHistoricalListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateHistoricalListResponse.swift; sourceTree = "<group>"; };
+		0D9B5462236E551F000E9909 /* ScheduleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItem.swift; sourceTree = "<group>"; };
+		0D9B5464236E5661000E9909 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
+		0D9B5465236E5661000E9909 /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
 		0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWaterFlowInfoCell.swift; sourceTree = "<group>"; };
 		0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailWaterFlowInfoCell.xib; sourceTree = "<group>"; };
 		0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSendDataVC.swift; sourceTree = "<group>"; };
@@ -201,6 +217,7 @@
 			children = (
 				0D5CE148209548140096CD99 /* RemoteDevice.swift */,
 				0D7340B420A9FE930098343D /* Notification.swift */,
+				0D9B545E236E480E000E9909 /* HistoricalGraphItem.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -307,6 +324,7 @@
 		0D6AA3F320818C6E00194AA5 /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				0D9B5457236E46F2000E9909 /* Schedule */,
 				0D73412D20B4F30D0098343D /* WifiConfigVC.swift */,
 				0D73412E20B4F30D0098343D /* WifiConfigVC.xib */,
 				0D6AA3F420818C7F00194AA5 /* ManageVC.swift */,
@@ -399,6 +417,7 @@
 				0D7340AA20A9F63B0098343D /* SendCommandRequest.swift */,
 				0D7340AC20A9F6470098343D /* CalculateHistoricalRequest.swift */,
 				0D4C1A9521CC35B8001D4D19 /* AdditionalConfigRequest.swift */,
+				0D9B545C236E47BB000E9909 /* ReadWriteScheduleRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -414,8 +433,21 @@
 				0D7340B220A9FE750098343D /* NotificationsResponse.swift */,
 				0D7340B620AA02640098343D /* GenericResponse.swift */,
 				0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */,
+				0D9B5460236E48F2000E9909 /* CalculateHistoricalListResponse.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		0D9B5457236E46F2000E9909 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				0D9B5453236E4686000E9909 /* ScheduleVC.swift */,
+				0D9B5454236E4686000E9909 /* ScheduleVC.xib */,
+				0D9B5462236E551F000E9909 /* ScheduleItem.swift */,
+				0D9B5464236E5661000E9909 /* ScheduleCell.swift */,
+				0D9B5465236E5661000E9909 /* ScheduleCell.xib */,
+			);
+			path = Schedule;
 			sourceTree = "<group>";
 		};
 		0DE4CC1420A4B265001A4E5D /* Detail */ = {
@@ -527,6 +559,7 @@
 				0DE4CC1820A4B27F001A4E5D /* DetailVC.xib in Resources */,
 				0D7340CD20ABB16A0098343D /* HistoryVC.xib in Resources */,
 				0D73409520A9306E0098343D /* TemperatureChartCell.xib in Resources */,
+				0D9B5456236E4686000E9909 /* ScheduleVC.xib in Resources */,
 				0D73408A20A8FE060098343D /* EnergyPowerUsageChartCell.xib in Resources */,
 				0DE4CC2020A4B967001A4E5D /* DetailEnergyInfoCell.xib in Resources */,
 				0D4C1A9221CC33E6001D4D19 /* SolenoidSettingsCell.xib in Resources */,
@@ -537,6 +570,7 @@
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
 				0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */,
+				0D9B5467236E5661000E9909 /* ScheduleCell.xib in Resources */,
 				0D050A7D20A22339005B95A3 /* MainDeviceCell.xib in Resources */,
 				0DB78D9E2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib in Resources */,
 				0DB78DA221434D7E00AB60C9 /* WifiSendDataVC.xib in Resources */,
@@ -571,6 +605,7 @@
 				"${BUILT_PRODUCTS_DIR}/DateTimePicker/DateTimePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
@@ -590,6 +625,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateTimePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
@@ -648,6 +684,7 @@
 				0D7340B320A9FE750098343D /* NotificationsResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
+				0D9B5466236E5661000E9909 /* ScheduleCell.swift in Sources */,
 				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
 				0D73412F20B4F30D0098343D /* WifiConfigVC.swift in Sources */,
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
@@ -663,7 +700,10 @@
 				0D7340CC20ABB16A0098343D /* HistoryVC.swift in Sources */,
 				0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */,
 				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
+				0D9B5461236E48F2000E9909 /* CalculateHistoricalListResponse.swift in Sources */,
+				0D9B5463236E551F000E9909 /* ScheduleItem.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
+				0D9B5455236E4686000E9909 /* ScheduleVC.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
 				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
 				0D7340AF20A9F65C0098343D /* CalculateHistoricalResponse.swift in Sources */,
@@ -677,6 +717,7 @@
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
 				0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */,
 				0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */,
+				0D9B545D236E47BB000E9909 /* ReadWriteScheduleRequest.swift in Sources */,
 				0D73409C20A9F11D0098343D /* DeviceNotificationsVC.swift in Sources */,
 				0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */,
 				0D7340A420A9F4960098343D /* NotificationCell.swift in Sources */,
@@ -693,6 +734,7 @@
 				0D7340AB20A9F63B0098343D /* SendCommandRequest.swift in Sources */,
 				0D5CE142209545030096CD99 /* Constants.swift in Sources */,
 				0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */,
+				0D9B545F236E480E000E9909 /* HistoricalGraphItem.swift in Sources */,
 				0D7340C020AA5EA80098343D /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
