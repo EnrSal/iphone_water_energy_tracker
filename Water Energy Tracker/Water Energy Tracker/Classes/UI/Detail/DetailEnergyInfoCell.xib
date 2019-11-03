@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="203.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuu-wR-0ji">
@@ -164,7 +162,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHv-D8-R4b">
-                        <rect key="frame" x="16" y="75" width="343" height="27"/>
+                        <rect key="frame" x="15" y="75" width="345" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="P9F-Qt-4dD"/>
                         </constraints>
@@ -191,7 +189,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lqr-ep-qCQ">
-                        <rect key="frame" x="186" y="110" width="1" height="90"/>
+                        <rect key="frame" x="186.5" y="110" width="1" height="90"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="90" id="675-5W-oaV"/>
@@ -239,8 +237,10 @@
                 <outlet property="day" destination="SlK-cO-AFW" id="psn-C5-qwG"/>
                 <outlet property="info" destination="nHv-D8-R4b" id="tDi-CS-9j3"/>
                 <outlet property="month" destination="2Rb-Z3-Yvv" id="RaL-Y6-YAo"/>
-                <outlet property="temp1" destination="FAY-Ge-7Od" id="2Gf-p1-evf"/>
+                <outlet property="temp1" destination="FAY-Ge-7Od" id="KcL-9G-dxM"/>
                 <outlet property="temp2" destination="yk3-Cu-Rg7" id="44h-XJ-M6m"/>
+                <outlet property="topview1" destination="CeD-SZ-FKA" id="Wcf-Iw-oFm"/>
+                <outlet property="topview2" destination="nuu-wR-0ji" id="z0n-oo-x5a"/>
                 <outlet property="week" destination="Oh3-fm-VdB" id="Kew-SJ-XE2"/>
                 <outlet property="year" destination="Mlj-6Z-J6Q" id="kjt-O7-v8U"/>
             </connections>

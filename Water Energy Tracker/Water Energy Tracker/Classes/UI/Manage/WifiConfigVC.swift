@@ -16,6 +16,7 @@ import RealmSwift
 class WifiConfigVC: SaviorVC {
 
     @IBOutlet weak var waterLabel: UILabel!
+    @IBOutlet weak var disableshutoff: UISwitch!
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var wifiField: UITextField!
     @IBOutlet weak var waterView: UIView!
@@ -49,7 +50,7 @@ class WifiConfigVC: SaviorVC {
             waterView.isHidden = true
             powerSegments.isHidden = true
         }
-        
+        self.disableshutoff.isOn = savior.disable_shutoff
         if let num_mins = savior.num_mins {
             minutes.text = num_mins
         }
@@ -92,6 +93,12 @@ class WifiConfigVC: SaviorVC {
     }
 
  
+    @IBAction func clickDisable(_ sender: Any) {
+        if disableshutoff.isOn {
+            self.minutes.text = "1440"
+        }
+    }
+    
     @IBAction func clickWater(_ sender: Any) {
     }
    
@@ -105,8 +112,7 @@ class WifiConfigVC: SaviorVC {
         try! realm.write {
             self.savior.network = wifiField.text!
             self.savior.password = password.text!
-
-            
+            self.savior.disable_shutoff = disableshutoff.isOn
             if (self.savior.stype == 0) {
                 // water
                 if self.powerSegments.selectedSegmentIndex == 0 {

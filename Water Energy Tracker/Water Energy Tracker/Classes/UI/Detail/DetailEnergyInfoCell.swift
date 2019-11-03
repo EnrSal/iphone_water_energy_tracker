@@ -11,6 +11,8 @@ import RealmSwift
 
 class DetailEnergyInfoCell: UITableViewCell {
     
+    @IBOutlet weak var topview1: UIView!
+    @IBOutlet weak var topview2: UIView!
     @IBOutlet weak var temp2: UILabel!
     @IBOutlet weak var temp1: UILabel!
     @IBOutlet weak var day: UILabel!
@@ -90,31 +92,42 @@ class DetailEnergyInfoCell: UITableViewCell {
         
         let genreq:GenericRequest = GenericRequest()
         genreq.name = savior.savior_address!
-        AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?, orig:String) in
-            if let error = error {
-                print(error)
-            } else {
-                if let response = response {
-                    let daily = response.Daily!.components(separatedBy: ",")
-                    let weekly = response.Weekly!.components(separatedBy: ",")
-                    let monthly = response.Monthly!.components(separatedBy: ",")
-                    let yearly = response.Yearly!.components(separatedBy: ",")
-                    
-                    
-                    DispatchQueue.main.async {
-                        if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
-                            self.day.text = Util.galToReadable(gal: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.week.text = Util.galToReadable(gal: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.month.text = Util.galToReadable(gal: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.year.text = Util.galToReadable(gal: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                        } else {
-                            self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.month.text = Util.kwToReadable(kw: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
-                            self.year.text = Util.kwToReadable(kw: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+        
+        if self.savior.stype == Constants.temperature_only_stype {
+            print("VIEW1 \(self.info)")
+            self.topview1.isHidden = true
+            self.topview2.isHidden = true
+            self.info.isHidden = true
+        } else {
+            self.topview1.isHidden = false
+            self.topview2.isHidden = false
+            self.info.isHidden = false
+            AzureApi.shared.getKwh(req: genreq) { (error:ServerError?, response:KwhResponse?, orig:String) in
+                if let error = error {
+                    print(error)
+                } else {
+                    if let response = response {
+                        let daily = response.Daily!.components(separatedBy: ",")
+                        let weekly = response.Weekly!.components(separatedBy: ",")
+                        let monthly = response.Monthly!.components(separatedBy: ",")
+                        let yearly = response.Yearly!.components(separatedBy: ",")
+                        
+                        
+                        DispatchQueue.main.async {
+                            if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24 {
+                                self.day.text = Util.galToReadable(gal: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.week.text = Util.galToReadable(gal: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.month.text = Util.galToReadable(gal: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.year.text = Util.galToReadable(gal: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            } else {
+                                self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.month.text = Util.kwToReadable(kw: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                                self.year.text = Util.kwToReadable(kw: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            }
                         }
+                        
                     }
-                    
                 }
             }
         }

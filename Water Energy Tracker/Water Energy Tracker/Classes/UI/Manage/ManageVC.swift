@@ -96,8 +96,12 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                                 DispatchQueue.main.async {
                                     try! realm.write {
                                         let savior:RealmSavior = RealmSavior()
+                                        
+                                        savior.share_number_prev = savior.share_number
                                         savior.share_number = response.ShareNumber
+                                        savior.temp_share_number_prev = savior.temp_share_number
                                         savior.temp_share_number = response.TempShareNumber
+
                                         savior.from_share = true
                                         savior.savior_address = Macid
                                         savior.mac_address = Macid
@@ -529,13 +533,21 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             }
             
             if !savior.from_share {
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Read-Only Share Number", comment: ""), style: .default, handler: { action in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                        
-                        UIPasteboard.general.string = savior.temp_share_number!
-                        self.showError(message: "temporary share number is: \(savior.temp_share_number!) (saved to clipboard)")
-                    }
-                }))
+                
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Read-Only Share Number", comment: ""), style: .default, handler: { action in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            
+                            if savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
+                                let sendVC:TempShareVC = TempShareVC(nibName: "TempShareVC", bundle: nil)
+                                sendVC.savior = savior
+                                let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                self.navigationController!.present(nav, animated: true, completion: nil)
+                            } else {
+                                UIPasteboard.general.string = savior.temp_share_number!
+                                self.showError(message: "temporary share number is: \(savior.temp_share_number!) (saved to clipboard)")
+                            }
+                        }
+                    }))
             }
             
             
@@ -612,7 +624,9 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                         DispatchQueue.main.async {
                             try! realm.write {
                                 let savior:RealmSavior = RealmSavior()
+                                savior.share_number_prev = savior.share_number
                                 savior.share_number = response.ShareNumber
+                                savior.temp_share_number_prev = savior.temp_share_number
                                 savior.temp_share_number = response.TempShareNumber
                                 savior.from_share = false
                                 savior.savior_address = peripheral.name!.replacingOccurrences(of: "SX", with: "")

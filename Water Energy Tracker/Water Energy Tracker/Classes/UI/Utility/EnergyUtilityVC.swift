@@ -9,7 +9,8 @@
 import UIKit
 import DatePickerDialog
 
-class EnergyUtilityVC: SaviorVC {
+class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
+    
 
     @IBOutlet weak var result: UILabel!
     @IBOutlet weak var todate: UILabel!
@@ -19,7 +20,10 @@ class EnergyUtilityVC: SaviorVC {
     
     var from:Date? = nil
     var to:Date? = nil
+    @IBOutlet weak var tableView: UITableView!
 
+    var point_lists:[[GraphPoint]] = Array(repeating: [GraphPoint](), count: 8)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +32,14 @@ class EnergyUtilityVC: SaviorVC {
         fromdate.text = ""
         todate.text = ""
         self.title = "Energy Utility"
+
+        self.tableView.register(EnergyHistoricalGraphCell.self, forCellReuseIdentifier: "HISTORICAL_GRAPH")
+        self.tableView.register(UINib(nibName: "EnergyHistoricalGraphCell", bundle: nil), forCellReuseIdentifier: "HISTORICAL_GRAPH")
+        self.tableView.tableFooterView = UIView()
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.separatorStyle = .none
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,6 +47,24 @@ class EnergyUtilityVC: SaviorVC {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - TableView
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.point_lists.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell:EnergyHistoricalGraphCell = (self.tableView.dequeueReusableCell(withIdentifier: "HISTORICAL_GRAPH", for: indexPath) as? EnergyHistoricalGraphCell)!
+        
+        cell.points = self.point_lists[indexPath.row]
+        cell.populate()
+        
+        return cell
+    }
 
     // MARK: - Actions
     
@@ -70,14 +100,15 @@ class EnergyUtilityVC: SaviorVC {
             req.mac = self.savior.savior_address!
             req.fromdate = formatter.string(from: from)
             req.todate = formatter.string(from: to)
-
+            req.option = "List"
             self.showHud()
-            AzureApi.shared.calculateHistorical(req: req, completionHandler: { (error:ServerError?, response:CalculateHistoricalResponse?) in
+            AzureApi.shared.getHistoricalGraph(req: req) { (error:ServerError?, responseList:[CalculateHistoricalResponse]?) in
                 self.hideHud()
                 if let error = error {
                     print(error)
                 } else {
-                    if let response = response {
+                    if let responseList = responseList {
+                        let response = responseList[1]
                         let results = response.TotalKWH!.components(separatedBy: ",")
                         var str:String = ""
                         
@@ -115,9 +146,35 @@ class EnergyUtilityVC: SaviorVC {
                         DispatchQueue.main.async {
                             self.result.text = str
                         }
+                        
+                        // graph
+                        let formatter2 = DateFormatter()
+                        formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                        formatter2.timeZone = TimeZone(abbreviation: "UTC")
+                        var per_pulse = 0.01
+                        per_pulse = self.savior.EnergyUnitPerPulse
+
+                        let graphresponse = responseList[0]
+                        for item in graphresponse.AllKWH {
+                            print("item \(item.StorageDate) \(item.C1)")
+                            let date = formatter.date(from: item.StorageDate!)!
+                            
+                            self.point_lists[0].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C1!)*per_pulse))
+                            self.point_lists[1].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C2!)*per_pulse))
+                            self.point_lists[2].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C3!)*per_pulse))
+                            self.point_lists[3].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C4!)*per_pulse))
+                            self.point_lists[4].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C5!)*per_pulse))
+                            self.point_lists[5].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C6!)*per_pulse))
+                            self.point_lists[6].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C7!)*per_pulse))
+                            self.point_lists[7].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C8!)*per_pulse))
+                        }
+                        
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
                     }
                 }
-            })
+            }
 
         } else {
             self.showError(message: "Please select dates.")

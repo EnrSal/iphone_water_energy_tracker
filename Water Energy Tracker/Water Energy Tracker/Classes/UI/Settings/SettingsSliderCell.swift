@@ -130,7 +130,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             slider.maximumValue = 100
             self.maxLabel.text = "100"
             titleLabel.text = "Kilo Watts used in 1 hour:"
-            if self.owner.savior.stype >= 20 {
+            if self.owner.savior.stype >= 20 && self.owner.savior.stype < 30 {
                 titleLabel.text = "Gallons used in 1 hour:"
                 slider.maximumValue = 500
                 self.maxLabel.text = "500"
@@ -145,7 +145,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             titleLabel.text = "Kilo Watts used in 1 day:"
             slider.maximumValue = 1500
             self.maxLabel.text = "1500"
-            if self.owner.savior.stype >= 20 {
+            if self.owner.savior.stype >= 20 && self.owner.savior.stype < 30 {
                 titleLabel.text = "Gallons used in 1 day:"
                 slider.maximumValue = 3000
                 self.maxLabel.text = "3000"
@@ -160,7 +160,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             titleLabel.text = "Kilo Watts used in 1 week:"
             slider.maximumValue = 500000
             self.maxLabel.text = "500k"
-            if self.owner.savior.stype >= 20 {
+            if self.owner.savior.stype >= 20 && self.owner.savior.stype < 30 {
                 titleLabel.text = "Gallons used in 1 week:"
                 slider.maximumValue = 20000
                 self.maxLabel.text = "20k"
@@ -173,7 +173,7 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             self.currentEdut.text = "\(Int(self.owner.config!.Week!)!)"
         case .kwmonth:
             titleLabel.text = "Kilo Watts used in 1 month:"
-            if self.owner.savior.stype >= 20 {
+            if self.owner.savior.stype >= 20 && self.owner.savior.stype < 30 {
                 titleLabel.text = "Gallons used in 1 month:"
             }
             slider.minimumValue = 0

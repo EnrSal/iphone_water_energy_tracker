@@ -47,7 +47,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         }
         
         let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
-        if (self.savior.stype == 0) {
+        if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype {
             if from_share {
                 self.navigationItem.rightBarButtonItems = [historyButton]
             } else {
@@ -246,7 +246,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         }
         
         
-        if (self.savior.stype == 0) {
+        if (self.savior.stype == 0) || (self.savior.stype == Constants.temperature_only_stype) {
             name.text = self.savior.alias!
         } else {
             
@@ -277,6 +277,9 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
     // MARK: - TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if savior.stype == Constants.temperature_only_stype {
+            return 3
+        }
         return 4
     }
     
@@ -302,7 +305,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 cell.populate()
                 
                 return cell;
-            } else if self.savior.stype >= 20 {
+            } else if self.savior.stype == Constants.water_gals_stype || self.savior.stype == Constants.water_gals2_stype || self.savior.stype == Constants.water_gals4_stype || self.savior.stype == Constants.water_gals8_stype {
                 
                 let cell:DetailWaterFlowInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_FLOW_CELL", for: indexPath) as? DetailWaterFlowInfoCell)!
                 
@@ -347,7 +350,17 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 cell.populate()
                 
                 return cell;
-
+            } else if savior.stype == Constants.temperature_only_stype {
+                let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!
+                
+                cell.end = Date.UTCDate()
+                let calendar = NSCalendar.autoupdatingCurrent
+                cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
+                cell.savior = self.savior
+                cell.energy_unit = self.energy_unit
+                cell.populate()
+                
+                return cell;
             } else {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 

@@ -78,6 +78,10 @@
 		0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877120918A3A00378B03 /* NamesResponse.swift */; };
 		0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877320918A5F00378B03 /* AzureApi.swift */; };
 		0D7F877620918ADE00378B03 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D7F877520918ADE00378B03 /* ServerError.swift */; };
+		0D8A1E11236F5AC90088C3B4 /* TempShareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8A1E0F236F5AC90088C3B4 /* TempShareVC.swift */; };
+		0D8A1E12236F5AC90088C3B4 /* TempShareVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D8A1E10236F5AC90088C3B4 /* TempShareVC.xib */; };
+		0D8A1E15236F5AE20088C3B4 /* TempShareCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8A1E13236F5AE20088C3B4 /* TempShareCell.swift */; };
+		0D8A1E16236F5AE20088C3B4 /* TempShareCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D8A1E14236F5AE20088C3B4 /* TempShareCell.xib */; };
 		0D9B5455236E4686000E9909 /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5453236E4686000E9909 /* ScheduleVC.swift */; };
 		0D9B5456236E4686000E9909 /* ScheduleVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9B5454236E4686000E9909 /* ScheduleVC.xib */; };
 		0D9B545D236E47BB000E9909 /* ReadWriteScheduleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B545C236E47BB000E9909 /* ReadWriteScheduleRequest.swift */; };
@@ -96,6 +100,9 @@
 		0DE4CC1C20A4B954001A4E5D /* DetailWaterInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1A20A4B954001A4E5D /* DetailWaterInfoCell.xib */; };
 		0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1D20A4B967001A4E5D /* DetailEnergyInfoCell.swift */; };
 		0DE4CC2020A4B967001A4E5D /* DetailEnergyInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1E20A4B967001A4E5D /* DetailEnergyInfoCell.xib */; };
+		0DFC91DD236F89B100E50E50 /* EnergyHistoricalGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFC91DB236F89B100E50E50 /* EnergyHistoricalGraphCell.swift */; };
+		0DFC91DE236F89B100E50E50 /* EnergyHistoricalGraphCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC91DC236F89B100E50E50 /* EnergyHistoricalGraphCell.xib */; };
+		0DFC91E0236F8ADA00E50E50 /* GraphPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFC91DF236F8ADA00E50E50 /* GraphPoint.swift */; };
 		67EBA7C9C5A378679C9E4924 /* Pods_Water_Energy_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20DEE1CA70453D331F84E999 /* Pods_Water_Energy_Tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -176,6 +183,10 @@
 		0D7F877120918A3A00378B03 /* NamesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamesResponse.swift; sourceTree = "<group>"; };
 		0D7F877320918A5F00378B03 /* AzureApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzureApi.swift; sourceTree = "<group>"; };
 		0D7F877520918ADE00378B03 /* ServerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		0D8A1E0F236F5AC90088C3B4 /* TempShareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempShareVC.swift; sourceTree = "<group>"; };
+		0D8A1E10236F5AC90088C3B4 /* TempShareVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempShareVC.xib; sourceTree = "<group>"; };
+		0D8A1E13236F5AE20088C3B4 /* TempShareCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempShareCell.swift; sourceTree = "<group>"; };
+		0D8A1E14236F5AE20088C3B4 /* TempShareCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TempShareCell.xib; sourceTree = "<group>"; };
 		0D9B5453236E4686000E9909 /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		0D9B5454236E4686000E9909 /* ScheduleVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleVC.xib; sourceTree = "<group>"; };
 		0D9B545C236E47BB000E9909 /* ReadWriteScheduleRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadWriteScheduleRequest.swift; sourceTree = "<group>"; };
@@ -194,6 +205,9 @@
 		0DE4CC1A20A4B954001A4E5D /* DetailWaterInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailWaterInfoCell.xib; sourceTree = "<group>"; };
 		0DE4CC1D20A4B967001A4E5D /* DetailEnergyInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEnergyInfoCell.swift; sourceTree = "<group>"; };
 		0DE4CC1E20A4B967001A4E5D /* DetailEnergyInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailEnergyInfoCell.xib; sourceTree = "<group>"; };
+		0DFC91DB236F89B100E50E50 /* EnergyHistoricalGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyHistoricalGraphCell.swift; sourceTree = "<group>"; };
+		0DFC91DC236F89B100E50E50 /* EnergyHistoricalGraphCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyHistoricalGraphCell.xib; sourceTree = "<group>"; };
+		0DFC91DF236F8ADA00E50E50 /* GraphPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPoint.swift; sourceTree = "<group>"; };
 		11A8F7AD65C39486BD704C22 /* Pods-Water Energy Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water Energy Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Water Energy Tracker/Pods-Water Energy Tracker.release.xcconfig"; sourceTree = "<group>"; };
 		20DEE1CA70453D331F84E999 /* Pods_Water_Energy_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Water_Energy_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3FC91BDA0BD6793F2068CD /* Pods-Water Energy Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Water Energy Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Water Energy Tracker/Pods-Water Energy Tracker.debug.xcconfig"; sourceTree = "<group>"; };
@@ -324,6 +338,7 @@
 		0D6AA3F320818C6E00194AA5 /* Manage */ = {
 			isa = PBXGroup;
 			children = (
+				0D8A1E0E236F5AA80088C3B4 /* New Group */,
 				0D9B5457236E46F2000E9909 /* Schedule */,
 				0D73412D20B4F30D0098343D /* WifiConfigVC.swift */,
 				0D73412E20B4F30D0098343D /* WifiConfigVC.xib */,
@@ -380,6 +395,9 @@
 			children = (
 				0D7340CE20ABC93D0098343D /* EnergyUtilityVC.swift */,
 				0D7340CF20ABC93D0098343D /* EnergyUtilityVC.xib */,
+				0DFC91DB236F89B100E50E50 /* EnergyHistoricalGraphCell.swift */,
+				0DFC91DC236F89B100E50E50 /* EnergyHistoricalGraphCell.xib */,
+				0DFC91DF236F8ADA00E50E50 /* GraphPoint.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -436,6 +454,17 @@
 				0D9B5460236E48F2000E9909 /* CalculateHistoricalListResponse.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		0D8A1E0E236F5AA80088C3B4 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				0D8A1E0F236F5AC90088C3B4 /* TempShareVC.swift */,
+				0D8A1E10236F5AC90088C3B4 /* TempShareVC.xib */,
+				0D8A1E13236F5AE20088C3B4 /* TempShareCell.swift */,
+				0D8A1E14236F5AE20088C3B4 /* TempShareCell.xib */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		0D9B5457236E46F2000E9909 /* Schedule */ = {
@@ -567,6 +596,7 @@
 				0D4C1A9A21CC4D9B001D4D19 /* TimeZoneCell.xib in Resources */,
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
 				0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */,
+				0D8A1E16236F5AE20088C3B4 /* TempShareCell.xib in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
 				0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */,
@@ -581,7 +611,9 @@
 				0D7340C920ABA8DE0098343D /* SendCommandVC.xib in Resources */,
 				0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */,
 				0D73413020B4F30D0098343D /* WifiConfigVC.xib in Resources */,
+				0DFC91DE236F89B100E50E50 /* EnergyHistoricalGraphCell.xib in Resources */,
 				0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */,
+				0D8A1E12236F5AC90088C3B4 /* TempShareVC.xib in Resources */,
 				0D7340A120A9F4880098343D /* NotificationTopLevelCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -691,6 +723,8 @@
 				0D7340C820ABA8DE0098343D /* SendCommandVC.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
 				0D4C1A9121CC33E6001D4D19 /* SolenoidSettingsCell.swift in Sources */,
+				0D8A1E11236F5AC90088C3B4 /* TempShareVC.swift in Sources */,
+				0DFC91E0236F8ADA00E50E50 /* GraphPoint.swift in Sources */,
 				0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
 				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
@@ -716,6 +750,7 @@
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
 				0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */,
+				0DFC91DD236F89B100E50E50 /* EnergyHistoricalGraphCell.swift in Sources */,
 				0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */,
 				0D9B545D236E47BB000E9909 /* ReadWriteScheduleRequest.swift in Sources */,
 				0D73409C20A9F11D0098343D /* DeviceNotificationsVC.swift in Sources */,
@@ -728,6 +763,7 @@
 				0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */,
 				0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */,
 				0D7340A920A9F6180098343D /* HistoricalKwhRequest.swift in Sources */,
+				0D8A1E15236F5AE20088C3B4 /* TempShareCell.swift in Sources */,
 				0D73409820A9F10A0098343D /* NotificationsVC.swift in Sources */,
 				0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */,
 				0D7340AD20A9F6470098343D /* CalculateHistoricalRequest.swift in Sources */,

@@ -80,7 +80,8 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                         try! realm.write {
                             self.savior.share_number_prev = self.savior.share_number
                             self.savior.share_number = response.ShareNumber
-                            self.savior.temp_share_number_prev = response.TempShareNumber
+                            self.savior.temp_share_number_prev = self.savior.temp_share_number
+                            self.savior.temp_share_number = response.TempShareNumber
                             self.savior.stype = Int(response.Stype!)!
                             self.savior.alias = response.DeviceName
                             self.savior.energy_unit_name_1 = response.Name1
@@ -532,8 +533,26 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             
             let realm = try! Realm()
             let items = realm.objects(RealmDataPoint.self).filter("mac = '\(self.savior.savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)
+           
+            print("items.count \(items.count)")
+
             if items.count == 0 {
                 return
+            }
+
+            
+            if let test_share_number_used1 = savior.share_number_used {
+                print("test_share_number_used1 \(test_share_number_used1)")
+                if test_share_number_used1.count == 15 {
+                    
+                    let index = String(test_share_number_used1.suffix(1))
+
+                    let num = Int(index)!
+                    print("test_share_number_used1 num \(num)")
+                    if (num != indexPath.row+1) {
+                        return
+                    }
+                }
             }
 
             

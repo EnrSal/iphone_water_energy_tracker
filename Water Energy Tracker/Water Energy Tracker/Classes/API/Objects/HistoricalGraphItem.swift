@@ -11,14 +11,14 @@ import ObjectMapper
 class HistoricalGraphItem: NSObject, Mappable {
 
     var StorageDate: String?
-    var C1: String?
-    var C2: String?
-    var C3: String?
-    var C4: String?
-    var C5: String?
-    var C6: String?
-    var C7: String?
-    var C8: String?
+    var C1: Int?
+    var C2: Int?
+    var C3: Int?
+    var C4: Int?
+    var C5: Int?
+    var C6: Int?
+    var C7: Int?
+    var C8: Int?
 
     override init() {}
     

@@ -11,6 +11,7 @@ import UIKit
 class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
 
     var savior: RealmSavior!
+    @IBOutlet weak var topview: UIView!
     var date:Date!
     var energy_unit:Int = 0
     @IBOutlet weak var day: UILabel!
@@ -35,7 +36,7 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.register(UINib(nibName: "TemperatureChartCell", bundle: nil), forCellReuseIdentifier: "TEMP_CHART")
         
         self.tableView.tableFooterView = UIView()
-        if (self.savior.stype != 0) {
+        if (self.savior.stype != 0) && self.savior.stype != Constants.temperature_only_stype {
             self.tableView.tableHeaderView = self.header
         }
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -59,7 +60,7 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func populate() {
-        if (self.savior.stype != 0) {
+        if (self.savior.stype != 0) && self.savior.stype != Constants.temperature_only_stype {
             self.day.text = ""
             self.week.text = ""
             self.month.text = ""
@@ -108,6 +109,9 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     // MARK: - TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if self.savior.stype == Constants.temperature_only_stype {
+            return 1
+        }
         return 3
     }
     
@@ -137,6 +141,20 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 //cell.start = self.date.startOfDay
                 cell.savior = self.savior
                 cell.energy_unit = self.energy_unit
+                cell.populate()
+                
+                return cell;
+            } else if self.savior.stype == Constants.temperature_only_stype {
+                let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!
+                
+                cell.history = true
+                //cell.end = self.date.endOfDay!
+                //cell.start = self.date.startOfDay
+                cell.end = Calendar.utc.date(byAdding: .day, value: 1, to: self.date)!
+                cell.start = self.date
+                cell.savior = self.savior
+                cell.energy_unit = self.energy_unit
+                cell.heading.text = "Temperatures"
                 cell.populate()
                 
                 return cell;

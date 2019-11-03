@@ -10,6 +10,7 @@ import ObjectMapper
 
 class CalculateHistoricalRequest: NSObject, Mappable {
 
+    var option: String?
     var mac: String?
     var fromdate: String?
     var todate: String?
@@ -21,6 +22,7 @@ class CalculateHistoricalRequest: NSObject, Mappable {
     public required init?(map: Map) {}
     
     public func mapping(map: Map) {
+        option <- map["option"]
         mac <- map["mac"]
         fromdate <- map["fromdate"]
         todate <- map["todate"]
