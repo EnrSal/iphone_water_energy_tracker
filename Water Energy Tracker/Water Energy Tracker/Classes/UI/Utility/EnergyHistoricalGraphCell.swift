@@ -58,7 +58,7 @@ class EnergyHistoricalGraphCell: UITableViewCell {
             xAxis.granularity = 1
             xAxis.labelCount = 7
             xAxis.labelRotationAngle = -60
-            let formatter = HourValueFormatter()
+            let formatter = DayValueFormatter()
             formatter.countToDate = self.countToDate
             xAxis.valueFormatter = formatter
             chartView.setNeedsDisplay()

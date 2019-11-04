@@ -39,7 +39,7 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 100
         self.tableView.separatorStyle = .none
-
+        self.tableView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -149,15 +149,19 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                         
                         // graph
                         let formatter2 = DateFormatter()
-                        formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SS"
+                        formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                         formatter2.timeZone = TimeZone(abbreviation: "UTC")
                         var per_pulse = 0.01
                         per_pulse = self.savior.EnergyUnitPerPulse
+                        print("per_pulse \(self.savior.EnergyUnitPerPulse)")
 
                         let graphresponse = responseList[0]
                         for item in graphresponse.AllKWH {
-                            print("item \(item.StorageDate) \(item.C1)")
-                            let date = formatter.date(from: item.StorageDate!)!
+                            
+                            let str = item.StorageDate!.components(separatedBy: ".")[0]
+
+                            print("item \(str) \(item.C1)")
+                            let date = formatter2.date(from: str)!
                             
                             self.point_lists[0].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C1!)*per_pulse))
                             self.point_lists[1].append(GraphPoint(from: date.timeIntervalSince1970, value: Double(item.C2!)*per_pulse))
@@ -170,6 +174,7 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                         }
                         
                         DispatchQueue.main.async {
+                            self.tableView.isHidden = false
                             self.tableView.reloadData()
                         }
                     }

@@ -674,7 +674,10 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                                                                 newsavior.EnergyUnit = response.EnergyUnit
                                                                 if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
                                                                     newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
+                                                                } else if let EnergyUnitPerPulse = response.UnitPerPulse {
+                                                                    newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
                                                                 }
+
                                                             }
                                                         }
                                                         self.peripherals.remove(at: indexPath.row)

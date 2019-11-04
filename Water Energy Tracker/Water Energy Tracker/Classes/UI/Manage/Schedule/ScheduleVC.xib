@@ -31,7 +31,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WAi-TJ-IUe">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="599"/>
+                    <rect key="frame" x="0.0" y="41" width="375" height="558"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Ib-jj-0vf">
                         <size key="itemSize" width="50" height="50"/>
@@ -44,12 +44,23 @@
                         <outlet property="delegate" destination="-1" id="sxE-hq-JgM"/>
                     </connections>
                 </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="check mark=OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cil-F4-QIn">
+                    <rect key="frame" x="16" y="12" width="131" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="jAm-46-Okz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="WAi-TJ-IUe" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="G95-xV-XRW"/>
+                <constraint firstItem="cil-F4-QIn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="0T7-hA-QrX"/>
                 <constraint firstItem="hKf-Oi-ahE" firstAttribute="top" secondItem="WAi-TJ-IUe" secondAttribute="bottom" constant="18" id="GIp-m2-nLR"/>
                 <constraint firstItem="hKf-Oi-ahE" firstAttribute="top" secondItem="WAi-TJ-IUe" secondAttribute="bottom" constant="18" id="HGf-hb-aTs"/>
+                <constraint firstItem="cil-F4-QIn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="XI9-vh-jvw"/>
+                <constraint firstItem="WAi-TJ-IUe" firstAttribute="top" secondItem="cil-F4-QIn" secondAttribute="bottom" constant="8" id="Xq8-Q7-Ghv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hKf-Oi-ahE" secondAttribute="bottom" constant="20" id="Zkt-hK-gHg"/>
                 <constraint firstItem="hKf-Oi-ahE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gXu-kh-Eds"/>
                 <constraint firstItem="WAi-TJ-IUe" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="rs9-Hd-inW"/>
