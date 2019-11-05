@@ -58,6 +58,20 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     var populating_address:String? = nil
     
     func populate() {
+        self.name.text = savior.alias!
+        unit1_usage = nil
+        unit2_usage = nil
+        unit3_usage = nil
+        unit4_usage = nil
+        unit5_usage = nil
+        unit6_usage = nil
+        unit7_usage = nil
+        unit8_usage = nil
+        self.typeImage.image = nil
+        self.temp.text = ""
+        self.solminutes.text = "Not synced"
+        self.solminutes.textColor = UIColor.lightGray
+
         populating_address = savior.savior_address!
 
         let req:GenericRequest = GenericRequest()
