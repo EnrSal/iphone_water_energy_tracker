@@ -5,6 +5,7 @@ PODS:
   - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.3)
+  - AzureNotificationHubs-iOS (2.0.4)
   - Charts (3.1.1):
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityLogger
   - AlamofireObjectMapper
+  - AzureNotificationHubs-iOS
   - Charts
   - Crashlytics
   - D2PDatePicker
@@ -68,12 +70,14 @@ SPEC REPOS:
     - SwiftyBluetooth
     - SwiftyJSON
   trunk:
+    - AzureNotificationHubs-iOS
     - M13Checkbox
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
   AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
+  AzureNotificationHubs-iOS: ff08e3545a8a81bf2375861b5f7404aa930932e7
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
   D2PDatePicker: e35a6b3dd5fac16de8a17606dc0bb285e8b1a875
@@ -91,6 +95,6 @@ SPEC CHECKSUMS:
   SwiftyBluetooth: 9e26b1367f56aa60f35713f6d968382144bccfd5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: c1488c1b2bccab489baee1ddc97a4ada4b549051
+PODFILE CHECKSUM: 73a85d2e53728c3d70cc17e4e88eb77c28f1ae79
 
 COCOAPODS: 1.8.3

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScheduleVC" customModule="Water_Energy_Tracker" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="WAi-TJ-IUe" id="Vyi-BP-DTs"/>
+                <outlet property="heightconstraint" destination="o8I-Jq-gLr" id="2u2-wD-V1T"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,6 +34,9 @@
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="WAi-TJ-IUe">
                     <rect key="frame" x="0.0" y="41" width="375" height="558"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="558" id="o8I-Jq-gLr"/>
+                    </constraints>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1Ib-jj-0vf">
                         <size key="itemSize" width="50" height="50"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -50,15 +54,13 @@
                         <constraint firstAttribute="height" constant="21" id="jAm-46-Okz"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="cil-F4-QIn" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="0T7-hA-QrX"/>
-                <constraint firstItem="hKf-Oi-ahE" firstAttribute="top" secondItem="WAi-TJ-IUe" secondAttribute="bottom" constant="18" id="GIp-m2-nLR"/>
-                <constraint firstItem="hKf-Oi-ahE" firstAttribute="top" secondItem="WAi-TJ-IUe" secondAttribute="bottom" constant="18" id="HGf-hb-aTs"/>
                 <constraint firstItem="cil-F4-QIn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="XI9-vh-jvw"/>
                 <constraint firstItem="WAi-TJ-IUe" firstAttribute="top" secondItem="cil-F4-QIn" secondAttribute="bottom" constant="8" id="Xq8-Q7-Ghv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hKf-Oi-ahE" secondAttribute="bottom" constant="20" id="Zkt-hK-gHg"/>

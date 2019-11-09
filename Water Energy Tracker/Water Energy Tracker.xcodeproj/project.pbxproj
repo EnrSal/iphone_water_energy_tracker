@@ -36,7 +36,6 @@
 		0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AA3ED20818A7B00194AA5 /* MainVC.xib */; };
 		0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D6AA3F420818C7F00194AA5 /* ManageVC.swift */; };
 		0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D6AA3F520818C7F00194AA5 /* ManageVC.xib */; };
-		0D73407F20A8ECFE0098343D /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D73407E20A8ECFE0098343D /* WindowsAzureMessaging.framework */; };
 		0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73408720A8FE060098343D /* EnergyPowerUsageChartCell.swift */; };
 		0D73408A20A8FE060098343D /* EnergyPowerUsageChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D73408820A8FE060098343D /* EnergyPowerUsageChartCell.xib */; };
 		0D73408C20A90F830098343D /* HourValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D73408B20A90F830098343D /* HourValueFormatter.swift */; };
@@ -139,7 +138,6 @@
 		0D6AA3ED20818A7B00194AA5 /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		0D6AA3F420818C7F00194AA5 /* ManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageVC.swift; sourceTree = "<group>"; };
 		0D6AA3F520818C7F00194AA5 /* ManageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManageVC.xib; sourceTree = "<group>"; };
-		0D73407E20A8ECFE0098343D /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		0D73408020A8EDA80098343D /* Water Energy Tracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Water Energy Tracker-Bridging-Header.h"; sourceTree = "<group>"; };
 		0D73408420A8EE6F0098343D /* HubInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HubInfo.h; sourceTree = "<group>"; };
 		0D73408720A8FE060098343D /* EnergyPowerUsageChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyPowerUsageChartCell.swift; sourceTree = "<group>"; };
@@ -221,7 +219,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67EBA7C9C5A378679C9E4924 /* Pods_Water_Energy_Tracker.framework in Frameworks */,
-				0D73407F20A8ECFE0098343D /* WindowsAzureMessaging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +238,6 @@
 		0D6AA3C6208187CF00194AA5 = {
 			isa = PBXGroup;
 			children = (
-				0D73407E20A8ECFE0098343D /* WindowsAzureMessaging.framework */,
 				0D6AA3D1208187CF00194AA5 /* Water Energy Tracker */,
 				0D6AA3D0208187CF00194AA5 /* Products */,
 				F5D3F24931D9B7A35635461D /* Pods */,
@@ -916,7 +912,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -944,7 +940,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

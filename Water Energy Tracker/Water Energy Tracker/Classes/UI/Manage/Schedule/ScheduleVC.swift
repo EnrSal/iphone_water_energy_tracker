@@ -10,6 +10,7 @@ import UIKit
 
 class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var heightconstraint: NSLayoutConstraint!
     var savior: RealmSavior!
     @IBOutlet weak var collectionView: UICollectionView!
     var hours:[ScheduleItem] = Array(repeating: ScheduleItem(), count: 24)
@@ -49,6 +50,8 @@ class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource
                 }
             }
         }
+        
+        self.heightconstraint.constant = 13*40
 
 
     }
@@ -121,7 +124,7 @@ class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource
         
         let width = ((screenSize.width-2.0)/2.0)
 
-        return CGSize(width: width, height: 50)
+        return CGSize(width: width, height: 40)
     }
     
 

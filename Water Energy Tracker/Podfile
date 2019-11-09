@@ -19,6 +19,7 @@ platform :ios, '10.0'
   pod 'DateTimePicker'
   pod 'DatePickerDialog'
   pod 'M13Checkbox'
+  pod 'AzureNotificationHubs-iOS'
 #  pod 'SwiftWebVC'
 end
 

@@ -306,6 +306,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                     sendVC.savior = savior
                     
                     let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                    nav.modalPresentationStyle = .fullScreen
                     self.navigationController!.present(nav, animated: true, completion: nil)
                     
                     
@@ -365,6 +366,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                                         sendVC.savior = savior
                                         sendVC.peripheral = peripheral
                                         let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                        nav.modalPresentationStyle = .fullScreen
                                         self.navigationController!.present(nav, animated: true, completion: nil)
                                         
                                         
@@ -541,6 +543,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                                 let sendVC:TempShareVC = TempShareVC(nibName: "TempShareVC", bundle: nil)
                                 sendVC.savior = savior
                                 let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                nav.modalPresentationStyle = .fullScreen
                                 self.navigationController!.present(nav, animated: true, completion: nil)
                             } else {
                                 UIPasteboard.general.string = savior.temp_share_number!
@@ -557,6 +560,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                     let sendVC:ScheduleVC = ScheduleVC(nibName: "ScheduleVC", bundle: nil)
                     sendVC.savior = savior
                     let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                    nav.modalPresentationStyle = .fullScreen
                     self.navigationController!.present(nav, animated: true, completion: nil)
                 }))
             }
@@ -580,6 +584,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                         let sendVC:SendCommandVC = SendCommandVC(nibName: "SendCommandVC", bundle: nil)
                         sendVC.savior = savior
                         let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                        nav.modalPresentationStyle = .fullScreen
                         self.navigationController!.present(nav, animated: true, completion: nil)
                     }))
                 }
