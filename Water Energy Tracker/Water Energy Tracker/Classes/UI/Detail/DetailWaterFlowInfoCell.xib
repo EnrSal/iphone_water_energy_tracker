@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,8 +13,8 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WATER_INFO_FLOW_CELL" rowHeight="272" id="dhr-Wb-tns" customClass="DetailWaterFlowInfoCell" customModule="Water_Energy_Tracker" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dhr-Wb-tns" id="itC-qb-v42">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="271.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="dhr-Wb-tns" id="itC-qb-v42">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="272"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqB-OT-tUi">
@@ -172,7 +169,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUd-Wf-vWY">
-                        <rect key="frame" x="16" y="75" width="343" height="27"/>
+                        <rect key="frame" x="15" y="75" width="345" height="27"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="27" id="L93-zc-jl6"/>
                         </constraints>
@@ -199,10 +196,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NRl-fD-Imd">
-                        <rect key="frame" x="0.0" y="200" width="186" height="66"/>
+                        <rect key="frame" x="0.0" y="200" width="186.5" height="66"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IhG-w0-1gp">
-                                <rect key="frame" x="8" y="8" width="170" height="21"/>
+                                <rect key="frame" x="8" y="8" width="170.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="n5D-nd-DJJ"/>
                                 </constraints>
@@ -211,7 +208,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detections last hour" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDp-jG-8T4">
-                                <rect key="frame" x="8" y="37" width="170" height="21"/>
+                                <rect key="frame" x="8" y="37" width="170.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="jaJ-ri-6TT"/>
                                 </constraints>
@@ -233,10 +230,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0F-tp-KRn">
-                        <rect key="frame" x="189" y="200" width="185.5" height="66"/>
+                        <rect key="frame" x="188.5" y="200" width="186.5" height="66"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oey-p1-QlP">
-                                <rect key="frame" x="8" y="8" width="169.5" height="21"/>
+                                <rect key="frame" x="8" y="8" width="170.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="974-uu-5dM"/>
                                 </constraints>
@@ -245,7 +242,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="detections last day" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5As-Ge-18w">
-                                <rect key="frame" x="8" y="37" width="169.5" height="21"/>
+                                <rect key="frame" x="8" y="37" width="170.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="zlo-Sw-8dR"/>
                                 </constraints>
@@ -267,7 +264,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T1N-hg-VpJ">
-                        <rect key="frame" x="186" y="110" width="1" height="156"/>
+                        <rect key="frame" x="186.5" y="110" width="1" height="156"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="156" id="cpD-3i-eek"/>
@@ -328,6 +325,8 @@
                 <outlet property="month" destination="uuE-0e-wVA" id="1RO-AC-gjv"/>
                 <outlet property="temp1" destination="glM-Da-IGo" id="IIx-mf-vhQ"/>
                 <outlet property="temp2" destination="Kcv-Y8-EeK" id="GHX-bg-IDT"/>
+                <outlet property="topview1" destination="TNF-1E-2Vr" id="9wN-om-8HA"/>
+                <outlet property="topview2" destination="dqB-OT-tUi" id="fwb-85-kgI"/>
                 <outlet property="week" destination="CVt-oX-Zg9" id="Dp8-2S-EYz"/>
                 <outlet property="year" destination="nDr-aT-RWy" id="H0z-wV-Lyc"/>
             </connections>

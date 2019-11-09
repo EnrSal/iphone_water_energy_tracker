@@ -299,6 +299,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         switch indexPath.section {
         case 0:
             if (self.savior.stype == 0) {
+                print("CELL HERE 1")
                 let cell:DetailWaterInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_CELL", for: indexPath) as? DetailWaterInfoCell)!
                 
                 cell.savior = self.savior
@@ -307,6 +308,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 return cell;
             } else if self.savior.stype == Constants.water_gals_stype || self.savior.stype == Constants.water_gals2_stype || self.savior.stype == Constants.water_gals4_stype || self.savior.stype == Constants.water_gals8_stype {
                 
+                print("CELL HERE 2")
                 let cell:DetailWaterFlowInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_FLOW_CELL", for: indexPath) as? DetailWaterFlowInfoCell)!
                 
                 cell.savior = self.savior
@@ -317,6 +319,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
 
             }
             
+            print("CELL HERE 3")
             let cell:DetailEnergyInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_INFO_CELL", for: indexPath) as? DetailEnergyInfoCell)!
             
             cell.savior = self.savior

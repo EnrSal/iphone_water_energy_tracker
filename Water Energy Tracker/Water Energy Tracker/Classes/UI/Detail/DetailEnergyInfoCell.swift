@@ -99,6 +99,7 @@ class DetailEnergyInfoCell: UITableViewCell {
             self.topview2.isHidden = true
             self.info.isHidden = true
         } else {
+            print("self.topview1 \(self.topview1)")
             self.topview1.isHidden = false
             self.topview2.isHidden = false
             self.info.isHidden = false
