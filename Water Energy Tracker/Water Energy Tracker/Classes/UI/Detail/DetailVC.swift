@@ -79,6 +79,11 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         self.tableView.register(TemperatureChartCell.self, forCellReuseIdentifier: "TEMP_CHART")
         self.tableView.register(UINib(nibName: "TemperatureChartCell", bundle: nil), forCellReuseIdentifier: "TEMP_CHART")
 
+        self.tableView.register(DetailTempOnlyInfoCellTableViewCell.self, forCellReuseIdentifier: "TEMP_ONLY_INFO_CELL")
+        self.tableView.register(UINib(nibName: "DetailTempOnlyInfoCellTableViewCell", bundle: nil), forCellReuseIdentifier: "TEMP_ONLY_INFO_CELL")
+
+        
+        
         self.tableView.tableFooterView = UIView()
         self.tableView.tableHeaderView = self.headerView
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -299,7 +304,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         switch indexPath.section {
         case 0:
             if (self.savior.stype == 0) {
-                print("CELL HERE 1")
+                print("CELL HERE 1 \(self.savior.name)")
                 let cell:DetailWaterInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_CELL", for: indexPath) as? DetailWaterInfoCell)!
                 
                 cell.savior = self.savior
@@ -308,7 +313,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 return cell;
             } else if self.savior.stype == Constants.water_gals_stype || self.savior.stype == Constants.water_gals2_stype || self.savior.stype == Constants.water_gals4_stype || self.savior.stype == Constants.water_gals8_stype {
                 
-                print("CELL HERE 2")
+                print("CELL HERE 2 \(self.savior.name)")
                 let cell:DetailWaterFlowInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_FLOW_CELL", for: indexPath) as? DetailWaterFlowInfoCell)!
                 
                 cell.savior = self.savior
@@ -317,9 +322,17 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 
                 return cell;
 
+            } else if self.savior.stype == Constants.temperature_only_stype {
+                let cell:DetailTempOnlyInfoCellTableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_ONLY_INFO_CELL", for: indexPath) as? DetailTempOnlyInfoCellTableViewCell)!
+                
+                cell.savior = self.savior
+                cell.populate()
+
+                return cell;
+
             }
             
-            print("CELL HERE 3")
+            print("CELL HERE 3 \(self.savior.name)")
             let cell:DetailEnergyInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_INFO_CELL", for: indexPath) as? DetailEnergyInfoCell)!
             
             cell.savior = self.savior

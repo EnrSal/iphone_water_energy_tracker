@@ -142,6 +142,8 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         if self.config != nil {
             if (self.savior.stype == 0) {
                 return 6
+            } else if (self.savior.stype == Constants.temperature_only_stype) {
+                return 3
             } else {
                 return 7
             }
@@ -182,6 +184,17 @@ class SettingsVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 cell.type = .detections_hour
             case 5:
                 cell.type = .detections_day
+            default:
+                break
+            }
+        } else if (self.savior.stype == Constants.temperature_only_stype) {
+            switch indexPath.row {
+            case 0:
+                cell.type = .temp_low
+            case 1:
+                cell.type = .temp_high
+            case 2:
+                cell.type = .user_calibration
             default:
                 break
             }

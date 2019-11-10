@@ -99,6 +99,8 @@
 		0DE4CC1C20A4B954001A4E5D /* DetailWaterInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1A20A4B954001A4E5D /* DetailWaterInfoCell.xib */; };
 		0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1D20A4B967001A4E5D /* DetailEnergyInfoCell.swift */; };
 		0DE4CC2020A4B967001A4E5D /* DetailEnergyInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DE4CC1E20A4B967001A4E5D /* DetailEnergyInfoCell.xib */; };
+		0DF36C212377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DF36C1F2377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.swift */; };
+		0DF36C222377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DF36C202377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.xib */; };
 		0DFC91DD236F89B100E50E50 /* EnergyHistoricalGraphCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFC91DB236F89B100E50E50 /* EnergyHistoricalGraphCell.swift */; };
 		0DFC91DE236F89B100E50E50 /* EnergyHistoricalGraphCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DFC91DC236F89B100E50E50 /* EnergyHistoricalGraphCell.xib */; };
 		0DFC91E0236F8ADA00E50E50 /* GraphPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFC91DF236F8ADA00E50E50 /* GraphPoint.swift */; };
@@ -204,6 +206,8 @@
 		0DE4CC1A20A4B954001A4E5D /* DetailWaterInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailWaterInfoCell.xib; sourceTree = "<group>"; };
 		0DE4CC1D20A4B967001A4E5D /* DetailEnergyInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEnergyInfoCell.swift; sourceTree = "<group>"; };
 		0DE4CC1E20A4B967001A4E5D /* DetailEnergyInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailEnergyInfoCell.xib; sourceTree = "<group>"; };
+		0DF36C1F2377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTempOnlyInfoCellTableViewCell.swift; sourceTree = "<group>"; };
+		0DF36C202377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailTempOnlyInfoCellTableViewCell.xib; sourceTree = "<group>"; };
 		0DFC91DB236F89B100E50E50 /* EnergyHistoricalGraphCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyHistoricalGraphCell.swift; sourceTree = "<group>"; };
 		0DFC91DC236F89B100E50E50 /* EnergyHistoricalGraphCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EnergyHistoricalGraphCell.xib; sourceTree = "<group>"; };
 		0DFC91DF236F8ADA00E50E50 /* GraphPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphPoint.swift; sourceTree = "<group>"; };
@@ -490,6 +494,8 @@
 				0DE4CC1E20A4B967001A4E5D /* DetailEnergyInfoCell.xib */,
 				0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */,
 				0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */,
+				0DF36C1F2377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.swift */,
+				0DF36C202377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 				0D73409920A9F10A0098343D /* NotificationsVC.xib in Resources */,
 				0D7340C920ABA8DE0098343D /* SendCommandVC.xib in Resources */,
 				0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */,
+				0DF36C222377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.xib in Resources */,
 				0D73413020B4F30D0098343D /* WifiConfigVC.xib in Resources */,
 				0DFC91DE236F89B100E50E50 /* EnergyHistoricalGraphCell.xib in Resources */,
 				0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */,
@@ -764,6 +771,7 @@
 				0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */,
 				0D7340A920A9F6180098343D /* HistoricalKwhRequest.swift in Sources */,
 				0D8A1E15236F5AE20088C3B4 /* TempShareCell.swift in Sources */,
+				0DF36C212377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.swift in Sources */,
 				0D73409820A9F10A0098343D /* NotificationsVC.swift in Sources */,
 				0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */,
 				0D7340AD20A9F6470098343D /* CalculateHistoricalRequest.swift in Sources */,
@@ -912,7 +920,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -940,7 +948,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

@@ -39,11 +39,13 @@ class TemperatureChartCell: UITableViewCell {
         countToDate.removeAll()
         var values_1:[BarChartDataEntry] = []
         var values_2:[BarChartDataEntry] = []
+        print("TEMP START DATE -->\(self.start) END DATE -->\(self.end)")
         let items = realm.objects(RealmDataPoint.self).filter("mac = '\(savior.savior_address!)' AND timestamp BETWEEN %@",[start,end]).sorted(byKeyPath: "timestamp", ascending: true)
         if items.count > 0 {
             var count:Int = 0
             for dataPoint in items {
-                
+                print("@@@z TEMP DATE -->\(dataPoint.timestamp!)")
+
                 countToDate[Double(count)] = dataPoint.timestamp!.timeIntervalSince1970
                 
                 let entry1:BarChartDataEntry = BarChartDataEntry(x: Double(count), y: Util.celsiusToFahrenheit(celsius: dataPoint.Temperature)  )

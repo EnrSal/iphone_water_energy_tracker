@@ -59,14 +59,15 @@ class EnergyPowerUsageChartCell: UITableViewCell {
         countToDate.removeAll()
         var values:[BarChartDataEntry] = []
         print("START DATE -->\(self.start) END DATE -->\(self.end)")
+     
         let items = realm.objects(RealmDataPoint.self).filter("mac = '\(savior.savior_address!)' AND timestamp BETWEEN %@",[start,end]).sorted(byKeyPath: "timestamp", ascending: true)
         print("TOTAL ITEMS -->\(items.count)")
         if items.count > 0 {
-            var last:Double? = nil
+            var last:Double = 0.0
             var count:Int = 0
             for dataPoint in items {
                 
-                if let last = last {
+                //if let last = last {
                     var diff:Double? = nil
                     switch (energy_unit) {
                     case 1:
@@ -153,9 +154,12 @@ class EnergyPowerUsageChartCell: UITableViewCell {
                     default:
                         break
                     }
-                    
+                if count == 0{
+                    diff = 0
+                }
                     print("Y value=\(diff!)")
                     
+                    print("@@@z G DATE -->\(dataPoint.timestamp!)")
                     countToDate[Double(count)] = dataPoint.timestamp!.timeIntervalSince1970
                     
                     let entry:BarChartDataEntry = BarChartDataEntry(x: Double(count), y: Double(round(1000*diff!)/1000)  )
@@ -164,10 +168,10 @@ class EnergyPowerUsageChartCell: UITableViewCell {
                     //                    let entry:BarChartDataEntry = BarChartDataEntry(x: Double(round(1000*diff!)/1000), y: dataPoint.timestamp!.timeIntervalSince1970  )
                     //let entry:BarChartDataEntry = BarChartDataEntry(x: 35, y: Double(round(1000*diff!)/1000)  )
                     values.append(entry)
-                } else {
-                    let entry:BarChartDataEntry = BarChartDataEntry(x: Double(count), y: Double(round(1000*0.0)/1000)  )
-                    values.append(entry)
-                }
+               // } else {
+                    //let entry:BarChartDataEntry = BarChartDataEntry(x: Double(count), y: Double(round(1000*0.0)/1000)  )
+                    //values.append(entry)
+               // }
                 
                 switch (energy_unit) {
                 case 1:

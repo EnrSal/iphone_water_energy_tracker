@@ -568,7 +568,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             //if !savior.from_share {
                 
                 var show = false
-                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 {
+                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 {
                     show = true
                     if let share_number_used = savior.share_number_used {
                         print("@@@ share_number_used.count =\(share_number_used.count)")
