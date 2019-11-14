@@ -61,7 +61,7 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         if (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24) {
             return 2
         }
-        if self.savior.stype == 2 || self.savior.stype == 4 {
+        if self.savior.stype == 2 {
             return 4
         }
         if self.savior.stype == 4 {

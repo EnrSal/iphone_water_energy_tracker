@@ -23,6 +23,11 @@ class SendCommandVC: SaviorVC {
         self.title = "Send Command"
         self.makeCloseButton()
         
+        if savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
+            commandSegments.setTitle("12 Volts ON", forSegmentAt: 0)
+            commandSegments.setTitle("12 Volts OFF", forSegmentAt: 1)
+        }
+        
         if let last_command_sent = savior.last_command_sent, let last_command_state = savior.last_command_state {
             let formatter = DateFormatter()
             formatter.dateFormat = "dd/MM/yyyy hh:mm a"
