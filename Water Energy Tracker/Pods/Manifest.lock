@@ -15,6 +15,7 @@ PODS:
   - DatePickerDialog (2.0)
   - DateTimePicker (2.1.2)
   - Fabric (1.7.12)
+  - FMSecureTextField (1.0.0)
   - IQKeyboardManagerSwift (5.0.0)
   - Kingfisher (4.10.0)
   - M13Checkbox (3.4.0)
@@ -40,6 +41,7 @@ DEPENDENCIES:
   - DatePickerDialog
   - DateTimePicker
   - Fabric
+  - FMSecureTextField
   - IQKeyboardManagerSwift (= 5.0.0)
   - Kingfisher (~> 4.0)
   - M13Checkbox
@@ -71,6 +73,7 @@ SPEC REPOS:
     - SwiftyJSON
   trunk:
     - AzureNotificationHubs-iOS
+    - FMSecureTextField
     - M13Checkbox
 
 SPEC CHECKSUMS:
@@ -84,6 +87,7 @@ SPEC CHECKSUMS:
   DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
   DateTimePicker: 111a1ca10b390ac315fdf3e85a5941fd4f72dfb7
   Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
+  FMSecureTextField: 22312d628afe7a97b50682c6708c01ecf37087d5
   IQKeyboardManagerSwift: 3f340202ebe1a7076279b9b9b3c817243ddb3aab
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
@@ -95,6 +99,6 @@ SPEC CHECKSUMS:
   SwiftyBluetooth: 9e26b1367f56aa60f35713f6d968382144bccfd5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 73a85d2e53728c3d70cc17e4e88eb77c28f1ae79
+PODFILE CHECKSUM: 83cce70925141cd9afa420cf20c32f23138b6ce8
 
 COCOAPODS: 1.8.3

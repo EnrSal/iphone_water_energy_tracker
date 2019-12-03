@@ -189,34 +189,36 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                             return
                         }
                         DispatchQueue.main.async {
-                            let values = response.Daily!.components(separatedBy: ",")
-                            print("zzVALUES \(values)")
-                            let realm = try! Realm()
-                            
-                            if self.savior.EnergyUnit == nil {
-                                print("@@@ here 1)")
-                                try! realm.write {
-                                    print("@@@ here 2)")
-                                    self.savior.EnergyUnit = "kWh"
-                                    if self.savior.EnergyUnitPerPulse == 0.0 {
-                                        self.savior.EnergyUnitPerPulse = 0.1
+                            if let daily = response.Daily {
+                                let values = daily.components(separatedBy: ",")
+                                
+                                let realm = try! Realm()
+                                
+                                if self.savior.EnergyUnit == nil {
+                                    print("@@@ here 1)")
+                                    try! realm.write {
+                                        print("@@@ here 2)")
+                                        self.savior.EnergyUnit = "kWh"
+                                        if self.savior.EnergyUnitPerPulse == 0.0 {
+                                            self.savior.EnergyUnitPerPulse = 0.1
+                                        }
+                                        print("@@@ here 3)")
                                     }
-                                    print("@@@ here 3)")
+                                    print("@@@ here 4)")
                                 }
-                                print("@@@ here 4)")
+                                print("@@@ here 5)")
+                                
+                                self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.numgals.text = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
+                                self.tableView.reloadData()
                             }
-                            print("@@@ here 5)")
-                            
-                            self.unit1_usage = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.numgals.text = "\(String(format: "%.2f", Float(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit2_usage = "\(String(format: "%.2f", Float(values[1].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit3_usage = "\(String(format: "%.2f", Float(values[2].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit4_usage = "\(String(format: "%.2f", Float(values[3].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit5_usage = "\(String(format: "%.2f", Float(values[4].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit6_usage = "\(String(format: "%.2f", Float(values[5].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit7_usage = "\(String(format: "%.2f", Float(values[6].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.unit8_usage = "\(String(format: "%.2f", Float(values[7].trimmingCharacters(in: CharacterSet.whitespaces))!)) \(self.savior.EnergyUnit!)"
-                            self.tableView.reloadData()
                         }
                         
                     }

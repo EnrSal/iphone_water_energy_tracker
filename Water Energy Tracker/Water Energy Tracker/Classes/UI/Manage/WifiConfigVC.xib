@@ -47,13 +47,18 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9WZ-38-54g">
-                    <rect key="frame" x="16" y="116" width="343" height="30"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9WZ-38-54g" customClass="FMSecureTextField" customModule="FMSecureTextField">
+                    <rect key="frame" x="16" y="116" width="343" height="45"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="30" id="EIC-ua-ZZp"/>
+                        <constraint firstAttribute="height" constant="45" id="EIC-ua-ZZp"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="showImage" value="visible"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="hideImage" value="invisible"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="secureTypeImage" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </textField>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58o-rM-mca">
                     <rect key="frame" x="16" y="88" width="343" height="21"/>
@@ -77,7 +82,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dgg-tp-eN0">
-                    <rect key="frame" x="0.0" y="200" width="375" height="250"/>
+                    <rect key="frame" x="0.0" y="215" width="375" height="250"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="30" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSY-GU-jma">
                             <rect key="frame" x="16" y="49" width="46" height="34"/>
@@ -189,7 +194,7 @@
                     </constraints>
                 </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6KC-Rf-Jdc">
-                    <rect key="frame" x="16" y="164" width="199" height="29"/>
+                    <rect key="frame" x="16" y="179" width="199" height="29"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="199" id="yhf-0L-RXq"/>
                         <constraint firstAttribute="height" constant="28" id="zXa-JX-nhB"/>
@@ -228,4 +233,8 @@
             <point key="canvasLocation" x="34.399999999999999" y="52.623688155922046"/>
         </view>
     </objects>
+    <resources>
+        <image name="invisible" width="30" height="30"/>
+        <image name="visible" width="32" height="32"/>
+    </resources>
 </document>

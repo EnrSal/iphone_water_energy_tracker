@@ -11,13 +11,13 @@ import SystemConfiguration.CaptiveNetwork
 import SwiftyBluetooth
 import CoreBluetooth
 import RealmSwift
-
+import FMSecureTextField
 
 class WifiConfigVC: SaviorVC {
 
     @IBOutlet weak var waterLabel: UILabel!
     @IBOutlet weak var disableshutoff: UISwitch!
-    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var password: FMSecureTextField!
     @IBOutlet weak var wifiField: UITextField!
     @IBOutlet weak var waterView: UIView!
     @IBOutlet weak var powerSegments: UISegmentedControl!

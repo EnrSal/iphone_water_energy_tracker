@@ -352,40 +352,40 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             
             if !savior.from_share {
                 if savior.is_configured {
-                    if (savior.stype != Constants.energy2_stype) && (savior.stype != Constants.energy4_stype) && (savior.stype != Constants.energy8_stype) {
-                        alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Data to Device", comment: ""), style: .default, handler: { action in
-                            var found = false
-                            for peripheral in self.all_peripherals {
-                                if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
-                                    
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                        
-                                        
-                                        
-                                        let sendVC:WifiSendDataVC = WifiSendDataVC(nibName: "WifiSendDataVC", bundle: nil)
-                                        sendVC.savior = savior
-                                        sendVC.peripheral = peripheral
-                                        let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
-                                        nav.modalPresentationStyle = .fullScreen
-                                        self.navigationController!.present(nav, animated: true, completion: nil)
-                                        
-                                        
-                                        
-                                        
-                                        
-                                    }
-                                    found = true
-                                    break
-                                }
-                            }
-                            if !found{
+                    // if (savior.stype != Constants.energy2_stype) && (savior.stype != Constants.energy4_stype) && (savior.stype != Constants.energy8_stype) {
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Data to Device", comment: ""), style: .default, handler: { action in
+                        var found = false
+                        for peripheral in self.all_peripherals {
+                            if peripheral.name!.replacingOccurrences(of: "SX", with: "") == savior.savior_address! {
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                                    self.showError(message: "Device is not currently connected.")
+                                    
+                                    
+                                    
+                                    let sendVC:WifiSendDataVC = WifiSendDataVC(nibName: "WifiSendDataVC", bundle: nil)
+                                    sendVC.savior = savior
+                                    sendVC.peripheral = peripheral
+                                    let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                                    nav.modalPresentationStyle = .fullScreen
+                                    self.navigationController!.present(nav, animated: true, completion: nil)
+                                    
+                                    
+                                    
+                                    
+                                    
                                 }
+                                found = true
+                                break
                             }
-                            
-                        }))
-                    }
+                        }
+                        if !found{
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                                self.showError(message: "Device is not currently connected.")
+                            }
+                        }
+                        
+                    }))
+                    // }
                 }
             }
             
@@ -413,15 +413,16 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                             try! realm.write {
                                 
                                 savior.alias = alias.text
-                                if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 {
+                                if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24
+                                    || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 {
                                     savior.energy_unit_name_1 = textFields[1].text
                                     savior.energy_unit_name_2 = textFields[2].text
                                 }
-                                if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24{
+                                if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 || savior.stype == 32 || savior.stype == 34 {
                                     savior.energy_unit_name_3 = textFields[3].text
                                     savior.energy_unit_name_4 = textFields[4].text
                                 }
-                                if savior.stype == 4 || savior.stype == 24  {
+                                if savior.stype == 4 || savior.stype == 24 || savior.stype == 34 {
                                     savior.energy_unit_name_5 = textFields[5].text
                                     savior.energy_unit_name_6 = textFields[6].text
                                     savior.energy_unit_name_7 = textFields[7].text
@@ -468,7 +469,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                         textField.delegate = self
                     }
                     
-                    if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 {
+                    if savior.stype == 1 || savior.stype == 21 || savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24
+                        || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 {
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 1 name"
                             textField.text = savior.energy_unit_name_1!
@@ -480,7 +482,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                             textField.delegate = self
                         }
                     }
-                    if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24{
+                    if savior.stype == 2 || savior.stype == 22 || savior.stype == 4  || savior.stype == 24 || savior.stype == 32 || savior.stype == 34 {
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 3 name"
                             textField.text = savior.energy_unit_name_3!
@@ -493,7 +495,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                         }
                         
                     }
-                    if savior.stype == 4 || savior.stype == 24  {
+                    if savior.stype == 4 || savior.stype == 24 || savior.stype == 34 {
                         alertController.addTextField { (textField) in
                             textField.placeholder = "Unit 5 name"
                             textField.text = savior.energy_unit_name_5!
@@ -536,28 +538,55 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             
             if !savior.from_share {
                 
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Read-Only Share Number", comment: ""), style: .default, handler: { action in
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            
-                            if savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
-                                let sendVC:TempShareVC = TempShareVC(nibName: "TempShareVC", bundle: nil)
-                                sendVC.savior = savior
-                                let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
-                                nav.modalPresentationStyle = .fullScreen
-                                self.navigationController!.present(nav, animated: true, completion: nil)
-                            } else {
-                                UIPasteboard.general.string = savior.temp_share_number!
-                                self.showError(message: "temporary share number is: \(savior.temp_share_number!) (saved to clipboard)")
-                            }
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Show Read-Only Share Number", comment: ""), style: .default, handler: { action in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        
+                        if savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
+                            let sendVC:TempShareVC = TempShareVC(nibName: "TempShareVC", bundle: nil)
+                            sendVC.savior = savior
+                            let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                            nav.modalPresentationStyle = .fullScreen
+                            self.navigationController!.present(nav, animated: true, completion: nil)
+                        } else {
+                            UIPasteboard.general.string = savior.temp_share_number!
+                            self.showError(message: "temporary share number is: \(savior.temp_share_number!) (saved to clipboard)")
                         }
+                    }
+                }))
+            }
+            
+            var show = false
+            if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 {
+                show = true
+                if let share_number_used = savior.share_number_used {
+                    print("@@@ share_number_used.count =\(share_number_used.count)")
+                    if share_number_used.count == 18 {
+                        show = false
+                    }
+                    if share_number_used.count > 10 {
+                        show = false
+                    }
+                }
+                
+            }
+            
+            if show {
+                // schedule
+                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Schedule ON/OFF", comment: ""), style: .default, handler: { action in
+                        let sendVC:ScheduleVC = ScheduleVC(nibName: "ScheduleVC", bundle: nil)
+                        sendVC.savior = savior
+                        let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
+                        nav.modalPresentationStyle = .fullScreen
+                        self.navigationController!.present(nav, animated: true, completion: nil)
                     }))
+                }
             }
             
             
-            // schedule
-            if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
-                alertController.addAction(UIAlertAction(title: NSLocalizedString("Schedule ON/OFF", comment: ""), style: .default, handler: { action in
-                    let sendVC:ScheduleVC = ScheduleVC(nibName: "ScheduleVC", bundle: nil)
+            if show {
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Command", comment: ""), style: .default, handler: { action in
+                    let sendVC:SendCommandVC = SendCommandVC(nibName: "SendCommandVC", bundle: nil)
                     sendVC.savior = savior
                     let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
                     nav.modalPresentationStyle = .fullScreen
@@ -565,31 +594,6 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                 }))
             }
             
-            //if !savior.from_share {
-                
-                var show = false
-                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 {
-                    show = true
-                    if let share_number_used = savior.share_number_used {
-                        print("@@@ share_number_used.count =\(share_number_used.count)")
-                        if share_number_used.count == 18 {
-                            show = false
-                        }
-                    }
-                    
-                }
-                
-                if show {
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Send Command", comment: ""), style: .default, handler: { action in
-                        let sendVC:SendCommandVC = SendCommandVC(nibName: "SendCommandVC", bundle: nil)
-                        sendVC.savior = savior
-                        let nav:UINavigationController = UINavigationController(rootViewController: sendVC)
-                        nav.modalPresentationStyle = .fullScreen
-                        self.navigationController!.present(nav, animated: true, completion: nil)
-                    }))
-                }
-                
-           // }
             alertController.addAction(UIAlertAction(title: NSLocalizedString("Delete Configuration", comment: ""), style: .destructive, handler: { action in
                 let realm = try! Realm()
                 try! realm.write {

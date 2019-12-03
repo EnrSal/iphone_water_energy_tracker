@@ -61,6 +61,10 @@ class EnergyHistoricalGraphCell: UITableViewCell {
             let formatter = DayValueFormatter()
             formatter.countToDate = self.countToDate
             xAxis.valueFormatter = formatter
+           
+            chartView.extraTopOffset = 20
+
+            chartView.setNeedsLayout()
             chartView.setNeedsDisplay()
             chartView.chartDescription?.enabled = false
             chartView.fitBars = true

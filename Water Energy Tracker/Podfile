@@ -20,6 +20,7 @@ platform :ios, '10.0'
   pod 'DatePickerDialog'
   pod 'M13Checkbox'
   pod 'AzureNotificationHubs-iOS'
+  pod 'FMSecureTextField'
 #  pod 'SwiftWebVC'
 end
 
