@@ -12,6 +12,7 @@ class CalculateHistoricalRequest: NSObject, Mappable {
 
     var option: String?
     var mac: String?
+    var macAddress: String?
     var fromdate: String?
     var todate: String?
 
@@ -24,6 +25,7 @@ class CalculateHistoricalRequest: NSObject, Mappable {
     public func mapping(map: Map) {
         option <- map["option"]
         mac <- map["mac"]
+        macAddress <- map["macAddress"]
         fromdate <- map["fromdate"]
         todate <- map["todate"]
     }

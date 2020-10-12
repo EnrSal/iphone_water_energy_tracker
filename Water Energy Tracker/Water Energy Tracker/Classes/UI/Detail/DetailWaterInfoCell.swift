@@ -35,27 +35,33 @@ class DetailWaterInfoCell: UITableViewCell {
         let items = realm.objects(RealmDataPoint.self).filter("mac = '\(savior.savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)
         if items.count > 0 {
             let current = items.first
-            
-            if current!.Indicator! == ">" || current!.Alarm! == "A" || current!.Alarm! == "a" || current!.Alarm! == "m" || current!.Alarm! == "n" || current!.Alarm! == "F" ||
-                current!.Alarm! == "f" || current!.Alarm! == "1" || current!.Alarm! == "2" || current!.Alarm! == "3" || current!.Alarm! == "5" || current!.Alarm! == "6" || current!.Alarm! == "7" {
-                
-                if current!.SolMinutes > 1 {
-                    let mins = current!.SolMinutes / 60;
-                    info.text = "ON for \(mins) Minutes"
+            if self.savior.stype == Constants.remote_well {
+                if current!.C1 == 1 {
+                    info.text = "ON"
                 } else {
-                    info.text = "Movement detected on last update"
+                    info.text = "OFF"
                 }
-                info.textColor = UIColor.init(hex: "#006400")
             } else {
-                info.text = "No Movement detected on last update"
-                info.textColor = UIColor.red
+                if current!.Indicator! == ">" || current!.Alarm! == "A" || current!.Alarm! == "a" || current!.Alarm! == "m" || current!.Alarm! == "n" || current!.Alarm! == "F" ||
+                    current!.Alarm! == "f" || current!.Alarm! == "1" || current!.Alarm! == "2" || current!.Alarm! == "3" || current!.Alarm! == "5" || current!.Alarm! == "6" || current!.Alarm! == "7" {
+                    
+                    if current!.SolMinutes > 1 {
+                        let mins = current!.SolMinutes / 60;
+                        info.text = "ON for \(mins) Minutes"
+                    } else {
+                        info.text = "Movement detected on last update"
+                    }
+                    info.textColor = UIColor.init(hex: "#006400")
+                } else {
+                    info.text = "No Movement detected on last update"
+                    info.textColor = UIColor.red
+                }
             }
-            
             self.temp1.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: current!.Temperature))) °F"
             self.temp2.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: current!.Temp2))) °F"
             
-            self.detections_hour.text = "\(current!.Hourly)"
-            self.detections_day.text = "\(current!.Daily)"
+            //self.detections_hour.text = "\(current!.Hourly)"
+            //self.detections_day.text = "\(current!.Daily)"
         }
 
     }

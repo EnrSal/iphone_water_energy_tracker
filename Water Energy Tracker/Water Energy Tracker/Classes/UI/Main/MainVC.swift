@@ -79,7 +79,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             }
             if item.stype == Constants.water_stype || item.stype == Constants.water_gals_stype || item.stype == Constants.water_gals2_stype || item.stype == Constants.water_gals4_stype || item.stype == Constants.water_gals8_stype {
                 waterList.append(item)
-            } else if item.stype == Constants.temperature_only_stype {
+            } else if item.stype == Constants.temperature_only_stype || item.stype == Constants.remote_well {
                 tempList.append(item)
             } else {
                 energyList.append(item)
@@ -156,7 +156,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
 
-        if self.saviors[indexPath.row].isValidDevice() && (  self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20 || self.saviors[indexPath.row].stype == Constants.temperature_only_stype) {
+        if self.saviors[indexPath.row].isValidDevice() && (self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20 || self.saviors[indexPath.row].stype == Constants.temperature_only_stype || self.saviors[indexPath.row].stype == Constants.remote_well) {
             
             let realm = try! Realm()
             let items = realm.objects(RealmDataPoint.self).filter("mac = '\(self.saviors[indexPath.row].savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)

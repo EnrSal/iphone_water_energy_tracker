@@ -89,6 +89,66 @@
 		0D9B5463236E551F000E9909 /* ScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5462236E551F000E9909 /* ScheduleItem.swift */; };
 		0D9B5466236E5661000E9909 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9B5464236E5661000E9909 /* ScheduleCell.swift */; };
 		0D9B5467236E5661000E9909 /* ScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D9B5465236E5661000E9909 /* ScheduleCell.xib */; };
+		0DAF993B2533B2C400C444E4 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98EC2533B2C400C444E4 /* Array+Extensions.swift */; };
+		0DAF993C2533B2C400C444E4 /* UISegmentedControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98ED2533B2C400C444E4 /* UISegmentedControl+Extensions.swift */; };
+		0DAF993D2533B2C400C444E4 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98EE2533B2C400C444E4 /* UIImageView+Extensions.swift */; };
+		0DAF993E2533B2C400C444E4 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98EF2533B2C400C444E4 /* UIViewController+Extensions.swift */; };
+		0DAF993F2533B2C400C444E4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F02533B2C400C444E4 /* UIView+Extensions.swift */; };
+		0DAF99402533B2C400C444E4 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F12533B2C400C444E4 /* Date+Extension.swift */; };
+		0DAF99412533B2C400C444E4 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F22533B2C400C444E4 /* String+Extensions.swift */; };
+		0DAF99422533B2C400C444E4 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F32533B2C400C444E4 /* UITextView+Extensions.swift */; };
+		0DAF99432533B2C400C444E4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F42533B2C400C444E4 /* UIColor+Extensions.swift */; };
+		0DAF99442533B2C400C444E4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F52533B2C400C444E4 /* UIImage+Extensions.swift */; };
+		0DAF99452533B2C400C444E4 /* UISearchBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F62533B2C400C444E4 /* UISearchBar+Extensions.swift */; };
+		0DAF99462533B2C400C444E4 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F72533B2C400C444E4 /* UIApplication+Extensions.swift */; };
+		0DAF99472533B2C400C444E4 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F82533B2C400C444E4 /* UIAlertController+Extensions.swift */; };
+		0DAF99482533B2C400C444E4 /* Optional+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98F92533B2C400C444E4 /* Optional+Extensions.swift */; };
+		0DAF99492533B2C400C444E4 /* Common+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98FA2533B2C400C444E4 /* Common+Extensions.swift */; };
+		0DAF994A2533B2C400C444E4 /* Locale+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98FB2533B2C400C444E4 /* Locale+Extensions.swift */; };
+		0DAF994B2533B2C400C444E4 /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98FC2533B2C400C444E4 /* UITextField+Extensions.swift */; };
+		0DAF994C2533B2C400C444E4 /* AttributedTextBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF98FF2533B2C400C444E4 /* AttributedTextBlock.swift */; };
+		0DAF994D2533B2C400C444E4 /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99002533B2C400C444E4 /* TextViewController.swift */; };
+		0DAF994E2533B2C400C444E4 /* Countries.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0DAF99032533B2C400C444E4 /* Countries.bundle */; };
+		0DAF994F2533B2C400C444E4 /* LocaleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99052533B2C400C444E4 /* LocaleStore.swift */; };
+		0DAF99502533B2C400C444E4 /* LocaleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99072533B2C400C444E4 /* LocaleInfo.swift */; };
+		0DAF99512533B2C400C444E4 /* LocalePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99082533B2C400C444E4 /* LocalePickerViewController.swift */; };
+		0DAF99522533B2C400C444E4 /* PhoneCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990A2533B2C400C444E4 /* PhoneCodeCell.swift */; };
+		0DAF99532533B2C400C444E4 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990B2533B2C400C444E4 /* CurrencyCell.swift */; };
+		0DAF99542533B2C400C444E4 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990C2533B2C400C444E4 /* CountryCell.swift */; };
+		0DAF99552533B2C400C444E4 /* TwoTextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990E2533B2C400C444E4 /* TwoTextFieldsViewController.swift */; };
+		0DAF99562533B2C400C444E4 /* OneTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990F2533B2C400C444E4 /* OneTextFieldViewController.swift */; };
+		0DAF99572533B2C400C444E4 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99122533B2C400C444E4 /* Assets.swift */; };
+		0DAF99582533B2C400C444E4 /* PhotoLibraryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99132533B2C400C444E4 /* PhotoLibraryPickerViewController.swift */; };
+		0DAF99592533B2C400C444E4 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99152533B2C400C444E4 /* LocationSearchResultsViewController.swift */; };
+		0DAF995A2533B2C400C444E4 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99162533B2C400C444E4 /* LocationPickerViewController.swift */; };
+		0DAF995B2533B2C400C444E4 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99182533B2C400C444E4 /* SearchHistoryManager.swift */; };
+		0DAF995C2533B2C400C444E4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991A2533B2C400C444E4 /* Location.swift */; };
+		0DAF995D2533B2C400C444E4 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991B2533B2C400C444E4 /* Address.swift */; };
+		0DAF995E2533B2C400C444E4 /* PickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991D2533B2C400C444E4 /* PickerViewViewController.swift */; };
+		0DAF995F2533B2C400C444E4 /* ContactsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991F2533B2C400C444E4 /* ContactsPickerViewController.swift */; };
+		0DAF99602533B2C400C444E4 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99212533B2C400C444E4 /* Contacts.swift */; };
+		0DAF99612533B2C400C444E4 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99232533B2C400C444E4 /* Contact.swift */; };
+		0DAF99622533B2C400C444E4 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99252533B2C400C444E4 /* ContactCell.swift */; };
+		0DAF99632533B2C400C444E4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99272533B2C400C444E4 /* ColorPickerViewController.swift */; };
+		0DAF99642533B2C400C444E4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99292533B2C400C444E4 /* DatePickerViewController.swift */; };
+		0DAF99652533B2C400C444E4 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF992B2533B2C400C444E4 /* ImagePickerViewController.swift */; };
+		0DAF99662533B2C400C444E4 /* ItemWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF992D2533B2C400C444E4 /* ItemWithImage.swift */; };
+		0DAF99672533B2C400C444E4 /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99302533B2C400C444E4 /* PhotoLayout.swift */; };
+		0DAF99682533B2C400C444E4 /* TelegramPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99312533B2C400C444E4 /* TelegramPickerViewController.swift */; };
+		0DAF99692533B2C400C444E4 /* ItemWithPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99332533B2C400C444E4 /* ItemWithPhoto.swift */; };
+		0DAF996A2533B2C400C444E4 /* LikeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99342533B2C400C444E4 /* LikeButtonCell.swift */; };
+		0DAF996B2533B2C400C444E4 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99362533B2C400C444E4 /* Label.swift */; };
+		0DAF996C2533B2C400C444E4 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99372533B2C400C444E4 /* SegmentedControl.swift */; };
+		0DAF996D2533B2C400C444E4 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99382533B2C400C444E4 /* GradientSlider.swift */; };
+		0DAF996E2533B2C400C444E4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99392533B2C400C444E4 /* TextField.swift */; };
+		0DAF996F2533B2C500C444E4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF993A2533B2C400C444E4 /* Button.swift */; };
+		0DAF99742533C60F00C444E4 /* RemoteWellOnOffChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99722533C60F00C444E4 /* RemoteWellOnOffChartCell.swift */; };
+		0DAF99752533C60F00C444E4 /* RemoteWellOnOffChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DAF99732533C60F00C444E4 /* RemoteWellOnOffChartCell.xib */; };
+		0DAF99782533D89600C444E4 /* OnOffFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99772533D89600C444E4 /* OnOffFormatter.swift */; };
+		0DAF997B2533DAAA00C444E4 /* AdditionalDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF997A2533DAAA00C444E4 /* AdditionalDataItem.swift */; };
+		0DAF997E2533DC6C00C444E4 /* AdditionalDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF997D2533DC6C00C444E4 /* AdditionalDataResponse.swift */; };
+		0DAF99832533DF5C00C444E4 /* AdditionalDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99812533DF5C00C444E4 /* AdditionalDataCell.swift */; };
+		0DAF99842533DF5C00C444E4 /* AdditionalDataCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DAF99822533DF5C00C444E4 /* AdditionalDataCell.xib */; };
 		0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */; };
 		0DB78D9E2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */; };
 		0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */; };
@@ -196,6 +256,66 @@
 		0D9B5462236E551F000E9909 /* ScheduleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItem.swift; sourceTree = "<group>"; };
 		0D9B5464236E5661000E9909 /* ScheduleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		0D9B5465236E5661000E9909 /* ScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScheduleCell.xib; sourceTree = "<group>"; };
+		0DAF98EC2533B2C400C444E4 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98ED2533B2C400C444E4 /* UISegmentedControl+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98EE2533B2C400C444E4 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98EF2533B2C400C444E4 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F02533B2C400C444E4 /* UIView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F12533B2C400C444E4 /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		0DAF98F22533B2C400C444E4 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F32533B2C400C444E4 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F42533B2C400C444E4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F52533B2C400C444E4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F62533B2C400C444E4 /* UISearchBar+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F72533B2C400C444E4 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F82533B2C400C444E4 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98F92533B2C400C444E4 /* Optional+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98FA2533B2C400C444E4 /* Common+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Common+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98FB2533B2C400C444E4 /* Locale+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Locale+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98FC2533B2C400C444E4 /* UITextField+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		0DAF98FF2533B2C400C444E4 /* AttributedTextBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributedTextBlock.swift; sourceTree = "<group>"; };
+		0DAF99002533B2C400C444E4 /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
+		0DAF99032533B2C400C444E4 /* Countries.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Countries.bundle; sourceTree = "<group>"; };
+		0DAF99052533B2C400C444E4 /* LocaleStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleStore.swift; sourceTree = "<group>"; };
+		0DAF99072533B2C400C444E4 /* LocaleInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleInfo.swift; sourceTree = "<group>"; };
+		0DAF99082533B2C400C444E4 /* LocalePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalePickerViewController.swift; sourceTree = "<group>"; };
+		0DAF990A2533B2C400C444E4 /* PhoneCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneCodeCell.swift; sourceTree = "<group>"; };
+		0DAF990B2533B2C400C444E4 /* CurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
+		0DAF990C2533B2C400C444E4 /* CountryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
+		0DAF990E2533B2C400C444E4 /* TwoTextFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTextFieldsViewController.swift; sourceTree = "<group>"; };
+		0DAF990F2533B2C400C444E4 /* OneTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTextFieldViewController.swift; sourceTree = "<group>"; };
+		0DAF99122533B2C400C444E4 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		0DAF99132533B2C400C444E4 /* PhotoLibraryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPickerViewController.swift; sourceTree = "<group>"; };
+		0DAF99152533B2C400C444E4 /* LocationSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsViewController.swift; sourceTree = "<group>"; };
+		0DAF99162533B2C400C444E4 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
+		0DAF99182533B2C400C444E4 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
+		0DAF991A2533B2C400C444E4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		0DAF991B2533B2C400C444E4 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		0DAF991D2533B2C400C444E4 /* PickerViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewViewController.swift; sourceTree = "<group>"; };
+		0DAF991F2533B2C400C444E4 /* ContactsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPickerViewController.swift; sourceTree = "<group>"; };
+		0DAF99212533B2C400C444E4 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		0DAF99232533B2C400C444E4 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		0DAF99252533B2C400C444E4 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		0DAF99272533B2C400C444E4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		0DAF99292533B2C400C444E4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		0DAF992B2533B2C400C444E4 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		0DAF992D2533B2C400C444E4 /* ItemWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithImage.swift; sourceTree = "<group>"; };
+		0DAF99302533B2C400C444E4 /* PhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
+		0DAF99312533B2C400C444E4 /* TelegramPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramPickerViewController.swift; sourceTree = "<group>"; };
+		0DAF99332533B2C400C444E4 /* ItemWithPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithPhoto.swift; sourceTree = "<group>"; };
+		0DAF99342533B2C400C444E4 /* LikeButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeButtonCell.swift; sourceTree = "<group>"; };
+		0DAF99362533B2C400C444E4 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		0DAF99372533B2C400C444E4 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		0DAF99382533B2C400C444E4 /* GradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
+		0DAF99392533B2C400C444E4 /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		0DAF993A2533B2C400C444E4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		0DAF99722533C60F00C444E4 /* RemoteWellOnOffChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWellOnOffChartCell.swift; sourceTree = "<group>"; };
+		0DAF99732533C60F00C444E4 /* RemoteWellOnOffChartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RemoteWellOnOffChartCell.xib; sourceTree = "<group>"; };
+		0DAF99772533D89600C444E4 /* OnOffFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnOffFormatter.swift; sourceTree = "<group>"; };
+		0DAF997A2533DAAA00C444E4 /* AdditionalDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalDataItem.swift; sourceTree = "<group>"; };
+		0DAF997D2533DC6C00C444E4 /* AdditionalDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalDataResponse.swift; sourceTree = "<group>"; };
+		0DAF99812533DF5C00C444E4 /* AdditionalDataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalDataCell.swift; sourceTree = "<group>"; };
+		0DAF99822533DF5C00C444E4 /* AdditionalDataCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalDataCell.xib; sourceTree = "<group>"; };
 		0DB78D9B2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWaterFlowInfoCell.swift; sourceTree = "<group>"; };
 		0DB78D9C2142E69F00AB60C9 /* DetailWaterFlowInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailWaterFlowInfoCell.xib; sourceTree = "<group>"; };
 		0DB78D9F21434D7E00AB60C9 /* WifiSendDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiSendDataVC.swift; sourceTree = "<group>"; };
@@ -235,6 +355,7 @@
 				0D5CE148209548140096CD99 /* RemoteDevice.swift */,
 				0D7340B420A9FE930098343D /* Notification.swift */,
 				0D9B545E236E480E000E9909 /* HistoricalGraphItem.swift */,
+				0DAF997A2533DAAA00C444E4 /* AdditionalDataItem.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -276,6 +397,7 @@
 		0D6AA3E62081897D00194AA5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0DAF98E92533B2A800C444E4 /* ThirdParty */,
 				0D7F876C209189FE00378B03 /* API */,
 				0D7F87692091849700378B03 /* Persistent */,
 				0D6AA3E72081898400194AA5 /* UI */,
@@ -364,6 +486,9 @@
 				0D73408F20A92F0D0098343D /* WaterIntensityChartCell.xib */,
 				0D73409220A9306E0098343D /* TemperatureChartCell.swift */,
 				0D73409320A9306E0098343D /* TemperatureChartCell.xib */,
+				0DAF99722533C60F00C444E4 /* RemoteWellOnOffChartCell.swift */,
+				0DAF99732533C60F00C444E4 /* RemoteWellOnOffChartCell.xib */,
+				0DAF99772533D89600C444E4 /* OnOffFormatter.swift */,
 			);
 			path = Charts;
 			sourceTree = "<group>";
@@ -455,6 +580,7 @@
 				0D7340B620AA02640098343D /* GenericResponse.swift */,
 				0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */,
 				0D9B5460236E48F2000E9909 /* CalculateHistoricalListResponse.swift */,
+				0DAF997D2533DC6C00C444E4 /* AdditionalDataResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -482,9 +608,303 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		0DAF98E92533B2A800C444E4 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF98EA2533B2C400C444E4 /* AlertsPickers */,
+			);
+			path = ThirdParty;
+			sourceTree = "<group>";
+		};
+		0DAF98EA2533B2C400C444E4 /* AlertsPickers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF98EB2533B2C400C444E4 /* Extensions */,
+				0DAF98FD2533B2C400C444E4 /* Viewers */,
+				0DAF99012533B2C400C444E4 /* Pickers */,
+				0DAF99352533B2C400C444E4 /* Views */,
+			);
+			path = AlertsPickers;
+			sourceTree = "<group>";
+		};
+		0DAF98EB2533B2C400C444E4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF98EC2533B2C400C444E4 /* Array+Extensions.swift */,
+				0DAF98ED2533B2C400C444E4 /* UISegmentedControl+Extensions.swift */,
+				0DAF98EE2533B2C400C444E4 /* UIImageView+Extensions.swift */,
+				0DAF98EF2533B2C400C444E4 /* UIViewController+Extensions.swift */,
+				0DAF98F02533B2C400C444E4 /* UIView+Extensions.swift */,
+				0DAF98F12533B2C400C444E4 /* Date+Extension.swift */,
+				0DAF98F22533B2C400C444E4 /* String+Extensions.swift */,
+				0DAF98F32533B2C400C444E4 /* UITextView+Extensions.swift */,
+				0DAF98F42533B2C400C444E4 /* UIColor+Extensions.swift */,
+				0DAF98F52533B2C400C444E4 /* UIImage+Extensions.swift */,
+				0DAF98F62533B2C400C444E4 /* UISearchBar+Extensions.swift */,
+				0DAF98F72533B2C400C444E4 /* UIApplication+Extensions.swift */,
+				0DAF98F82533B2C400C444E4 /* UIAlertController+Extensions.swift */,
+				0DAF98F92533B2C400C444E4 /* Optional+Extensions.swift */,
+				0DAF98FA2533B2C400C444E4 /* Common+Extensions.swift */,
+				0DAF98FB2533B2C400C444E4 /* Locale+Extensions.swift */,
+				0DAF98FC2533B2C400C444E4 /* UITextField+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0DAF98FD2533B2C400C444E4 /* Viewers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF98FE2533B2C400C444E4 /* Models */,
+				0DAF99002533B2C400C444E4 /* TextViewController.swift */,
+			);
+			path = Viewers;
+			sourceTree = "<group>";
+		};
+		0DAF98FE2533B2C400C444E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF98FF2533B2C400C444E4 /* AttributedTextBlock.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0DAF99012533B2C400C444E4 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99022533B2C400C444E4 /* Locale */,
+				0DAF990D2533B2C400C444E4 /* TextFields */,
+				0DAF99102533B2C400C444E4 /* PhotoLibrary */,
+				0DAF99142533B2C400C444E4 /* Location */,
+				0DAF991C2533B2C400C444E4 /* PickerView */,
+				0DAF991E2533B2C400C444E4 /* Contacts */,
+				0DAF99262533B2C400C444E4 /* Color */,
+				0DAF99282533B2C400C444E4 /* Date */,
+				0DAF992A2533B2C400C444E4 /* Image */,
+				0DAF992E2533B2C400C444E4 /* Telegram */,
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
+		0DAF99022533B2C400C444E4 /* Locale */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99032533B2C400C444E4 /* Countries.bundle */,
+				0DAF99042533B2C400C444E4 /* Managers */,
+				0DAF99062533B2C400C444E4 /* Models */,
+				0DAF99082533B2C400C444E4 /* LocalePickerViewController.swift */,
+				0DAF99092533B2C400C444E4 /* Views */,
+			);
+			path = Locale;
+			sourceTree = "<group>";
+		};
+		0DAF99042533B2C400C444E4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99052533B2C400C444E4 /* LocaleStore.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0DAF99062533B2C400C444E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99072533B2C400C444E4 /* LocaleInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0DAF99092533B2C400C444E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF990A2533B2C400C444E4 /* PhoneCodeCell.swift */,
+				0DAF990B2533B2C400C444E4 /* CurrencyCell.swift */,
+				0DAF990C2533B2C400C444E4 /* CountryCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DAF990D2533B2C400C444E4 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF990E2533B2C400C444E4 /* TwoTextFieldsViewController.swift */,
+				0DAF990F2533B2C400C444E4 /* OneTextFieldViewController.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		0DAF99102533B2C400C444E4 /* PhotoLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99112533B2C400C444E4 /* Managers */,
+				0DAF99132533B2C400C444E4 /* PhotoLibraryPickerViewController.swift */,
+			);
+			path = PhotoLibrary;
+			sourceTree = "<group>";
+		};
+		0DAF99112533B2C400C444E4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99122533B2C400C444E4 /* Assets.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0DAF99142533B2C400C444E4 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99152533B2C400C444E4 /* LocationSearchResultsViewController.swift */,
+				0DAF99162533B2C400C444E4 /* LocationPickerViewController.swift */,
+				0DAF99172533B2C400C444E4 /* Managers */,
+				0DAF99192533B2C400C444E4 /* Models */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		0DAF99172533B2C400C444E4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99182533B2C400C444E4 /* SearchHistoryManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0DAF99192533B2C400C444E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF991A2533B2C400C444E4 /* Location.swift */,
+				0DAF991B2533B2C400C444E4 /* Address.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0DAF991C2533B2C400C444E4 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF991D2533B2C400C444E4 /* PickerViewViewController.swift */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
+		0DAF991E2533B2C400C444E4 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF991F2533B2C400C444E4 /* ContactsPickerViewController.swift */,
+				0DAF99202533B2C400C444E4 /* Managers */,
+				0DAF99222533B2C400C444E4 /* Models */,
+				0DAF99242533B2C400C444E4 /* Views */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		0DAF99202533B2C400C444E4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99212533B2C400C444E4 /* Contacts.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		0DAF99222533B2C400C444E4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99232533B2C400C444E4 /* Contact.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0DAF99242533B2C400C444E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99252533B2C400C444E4 /* ContactCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DAF99262533B2C400C444E4 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99272533B2C400C444E4 /* ColorPickerViewController.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		0DAF99282533B2C400C444E4 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99292533B2C400C444E4 /* DatePickerViewController.swift */,
+			);
+			path = Date;
+			sourceTree = "<group>";
+		};
+		0DAF992A2533B2C400C444E4 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF992B2533B2C400C444E4 /* ImagePickerViewController.swift */,
+				0DAF992C2533B2C400C444E4 /* Views */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		0DAF992C2533B2C400C444E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF992D2533B2C400C444E4 /* ItemWithImage.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DAF992E2533B2C400C444E4 /* Telegram */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF992F2533B2C400C444E4 /* Layouts */,
+				0DAF99312533B2C400C444E4 /* TelegramPickerViewController.swift */,
+				0DAF99322533B2C400C444E4 /* Views */,
+			);
+			path = Telegram;
+			sourceTree = "<group>";
+		};
+		0DAF992F2533B2C400C444E4 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99302533B2C400C444E4 /* PhotoLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		0DAF99322533B2C400C444E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99332533B2C400C444E4 /* ItemWithPhoto.swift */,
+				0DAF99342533B2C400C444E4 /* LikeButtonCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DAF99352533B2C400C444E4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99362533B2C400C444E4 /* Label.swift */,
+				0DAF99372533B2C400C444E4 /* SegmentedControl.swift */,
+				0DAF99382533B2C400C444E4 /* GradientSlider.swift */,
+				0DAF99392533B2C400C444E4 /* TextField.swift */,
+				0DAF993A2533B2C400C444E4 /* Button.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0DAF99802533DF3C00C444E4 /* AdditionalData */ = {
+			isa = PBXGroup;
+			children = (
+				0DAF99812533DF5C00C444E4 /* AdditionalDataCell.swift */,
+				0DAF99822533DF5C00C444E4 /* AdditionalDataCell.xib */,
+			);
+			path = AdditionalData;
+			sourceTree = "<group>";
+		};
 		0DE4CC1420A4B265001A4E5D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				0DAF99802533DF3C00C444E4 /* AdditionalData */,
 				0D73408620A8FDE70098343D /* Charts */,
 				0DE4CC1520A4B27F001A4E5D /* DetailVC.swift */,
 				0DE4CC1620A4B27F001A4E5D /* DetailVC.xib */,
@@ -600,6 +1020,7 @@
 				0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */,
 				0D4C1A9A21CC4D9B001D4D19 /* TimeZoneCell.xib in Resources */,
 				0D6AA3EF20818A7B00194AA5 /* MainVC.xib in Resources */,
+				0DAF994E2533B2C400C444E4 /* Countries.bundle in Resources */,
 				0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */,
 				0D8A1E16236F5AE20088C3B4 /* TempShareCell.xib in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
@@ -611,11 +1032,13 @@
 				0DB78DA221434D7E00AB60C9 /* WifiSendDataVC.xib in Resources */,
 				0D6AA3D8208187CF00194AA5 /* Main.storyboard in Resources */,
 				0DE4CC1C20A4B954001A4E5D /* DetailWaterInfoCell.xib in Resources */,
+				0DAF99752533C60F00C444E4 /* RemoteWellOnOffChartCell.xib in Resources */,
 				0D7340C520AA5EB80098343D /* SettingsSliderCell.xib in Resources */,
 				0D73409920A9F10A0098343D /* NotificationsVC.xib in Resources */,
 				0D7340C920ABA8DE0098343D /* SendCommandVC.xib in Resources */,
 				0D7340C120AA5EA80098343D /* SettingsVC.xib in Resources */,
 				0DF36C222377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.xib in Resources */,
+				0DAF99842533DF5C00C444E4 /* AdditionalDataCell.xib in Resources */,
 				0D73413020B4F30D0098343D /* WifiConfigVC.xib in Resources */,
 				0DFC91DE236F89B100E50E50 /* EnergyHistoricalGraphCell.xib in Resources */,
 				0D73409D20A9F11D0098343D /* DeviceNotificationsVC.xib in Resources */,
@@ -646,6 +1069,7 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MDatePickerView/MDatePickerView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/ReachabilitySwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -667,6 +1091,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/M13Checkbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDatePickerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReachabilitySwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -717,18 +1142,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DAF99462533B2C400C444E4 /* UIApplication+Extensions.swift in Sources */,
 				0D73408C20A90F830098343D /* HourValueFormatter.swift in Sources */,
+				0DAF99432533B2C400C444E4 /* UIColor+Extensions.swift in Sources */,
+				0DAF994B2533B2C400C444E4 /* UITextField+Extensions.swift in Sources */,
 				0DFC91E2236FB32200E50E50 /* DayValueFormatter.swift in Sources */,
+				0DAF997B2533DAAA00C444E4 /* AdditionalDataItem.swift in Sources */,
 				0D6AA3D5208187CF00194AA5 /* ViewController.swift in Sources */,
+				0DAF99782533D89600C444E4 /* OnOffFormatter.swift in Sources */,
 				0D4C1A9921CC4D9B001D4D19 /* TimeZoneCell.swift in Sources */,
+				0DAF99412533B2C400C444E4 /* String+Extensions.swift in Sources */,
 				0D5CE146209547E20096CD99 /* GetDataResponse.swift in Sources */,
+				0DAF99682533B2C400C444E4 /* TelegramPickerViewController.swift in Sources */,
+				0DAF995D2533B2C400C444E4 /* Address.swift in Sources */,
+				0DAF99452533B2C400C444E4 /* UISearchBar+Extensions.swift in Sources */,
+				0DAF99482533B2C400C444E4 /* Optional+Extensions.swift in Sources */,
+				0DAF99512533B2C400C444E4 /* LocalePickerViewController.swift in Sources */,
 				0D7340B320A9FE750098343D /* NotificationsResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
+				0DAF99622533B2C400C444E4 /* ContactCell.swift in Sources */,
+				0DAF996B2533B2C400C444E4 /* Label.swift in Sources */,
+				0DAF99582533B2C400C444E4 /* PhotoLibraryPickerViewController.swift in Sources */,
 				0D9B5466236E5661000E9909 /* ScheduleCell.swift in Sources */,
 				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
 				0D73412F20B4F30D0098343D /* WifiConfigVC.swift in Sources */,
 				0D050A7C20A22339005B95A3 /* MainDeviceCell.swift in Sources */,
+				0DAF99832533DF5C00C444E4 /* AdditionalDataCell.swift in Sources */,
 				0D7340C820ABA8DE0098343D /* SendCommandVC.swift in Sources */,
 				0D5CE14B20954A8C0096CD99 /* RealmDataPoint.swift in Sources */,
 				0D4C1A9121CC33E6001D4D19 /* SolenoidSettingsCell.swift in Sources */,
@@ -736,51 +1176,93 @@
 				0DFC91E0236F8ADA00E50E50 /* GraphPoint.swift in Sources */,
 				0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
+				0DAF995B2533B2C400C444E4 /* SearchHistoryManager.swift in Sources */,
 				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
+				0DAF996A2533B2C400C444E4 /* LikeButtonCell.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
 				0D7340A720A9F5E90098343D /* NotificationsRequest.swift in Sources */,
+				0DAF995A2533B2C400C444E4 /* LocationPickerViewController.swift in Sources */,
 				0D7340CC20ABB16A0098343D /* HistoryVC.swift in Sources */,
 				0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */,
+				0DAF99442533B2C400C444E4 /* UIImage+Extensions.swift in Sources */,
+				0DAF993B2533B2C400C444E4 /* Array+Extensions.swift in Sources */,
+				0DAF99562533B2C400C444E4 /* OneTextFieldViewController.swift in Sources */,
+				0DAF99642533B2C400C444E4 /* DatePickerViewController.swift in Sources */,
+				0DAF996D2533B2C400C444E4 /* GradientSlider.swift in Sources */,
 				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
 				0D9B5461236E48F2000E9909 /* CalculateHistoricalListResponse.swift in Sources */,
 				0D9B5463236E551F000E9909 /* ScheduleItem.swift in Sources */,
+				0DAF99692533B2C400C444E4 /* ItemWithPhoto.swift in Sources */,
+				0DAF99662533B2C400C444E4 /* ItemWithImage.swift in Sources */,
+				0DAF99552533B2C400C444E4 /* TwoTextFieldsViewController.swift in Sources */,
+				0DAF996E2533B2C400C444E4 /* TextField.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
+				0DAF99602533B2C400C444E4 /* Contacts.swift in Sources */,
 				0D9B5455236E4686000E9909 /* ScheduleVC.swift in Sources */,
+				0DAF99672533B2C400C444E4 /* PhotoLayout.swift in Sources */,
+				0DAF99652533B2C400C444E4 /* ImagePickerViewController.swift in Sources */,
+				0DAF994C2533B2C400C444E4 /* AttributedTextBlock.swift in Sources */,
+				0DAF995F2533B2C400C444E4 /* ContactsPickerViewController.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
+				0DAF99492533B2C400C444E4 /* Common+Extensions.swift in Sources */,
 				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
+				0DAF995C2533B2C400C444E4 /* Location.swift in Sources */,
 				0D7340AF20A9F65C0098343D /* CalculateHistoricalResponse.swift in Sources */,
 				0D7340B720AA02640098343D /* GenericResponse.swift in Sources */,
 				0D7340B520A9FE930098343D /* Notification.swift in Sources */,
 				0DE4CC1720A4B27F001A4E5D /* DetailVC.swift in Sources */,
 				0D4C1A9621CC35B8001D4D19 /* AdditionalConfigRequest.swift in Sources */,
+				0DAF994D2533B2C400C444E4 /* TextViewController.swift in Sources */,
+				0DAF993D2533B2C400C444E4 /* UIImageView+Extensions.swift in Sources */,
+				0DAF993C2533B2C400C444E4 /* UISegmentedControl+Extensions.swift in Sources */,
 				0D4C1A9421CC355B001D4D19 /* AdditionalConfigResponse.swift in Sources */,
+				0DAF99472533B2C400C444E4 /* UIAlertController+Extensions.swift in Sources */,
 				0D7340D020ABC93D0098343D /* EnergyUtilityVC.swift in Sources */,
+				0DAF993F2533B2C400C444E4 /* UIView+Extensions.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
+				0DAF99572533B2C400C444E4 /* Assets.swift in Sources */,
 				0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */,
 				0DFC91DD236F89B100E50E50 /* EnergyHistoricalGraphCell.swift in Sources */,
+				0DAF994F2533B2C400C444E4 /* LocaleStore.swift in Sources */,
+				0DAF993E2533B2C400C444E4 /* UIViewController+Extensions.swift in Sources */,
+				0DAF99592533B2C400C444E4 /* LocationSearchResultsViewController.swift in Sources */,
 				0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */,
+				0DAF996C2533B2C400C444E4 /* SegmentedControl.swift in Sources */,
+				0DAF99742533C60F00C444E4 /* RemoteWellOnOffChartCell.swift in Sources */,
+				0DAF997E2533DC6C00C444E4 /* AdditionalDataResponse.swift in Sources */,
+				0DAF99542533B2C400C444E4 /* CountryCell.swift in Sources */,
+				0DAF99402533B2C400C444E4 /* Date+Extension.swift in Sources */,
 				0D9B545D236E47BB000E9909 /* ReadWriteScheduleRequest.swift in Sources */,
 				0D73409C20A9F11D0098343D /* DeviceNotificationsVC.swift in Sources */,
 				0D7F876B209184AF00378B03 /* RealmSavior.swift in Sources */,
 				0D7340A420A9F4960098343D /* NotificationCell.swift in Sources */,
+				0DAF99632533B2C400C444E4 /* ColorPickerViewController.swift in Sources */,
 				0D5CE149209548140096CD99 /* RemoteDevice.swift in Sources */,
 				0D7340B920AA11B00098343D /* RealmNotification.swift in Sources */,
 				0D6AA3EA208189A600194AA5 /* SaviorVC.swift in Sources */,
 				0DE4CC1B20A4B954001A4E5D /* DetailWaterInfoCell.swift in Sources */,
+				0DAF995E2533B2C400C444E4 /* PickerViewViewController.swift in Sources */,
 				0D6AA3F620818C7F00194AA5 /* ManageVC.swift in Sources */,
 				0DB78DA121434D7E00AB60C9 /* WifiSendDataVC.swift in Sources */,
 				0D7340A920A9F6180098343D /* HistoricalKwhRequest.swift in Sources */,
 				0D8A1E15236F5AE20088C3B4 /* TempShareCell.swift in Sources */,
+				0DAF99522533B2C400C444E4 /* PhoneCodeCell.swift in Sources */,
 				0DF36C212377ABAF008A4785 /* DetailTempOnlyInfoCellTableViewCell.swift in Sources */,
 				0D73409820A9F10A0098343D /* NotificationsVC.swift in Sources */,
+				0DAF99422533B2C400C444E4 /* UITextView+Extensions.swift in Sources */,
 				0D7340C420AA5EB80098343D /* SettingsSliderCell.swift in Sources */,
+				0DAF994A2533B2C400C444E4 /* Locale+Extensions.swift in Sources */,
+				0DAF99502533B2C400C444E4 /* LocaleInfo.swift in Sources */,
 				0D7340AD20A9F6470098343D /* CalculateHistoricalRequest.swift in Sources */,
 				0D7340AB20A9F63B0098343D /* SendCommandRequest.swift in Sources */,
 				0D5CE142209545030096CD99 /* Constants.swift in Sources */,
+				0DAF99532533B2C400C444E4 /* CurrencyCell.swift in Sources */,
 				0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */,
+				0DAF99612533B2C400C444E4 /* Contact.swift in Sources */,
 				0D9B545F236E480E000E9909 /* HistoricalGraphItem.swift in Sources */,
+				0DAF996F2533B2C500C444E4 /* Button.swift in Sources */,
 				0D7340C020AA5EA80098343D /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -922,18 +1404,18 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
-				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
+				CURRENT_PROJECT_VERSION = 10;
+				DEVELOPMENT_TEAM = MR9FEBC46L;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ctreesoft.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -950,7 +1432,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -958,7 +1440,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";

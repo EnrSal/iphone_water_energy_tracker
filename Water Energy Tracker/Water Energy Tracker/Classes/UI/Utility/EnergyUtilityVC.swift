@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DatePickerDialog
 
 class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
@@ -82,6 +81,19 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     // MARK: - Actions
     
     @IBAction func clickFrom(_ sender: Any) {
+        
+
+        let alert = UIAlertController(style: .actionSheet, title: "Select From Date")
+        alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: Date()) { date in
+            self.from = date.startOfDay
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy"
+            self.fromdate.text = formatter.string(from: date.startOfDay)
+        }
+        alert.addAction(title: "OK", style: .cancel)
+        alert.show()
+
+        /*
         DatePickerDialog().show("Select From Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
             (date) -> Void in
             if let dt = date {
@@ -90,10 +102,22 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 formatter.dateFormat = "MM/dd/yyyy"
                 self.fromdate.text = formatter.string(from: dt.startOfDay)
             }
-        }
+        }*/
 
     }
     @IBAction func clickTo(_ sender: Any) {
+        
+        let alert = UIAlertController(style: .actionSheet, title: "Select To Date")
+        alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: Date()) { date in
+            self.to = date.startOfDay
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MM/dd/yyyy"
+            self.todate.text = formatter.string(from: date.startOfDay)
+        }
+        alert.addAction(title: "OK", style: .cancel)
+        alert.show()
+
+        /*
         DatePickerDialog().show("Select To Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
             (date) -> Void in
             if let dt = date {
@@ -102,7 +126,7 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 formatter.dateFormat = "MM/dd/yyyy"
                 self.todate.text = formatter.string(from: dt.startOfDay)
             }
-        }
+        }*/
     }
     @IBAction func clickCalculate(_ sender: Any) {
         if let from = self.from, let to = self.to {

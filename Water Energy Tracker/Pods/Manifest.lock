@@ -12,7 +12,7 @@ PODS:
   - Crashlytics (3.10.8):
     - Fabric (~> 1.7.12)
   - D2PDatePicker (0.1.4)
-  - DatePickerDialog (2.0)
+  - DatePickerDialog (3.0)
   - DateTimePicker (2.1.2)
   - Fabric (1.7.12)
   - FMSecureTextField (1.0.0)
@@ -20,6 +20,7 @@ PODS:
   - Kingfisher (4.10.0)
   - M13Checkbox (3.4.0)
   - MBProgressHUD (1.1.0)
+  - MDatePickerView (1.2.3)
   - ObjectMapper (3.3.0)
   - ReachabilitySwift (3)
   - Realm (3.19.0):
@@ -38,7 +39,7 @@ DEPENDENCIES:
   - Charts
   - Crashlytics
   - D2PDatePicker
-  - DatePickerDialog
+  - DatePickerDialog (~> 3.0)
   - DateTimePicker
   - Fabric
   - FMSecureTextField
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - Kingfisher (~> 4.0)
   - M13Checkbox
   - MBProgressHUD
+  - MDatePickerView
   - ReachabilitySwift (~> 3)
   - RealmSwift (~> 3.19.0)
   - SwiftyBluetooth
@@ -59,7 +61,6 @@ SPEC REPOS:
     - Charts
     - Crashlytics
     - D2PDatePicker
-    - DatePickerDialog
     - DateTimePicker
     - Fabric
     - IQKeyboardManagerSwift
@@ -73,8 +74,10 @@ SPEC REPOS:
     - SwiftyJSON
   trunk:
     - AzureNotificationHubs-iOS
+    - DatePickerDialog
     - FMSecureTextField
     - M13Checkbox
+    - MDatePickerView
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -84,7 +87,7 @@ SPEC CHECKSUMS:
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
   D2PDatePicker: e35a6b3dd5fac16de8a17606dc0bb285e8b1a875
-  DatePickerDialog: 5e1c24d9fe6506cd45dbc573eed7b0a251b1c09d
+  DatePickerDialog: 03dbb8350bfa80302ab2a8c83cee1fec70184444
   DateTimePicker: 111a1ca10b390ac315fdf3e85a5941fd4f72dfb7
   Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
   FMSecureTextField: 22312d628afe7a97b50682c6708c01ecf37087d5
@@ -92,6 +95,7 @@ SPEC CHECKSUMS:
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   M13Checkbox: 6f59404540ac98ba83a3d1afac335895a40c6a5d
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MDatePickerView: e26233885de2f13659c6101b3ed265eacf92c078
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Realm: 995d585bcf699aaff226715886c849a29dd3d07f
@@ -99,6 +103,6 @@ SPEC CHECKSUMS:
   SwiftyBluetooth: 9e26b1367f56aa60f35713f6d968382144bccfd5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 83cce70925141cd9afa420cf20c32f23138b6ce8
+PODFILE CHECKSUM: dc96b4903a5940e19eb077271a2d9f7024c13fc4
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.9.2

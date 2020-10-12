@@ -10,10 +10,12 @@ import UIKit
 
 class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var modeButton: UIButton!
     @IBOutlet weak var heightconstraint: NSLayoutConstraint!
     var savior: RealmSavior!
     @IBOutlet weak var collectionView: UICollectionView!
     var hours:[ScheduleItem] = Array(repeating: ScheduleItem(), count: 24)
+    var checkboxoff = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +58,16 @@ class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource
 
     }
     // MARK: - Actions
-
+    @IBAction func clickMode(_ sender: Any) {
+        checkboxoff = !checkboxoff
+        if checkboxoff {
+            self.modeButton.setTitle("check mark=OFF", for: .normal)
+        } else {
+            self.modeButton.setTitle("check mark=ON", for: .normal)
+        }
+        self.collectionView.reloadData()
+    }
+    
     @IBAction func clickUpdate(_ sender: Any) {
         let req:ReadWriteScheduleRequest = ReadWriteScheduleRequest()
         req.name = savior.savior_address!
@@ -71,13 +82,12 @@ class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource
         self.showHud()
         AzureApi.shared.readWriteSchedule(req: req) { (error:ServerError?, response:GenericResponse?) in
             self.hideHud()
-            if let response = response {
+            if response != nil {
                 DispatchQueue.main.async {
                     self.dismiss(animated: true, completion: nil)
                 }
             }
         }
-
     }
     
     // MARK: - CollectionView
@@ -94,10 +104,9 @@ class ScheduleVC: SaviorVC, UICollectionViewDelegate, UICollectionViewDataSource
         let cell: ScheduleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SCHEDULE_CELL", for: indexPath) as! ScheduleCell
         cell.item = self.hours[indexPath.row]
         cell.item.index = indexPath.row
-        // cell.owner = self
+        cell.owner = self
         cell.populate()
         
-
         return cell
     }
     

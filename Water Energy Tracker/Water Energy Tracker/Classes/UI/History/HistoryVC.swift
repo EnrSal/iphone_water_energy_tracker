@@ -35,6 +35,9 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         self.tableView.register(TemperatureChartCell.self, forCellReuseIdentifier: "TEMP_CHART")
         self.tableView.register(UINib(nibName: "TemperatureChartCell", bundle: nil), forCellReuseIdentifier: "TEMP_CHART")
         
+        self.tableView.register(RemoteWellOnOffChartCell.self, forCellReuseIdentifier: "REMOTE_WELL_CHART")
+        self.tableView.register(UINib(nibName: "RemoteWellOnOffChartCell", bundle: nil), forCellReuseIdentifier: "REMOTE_WELL_CHART")
+
         self.tableView.tableFooterView = UIView()
         if (self.savior.stype != 0) && self.savior.stype != Constants.temperature_only_stype {
             self.tableView.tableHeaderView = self.header
@@ -60,7 +63,7 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func populate() {
-        if (self.savior.stype != 0) && self.savior.stype != Constants.temperature_only_stype {
+        if (self.savior.stype != 0) && self.savior.stype != Constants.temperature_only_stype && self.savior.stype != Constants.remote_well {
             self.day.text = ""
             self.week.text = ""
             self.month.text = ""
@@ -102,6 +105,9 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             })
             
         }
+        if self.savior.stype == Constants.remote_well {
+            self.tableView.tableHeaderView = nil
+        }
 
     }
 
@@ -117,12 +123,16 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            if (self.savior.stype == 0) || (self.savior.stype == 1) || (self.savior.stype == 2) || (self.savior.stype == 4)  {
+            if (self.savior.stype == 0) || (self.savior.stype == 1) || (self.savior.stype == 2) || (self.savior.stype == 4) || self.savior.stype == Constants.remote_well {
                 return 0
             } else {
                 return 1
             }
         }
+        if (section == 1) && ((self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)) {
+            return 0
+        }
+
         return 1
     }
     
@@ -175,6 +185,15 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 
                 return cell;
                 
+            } else if self.savior.stype == Constants.remote_well {
+                let cell:RemoteWellOnOffChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "REMOTE_WELL_CHART", for: indexPath) as? RemoteWellOnOffChartCell)!
+                cell.history = true
+                cell.end = Calendar.utc.date(byAdding: .day, value: 1, to: self.date)!
+                cell.start = self.date
+                cell.savior = self.savior
+                cell.populate()
+
+                return cell;
             } else {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 

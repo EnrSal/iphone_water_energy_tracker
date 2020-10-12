@@ -137,8 +137,17 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                                                 } else {
                                                     if let response = response {
                                                         DispatchQueue.main.async {
-                                                            print("newsavior.stype = \(newsavior.stype)")
+                                                            print("newsavior.stype = \(newsavior.stype) response.UnitPerPulse=\(response.UnitPerPulse)")
                                                             try! realm.write {
+                                                                
+                                                                if let unit = response.Unit, let unitperpulse = response.UnitPerPulse {
+                                                                    newsavior.EnergyUnit = unit
+                                                                    newsavior.EnergyUnitPerPulse = Double(unitperpulse)!
+                                                                } else if let unit = response.EnergyUnit, let unitperpulse = response.EnergyUnitPerPulse {
+                                                                    newsavior.EnergyUnit = unit
+                                                                    newsavior.EnergyUnitPerPulse = Double(unitperpulse)!
+                                                                }
+                                                                /*
                                                                 if newsavior.stype == 20 || newsavior.stype == 21 || newsavior.stype == 22 || newsavior.stype == 24 {
                                                                     newsavior.EnergyUnit = response.Unit
                                                                     if let EnergyUnitPerPulse = response.UnitPerPulse {
@@ -149,7 +158,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                                                                     if let EnergyUnitPerPulse = response.EnergyUnitPerPulse {
                                                                         newsavior.EnergyUnitPerPulse = Double(EnergyUnitPerPulse)!
                                                                     }
-                                                                }
+                                                                }*/
                                                             }
                                                             self.scan()
                                                             self.tableView.reloadData()
@@ -218,6 +227,12 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             case .scanResult(let peripheral, let advertisementData, let RSSI):
                 print("GOT BLUETOOTH \(peripheral.identifier) \(advertisementData) \(peripheral.name!)")
                 if peripheral.name! == "SX." {
+                    peripheral.connect(withTimeout: 3) { result in
+                        print("CONNECT TO SX. \(result)")
+                        peripheral.disconnect {result in
+                            print("DISCONNECT TO SX. \(result)")
+                        }
+                    }
                     return
                 }
                 // A peripheral was found, your closure may be called multiple time with a .ScanResult enum case.

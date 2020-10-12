@@ -8,16 +8,15 @@
 
 import UIKit
 import RealmSwift
-import DatePickerDialog
-import D2PDatePicker
 
-class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePickerDelegate {
+class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var headerView: UIView!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var timeago: UILabel!
     @IBOutlet weak var name: UILabel!
-    var datePickerView: D2PDatePicker!
 
+    var additiona_data:[AdditionalDataItem] = []
+    
     var energy_unit:Int = 0
     var savior: RealmSavior!
     @IBOutlet weak var tableView: UITableView!
@@ -47,7 +46,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         }
         
         let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
-        if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype {
+        if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype || self.savior.stype == Constants.remote_well {
             if from_share {
                 self.navigationItem.rightBarButtonItems = [historyButton]
             } else {
@@ -82,6 +81,12 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         self.tableView.register(DetailTempOnlyInfoCellTableViewCell.self, forCellReuseIdentifier: "TEMP_ONLY_INFO_CELL")
         self.tableView.register(UINib(nibName: "DetailTempOnlyInfoCellTableViewCell", bundle: nil), forCellReuseIdentifier: "TEMP_ONLY_INFO_CELL")
 
+        self.tableView.register(RemoteWellOnOffChartCell.self, forCellReuseIdentifier: "REMOTE_WELL_CHART")
+        self.tableView.register(UINib(nibName: "RemoteWellOnOffChartCell", bundle: nil), forCellReuseIdentifier: "REMOTE_WELL_CHART")
+
+        self.tableView.register(AdditionalDataCell.self, forCellReuseIdentifier: "ADDITIONAL_DATA_CELL")
+        self.tableView.register(UINib(nibName: "AdditionalDataCell", bundle: nil), forCellReuseIdentifier: "ADDITIONAL_DATA_CELL")
+
         
         
         self.tableView.tableFooterView = UIView()
@@ -112,115 +117,112 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
 
     @objc func clickHistory(_ sender:UIBarButtonItem!) {
         
-        DatePickerDialog().show("Select Date", doneButtonTitle: "Done", cancelButtonTitle: "Cancel", datePickerMode: .date) {
-            (date) -> Void in
-            if let dt = date {
-                print("SELECT DATE \(dt)")
-                let formatter = DateFormatter()
-               // formatter.calendar = Calendar(identifier: .iso8601)
-               // formatter.locale = Locale(identifier: "en_US_POSIX")
-               // formatter.timeZone = TimeZone(secondsFromGMT: 0)
-                formatter.dateFormat = "MMddyyyyHH:mm:ss"
-                formatter.timeZone = TimeZone(abbreviation: "UTC")
-
-                let datestr = formatter.string(from: dt.startOfDay)
-
-                let req:GetDataRequest = GetDataRequest()
-                req.mac = self.savior.savior_address!
-                req.stype = self.savior.stype
-                req.utct = datestr
-                print("@@@ req.utct \(req.utct)")
-
-                self.showHud()
-                AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?, orig:String) in
-                    self.hideHud()
-                    if let error = error {
-                        print(error)
-                    } else {
-                        if let response = response {
-                            
-                            let realm = try! Realm()
-                            try! realm.write {
-                                for device in response.Result {
-                                    if device.UTCtime != nil && device.mac != nil {
-                                        let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
-                                        let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
-                                        if current == nil {
-                                            realm.add(dataPoint)
-                                            //print("ADDED \(dataPoint)")
-                                        }
+        let alert = UIAlertController(style: .actionSheet, title: "Select Date")
+        alert.addDatePicker(mode: .dateAndTime, date: Date(), minimumDate: nil, maximumDate: Date()) { dt in
+            print("SELECT DATE \(dt)")
+            let formatter = DateFormatter()
+            // formatter.calendar = Calendar(identifier: .iso8601)
+            // formatter.locale = Locale(identifier: "en_US_POSIX")
+            // formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.dateFormat = "MMddyyyyHH:mm:ss"
+            formatter.timeZone = TimeZone(abbreviation: "UTC")
+            
+            let datestr = formatter.string(from: dt.startOfDay)
+            
+            let req:GetDataRequest = GetDataRequest()
+            req.mac = self.savior.savior_address!
+            req.stype = self.savior.stype
+            req.utct = datestr
+            print("@@@ req.utct \(req.utct)")
+            
+            self.showHud()
+            AzureApi.shared.getData(req: req, completionHandler: { (error:ServerError?, response:GetDataResponse?, orig:String) in
+                self.hideHud()
+                if let error = error {
+                    print(error)
+                } else {
+                    if let response = response {
+                        
+                        let realm = try! Realm()
+                        try! realm.write {
+                            for device in response.Result {
+                                if device.UTCtime != nil && device.mac != nil {
+                                    let dataPoint:RealmDataPoint = RealmDataPoint(fromDataPoint: device)
+                                    let current = realm.objects(RealmDataPoint.self).filter("identifier = '\(dataPoint.identifier!)'").first
+                                    if current == nil {
+                                        realm.add(dataPoint)
+                                        //print("ADDED \(dataPoint)")
                                     }
                                 }
                             }
-                            DispatchQueue.main.async {
-                                let detailVC:HistoryVC = HistoryVC(nibName: "HistoryVC", bundle: nil)
-                                detailVC.savior = self.savior
-                                
-
-                                print("@@@ ORIG DATE \(dt)")
-                                
-                                let seconds = TimeZone.current.secondsFromGMT()
-                                print("@@@ seconds \(seconds)")
-                                let adjusted = Date(timeIntervalSince1970: dt.timeIntervalSince1970+Double(seconds))
-                                print("@@@ ADJUSTED DATE \(adjusted.startOfDay)")
-                                let adjusted2 = Date(timeIntervalSince1970: adjusted.startOfDay.timeIntervalSince1970+Double(seconds))
-
-                                detailVC.date = adjusted2
-                                /*
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Input Format
-                               // dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
-                               
-                                dateFormatter.timeZone = TimeZone.current
-
-                                let str = dateFormatter.string(from: dt.startOfDay)
-                                print("@@@ STRING DATE \(str)")
-                                
-                                
-                                let formatter2 = DateFormatter()
-                                formatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                                formatter2.timeZone = TimeZone.current
-                               // let UTCToCurrentFormat = formatter2.string(from: str)*/
-                                //detailVC.date = formatter2.date(from: str)
-
-                                
-
-                                //let UTCDate = dateFormatter.date(from: str)
-                                //print("@@@ UTCDate \(UTCDate)")
-                              
-                                /*
-                                dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss" // Output Format
-                                dateFormatter.timeZone = TimeZone.current
-                                let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
-*/
-                                
-                                /*
-                                let formatter = DateFormatter()
-                               // formatter.timeZone = TimeZone(abbreviation: "UTC")
-                                formatter.dateFormat = "MM/dd/yyyy"
-                                print("@@@ formatter.timeZone \(formatter.timeZone)")
-                                let str = formatter.string(from: dt.startOfDay)
-                                print("@@@ STRING DATE \(str)")
-                                //formatter.timeZone = TimeZone(abbreviation: "America/Los_Angeles")
-*/
-                                //detailVC.date = UTCDate
-                                print("@@@ DATE DATE \(detailVC.date)")
-                                detailVC.energy_unit = self.energy_unit
-                               // print("1 SELECT DATE \(dt)")
-                                self.navigationController?.pushViewController(detailVC, animated: true)
-                            }
+                        }
+                        DispatchQueue.main.async {
+                            let detailVC:HistoryVC = HistoryVC(nibName: "HistoryVC", bundle: nil)
+                            detailVC.savior = self.savior
+                            
+                            
+                            print("@@@ ORIG DATE \(dt)")
+                            
+                            let seconds = TimeZone.current.secondsFromGMT()
+                            print("@@@ seconds \(seconds)")
+                            let adjusted = Date(timeIntervalSince1970: dt.timeIntervalSince1970+Double(seconds))
+                            print("@@@ ADJUSTED DATE \(adjusted.startOfDay)")
+                            let adjusted2 = Date(timeIntervalSince1970: adjusted.startOfDay.timeIntervalSince1970+Double(seconds))
+                            
+                            detailVC.date = adjusted2
+                            /*
+                             let dateFormatter = DateFormatter()
+                             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Input Format
+                             // dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone!
+                             
+                             dateFormatter.timeZone = TimeZone.current
+                             
+                             let str = dateFormatter.string(from: dt.startOfDay)
+                             print("@@@ STRING DATE \(str)")
+                             
+                             
+                             let formatter2 = DateFormatter()
+                             formatter2.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                             formatter2.timeZone = TimeZone.current
+                             // let UTCToCurrentFormat = formatter2.string(from: str)*/
+                            //detailVC.date = formatter2.date(from: str)
+                            
+                            
+                            
+                            //let UTCDate = dateFormatter.date(from: str)
+                            //print("@@@ UTCDate \(UTCDate)")
+                            
+                            /*
+                             dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss" // Output Format
+                             dateFormatter.timeZone = TimeZone.current
+                             let UTCToCurrentFormat = dateFormatter.string(from: UTCDate!)
+                             */
+                            
+                            /*
+                             let formatter = DateFormatter()
+                             // formatter.timeZone = TimeZone(abbreviation: "UTC")
+                             formatter.dateFormat = "MM/dd/yyyy"
+                             print("@@@ formatter.timeZone \(formatter.timeZone)")
+                             let str = formatter.string(from: dt.startOfDay)
+                             print("@@@ STRING DATE \(str)")
+                             //formatter.timeZone = TimeZone(abbreviation: "America/Los_Angeles")
+                             */
+                            //detailVC.date = UTCDate
+                            print("@@@ DATE DATE \(detailVC.date)")
+                            detailVC.energy_unit = self.energy_unit
+                            // print("1 SELECT DATE \(dt)")
+                            self.navigationController?.pushViewController(detailVC, animated: true)
                         }
                     }
-                    
-                })
-
+                }
                 
-                
-                
-                
-                
-            }
+            })
         }
+        alert.addAction(title: "OK", style: .cancel)
+        alert.show()
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -239,8 +241,6 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         let items = realm.objects(RealmDataPoint.self).filter("mac = '\(savior.savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)
         if items.count > 0 {
             let current = items.first
-            
-            
             if let timestamp = current!.timestamp {
                 self.time.text = date_formatter.string(from: timestamp.fromUTC())
                 self.timeago.text = Util.timeAgoSinceDate(date: timestamp.fromUTC() as NSDate, numericDates: true)
@@ -254,7 +254,6 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         if (self.savior.stype == 0) || (self.savior.stype == Constants.temperature_only_stype) {
             name.text = self.savior.alias!
         } else {
-            
             print("ENERGY UNIT \(energy_unit)")
             switch self.energy_unit {
             case 1:
@@ -277,6 +276,19 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 break
             }
         }
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+
+        let req:CalculateHistoricalRequest = CalculateHistoricalRequest()
+        req.macAddress = self.savior.savior_address!
+        let modifiedDate = Calendar.current.date(byAdding: .day, value: -5, to: Date())!
+        req.fromdate = formatter.string(from: modifiedDate)
+        req.todate = formatter.string(from: Date())
+        AzureApi.shared.getAdditionalData(req: req) { (error:ServerError?, response:AdditionalDataResponse?) in
+            
+        }
+
     }
     
     // MARK: - TableView
@@ -290,11 +302,14 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 1) {
-            if (self.savior.stype == 0) || (self.savior.stype == 1) || (self.savior.stype == 2) || (self.savior.stype == 4)  {
+            if (self.savior.stype == 0) || (self.savior.stype == 1) || (self.savior.stype == 2) || (self.savior.stype == 4) || self.savior.stype == Constants.remote_well {
                 return 0
             } else {
                 return 1
             }
+        }
+        if (section == 2) && ((self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)) {
+            return 0
         }
         return 1
     }
@@ -303,7 +318,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
         
         switch indexPath.section {
         case 0:
-            if (self.savior.stype == 0) {
+            if (self.savior.stype == 0) || self.savior.stype == Constants.remote_well {
                 print("CELL HERE 1 \(self.savior.name)")
                 let cell:DetailWaterInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_CELL", for: indexPath) as? DetailWaterInfoCell)!
                 
@@ -377,6 +392,16 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 cell.populate()
                 
                 return cell;
+            } else if self.savior.stype == Constants.remote_well {
+                let cell:RemoteWellOnOffChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "REMOTE_WELL_CHART", for: indexPath) as? RemoteWellOnOffChartCell)!
+                
+                cell.end = Date.UTCDate()
+                let calendar = NSCalendar.autoupdatingCurrent
+                cell.start = calendar.date(byAdding:.hour, value: -12, to: cell.end)
+                cell.savior = self.savior
+                cell.populate()
+
+                return cell;
             } else {
                 let cell:EnergyPowerUsageChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "ENERGY_POWER_CHART", for: indexPath) as? EnergyPowerUsageChartCell)!
                 
@@ -388,7 +413,6 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, D2PDatePic
                 cell.populate()
                 
                 return cell;
-
             }
         case 3:
             let cell:TemperatureChartCell = (self.tableView.dequeueReusableCell(withIdentifier: "TEMP_CHART", for: indexPath) as? TemperatureChartCell)!

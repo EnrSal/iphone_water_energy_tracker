@@ -17,11 +17,12 @@ platform :ios, '10.0'
   pod 'Crashlytics'
   pod 'IQKeyboardManagerSwift', '5.0.0' 
   pod 'DateTimePicker'
-  pod 'DatePickerDialog'
+  pod 'DatePickerDialog',  '~> 3.0'
   pod 'M13Checkbox'
   pod 'AzureNotificationHubs-iOS'
   pod 'FMSecureTextField'
-#  pod 'SwiftWebVC'
+#  pod 'DatePicker', '~> 1.3.0'
+  pod 'MDatePickerView'
 end
 
 target 'Water Energy Tracker' do

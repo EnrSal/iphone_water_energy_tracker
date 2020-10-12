@@ -25,5 +25,6 @@ class Constants: NSObject {
     static var energy8_relay_stype = 34;
     
     static var temperature_only_stype = 50;
-    
+    static var remote_well = 60;
+
 }

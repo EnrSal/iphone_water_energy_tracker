@@ -58,7 +58,11 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     var populating_address:String? = nil
     
     func populate() {
-        self.name.text = savior.alias!
+        if let name = savior.alias {
+            self.name.text = name
+        } else {
+            self.name.text = "no name"
+        }
         unit1_usage = nil
         unit2_usage = nil
         unit3_usage = nil
@@ -148,7 +152,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         formatter.dateFormat = "MMddyyyyHH:mm:ss"
         
         
-        if self.savior.stype == 20 {
+        if self.savior.stype == 20 || self.savior.stype == Constants.remote_well {
             self.numgalsWidthConstraint.constant = 70
             self.numgals.isHidden = false
         } else {
@@ -161,7 +165,6 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
             self.typeImage.contentMode = .scaleAspectFit
             self.tableHeight.constant = 0
-            
         } else if self.savior.stype == 20 || self.savior.stype == 21 || self.savior.stype == 22 || self.savior.stype == 24  {
             self.typeImage.image = #imageLiteral(resourceName: "ic_water")
             switch savior.stype {
@@ -241,6 +244,9 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 case Constants.temperature_only_stype:
                     self.tableHeight.constant = 0
                     self.typeImage.image = UIImage(named: "ic_temp")
+                case Constants.remote_well:
+                    self.tableHeight.constant = 0
+                    self.typeImage.image = UIImage(named: "ic_well")
                 default:
                     break
                 }
@@ -381,7 +387,13 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             let tmp = (current!.Temperature + current!.Temp2) / 2.0;
             self.temp.text = "\(String(format: "%.1f", Util.celsiusToFahrenheit(celsius: tmp))) °F"
             
-            
+            if self.savior.stype == Constants.remote_well {
+                if current!.C1 == 1 {
+                    self.numgals.text = "ON"
+                } else {
+                    self.numgals.text = "OFF"
+                }
+            }
             
             /*
             

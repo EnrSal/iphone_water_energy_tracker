@@ -14,6 +14,8 @@ class ScheduleCell: UICollectionViewCell {
     var item:ScheduleItem!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var checkbox: M13Checkbox!
+    var owner:ScheduleVC!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,9 +24,17 @@ class ScheduleCell: UICollectionViewCell {
     @IBAction func clickCheck(_ sender: Any) {
         print("CLICK \(checkbox.checkState)" )
         if checkbox.checkState == .checked {
-            item.on = true
+            if owner.checkboxoff {
+                item.on = true
+            } else {
+                item.on = false
+            }
         } else {
-            item.on = false
+            if owner.checkboxoff {
+                item.on = false
+            } else {
+                item.on = true
+            }
         }
     }
     
@@ -45,9 +55,17 @@ class ScheduleCell: UICollectionViewCell {
         }
         
         if item.on {
-            checkbox.checkState = .checked
+            if owner.checkboxoff {
+                checkbox.checkState = .checked
+            } else {
+                checkbox.checkState = .unchecked
+            }
         } else {
-            checkbox.checkState = .unchecked
+            if owner.checkboxoff {
+                checkbox.checkState = .unchecked
+            } else {
+                checkbox.checkState = .checked
+            }
         }
     }
 }
