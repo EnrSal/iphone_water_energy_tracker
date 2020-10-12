@@ -571,7 +571,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             }
             
             var show = false
-            if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 {
+            if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == 31 || savior.stype == 32 || savior.stype == 34 || savior.stype == Constants.remote_well {
                 show = true
                 if let share_number_used = savior.share_number_used {
                     print("@@@ share_number_used.count =\(share_number_used.count)")
@@ -587,7 +587,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
             
             if show {
                 // schedule
-                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype {
+                if savior.stype == 20 || savior.stype == 21 || savior.stype == 22 || savior.stype == 24 || savior.stype == Constants.energy2_relay_stype || savior.stype == Constants.energy4_relay_stype || savior.stype == Constants.energy8_relay_stype || savior.stype == Constants.remote_well {
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Schedule ON/OFF", comment: ""), style: .default, handler: { action in
                         let sendVC:ScheduleVC = ScheduleVC(nibName: "ScheduleVC", bundle: nil)
                         sendVC.savior = savior

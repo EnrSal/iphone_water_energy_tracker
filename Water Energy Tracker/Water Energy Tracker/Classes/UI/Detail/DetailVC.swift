@@ -286,18 +286,37 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         req.fromdate = formatter.string(from: modifiedDate)
         req.todate = formatter.string(from: Date())
         AzureApi.shared.getAdditionalData(req: req) { (error:ServerError?, response:AdditionalDataResponse?) in
-            
+            if let response = response {
+                if response.items.count > 0 {
+                    self.additiona_data.removeAll()
+                    let header = AdditionalDataItem()
+                    header.header = true
+                    self.additiona_data.append(header)
+                    self.additiona_data.append(contentsOf: response.items)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                }
+            }
         }
 
     }
     
     // MARK: - TableView
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if savior.stype == Constants.temperature_only_stype {
-            return 3
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 4) && additiona_data.count > 0 {
+            return "Additional Data"
         }
-        return 4
+        return nil
+    }
+
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+       // if savior.stype == Constants.temperature_only_stype {
+       //     return 3
+       // }
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -310,6 +329,12 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         }
         if (section == 2) && ((self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)) {
             return 0
+        }
+        if (section == 3) && self.savior.stype == Constants.temperature_only_stype {
+            return 0
+        }
+        if (section == 4) {
+            return additiona_data.count
         }
         return 1
     }
@@ -425,6 +450,14 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             cell.populate()
             
             return cell;
+        case 4:
+            let cell:AdditionalDataCell = (self.tableView.dequeueReusableCell(withIdentifier: "ADDITIONAL_DATA_CELL", for: indexPath) as? AdditionalDataCell)!
+            
+            cell.item = self.additiona_data[indexPath.row]
+            cell.populate()
+            
+            return cell;
+
         default:
             break
         }
