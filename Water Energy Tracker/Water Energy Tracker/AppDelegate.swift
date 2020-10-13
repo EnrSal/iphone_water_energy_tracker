@@ -10,9 +10,10 @@ import UIKit
 import IQKeyboardManagerSwift
 import RealmSwift
 import UserNotifications
-import Fabric
-import Crashlytics
 import AlamofireNetworkActivityLogger
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -47,8 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Enable or disable features based on authorization.
         }
         application.registerForRemoteNotifications()
-        Fabric.with([Crashlytics.self])
-        
+        MSAppCenter.start("926c293f-9d13-4ede-b7b5-8a09ef620a44", withServices:[
+          MSAnalytics.self,
+          MSCrashes.self
+        ])
         // realm
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used

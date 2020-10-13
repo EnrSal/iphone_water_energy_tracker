@@ -117,26 +117,9 @@
 		0DAF99542533B2C400C444E4 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990C2533B2C400C444E4 /* CountryCell.swift */; };
 		0DAF99552533B2C400C444E4 /* TwoTextFieldsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990E2533B2C400C444E4 /* TwoTextFieldsViewController.swift */; };
 		0DAF99562533B2C400C444E4 /* OneTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF990F2533B2C400C444E4 /* OneTextFieldViewController.swift */; };
-		0DAF99572533B2C400C444E4 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99122533B2C400C444E4 /* Assets.swift */; };
-		0DAF99582533B2C400C444E4 /* PhotoLibraryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99132533B2C400C444E4 /* PhotoLibraryPickerViewController.swift */; };
-		0DAF99592533B2C400C444E4 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99152533B2C400C444E4 /* LocationSearchResultsViewController.swift */; };
-		0DAF995A2533B2C400C444E4 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99162533B2C400C444E4 /* LocationPickerViewController.swift */; };
-		0DAF995B2533B2C400C444E4 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99182533B2C400C444E4 /* SearchHistoryManager.swift */; };
-		0DAF995C2533B2C400C444E4 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991A2533B2C400C444E4 /* Location.swift */; };
-		0DAF995D2533B2C400C444E4 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991B2533B2C400C444E4 /* Address.swift */; };
 		0DAF995E2533B2C400C444E4 /* PickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991D2533B2C400C444E4 /* PickerViewViewController.swift */; };
-		0DAF995F2533B2C400C444E4 /* ContactsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF991F2533B2C400C444E4 /* ContactsPickerViewController.swift */; };
-		0DAF99602533B2C400C444E4 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99212533B2C400C444E4 /* Contacts.swift */; };
-		0DAF99612533B2C400C444E4 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99232533B2C400C444E4 /* Contact.swift */; };
-		0DAF99622533B2C400C444E4 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99252533B2C400C444E4 /* ContactCell.swift */; };
 		0DAF99632533B2C400C444E4 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99272533B2C400C444E4 /* ColorPickerViewController.swift */; };
 		0DAF99642533B2C400C444E4 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99292533B2C400C444E4 /* DatePickerViewController.swift */; };
-		0DAF99652533B2C400C444E4 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF992B2533B2C400C444E4 /* ImagePickerViewController.swift */; };
-		0DAF99662533B2C400C444E4 /* ItemWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF992D2533B2C400C444E4 /* ItemWithImage.swift */; };
-		0DAF99672533B2C400C444E4 /* PhotoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99302533B2C400C444E4 /* PhotoLayout.swift */; };
-		0DAF99682533B2C400C444E4 /* TelegramPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99312533B2C400C444E4 /* TelegramPickerViewController.swift */; };
-		0DAF99692533B2C400C444E4 /* ItemWithPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99332533B2C400C444E4 /* ItemWithPhoto.swift */; };
-		0DAF996A2533B2C400C444E4 /* LikeButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99342533B2C400C444E4 /* LikeButtonCell.swift */; };
 		0DAF996B2533B2C400C444E4 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99362533B2C400C444E4 /* Label.swift */; };
 		0DAF996C2533B2C400C444E4 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99372533B2C400C444E4 /* SegmentedControl.swift */; };
 		0DAF996D2533B2C400C444E4 /* GradientSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DAF99382533B2C400C444E4 /* GradientSlider.swift */; };
@@ -284,26 +267,9 @@
 		0DAF990C2533B2C400C444E4 /* CountryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCell.swift; sourceTree = "<group>"; };
 		0DAF990E2533B2C400C444E4 /* TwoTextFieldsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoTextFieldsViewController.swift; sourceTree = "<group>"; };
 		0DAF990F2533B2C400C444E4 /* OneTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTextFieldViewController.swift; sourceTree = "<group>"; };
-		0DAF99122533B2C400C444E4 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
-		0DAF99132533B2C400C444E4 /* PhotoLibraryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPickerViewController.swift; sourceTree = "<group>"; };
-		0DAF99152533B2C400C444E4 /* LocationSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsViewController.swift; sourceTree = "<group>"; };
-		0DAF99162533B2C400C444E4 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
-		0DAF99182533B2C400C444E4 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
-		0DAF991A2533B2C400C444E4 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		0DAF991B2533B2C400C444E4 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		0DAF991D2533B2C400C444E4 /* PickerViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewViewController.swift; sourceTree = "<group>"; };
-		0DAF991F2533B2C400C444E4 /* ContactsPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPickerViewController.swift; sourceTree = "<group>"; };
-		0DAF99212533B2C400C444E4 /* Contacts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
-		0DAF99232533B2C400C444E4 /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
-		0DAF99252533B2C400C444E4 /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		0DAF99272533B2C400C444E4 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		0DAF99292533B2C400C444E4 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		0DAF992B2533B2C400C444E4 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
-		0DAF992D2533B2C400C444E4 /* ItemWithImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithImage.swift; sourceTree = "<group>"; };
-		0DAF99302533B2C400C444E4 /* PhotoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLayout.swift; sourceTree = "<group>"; };
-		0DAF99312533B2C400C444E4 /* TelegramPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelegramPickerViewController.swift; sourceTree = "<group>"; };
-		0DAF99332533B2C400C444E4 /* ItemWithPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemWithPhoto.swift; sourceTree = "<group>"; };
-		0DAF99342533B2C400C444E4 /* LikeButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikeButtonCell.swift; sourceTree = "<group>"; };
 		0DAF99362533B2C400C444E4 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		0DAF99372533B2C400C444E4 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		0DAF99382533B2C400C444E4 /* GradientSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientSlider.swift; sourceTree = "<group>"; };
@@ -673,14 +639,9 @@
 			children = (
 				0DAF99022533B2C400C444E4 /* Locale */,
 				0DAF990D2533B2C400C444E4 /* TextFields */,
-				0DAF99102533B2C400C444E4 /* PhotoLibrary */,
-				0DAF99142533B2C400C444E4 /* Location */,
 				0DAF991C2533B2C400C444E4 /* PickerView */,
-				0DAF991E2533B2C400C444E4 /* Contacts */,
 				0DAF99262533B2C400C444E4 /* Color */,
 				0DAF99282533B2C400C444E4 /* Date */,
-				0DAF992A2533B2C400C444E4 /* Image */,
-				0DAF992E2533B2C400C444E4 /* Telegram */,
 			);
 			path = Pickers;
 			sourceTree = "<group>";
@@ -732,92 +693,12 @@
 			path = TextFields;
 			sourceTree = "<group>";
 		};
-		0DAF99102533B2C400C444E4 /* PhotoLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99112533B2C400C444E4 /* Managers */,
-				0DAF99132533B2C400C444E4 /* PhotoLibraryPickerViewController.swift */,
-			);
-			path = PhotoLibrary;
-			sourceTree = "<group>";
-		};
-		0DAF99112533B2C400C444E4 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99122533B2C400C444E4 /* Assets.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		0DAF99142533B2C400C444E4 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99152533B2C400C444E4 /* LocationSearchResultsViewController.swift */,
-				0DAF99162533B2C400C444E4 /* LocationPickerViewController.swift */,
-				0DAF99172533B2C400C444E4 /* Managers */,
-				0DAF99192533B2C400C444E4 /* Models */,
-			);
-			path = Location;
-			sourceTree = "<group>";
-		};
-		0DAF99172533B2C400C444E4 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99182533B2C400C444E4 /* SearchHistoryManager.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		0DAF99192533B2C400C444E4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF991A2533B2C400C444E4 /* Location.swift */,
-				0DAF991B2533B2C400C444E4 /* Address.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		0DAF991C2533B2C400C444E4 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
 				0DAF991D2533B2C400C444E4 /* PickerViewViewController.swift */,
 			);
 			path = PickerView;
-			sourceTree = "<group>";
-		};
-		0DAF991E2533B2C400C444E4 /* Contacts */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF991F2533B2C400C444E4 /* ContactsPickerViewController.swift */,
-				0DAF99202533B2C400C444E4 /* Managers */,
-				0DAF99222533B2C400C444E4 /* Models */,
-				0DAF99242533B2C400C444E4 /* Views */,
-			);
-			path = Contacts;
-			sourceTree = "<group>";
-		};
-		0DAF99202533B2C400C444E4 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99212533B2C400C444E4 /* Contacts.swift */,
-			);
-			path = Managers;
-			sourceTree = "<group>";
-		};
-		0DAF99222533B2C400C444E4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99232533B2C400C444E4 /* Contact.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		0DAF99242533B2C400C444E4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99252533B2C400C444E4 /* ContactCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		0DAF99262533B2C400C444E4 /* Color */ = {
@@ -834,50 +715,6 @@
 				0DAF99292533B2C400C444E4 /* DatePickerViewController.swift */,
 			);
 			path = Date;
-			sourceTree = "<group>";
-		};
-		0DAF992A2533B2C400C444E4 /* Image */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF992B2533B2C400C444E4 /* ImagePickerViewController.swift */,
-				0DAF992C2533B2C400C444E4 /* Views */,
-			);
-			path = Image;
-			sourceTree = "<group>";
-		};
-		0DAF992C2533B2C400C444E4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF992D2533B2C400C444E4 /* ItemWithImage.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		0DAF992E2533B2C400C444E4 /* Telegram */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF992F2533B2C400C444E4 /* Layouts */,
-				0DAF99312533B2C400C444E4 /* TelegramPickerViewController.swift */,
-				0DAF99322533B2C400C444E4 /* Views */,
-			);
-			path = Telegram;
-			sourceTree = "<group>";
-		};
-		0DAF992F2533B2C400C444E4 /* Layouts */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99302533B2C400C444E4 /* PhotoLayout.swift */,
-			);
-			path = Layouts;
-			sourceTree = "<group>";
-		};
-		0DAF99322533B2C400C444E4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				0DAF99332533B2C400C444E4 /* ItemWithPhoto.swift */,
-				0DAF99342533B2C400C444E4 /* LikeButtonCell.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		0DAF99352533B2C400C444E4 /* Views */ = {
@@ -949,7 +786,6 @@
 				0D6AA3CC208187CF00194AA5 /* Frameworks */,
 				0D6AA3CD208187CF00194AA5 /* Resources */,
 				017577C42BD9415E19FEAB2A /* [CP] Embed Pods Frameworks */,
-				0D7340D220ABD9AD0098343D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1104,19 +940,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Water Energy Tracker/Pods-Water Energy Tracker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		0D7340D220ABD9AD0098343D /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 73ee240f257350c355a2f3d0475f5a4c518f10f5 f020130c134290f8a6369d33cec515fa705f56cec4192a227d08702e1f64f464";
-		};
 		EDFC8DD8046CE4780BA891DF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1153,17 +976,13 @@
 				0D4C1A9921CC4D9B001D4D19 /* TimeZoneCell.swift in Sources */,
 				0DAF99412533B2C400C444E4 /* String+Extensions.swift in Sources */,
 				0D5CE146209547E20096CD99 /* GetDataResponse.swift in Sources */,
-				0DAF99682533B2C400C444E4 /* TelegramPickerViewController.swift in Sources */,
-				0DAF995D2533B2C400C444E4 /* Address.swift in Sources */,
 				0DAF99452533B2C400C444E4 /* UISearchBar+Extensions.swift in Sources */,
 				0DAF99482533B2C400C444E4 /* Optional+Extensions.swift in Sources */,
 				0DAF99512533B2C400C444E4 /* LocalePickerViewController.swift in Sources */,
 				0D7340B320A9FE750098343D /* NotificationsResponse.swift in Sources */,
 				0D7F877220918A3A00378B03 /* NamesResponse.swift in Sources */,
 				0D5CE140209541390096CD99 /* DeviceConfiguration.swift in Sources */,
-				0DAF99622533B2C400C444E4 /* ContactCell.swift in Sources */,
 				0DAF996B2533B2C400C444E4 /* Label.swift in Sources */,
-				0DAF99582533B2C400C444E4 /* PhotoLibraryPickerViewController.swift in Sources */,
 				0D9B5466236E5661000E9909 /* ScheduleCell.swift in Sources */,
 				0D73408920A8FE060098343D /* EnergyPowerUsageChartCell.swift in Sources */,
 				0D73412F20B4F30D0098343D /* WifiConfigVC.swift in Sources */,
@@ -1176,13 +995,10 @@
 				0DFC91E0236F8ADA00E50E50 /* GraphPoint.swift in Sources */,
 				0DE4CC1F20A4B967001A4E5D /* DetailEnergyInfoCell.swift in Sources */,
 				0D7F877020918A2C00378B03 /* GenericRequest.swift in Sources */,
-				0DAF995B2533B2C400C444E4 /* SearchHistoryManager.swift in Sources */,
 				0D050A8320A3E383005B95A3 /* Util.swift in Sources */,
-				0DAF996A2533B2C400C444E4 /* LikeButtonCell.swift in Sources */,
 				0D6AA3EE20818A7B00194AA5 /* MainVC.swift in Sources */,
 				0D6AA3D3208187CF00194AA5 /* AppDelegate.swift in Sources */,
 				0D7340A720A9F5E90098343D /* NotificationsRequest.swift in Sources */,
-				0DAF995A2533B2C400C444E4 /* LocationPickerViewController.swift in Sources */,
 				0D7340CC20ABB16A0098343D /* HistoryVC.swift in Sources */,
 				0DB78D9D2142E69F00AB60C9 /* DetailWaterFlowInfoCell.swift in Sources */,
 				0DAF99442533B2C400C444E4 /* UIImage+Extensions.swift in Sources */,
@@ -1193,21 +1009,14 @@
 				0D73409420A9306E0098343D /* TemperatureChartCell.swift in Sources */,
 				0D9B5461236E48F2000E9909 /* CalculateHistoricalListResponse.swift in Sources */,
 				0D9B5463236E551F000E9909 /* ScheduleItem.swift in Sources */,
-				0DAF99692533B2C400C444E4 /* ItemWithPhoto.swift in Sources */,
-				0DAF99662533B2C400C444E4 /* ItemWithImage.swift in Sources */,
 				0DAF99552533B2C400C444E4 /* TwoTextFieldsViewController.swift in Sources */,
 				0DAF996E2533B2C400C444E4 /* TextField.swift in Sources */,
 				0D5CE1442095479D0096CD99 /* GetDataRequest.swift in Sources */,
-				0DAF99602533B2C400C444E4 /* Contacts.swift in Sources */,
 				0D9B5455236E4686000E9909 /* ScheduleVC.swift in Sources */,
-				0DAF99672533B2C400C444E4 /* PhotoLayout.swift in Sources */,
-				0DAF99652533B2C400C444E4 /* ImagePickerViewController.swift in Sources */,
 				0DAF994C2533B2C400C444E4 /* AttributedTextBlock.swift in Sources */,
-				0DAF995F2533B2C400C444E4 /* ContactsPickerViewController.swift in Sources */,
 				0D5CE14D20954CC80096CD99 /* DataPersistenceManager.swift in Sources */,
 				0DAF99492533B2C400C444E4 /* Common+Extensions.swift in Sources */,
 				0D7F877620918ADE00378B03 /* ServerError.swift in Sources */,
-				0DAF995C2533B2C400C444E4 /* Location.swift in Sources */,
 				0D7340AF20A9F65C0098343D /* CalculateHistoricalResponse.swift in Sources */,
 				0D7340B720AA02640098343D /* GenericResponse.swift in Sources */,
 				0D7340B520A9FE930098343D /* Notification.swift in Sources */,
@@ -1222,12 +1031,10 @@
 				0DAF993F2533B2C400C444E4 /* UIView+Extensions.swift in Sources */,
 				0D7F877420918A5F00378B03 /* AzureApi.swift in Sources */,
 				0D050A8020A22360005B95A3 /* DeviceNameSubCell.swift in Sources */,
-				0DAF99572533B2C400C444E4 /* Assets.swift in Sources */,
 				0D7340A020A9F4880098343D /* NotificationTopLevelCell.swift in Sources */,
 				0DFC91DD236F89B100E50E50 /* EnergyHistoricalGraphCell.swift in Sources */,
 				0DAF994F2533B2C400C444E4 /* LocaleStore.swift in Sources */,
 				0DAF993E2533B2C400C444E4 /* UIViewController+Extensions.swift in Sources */,
-				0DAF99592533B2C400C444E4 /* LocationSearchResultsViewController.swift in Sources */,
 				0D73409020A92F0D0098343D /* WaterIntensityChartCell.swift in Sources */,
 				0DAF996C2533B2C400C444E4 /* SegmentedControl.swift in Sources */,
 				0DAF99742533C60F00C444E4 /* RemoteWellOnOffChartCell.swift in Sources */,
@@ -1260,7 +1067,6 @@
 				0D5CE142209545030096CD99 /* Constants.swift in Sources */,
 				0DAF99532533B2C400C444E4 /* CurrencyCell.swift in Sources */,
 				0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */,
-				0DAF99612533B2C400C444E4 /* Contact.swift in Sources */,
 				0D9B545F236E480E000E9909 /* HistoricalGraphItem.swift in Sources */,
 				0DAF996F2533B2C500C444E4 /* Button.swift in Sources */,
 				0D7340C020AA5EA80098343D /* SettingsVC.swift in Sources */,
@@ -1404,8 +1210,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = MR9FEBC46L;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1415,7 +1221,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 1.4;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ctreesoft.savior.Water-Energy-Tracker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1432,7 +1238,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

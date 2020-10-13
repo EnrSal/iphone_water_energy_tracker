@@ -5,16 +5,21 @@ PODS:
   - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.3)
+  - AppCenter (3.3.4):
+    - AppCenter/Analytics (= 3.3.4)
+    - AppCenter/Crashes (= 3.3.4)
+  - AppCenter/Analytics (3.3.4):
+    - AppCenter/Core
+  - AppCenter/Core (3.3.4)
+  - AppCenter/Crashes (3.3.4):
+    - AppCenter/Core
   - AzureNotificationHubs-iOS (2.0.4)
   - Charts (3.1.1):
     - Charts/Core (= 3.1.1)
   - Charts/Core (3.1.1)
-  - Crashlytics (3.10.8):
-    - Fabric (~> 1.7.12)
   - D2PDatePicker (0.1.4)
   - DatePickerDialog (3.0)
   - DateTimePicker (2.1.2)
-  - Fabric (1.7.12)
   - FMSecureTextField (1.0.0)
   - IQKeyboardManagerSwift (5.0.0)
   - Kingfisher (4.10.0)
@@ -35,13 +40,12 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireNetworkActivityLogger
   - AlamofireObjectMapper
+  - AppCenter
   - AzureNotificationHubs-iOS
   - Charts
-  - Crashlytics
   - D2PDatePicker
   - DatePickerDialog (~> 3.0)
   - DateTimePicker
-  - Fabric
   - FMSecureTextField
   - IQKeyboardManagerSwift (= 5.0.0)
   - Kingfisher (~> 4.0)
@@ -59,10 +63,8 @@ SPEC REPOS:
     - AlamofireNetworkActivityLogger
     - AlamofireObjectMapper
     - Charts
-    - Crashlytics
     - D2PDatePicker
     - DateTimePicker
-    - Fabric
     - IQKeyboardManagerSwift
     - Kingfisher
     - MBProgressHUD
@@ -73,6 +75,7 @@ SPEC REPOS:
     - SwiftyBluetooth
     - SwiftyJSON
   trunk:
+    - AppCenter
     - AzureNotificationHubs-iOS
     - DatePickerDialog
     - FMSecureTextField
@@ -83,13 +86,12 @@ SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
   AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
+  AppCenter: 0487be185c038ed2ecc5ed38219af1dcd280af23
   AzureNotificationHubs-iOS: ff08e3545a8a81bf2375861b5f7404aa930932e7
   Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  Crashlytics: 058dc1ba579f6c100bc60a6878703779bff383c4
   D2PDatePicker: e35a6b3dd5fac16de8a17606dc0bb285e8b1a875
   DatePickerDialog: 03dbb8350bfa80302ab2a8c83cee1fec70184444
   DateTimePicker: 111a1ca10b390ac315fdf3e85a5941fd4f72dfb7
-  Fabric: d7387db9a31aadff63b147a4b91d982c53afaa4f
   FMSecureTextField: 22312d628afe7a97b50682c6708c01ecf37087d5
   IQKeyboardManagerSwift: 3f340202ebe1a7076279b9b9b3c817243ddb3aab
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
@@ -103,6 +105,6 @@ SPEC CHECKSUMS:
   SwiftyBluetooth: 9e26b1367f56aa60f35713f6d968382144bccfd5
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: dc96b4903a5940e19eb077271a2d9f7024c13fc4
+PODFILE CHECKSUM: 0aed9529cf1d383458d634de50c51cde247423ba
 
 COCOAPODS: 1.9.2
