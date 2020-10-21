@@ -11,8 +11,8 @@ import ObjectMapper
 class AdditionalDataItem: NSObject, Mappable {
 
     var DataValue: Double?
-    var SatelliteFrom: Int?
-    var BaseStationNameId: Int?
+    var SatelliteFromName: String?
+    var DeviceName: String?
     var UTCtime: String?
     var DataType: String?
     var header = false
@@ -25,8 +25,8 @@ class AdditionalDataItem: NSObject, Mappable {
     
     public func mapping(map: Map) {
         DataValue <- map["DataValue"]
-        SatelliteFrom <- map["SatelliteFrom"]
-        BaseStationNameId <- map["BaseStationNameId"]
+        SatelliteFromName <- map["SatelliteFromName"]
+        DeviceName <- map["DeviceName"]
         UTCtime <- map["UTCtime"]
         DataType <- map["DataType"]
    }

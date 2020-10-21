@@ -130,6 +130,8 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     @IBAction func clickCalculate(_ sender: Any) {
         if let from = self.from, let to = self.to {
+
+            self.point_lists = Array(repeating: [GraphPoint](), count: 8)
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd/yyyy"
 

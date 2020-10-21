@@ -45,6 +45,8 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
+        print("DETAIL STYPE \(self.savior.stype)")
+        
         let historyButton = UIBarButtonItem(title: "History", style: UIBarButtonItemStyle.plain, target: self, action: #selector(DetailVC.clickHistory(_:)))
         if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype || self.savior.stype == Constants.remote_well {
             if from_share {
@@ -251,7 +253,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         }
         
         
-        if (self.savior.stype == 0) || (self.savior.stype == Constants.temperature_only_stype) {
+        if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype || self.savior.stype == Constants.remote_well {
             name.text = self.savior.alias!
         } else {
             print("ENERGY UNIT \(energy_unit)")
@@ -351,7 +353,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                 cell.populate()
                 
                 return cell;
-            } else if self.savior.stype == Constants.water_gals_stype || self.savior.stype == Constants.water_gals2_stype || self.savior.stype == Constants.water_gals4_stype || self.savior.stype == Constants.water_gals8_stype {
+            } else if self.savior.stype == Constants.water_gals2_stype || self.savior.stype == Constants.water_gals4_stype || self.savior.stype == Constants.water_gals8_stype {
                 
                 print("CELL HERE 2 \(self.savior.name)")
                 let cell:DetailWaterFlowInfoCell = (self.tableView.dequeueReusableCell(withIdentifier: "WATER_INFO_FLOW_CELL", for: indexPath) as? DetailWaterFlowInfoCell)!

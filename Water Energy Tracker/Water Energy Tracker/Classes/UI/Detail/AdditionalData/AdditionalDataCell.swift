@@ -55,8 +55,12 @@ class AdditionalDataCell: UITableViewCell {
             type.text = "Type"
             value.text = "Value"
         } else {
-            from.text = "\(item.SatelliteFrom!)"
-            station.text = "\(item.BaseStationNameId!)"
+            if let SatelliteFromName = item.SatelliteFromName {
+                from.text = SatelliteFromName
+            } else {
+                from.text = ""
+            }
+            station.text = "\(item.DeviceName!)"
             type.text = item.DataType
             value.text = "\(item.DataValue!)"
             
