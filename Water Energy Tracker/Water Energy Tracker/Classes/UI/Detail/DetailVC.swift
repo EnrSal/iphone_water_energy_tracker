@@ -280,7 +280,8 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         }
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.timeZone = TimeZone(abbreviation: "UTC")
 
         let req:CalculateHistoricalRequest = CalculateHistoricalRequest()
         req.macAddress = self.savior.savior_address!

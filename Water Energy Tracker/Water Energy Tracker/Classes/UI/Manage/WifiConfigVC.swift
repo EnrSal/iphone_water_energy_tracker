@@ -24,9 +24,12 @@ class WifiConfigVC: SaviorVC {
     @IBOutlet weak var minutes: UITextField!
     @IBOutlet weak var gpm: UITextField!
     @IBOutlet weak var delaySegments: UISegmentedControl!
+    @IBOutlet weak var delaySegments2: UISegmentedControl!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var relayView: UIView!
     var savior: RealmSavior!
-
+    var stype = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,17 +37,25 @@ class WifiConfigVC: SaviorVC {
        /* if getInterfaces() {
             
         }*/
-
+        self.relayView.isHidden = true
+        
+        self.stype = self.savior.stype
+        //stype = 60
+        //print("CONFIGURE STYPE \(self.stype)")
         self.title = "Configure Device"
         self.makeCloseButton()
-        if (self.savior.stype == 0) {
+        if (self.stype == 0) {
             // water
             powerSegments.isHidden = false
             waterView.isHidden = true
-        } else if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+        } else if (self.stype == 20) || (self.stype == 21) || (self.stype == 22) || (self.stype == 24)  {
             waterView.isHidden = false
             powerSegments.isHidden = true
             topConstraint.constant = 10
+        } else if (self.stype == 60) {
+            self.relayView.isHidden = false
+            waterView.isHidden = true
+            powerSegments.isHidden = true
         } else {
             // energy
             waterView.isHidden = true
@@ -58,14 +69,24 @@ class WifiConfigVC: SaviorVC {
             gpm.text = num_gpm
         }
         if let sdn_string = savior.sdn_string {
-            if (savior.relay_default) {
-                delaySegments.selectedSegmentIndex = 0
-            } else if sdn_string.contains("m:3") {
-                delaySegments.selectedSegmentIndex = 1
-            } else if sdn_string.contains("m:4") {
-                delaySegments.selectedSegmentIndex = 2
-            } else if sdn_string.contains("m:0") {
-                powerSegments.selectedSegmentIndex = 0
+            if (self.stype == 60) {
+                if (savior.relay_default) {
+                    delaySegments2.selectedSegmentIndex = 0
+                } else if sdn_string.contains("m:3") {
+                    delaySegments2.selectedSegmentIndex = 1
+                } else if sdn_string.contains("m:4") {
+                    delaySegments2.selectedSegmentIndex = 2
+                }
+            } else {
+                if (savior.relay_default) {
+                    delaySegments.selectedSegmentIndex = 0
+                } else if sdn_string.contains("m:3") {
+                    delaySegments.selectedSegmentIndex = 1
+                } else if sdn_string.contains("m:4") {
+                    delaySegments.selectedSegmentIndex = 2
+                } else if sdn_string.contains("m:0") {
+                    powerSegments.selectedSegmentIndex = 0
+                }
             }
         }
         //print("NETWORK GET -->\(getWiFiSsid())<--")
@@ -113,14 +134,14 @@ class WifiConfigVC: SaviorVC {
             self.savior.network = wifiField.text!
             self.savior.password = password.text!
             self.savior.disable_shutoff = disableshutoff.isOn
-            if (self.savior.stype == 0) {
+            if (self.stype == 0) {
                 // water
                 if self.powerSegments.selectedSegmentIndex == 0 {
                     self.savior.sdn_string = "sdn2 m:0"
                 } else {
                     self.savior.sdn_string = "sdn2 m:1"
                 }
-            } else if (self.savior.stype == 20) || (self.savior.stype == 21) || (self.savior.stype == 22) || (self.savior.stype == 24)  {
+            } else if (self.stype == 20) || (self.stype == 21) || (self.stype == 22) || (self.stype == 24)  {
                 self.savior.num_mins = minutes.text!
                 self.savior.num_gpm = gpm.text!
                 if delaySegments.selectedSegmentIndex == 0 {
@@ -133,7 +154,17 @@ class WifiConfigVC: SaviorVC {
                     self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:4:\(self.savior.num_gpm!)"
                     self.savior.relay_default = false
                 }
-            } else {
+            } else if self.stype == 60 {
+                if delaySegments2.selectedSegmentIndex == 0 {
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:2:\(self.savior.num_gpm!)"
+                    self.savior.relay_default = true
+                } else if delaySegments2.selectedSegmentIndex == 1 {
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:3:\(self.savior.num_gpm!)"
+                    self.savior.relay_default = false
+                } else if delaySegments2.selectedSegmentIndex == 2 {
+                    self.savior.sdn_string = "sdn\(self.savior.num_mins!) m:4:\(self.savior.num_gpm!)"
+                    self.savior.relay_default = false
+                }            } else {
                 // energy
                 self.savior.sdn_string = "sdn"
             }
@@ -146,12 +177,22 @@ class WifiConfigVC: SaviorVC {
         req.name = self.savior.savior_address
         req.UserCFlow = self.savior.num_mins
         req.UserGPM = self.savior.num_gpm
-        if delaySegments.selectedSegmentIndex == 0 {
-            req.UserRelay = "Default"
-        } else if delaySegments.selectedSegmentIndex == 1 {
-            req.UserRelay = "Open"
-        } else if delaySegments.selectedSegmentIndex == 2 {
-            req.UserRelay = "Closed"
+        if self.stype == 60 {
+            if delaySegments2.selectedSegmentIndex == 0 {
+                req.UserRelay = "Default"
+            } else if delaySegments2.selectedSegmentIndex == 1 {
+                req.UserRelay = "Open"
+            } else if delaySegments2.selectedSegmentIndex == 2 {
+                req.UserRelay = "Closed"
+            }
+        } else {
+            if delaySegments.selectedSegmentIndex == 0 {
+                req.UserRelay = "Default"
+            } else if delaySegments.selectedSegmentIndex == 1 {
+                req.UserRelay = "Open"
+            } else if delaySegments.selectedSegmentIndex == 2 {
+                req.UserRelay = "Closed"
+            }
         }
         
         AzureApi.shared.setAdditionalConfig(req: req) { (error:ServerError?, response:GenericResponse?) in

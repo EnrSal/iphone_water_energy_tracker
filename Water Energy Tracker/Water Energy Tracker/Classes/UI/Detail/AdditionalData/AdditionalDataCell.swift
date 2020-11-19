@@ -67,10 +67,22 @@ class AdditionalDataCell: UITableViewCell {
             let formatter2 = DateFormatter()
             formatter2.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
             formatter2.timeZone = TimeZone(abbreviation: "UTC")
-            let date = formatter2.date(from: item.UTCtime!)!
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MM/dd/yyyy h:m a"
-            time.text = formatter.string(from: date)
+            
+            let formatter3 = DateFormatter()
+            formatter3.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            formatter3.timeZone = TimeZone(abbreviation: "UTC")
+
+            if let date = formatter2.date(from: item.UTCtime!) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/dd/yyyy h:m a"
+                time.text = formatter.string(from: date)
+            } else if let date = formatter3.date(from: item.UTCtime!) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM/dd/yyyy h:m a"
+                time.text = formatter.string(from: date)
+            } else {
+                time.text = ""
+            }
         }
     }
     
