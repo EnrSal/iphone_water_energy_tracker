@@ -1,28 +1,18 @@
 # SwiftyBluetooth
-Fully featured closures based library for CoreBluetooth on iOS 9+ devices.
-
-## Background 
-CoreBluetooth and its delegate based API can be difficult to use at time. Often times you already know the specifications of the peripheral you're about to use and simply want to read or write to predetermined characteristics.  
-
-SwiftyBluetooth tries to address these concerns by providing a clear, closure based, API for every `CBCentralManager` and `CBPeripheral` calls. Furthermore, all your calls are guaranteed to timeout in case of untraceable errors. If required, SwiftyBluetooth will also take care of connecting to peripherals and discovering the required attributes when executing read or write operations lowering the amount of work you need to do. 
+Closures based APIs for CoreBluetooth.
 
 ## Features
-- Supports Swift 4 ~> v1.0.0, for Swift 3 use v0.4.0
-- Synthaxic sugar and helper functions for common CoreBluetooth tasks 
-- Closure based CBCentralManager peripheral scanning with a timeout
-- Notification based event for CBCentralManager state changes and state restoration  
-- Closure based calls for every CBPeripheral operations
-- Notification based event for CBPeripheral name updates, characteristic value updates and services updates
-- Precise errors and guaranteed timeout for every Bluetooth operation
-- [Full documentation for all public interfaces](http://cocoadocs.org/docsets/SwiftyBluetooth/)
+- Replace the delegate based interface with a closure based interface for every `CBCentralManager` and `CBPeripheral` operation.
+- Notification based event for CBCentralManager state changes and state restoration.
+- Notification based event for CBPeripheral name updates, characteristic value updates and services updates.
+- Precise errors and guaranteed timeout for every Bluetooth operation.
+- Will automatically connect to a CBPeripheral and attempt to discover the required BLE services and characteristics required for a read or write operation if necessary.
 
 ## Usage
 The Library has 2 important class:  
 
 - The `Central` class, a Singleton wrapper around `CBCentralManager` used to scan for peripherals with a closure callback and restore previous sessions.
 - The `Peripheral` class, a wrapper around `CBPeripheral` used to call `CBPeripheral` functions with closure callbacks. 
-
-Note: The library is currently not thread safe, make sure to run your `Central` and `Peripheral` operations on the main thread. 
 
 Below are a couple examples of operations that might be of interest to you.
 
@@ -55,17 +45,6 @@ peripheral.connect { result in
     }
 }
 ```
-### Disconnecting from a peripheral
-```swift
-peripheral.disconnect { result in 
-    switch result {
-    case .success:
-        break // You are now disconnected from the peripheral
-    case .failure(let error):
-        break // An error happened during the disconnection
-    }
-}
-```
 ### Reading from a peripheral's service's characteristic
 If you already know the characteristic and service UUIDs you want to read from, once a peripheral has been found you can read from it right away like this: 
 
@@ -95,10 +74,10 @@ peripheral.readValue(ofCharac: charac) { result in
 ### Writing to a Peripheral's service's characteristic
 If you already know the characteristic and service UUID you want to write to, once a peripheral has been found, you can write to that characteristic right away like this: 
 ```swift
-let exampleBinaryData = String(0b1010).dataUsingEncoding(NSUTF8StringEncoding)!
+let data = String(0b1010).dataUsingEncoding(NSUTF8StringEncoding)!
 peripheral.writeValue(ofCharacWithUUID: "1d5bc11d-e28c-4157-a7be-d8b742a013d8", 
                       fromServiceWithUUID: "4011e369-5981-4dae-b686-619dc656c7ba", 
-                      value: exampleBinaryData) { result in
+                      value: data) { result in
     switch result {
     case .success:
         break // The write was succesful.
@@ -183,27 +162,21 @@ NotificationCenter.default.addObserver(forName: Central.CentralManagerWillRestor
 Add this to your Podfile:
 
 ```ruby
-platform :ios, '9.0'
-use_frameworks!
-
-pod 'SwiftyBluetooth'
+pod 'SwiftyBluetooth', '~> 3.0.0'
 ```
+### Swift Package Manager
+Simply add the library to your xcode project as a "Package Dependency"
 
-Then run:
-
-```bash
-$ pod install
-```
 ### Carthage
 
 Add this to your Cartfile 
 
 ```ogdl
-github "tehjord/SwiftyBluetooth"
+github "jordanebelanger/SwiftyBluetooth"
 ```
 
 ## Requirements
-SwiftyBluetooth requires iOS 9.0+
+SwiftyBluetooth requires iOS 10.0+
 
 ## License
 SwiftyBluetooth is released under the MIT License.

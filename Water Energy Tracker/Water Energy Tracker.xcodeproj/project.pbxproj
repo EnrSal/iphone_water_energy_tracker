@@ -13,6 +13,7 @@
 		0D050A8120A22360005B95A3 /* DeviceNameSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */; };
 		0D050A8320A3E383005B95A3 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A8220A3E383005B95A3 /* Util.swift */; };
 		0D050A8520A3F5F6005B95A3 /* KwhResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */; };
+		0D3FC56929047B75006AD49C /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 0D3FC56829047B75006AD49C /* Podfile */; };
 		0D4C1A9121CC33E6001D4D19 /* SolenoidSettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C1A8F21CC33E6001D4D19 /* SolenoidSettingsCell.swift */; };
 		0D4C1A9221CC33E6001D4D19 /* SolenoidSettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9021CC33E6001D4D19 /* SolenoidSettingsCell.xib */; };
 		0D4C1A9421CC355B001D4D19 /* AdditionalConfigResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */; };
@@ -158,6 +159,7 @@
 		0D050A7F20A22360005B95A3 /* DeviceNameSubCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceNameSubCell.xib; sourceTree = "<group>"; };
 		0D050A8220A3E383005B95A3 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		0D050A8420A3F5F6005B95A3 /* KwhResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwhResponse.swift; sourceTree = "<group>"; };
+		0D3FC56829047B75006AD49C /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		0D4C1A8F21CC33E6001D4D19 /* SolenoidSettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolenoidSettingsCell.swift; sourceTree = "<group>"; };
 		0D4C1A9021CC33E6001D4D19 /* SolenoidSettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolenoidSettingsCell.xib; sourceTree = "<group>"; };
 		0D4C1A9321CC355B001D4D19 /* AdditionalConfigResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalConfigResponse.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 		0D6AA3C6208187CF00194AA5 = {
 			isa = PBXGroup;
 			children = (
+				0D3FC56829047B75006AD49C /* Podfile */,
 				0D6AA3D1208187CF00194AA5 /* Water Energy Tracker */,
 				0D6AA3D0208187CF00194AA5 /* Products */,
 				F5D3F24931D9B7A35635461D /* Pods */,
@@ -859,6 +862,7 @@
 				0DAF994E2533B2C400C444E4 /* Countries.bundle in Resources */,
 				0D7340D120ABC93D0098343D /* EnergyUtilityVC.xib in Resources */,
 				0D8A1E16236F5AE20088C3B4 /* TempShareCell.xib in Resources */,
+				0D3FC56929047B75006AD49C /* Podfile in Resources */,
 				0D6AA3F720818C7F00194AA5 /* ManageVC.xib in Resources */,
 				0D6AA3DA208187CF00194AA5 /* Assets.xcassets in Resources */,
 				0D7340A520A9F4960098343D /* NotificationCell.xib in Resources */,
@@ -1210,7 +1214,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1220,7 +1224,7 @@
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";
@@ -1238,7 +1242,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Water Energy Tracker/Water Energy Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5AYD9V6NUZ;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1248,7 +1252,7 @@
 				INFOPLIST_FILE = "Water Energy Tracker/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.savior.Water-Energy-Tracker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Water Energy Tracker/Classes/UI/Common/Water Energy Tracker-Bridging-Header.h";

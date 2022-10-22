@@ -15,6 +15,13 @@ class SaviorVC: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(hex:"#4FB7FF", alpha:1)
+        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
+        navigationItem.standardAppearance = appearance;
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationItem.standardAppearance
     }
 
     override func didReceiveMemoryWarning() {

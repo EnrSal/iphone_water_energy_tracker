@@ -33,7 +33,7 @@ PODS:
   - Realm/Headers (3.19.0)
   - RealmSwift (3.19.0):
     - Realm (= 3.19.0)
-  - SwiftyBluetooth (1.0.0)
+  - SwiftyBluetooth (3.0.0)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
@@ -54,33 +54,32 @@ DEPENDENCIES:
   - MDatePickerView
   - ReachabilitySwift (~> 3)
   - RealmSwift (~> 3.19.0)
-  - SwiftyBluetooth
+  - SwiftyBluetooth (~> 3.0.0)
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - AlamofireNetworkActivityLogger
     - AlamofireObjectMapper
+    - AppCenter
+    - AzureNotificationHubs-iOS
     - Charts
     - D2PDatePicker
+    - DatePickerDialog
     - DateTimePicker
+    - FMSecureTextField
     - IQKeyboardManagerSwift
     - Kingfisher
+    - M13Checkbox
     - MBProgressHUD
+    - MDatePickerView
     - ObjectMapper
     - ReachabilitySwift
     - Realm
     - RealmSwift
     - SwiftyBluetooth
     - SwiftyJSON
-  trunk:
-    - AppCenter
-    - AzureNotificationHubs-iOS
-    - DatePickerDialog
-    - FMSecureTextField
-    - M13Checkbox
-    - MDatePickerView
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -102,9 +101,9 @@ SPEC CHECKSUMS:
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   Realm: 995d585bcf699aaff226715886c849a29dd3d07f
   RealmSwift: 35f284a537989f2187b413e5917091948cb87a3f
-  SwiftyBluetooth: 9e26b1367f56aa60f35713f6d968382144bccfd5
+  SwiftyBluetooth: 2aea2c3d5bb6a52e2fd2d62fb478064eed0417ae
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 0aed9529cf1d383458d634de50c51cde247423ba
+PODFILE CHECKSUM: 4cbe29568b26acd0cd5b6458f5f3cbec159907ae
 
-COCOAPODS: 1.9.2
+COCOAPODS: 1.11.3
