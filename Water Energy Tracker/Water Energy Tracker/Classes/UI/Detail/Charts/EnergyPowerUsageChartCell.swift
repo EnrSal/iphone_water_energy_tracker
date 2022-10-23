@@ -36,6 +36,9 @@ class EnergyPowerUsageChartCell: UITableViewCell {
     
     func populate() {
         
+        if self.savior.stype == Constants.gas {
+            energy_unit = 1
+        }
         
         var per_pulse = 0.01
         per_pulse = self.savior.EnergyUnitPerPulse
@@ -48,6 +51,12 @@ class EnergyPowerUsageChartCell: UITableViewCell {
                 heading.text = "Water Usage"
             } else {
                 heading.text = "Water Usage in last 12 hours"
+            }
+        } else if self.savior.stype == Constants.gas {
+            if history {
+                heading.text = "Gas Usage"
+            } else {
+                heading.text = "Gas Usage in last 12 hours"
             }
         } else {
             if history {

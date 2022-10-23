@@ -21,7 +21,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
     
     let RX_SERVICE_UUID:String = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
     let RX_CHAR_UUID:String = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
-    
+    let NEW_DEVICE_UUID:String = "6e400003-b5a3-f393-e0a9-e50e24dccaa1"
+
     
     
     override func viewDidLoad() {
@@ -218,6 +219,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
         self.tableView.reloadData()
         self.all_peripherals.removeAll()
         
+        print("START SCAN")
         SwiftyBluetooth.scanForPeripherals(withServiceUUIDs: [RX_SERVICE_UUID], timeoutAfter: 15) { scanResult in
             switch scanResult {
             case .scanStarted:
@@ -225,8 +227,8 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
                 self.peripherals.removeAll()
                 break
             case .scanResult(let peripheral, let advertisementData, let RSSI):
-                print("GOT BLUETOOTH \(peripheral.identifier) \(advertisementData) \(peripheral.name!)")
-                if peripheral.name! == "SX." {
+                print("GOT BLUETOOTH \(peripheral.identifier) \(advertisementData) \(peripheral.name)")
+                if let name = peripheral.name, peripheral.name! == "SX." {
                     peripheral.connect(withTimeout: 3) { result in
                         print("CONNECT TO SX. \(result)")
                         peripheral.disconnect {result in
@@ -308,7 +310,7 @@ class ManageVC: SaviorVC, UITableViewDelegate, UITableViewDataSource, UITextFiel
         
         if (indexPath.section == 0) {
             let savior = self.saviors[indexPath.row]
-            
+            print("@@@ SELECTED savior.is_configured=\(savior.is_configured)")
             let alertController = UIAlertController(title: NSLocalizedString("Options", comment: ""), message: nil, preferredStyle: .actionSheet)
             
             if !savior.from_share {

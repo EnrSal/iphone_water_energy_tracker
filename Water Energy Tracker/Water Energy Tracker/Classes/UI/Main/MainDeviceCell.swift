@@ -152,7 +152,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         formatter.dateFormat = "MMddyyyyHH:mm:ss"
         
         
-        if self.savior.stype == 20 || self.savior.stype == Constants.remote_well {
+        if self.savior.stype == 20 || self.savior.stype == Constants.remote_well || self.savior.stype == Constants.gas {
             self.numgalsWidthConstraint.constant = 70
             self.numgals.isHidden = false
         } else {
@@ -247,6 +247,9 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 case Constants.remote_well:
                     self.tableHeight.constant = 0
                     self.typeImage.image = UIImage(named: "ic_well")
+                case Constants.gas:
+                    self.tableHeight.constant = 0
+                    self.typeImage.image = UIImage(named: "ic_gas")
                 default:
                     break
                 }
@@ -392,6 +395,12 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     self.numgals.text = "ON"
                 } else {
                     self.numgals.text = "OFF"
+                }
+            }
+            
+            if self.savior.stype == Constants.gas {
+                if let current = current {
+                    self.numgals.text = Util.cfToReadable(cf: Double(current.C1))
                 }
             }
             

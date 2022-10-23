@@ -92,6 +92,12 @@ class HistoryVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                 self.week.text = Util.galToReadable(gal: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
                                 self.month.text = Util.galToReadable(gal: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
                                 self.year.text = Util.galToReadable(gal: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
+                            } else if self.savior.stype == Constants.gas {
+                                self.energy_unit = 1
+                                self.day.text = Util.cfToReadable(cf: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!)
+                                self.week.text = Util.cfToReadable(cf: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!)
+                                self.month.text = Util.cfToReadable(cf: Double(monthly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!)
+                                self.year.text = Util.cfToReadable(cf: Double(yearly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!)
                             } else {
                                 self.day.text = Util.kwToReadable(kw: Double(daily[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)
                                 self.week.text = Util.kwToReadable(kw: Double(weekly[self.energy_unit-1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior)

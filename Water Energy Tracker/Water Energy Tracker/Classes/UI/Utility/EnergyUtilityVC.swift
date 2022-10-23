@@ -31,7 +31,9 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         fromdate.text = ""
         todate.text = ""
         self.title = "Energy Utility"
-
+        if self.savior.stype == Constants.gas {
+            self.title = "Gas Utility"
+        }
         self.tableView.register(EnergyHistoricalGraphCell.self, forCellReuseIdentifier: "HISTORICAL_GRAPH")
         self.tableView.register(UINib(nibName: "EnergyHistoricalGraphCell", bundle: nil), forCellReuseIdentifier: "HISTORICAL_GRAPH")
         self.tableView.tableFooterView = UIView()
@@ -53,7 +55,7 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.savior.stype == 0 || self.savior.stype == 20 {
+        if self.savior.stype == 0 || self.savior.stype == 20 || self.savior.stype == Constants.gas {
 
             return 1
         }
@@ -71,7 +73,7 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell:EnergyHistoricalGraphCell = (self.tableView.dequeueReusableCell(withIdentifier: "HISTORICAL_GRAPH", for: indexPath) as? EnergyHistoricalGraphCell)!
-        
+        cell.gas = self.savior.stype == Constants.gas
         cell.points = self.point_lists[indexPath.row]
         cell.populate()
         
@@ -169,9 +171,9 @@ class EnergyUtilityVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
                                 str = "\(str)\(self.savior.energy_unit_name_7!): \(Util.galToReadable(gal: Double(results[6].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
                                 str = "\(str)\(self.savior.energy_unit_name_8!): \(Util.galToReadable(gal: Double(results[7].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
                             }
-
+                        } else if self.savior.stype == Constants.gas {
+                            str = "\(str)\(self.savior.energy_unit_name_1!): \(Util.cfToReadable(cf: Double(results[0].trimmingCharacters(in: .whitespacesAndNewlines))!))\n"
                         } else {
-                            
                             str = "\(str)\(self.savior.energy_unit_name_1!): \(Util.kwToReadable(kw: Double(results[0].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
                             str = "\(str)\(self.savior.energy_unit_name_2!): \(Util.kwToReadable(kw: Double(results[1].trimmingCharacters(in: .whitespacesAndNewlines))!, savior: self.savior))\n"
                             if self.savior.stype == 2 || self.savior.stype == 4 {
