@@ -275,7 +275,10 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                                 print("3VALUES \(values)")
                                 //let realm = try! Realm()
                                 
-                                
+                                if self.savior.stype == Constants.gas {
+                                    self.numgals.text = Util.cfToReadable(cf: Double(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)
+                                }
+
                                 if self.savior.EnergyUnit == nil {
                                     let realm = try! Realm()
                                     try! realm.write {
@@ -397,13 +400,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     self.numgals.text = "OFF"
                 }
             }
-            
-            if self.savior.stype == Constants.gas {
-                if let current = current {
-                    self.numgals.text = Util.cfToReadable(cf: Double(current.C1))
-                }
-            }
-            
+                        
             /*
             
             if let current = current {
