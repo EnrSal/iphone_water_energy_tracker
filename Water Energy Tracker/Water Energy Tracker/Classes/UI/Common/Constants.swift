@@ -26,5 +26,6 @@ class Constants: NSObject {
     
     static var temperature_only_stype = 50;
     static var remote_well = 60;
+    static var gas = 70;
 
 }

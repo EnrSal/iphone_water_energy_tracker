@@ -15,7 +15,9 @@ class EnergyHistoricalGraphCell: UITableViewCell {
     @IBOutlet weak var heading: UILabel!
     var countToDate:[Double:Double] = [:]
 
+    @IBOutlet weak var chartLabel: UILabel!
     var points:[GraphPoint] = []
+    var gas = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,7 +44,12 @@ class EnergyHistoricalGraphCell: UITableViewCell {
         }
         
         if values.count > 0 {
-            let label = "Power Usage"
+            var label = "Power Usage"
+            if gas {
+                label = "Gas Usage"
+            }
+            self.chartLabel.text = label
+            
             let set1: BarChartDataSet = BarChartDataSet(values: values, label: label)
             set1.colors = [UIColor.init(hex: "#006400")]
             set1.drawValuesEnabled = false

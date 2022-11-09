@@ -156,7 +156,7 @@ class MainVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
 
-        if self.saviors[indexPath.row].isValidDevice() && (self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20 || self.saviors[indexPath.row].stype == Constants.temperature_only_stype || self.saviors[indexPath.row].stype == Constants.remote_well) {
+        if self.saviors[indexPath.row].isValidDevice() && (self.saviors[indexPath.row].stype == 0 || self.saviors[indexPath.row].stype == 20 || self.saviors[indexPath.row].stype == Constants.temperature_only_stype || self.saviors[indexPath.row].stype == Constants.remote_well || self.saviors[indexPath.row].stype == Constants.gas) {
             
             let realm = try! Realm()
             let items = realm.objects(RealmDataPoint.self).filter("mac = '\(self.saviors[indexPath.row].savior_address!)'").sorted(byKeyPath: "timestamp", ascending: false)

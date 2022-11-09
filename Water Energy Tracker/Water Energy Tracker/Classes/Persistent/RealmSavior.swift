@@ -49,6 +49,7 @@ class RealmSavior: Object {
     @objc dynamic var relay_default: Bool = true
     @objc dynamic var is_configured: Bool = false
     @objc dynamic var disable_shutoff: Bool = false
+    @objc dynamic var is_next_gen: Bool = false
 
     
     func isValidDevice() -> Bool {

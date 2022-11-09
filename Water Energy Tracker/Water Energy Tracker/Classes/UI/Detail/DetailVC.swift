@@ -253,7 +253,7 @@ class DetailVC: SaviorVC, UITableViewDelegate, UITableViewDataSource {
         }
         
         
-        if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype || self.savior.stype == Constants.remote_well {
+        if (self.savior.stype == 0) || self.savior.stype == Constants.temperature_only_stype || self.savior.stype == Constants.remote_well || self.savior.stype == Constants.gas {
             name.text = self.savior.alias!
         } else {
             print("ENERGY UNIT \(energy_unit)")

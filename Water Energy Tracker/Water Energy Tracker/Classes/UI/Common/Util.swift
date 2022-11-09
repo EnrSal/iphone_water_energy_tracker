@@ -131,5 +131,11 @@ class Util: NSObject {
         return "\(String(format: "%.2f", gal)) Gal"
     }
 
+    static func cfToReadable(cf:Double) -> String {
+        if (cf > 1000) {
+            return "\(String(format: "%.3f", cf * 0.001)) Mcf"
+        }
+        return "\(String(format: "%.3f", cf)) cf"
+    }
 
 }

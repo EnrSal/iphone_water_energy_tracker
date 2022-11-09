@@ -152,7 +152,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         formatter.dateFormat = "MMddyyyyHH:mm:ss"
         
         
-        if self.savior.stype == 20 || self.savior.stype == Constants.remote_well {
+        if self.savior.stype == 20 || self.savior.stype == Constants.remote_well || self.savior.stype == Constants.gas {
             self.numgalsWidthConstraint.constant = 70
             self.numgals.isHidden = false
         } else {
@@ -247,6 +247,9 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 case Constants.remote_well:
                     self.tableHeight.constant = 0
                     self.typeImage.image = UIImage(named: "ic_well")
+                case Constants.gas:
+                    self.tableHeight.constant = 0
+                    self.typeImage.image = UIImage(named: "ic_gas")
                 default:
                     break
                 }
@@ -272,7 +275,10 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                                 print("3VALUES \(values)")
                                 //let realm = try! Realm()
                                 
-                                
+                                if self.savior.stype == Constants.gas {
+                                    self.numgals.text = Util.cfToReadable(cf: Double(values[0].trimmingCharacters(in: CharacterSet.whitespaces))!)
+                                }
+
                                 if self.savior.EnergyUnit == nil {
                                     let realm = try! Realm()
                                     try! realm.write {
@@ -394,7 +400,7 @@ class MainDeviceCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                     self.numgals.text = "OFF"
                 }
             }
-            
+                        
             /*
             
             if let current = current {

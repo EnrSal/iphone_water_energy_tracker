@@ -135,6 +135,11 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 slider.maximumValue = 500
                 self.maxLabel.text = "500"
             }
+            if self.owner.savior.stype == Constants.gas {
+                titleLabel.text = "Cubic feet used in 1 hour:"
+                slider.maximumValue = 500
+                self.maxLabel.text = "500"
+            }
             slider.minimumValue = 0
             if self.owner.config!.Hour == nil {
                 self.owner.config!.Hour = "0"
@@ -150,6 +155,11 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 slider.maximumValue = 3000
                 self.maxLabel.text = "3000"
             }
+            if self.owner.savior.stype == Constants.gas {
+                titleLabel.text = "Cubic feet used in 1 day:"
+                slider.maximumValue = 5000
+                self.maxLabel.text = "5000"
+            }
             slider.minimumValue = 0
             if self.owner.config!.Day == nil {
                 self.owner.config!.Day = "0"
@@ -164,6 +174,11 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
                 titleLabel.text = "Gallons used in 1 week:"
                 slider.maximumValue = 20000
                 self.maxLabel.text = "20k"
+            }
+            if self.owner.savior.stype == Constants.gas {
+                titleLabel.text = "Cubic feet used in 1 week:"
+                slider.maximumValue = 50000
+                self.maxLabel.text = "50k"
             }
             slider.minimumValue = 0
             if self.owner.config!.Week == nil {
@@ -182,6 +197,13 @@ class SettingsSliderCell: UITableViewCell, UITextFieldDelegate {
             if self.owner.config!.Month == nil {
                 self.owner.config!.Month = "0"
             }
+            
+            if self.owner.savior.stype == Constants.gas {
+                titleLabel.text = "Cubic feet used in 1 month:"
+                slider.maximumValue = 300000
+                self.maxLabel.text = "300k"
+            }
+
             slider.value = Float(self.owner.config!.Month!)!
             self.currentEdut.text = "\(Int(self.owner.config!.Month!)!)"
         case .water:
